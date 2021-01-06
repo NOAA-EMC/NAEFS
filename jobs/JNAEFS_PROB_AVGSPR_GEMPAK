@@ -1,0 +1,168 @@
+#!/bin/sh
+
+########################################
+# Runs NAM Postprocessing up to 24 hours
+########################################
+
+set -xa
+# #### 08/25/1999 ###################
+# SET SHELL PROCESSING VARIABLES
+# ###################################
+export PS4='${PMI_FORK_RANK}: $SECONDS + ' 
+date
+# 
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export DATA=${DATA:-$DATAROOT/${job}.${pid}}
+mkdir $DATA
+cd $DATA 
+
+####################################
+# Determine Job Output Name on System
+####################################
+export outid="LL$job"
+export jobid="${outid}.o${pid}"
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z 
+
+####################################
+# File To Log Msgs
+####################################
+if [ $RUN_ENVIR = dev ]
+then
+   # DEV
+   export jlogfile=/dev/null
+fi
+export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+
+####################################
+#
+####################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDECF=${SENDECF:-YES}
+export SENDDBN=${SENDDBN:-YES}
+
+#
+# Set up model and cycle specific variables
+#
+export NET=naefs
+export RUN=naefs
+#export fend=384
+export finc=3
+#export fstart=03
+export model=ensemble
+export GRIB=
+export EXT=""
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#. /nwprod/gempak/.gempak
+
+
+#########################
+# Specify Execution Areas
+#########################
+
+export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
+export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
+export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
+export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
+
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. PDY
+
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COMIN_BC=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
+export COMIN_AN=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
+export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+ 
+env
+
+####################
+# Execute the script 
+####################
+
+hourlist="000 003 006 009 012 015 018 021 024 027 030 033 036 039 042 045 048 \
+          051 054 057 060 063 066 069 072 075 078 081 084 087 090 093 096 099 \
+          102 105 108 111 114 117 120 123 126 129 132 135 138 141 144 147 150 \
+          153 156 159 162 165 168 171 174 177 180 183 186 189 192 198 204 \
+          210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
+          306 312 318 324 330 336 342 348 354 360 366 372 378 384"
+
+for nfhrs in $hourlist; do
+
+  fstart=$nfhrs
+  fend=$nfhrs
+  if [ -s poe_gempak_${nfhrs} ]; then rm poe_gempak_${nfhrs}; fi
+
+  mkdir -p $DATA/dir_${nfhrs}
+  echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+  $fstart $fend $COMIN_AN $COMOUT naefs geavganv NAEFS_AVGAN_GEMPAK &>     \
+  $DATA/dir_${nfhrs}/output_geavganv_${nfhrs}" > $DATA/poe_gempak_${nfhrs}
+
+  echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+  $fstart $fend $COMIN_AN $COMOUT naefs geavgan NAEFS_AVGAN_GEMPAK &>   \
+  $DATA/dir_${nfhrs}/output_geavgan_$nfhrs" >> $DATA/poe_gempak_${nfhrs}
+
+  echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+  $fstart $fend $COMIN_AN $COMOUT naefs geefi NAEFS_AVGAN_GEMPAK &>   \
+  $DATA/dir_${nfhrs}/output_geefi_${nfhrs}" >> $DATA/poe_gempak_${nfhrs}
+
+  for member in 10pt 50pt 90pt avg spr mode; do
+    if test "$member" = "10pt"; then
+    export DBN_ALERT_TYPE=NAEFS_BC_GEMPAK
+    elif test "$member" = "50pt"; then
+    export DBN_ALERT_TYPE=NAEFS_BC_GEMPAK
+    elif test "$member" = "90pt"; then
+    export DBN_ALERT_TYPE=NAEFS_BC_GEMPAK
+    elif test "$member" = "avg"; then
+    export DBN_ALERT_TYPE=NAEFS_BC_GEMPAK
+    elif test "$member" = "spr"; then
+    export DBN_ALERT_TYPE=NAEFS_BC_GEMPAK
+    elif test "$member" = "mode"; then
+    export DBN_ALERT_TYPE=NAEFS_BC_GEMPAK
+    fi
+    echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+    $fstart $fend $COMIN_BC $COMOUT naefs ge${member} ${DBN_ALERT_TYPE} &> \
+    $DATA/dir_${nfhrs}/output_ge${member}_bc_$nfhrs" >> $DATA/poe_gempak_${nfhrs}
+  done
+
+done
+
+if [ -s poescript_gempak ]; then rm poescript_gempak; fi
+
+for nfhrs in $hourlist; do
+  chmod 775 $DATA/poe_gempak_${nfhrs}
+  echo "poe_gempak_${nfhrs}" >>poescript_gempak
+done
+
+chmod 775 $DATA/poescript_gempak
+
+# Execute the script.
+$APRUN $DATA/poescript_gempak      
+export err=$?; err_chk
+
+cat $DATA/dir_024/output_geavgan_024
+cat $DATA/dir_384/output_geavgan_384
+cat $DATA/dir_024/output_geavganv_024
+cat $DATA/dir_384/output_geavganv_384
+cat $DATA/dir_024/output_geefi_024
+cat $DATA/dir_384/output_geefi_384
+cat $DATA/dir_024/output_geavg_bc_024
+cat $DATA/dir_384/output_geavg_bc_384
+
+########################################################
+
+cd $DATAROOT
+
+if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+
+date

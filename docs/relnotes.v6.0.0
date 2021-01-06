@@ -1,0 +1,257 @@
+Release Note: NAEFS.v6.0.0
+
+v4.0.0 released Jan 28. 2014  
+v4.0.1 released May 20. 2014  
+v4.0.2 released May 20. 2014  
+v4.0.3 released May/Jun 2015  
+v5.0.0 released Mar 29  2016  
+
+NAEFS upgrade
+
+- Upgrade bias corrected GEFS/NAEFS (0.5d) products (every 3hr for 0-8 days)
+- Upgrade anomaly products. For surface elements, both anomaly forecast and EFI
+- Upgrade downscaled GEFS/NAEFS products(CONUS and Alaska, every 3hr for 0-8 days)
+- Upgrade bias correction methodology (hybrid of decaying average and reforecast)
+- Add wind speed at 10m above ground in the GEFS/NAEFS bias-corrected forecast
+- Upgrade GEFS bias-corrected QPF and PQPF from daily 2.5d to 6-hourly 0.5d
+- Add downscaled PQF/PQPF forecasts for CONUS domain using climatology downscaling methodology 
+
+
+DESCRIPTION OF CHANGE:  
+
+The modified J-jobs and scripts/ush include:
+
+CMC Jobs
+
+1. jobs/JNAEFS_CMC_ENS_PREP  
+
+   1) scripts/exnaefs_cmcens_prep.sh.ecf
+   - modified for 0.5d ensemble data input with 3 hourly from 0-8day                                 
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+2. jobs/JNAEFS_CMC_ENS_POST
+
+   1) scripts/exnaefs_cmcens_post.sh.ecf
+   - modified for 0.5d ensemble data input with 3 hourly from 0-8day                                 
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+3. jobs/JNAEFS_CMC_ENS_BIAS  
+
+   1) scripts/exnaefs_cmc_ens_bias.sh.ecf      
+   - modified for 0.5d ensemble data input
+
+4. jobs/JNAEFS_CMC_ENSBC_PREP  
+
+  1) scripts/exnaefs_cmc_ensbc_prep.sh.ecf 
+   - modified for 0.5d ensemble data input
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+  2) ush/cmce_bc_avgspr.sh
+   - modified for 0.5d ensemble data input
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+  3) ush/cmce_climate_anomaly.sh
+   - modified for 0.5d ensemble data input
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+  4) ush/cmce_weights.sh
+   - modified for 0.5d ensemble data input
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+5. jobs/JNAEFS_CMC_ENS_POST_EXTEND
+
+  - new for CMC extended forecast                 
+
+NCEP/GEFS Jobs
+
+1. jobs/JGEFS_BIAS
+
+  1) scripts/exgefs_bias.sh.ecf 
+   - modified to include reforecast bias correction technique
+   - modified to include more forecast lead times
+   - modified for 0.5d ensemble data and 3 hourly from 0-8day                                 
+
+  2) ush/gefs_bias_decay.sh
+   - modified to calculate decaying average bias 
+
+  3) ush/gefs_bias_decay_avggen.sh
+   - new, added to calculate decaying average bias for 3hrly 
+
+  4) ush/gefs_bias_coeff.sh           
+   - new, added to calculate combination coefficient between decaying and reforecast bias
+
+  5) ush/gefs_bias_coeff_avggen.sh    
+   - new, added to calculate combination coefficient for 3hrly
+
+  6) ush/gefs_bias_reforecast.sh      
+   - new, added to calculate reforecast bias 
+
+  7) ush/gefs_bias_combine.sh         
+   - new, added to combine decaying and reforecast bias
+
+  8) sorc/gefs_bias.fd ( no change )
+
+  9) sorc/gefs_bias_gen.fd                
+   - new, added to calculate decaying average bias for 3hrly 
+
+ 10) sorc/gefs_coeff_r.fd           
+   - new, added to calculate combination coefficient between decaying and reforecast bias
+
+ 11) sorc/gefs_bias_combine.fd         
+   - new, added to combine decaying and reforecast bias
+
+2. jobs/JGEFS_DEBIAS
+
+  1) scripts/exgefs_debias.sh.ecf  
+   - modified to include combined bias
+   - modified to include more forecast lead times
+
+  2) sorc/gefs_debias.fd 
+
+  3) ush/gefs_climate_anomaly.sh 
+
+  4) sorc/gefs_climate_anomaly.fd 
+
+  5) ush/gefs_weights.sh 
+
+  6) fix/cmean_1d.1979MMDD & fix/cstdv_1d.1979MMDD
+   - copy from /nwprod/naefs.v4.0.4/fix                              
+   - data are interpolated from 1 degree to 0.5 degree
+   - data are interpolated from 6 hour interval to 3 hour interval
+
+3. jobs/JNAEFS_GEFS_24HR_CQPF
+
+  1) scripts/exnaefs_gefs_24hr_enscqpf.sh.ecf
+   - new, generates the 24-hourly CQPF and CPQPF                     
+
+  2) sorc/gefs_enscqpf_24hr.fd
+   - new, generates the 24-hourly CQPF and CPQPF                     
+
+4. jobs/JNAEFS_GEFS_6HR_CQPF 
+
+  1) scripts/exnaefs_gefs_6hr_enscqpf.sh.ecf 
+   - new, generates the 6-hourly CQPF and CPQPF                     
+
+  2) sorc/gefs_enscqpf_6hr.fd 
+   - new, generates the 6-hourly CQPF and CPQPF                     
+
+  3) sorc/gefs_enspvrfy.fd    
+   - new, output stats, forecast on analysis grid for archive       
+
+  4) sorc/gefs_enssrbias.fd   
+   - new, calculate historical statistics by using 30-day decaying function 
+
+5. jobs/JNAEFS_GEFS_ANFEFI_ACPR
+
+  1) scripts/exnaefs_gefs_anfefi_acpr.sh.ecf 
+   - new, generate GEFS anomaly forecast/EFI for 24-hr accmulated precipitation
+
+  2) sorc/gefs_climate_anfefi_acpr.fd
+   - new, generate GEFS anomaly forecast/EFI for 24-hr accmulated precipitation
+
+6. jobs/JNAEFS_GEFS_PGRB_ENSPQPF
+
+  1) scripts/exnaefs_gefs_pgrb_enspqpf.sh.ecf
+   - modified for 0.5d ensemble data input
+
+7. jobs/JNAEFS_NDGD_CQPF               
+
+  1) scripts/exnaefs_conus_ndgd_enscqpf.sh.ecf
+   - new, Downscaling for Bias-corrected QPF
+
+  2) sorc/conus_ndgd_enscqpf.fd
+   - new, Downscaling for Bias-corrected QPF
+
+NAEFS Jobs
+
+1. jobs/JNAEFS_PROB_AVGSPR
+
+  1) scripts/exnaefs_prob_avgspr.sh.ecf   
+   - modified input for 0.5d ensemble data and 3 hourly from 0-8day                                 
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+   - add new ush for EFI generation
+
+  2) ush/naefs_bc_probability.sh
+   - modified input for 0.5d ensemble data and 3 hourly from 0-8day                                 
+
+  3) ush/naefs_climate_anv.sh
+   - modified input for 0.5d ensemble data and 3 hourly from 0-8day                                 
+
+  4) ush/naefs_climate_anomaly.sh
+   - new, added to generate the anomaly forecast(percentage) for ensemble mean                                 
+  5) ush/naefs_climate_efi.sh
+   - new, added to generate EFI
+
+  6) sorc/naefs_climate_anomaly.fd
+   - new, added to generate the anomaly forecast(percentage) for ensemble mean
+
+  7) sorc/gefs_climate_anomefi.fd
+   - new, added to generate EFI
+
+2. jobs/JNAEFS_DVRTMA_BIAS_ALASKA
+
+  1) scripts/exnaefs_dvrtma_bias_ak.sh.ecf      
+   - modified for 0.5d ensemble data input with 3 hourly from 0-8day                                 
+
+3. jobs/JNAEFS_DVRTMA_BIAS_CONUS
+
+  1) scripts/exnaefs_dvrtma_bias_conus.sh.ecf
+   - modified for 0.5d ensemble data input with 3 hourly from 0-8day                                 
+
+4. jobs/JNAEFS_DVRTMA_PROB_AVGSPR_AK
+
+  1) scripts/exnaefs_dvrtma_prob_avgspr_ak.sh.ecf
+   - modified for 0.5d ensemble data input with 3 hourly from 0-8day                                 
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+  2) ush/dvrtma_debias_alaska.sh
+   - modified for 0.5d ensemble data input 
+
+  3) ush/dvrtma_debias_alaska_tmaxmin.sh
+   - modified for 0.5d ensemble data input 
+
+  4) ush/cmce_adjust_tmaxmin_alaska.sh
+   - modified for 0.5d ensemble data input 
+
+  5) ush/dvrtma_debias_alaska_wind10m.sh
+   - modified for 0.5d ensemble data input 
+
+  6) ush/cmce_adjust_wind10m_alaska.sh
+   - modified for 0.5d ensemble data input 
+
+5. jobs/JNAEFS_DVRTMA_PROB_AVGSPR_CONUS
+
+  1) scripts/exnaefs_dvrtma_prob_avgspr_conus.sh.ecf
+   - modified for 0.5d ensemble data input with 3 hourly from 0-8day                                 
+   - modified for 0.5d ensemble data output with 3 hourly from 0-8day                                 
+
+  2) ush/dvrtma_debias_conus.sh
+   - modified for 0.5d ensemble data input 
+
+  3) ush/dvrtma_debias_conus_tmaxmin.sh
+   - modified for 0.5d ensemble data input 
+
+  4) ush/cmce_adjust_tmaxmin_conus.sh
+   - modified for 0.5d ensemble data input 
+
+  5) ush/dvrtma_debias_conus_wind10m.sh
+   - modified for 0.5d ensemble data input 
+
+  6) ush/cmce_adjust_wind10m_conus.sh
+   - modified for 0.5d ensemble data input 
+ 
+
+BENEFIT OF CHANGE: 
+
+NAEFS can be run across multiple phases
+
+USER IMPACT STATEMENT:
+
+No format is changed. Files names of GEFS/NAEFS for 0.5d are changed.
+
+TECHNICAL IMPACT STATEMENT:
+
+No impacts to data distributed via all distribution platforms are specified.
+
+
+

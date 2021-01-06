@@ -1,0 +1,94 @@
+#!/bin/bash
+#BSUB -J jcmcens_post_extend                              
+#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/dev/jcmcens_post_extend.%J
+#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/dev/jcmcens_post_extend.%J
+#BSUB -cwd /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
+#BSUB -P GEN-T2O
+#BSUB -q devonprod
+#BSUB -W 1:30
+#BSUB -M 1000
+#BSUB -extsched 'CRAYLINUX[]'
+
+export NODES=10
+export APRUN="aprun -j1 -n161 -N17 -d1 cfp "
+export APRUN_post="aprun -j1 -n12 -N12 -d1 cfp "
+export APRUN_stat="aprun -j1 -n17 -N17 -d1 cfp "
+
+export IOBUF_PARAMS='*:sync,%stdout:sync'
+
+# EXPORT list here
+
+set -xue
+
+export PDY=20170713
+export cyc=00        
+
+export envir=prod
+export RUN_ENVIR=dev
+
+export job=cmcens_post_extend.$PDY$cyc
+
+########################
+# add the following part
+########################
+
+export direxp=naefs.v6.0.0
+
+module load PrgEnv-intel
+module use /gpfs/hps/nco/ops/nwprod/modulefiles
+module load prod_util
+module load grib_util/1.0.3
+module load ecflow
+
+module load ESMF-intel-haswell/3_1_0rp5
+module load cfp-intel-sandybridge
+module load iobuf 
+module load craype-hugepages2M
+module list
+
+export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc
+export DATAROOT=/gpfs/hps3/stmp/Bo.Cui/bc/o/com/output/dev
+
+eval dev=` cat /etc/dev `
+eval prod=` cat /etc/prod `
+echo "dev is" $dev "and prod is" $prod
+
+if [  $prod == luna ]; then
+  # For Luna
+  export COMROOT=/gpfs/tp2/nco/ops/com
+# export DCOMROOT=/gpfs/tp1/nco/ops/dcom
+  export DCOMROOT=/gpfs/tp1/dcomdev
+  export COMROOTp1=/gpfs/tp1/nco/ops/com
+else
+  #For Surge
+  export COMROOT=/gpfs/gp2/nco/ops/com
+# export DCOMROOT=/gpfs/gp1/nco/ops/dcom
+  export DCOMROOT=/gpfs/gp1/dcomdev
+  export COMROOTp1=/gpfs/gp1/nco/ops/com
+fi
+
+# versions file for genesis $genesis.ver
+
+VERSION_FILE=${NWROOT}/$direxp/versions/naefs.ver
+if [ -f $VERSION_FILE ]; then
+  . $VERSION_FILE
+else
+  ecflow_client --abort
+  exit
+fi
+
+export model_ver=v6.0.0
+
+# CALL executable job script here
+
+${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_CMC_ENS_POST_EXTEND     
+
+if [ $? -ne 0 ]; then
+  ecflow_client --abort
+  exit
+fi
+
+#%include <tail.h>
+#%manual
+
+

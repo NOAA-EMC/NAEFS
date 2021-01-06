@@ -1,0 +1,31 @@
+# This parameter file set up the environment variables used in
+# the J-Job scripts to run gefs/fnmoc ensemble
+##################################################################
+
+  export HOMErtma=${NWROOT}/${direxp}
+  export EXECrtma=${EXECrtma:-$HOMErtma/exec}
+  export FIXrtma=${FIXrtma:-$HOMErtma/fix}
+  export USHrtma=${USHrtma:-$HOMErtma/ush}
+
+  export COM_DV=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+  export COM_RTMA=${COM_RTMA:-${COMROOT}/rtma/prod}
+
+# export COM=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+# export COMINgefs=$COM/gefs.${PDY}/${cyc}/pgrb2ap5
+  export COMINgefs=${COMROOT}/gens/para/gefs.${PDY}/${cyc}/pgrb2ap5
+
+  export COM_OUT=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+
+  export COMOUT=${COM_OUT}/${RUN}.${PDY}/${cyc}/ndgd_gb2
+  export COMOUT_GEFS=${COM_OUT}/gefs.${PDY}/${cyc}/ndgd_gb2
+ 
+  export COMOUTm03=${COM_OUT}/${RUN}.${PDYm03}/${cycm03}/ndgd_gb2
+  export COMOUTm03_GEFS=${COM_OUT}/gefs.${PDYm03}/${cycm03}/ndgd_gb2
+
+  export jlogfile=$DATAROOT/jlogfile
+
+  export SENDCOM=${SENDCOM:-YES}
+  export SENDSMS=NO                     
+  export SENDDBN=${SENDDBN:-NO}
+  export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+

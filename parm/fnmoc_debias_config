@@ -1,0 +1,27 @@
+# This parameter file set up the environment variables used in
+# the J-Job scripts to run gefs/fnmoc ensemble
+##################################################################
+
+  export HOMEfnmoc=${NWROOT}/${direxp}                      
+  export EXECfnmoc=${EXECfnmoc:-$HOMEfnmoc/exec}
+  export FIXfnmoc=${NWROOT}/${direxp}/fix            
+  export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
+
+  export DCOM=${DCOM:-${DCOMROOT}/prod}
+  export COMIN=${COMIN:-$DCOM/$PDY/wgrbbul/fnmocens_gb2}
+  export COMINBC=${COMINBC:-${DCOM}/$PDY/wgrbbul/fnmoc_ens_bc_gb2}
+  export COMINbias=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+
+  export COM_OUT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev            
+  export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
+  export COMOUTBC=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_bc
+  export COMOUTAN=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_an
+  export COMOUTWT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_wt
+
+  export jlogfile=$DATAROOT/jlogfile
+
+  export SENDCOM=${SENDCOM:-YES}
+  export SENDSMS=NO                     
+  export SENDDBN=${SENDDBN:-NO}
+  export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+

@@ -1,0 +1,92 @@
+#/bin/bash
+#BSUB -J jnaefs_gefs_bias_gempak
+#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/dev/jgefs_bias_gempak_00.o%J
+#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/dev/jgefs_bias_gempak_00.o%J
+#BSUB -cwd /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
+#BSUB -P GEN-T2O
+#BSUB -q devonprod
+#BSUB -W 0:30
+#BSUB -M 1000
+#BSUB -extsched 'CRAYLINUX[]'
+
+export NODES=1
+export APRUN="aprun -n 4 -N 4 -cc depth cfp "
+
+export direxp=naefs.v6.0.0
+
+# EXPORT list here
+
+set -x
+
+export PDY=20170915
+export cyc=00
+ 
+export envir=dev
+export RUN_ENVIR=dev         
+export job=naefs_gefs_bias_gempak_$PDY$cyc
+export SENDDBN=NO
+
+########################
+# add the following part
+########################
+
+module load PrgEnv-intel
+module load grib_util/1.0.3
+module load prod_util
+module load cfp-intel-sandybridge
+module load gempak/7.3.0
+
+export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc
+export DATAROOT=/gpfs/hps3/stmp/Bo.Cui/bc/o/com/output/dev
+mkdir -p $DATAROOT
+export KEEPDATA=YES
+
+eval dev=` cat /etc/dev `
+eval prod=` cat /etc/prod `
+echo "dev is" $dev "and prod is" $prod
+
+if [  $prod == surge ]; then
+
+# Data on Surge
+#export COMROOT=/gpfs/gp2/nco/ops/com
+export COMROOT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com
+#export DCOMROOT=/gpfs/gp1/nco/ops/dcom
+export DCOMROOT=/gpfs/gp1/dcomdev
+export COMROOTp1=/gpfs/gp1/nco/ops/com
+
+else
+
+# Data on Luna
+#export COMROOT=/gpfs/tp2/nco/ops/com
+export COMROOT=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com
+export DCOMROOT=/gpfs/tp1/nco/ops/dcom
+export COMROOTp1=/gpfs/tp1/nco/ops/com
+
+fi
+
+# versions file for genesis $genesis.ver
+
+VERSION_FILE=${NWROOT}/$direxp/versions/naefs.ver
+if [ -f $VERSION_FILE ]; then
+  . $VERSION_FILE
+else
+  ecflow_client --abort
+  exit
+fi
+
+#######################
+
+
+# CALL executable job script here
+
+${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_GEFS_BIAS_GEMPAK
+
+if [ $? -ne 0 ]; then
+  ecflow_client --abort
+  exit
+fi
+
+#%include <tail.h>
+#%manual
+
+

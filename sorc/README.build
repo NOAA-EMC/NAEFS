@@ -1,0 +1,18 @@
+Library are defined in Module_NAEFS_v6.0.0    
+
+To build codes:
+
+    cd /nwprod/naefs.v6.0.0/sorc
+     1) bash
+#    2) module purge                        ! no use, moved to build.sh
+#    3) module use .                        ! no use, moved to build.sh
+#    4) module load Module_NAEFS_v6.0.0     ! no use, moved to build.sh     
+     5) ./build.sh WCOSS_C                  ! for CRAY
+     6) ./install.sh
+
+test version
+
+     1) bash
+     2) ./22.sh WCOSS_C
+     3) ./install.sh
+

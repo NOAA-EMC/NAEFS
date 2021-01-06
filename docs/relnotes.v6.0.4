@@ -1,0 +1,33 @@
+Release Note: NAEFS.v6.0.4
+
+v4.0.0 released Jan 28. 2014  
+v4.0.1 released May 20. 2014  
+v4.0.2 released May 20. 2014  
+v4.0.3 released May/Jun 2015  
+v5.0.0 released Mar 29  2016  
+v6.0.3 released Aug 18  2018  
+
+NAEFS minor implementation 
+
+- Variable ULWRF is accumulated value since the beginning in CMC raw ensemble. One
+  task of job JNAEFS_CMC_ENS_POST is to convert it to 6-hour or 3-hour average.
+  The date range of average value are different from the accumulation. Modification 
+  is needed get proper date compression setting. 
+
+The modified source codes include:
+
+CMC Jobs
+
+1. jobs/JNAEFS_CMC_ENS_POST
+
+ 1) sorc/cmcens_post_acc.fd/cmcens_post_acc.f90
+   - modified, new definition for data compression before grib2 decode
+
+ 2) sorc/cmcens_post_acc.fd/printinfr.f90
+   - modified, change data output message precision
+
+Implementation instruction
+
+Two source codes are modified for this minor implementation. All the others are kept the
+same as the NAEFS package in /nwprod/naefs.v6.0.3.
+

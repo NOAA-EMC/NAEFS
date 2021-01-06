@@ -1,0 +1,91 @@
+#!/bin/bash
+#BSUB -J jdvrtma3p0_gefs_alaska                          
+#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/dev/jdvrtma3p0_gefs_alaska.%J
+#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/dev/jdvrtma3p0_gefs_alaska.%J
+#BSUB -cwd /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
+#BSUB -P GFS-T2O
+#BSUB -q devonprod
+#BSUB -W 1:30
+#BSUB -M 2000
+#BSUB -extsched 'CRAYLINUX[]'
+
+#module load cfp-intel-sandybridge
+
+export NODES=6
+export APRUN=" aprun -b -j1 -n96 -N16 -d1 -cc depth cfp "
+
+export IOBUF_PARAMS='*:sync,%stdout:sync'
+
+set -x
+
+#export PDY=20170308
+#export cyc=12
+
+export envir=prod
+export RUN_ENVIR=dev
+export job=gefs_dvrtma_avgspr_alaska_$PDY$cyc
+
+########################
+# add the following part
+########################
+
+export direxp=naefs.v6.0.0
+
+module load PrgEnv-intel/5.2.56
+module use /gpfs/hps/nco/ops/nwprod/modulefiles
+module load prod_util
+module load grib_util/1.0.3
+module load ecflow
+
+module load PrgEnv-intel
+module load ESMF-intel-haswell/3_1_0rp5
+module load cfp-intel-sandybridge
+module load iobuf
+module load craype-hugepages2M
+module list
+
+export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc
+export DATAROOT=/gpfs/hps3/stmp/Bo.Cui/bc/o/com/output/dev
+
+eval dev=` cat /etc/dev `
+eval prod=` cat /etc/prod `
+echo "dev is" $dev "and prod is" $prod
+
+if [  $prod == luna ]; then
+
+  #For Luna
+  export COMROOT=/gpfs/tp2/nco/ops/com
+  export DCOMROOT=/gpfs/tp1/nco/ops/dcom
+  export COMROOTp1=/gpfs/tp1/nco/ops/com
+
+else
+  #For Surge
+  export COMROOT=/gpfs/gp2/nco/ops/com
+  export DCOMROOT=/gpfs/gp1/nco/ops/dcom
+  export COMROOTp1=/gpfs/gp1/nco/ops/com
+
+fi
+
+# versions file for genesis $genesis.ver
+
+VERSION_FILE=${NWROOT}/$direxp/versions/naefs.ver
+if [ -f $VERSION_FILE ]; then
+  . $VERSION_FILE
+else
+  ecflow_client --abort
+  exit
+fi
+
+# CALL executable job script here
+
+${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_GEFS_DVRTMA_PROB_AVGSPR_AK         
+
+if [ $? -ne 0 ]; then
+  ecflow_client --abort
+  exit
+fi
+
+#%include <tail.h>
+#%manual
+
+

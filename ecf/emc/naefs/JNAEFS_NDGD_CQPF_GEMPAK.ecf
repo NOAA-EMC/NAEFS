@@ -1,0 +1,76 @@
+#/bin/bash
+#BSUB -J jndgd_cqpf_gempak
+#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jndgd_cqpf_gempak_00.o%J
+#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jndgd_cqpf_gempak_00.o%J
+#BSUB -cwd /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
+#BSUB -P GEN-T2O
+#BSUB -q devonprod
+#BSUB -W 1:30
+#BSUB -M 1000
+#BSUB -extsched 'CRAYLINUX[]'
+
+export NODES=1
+export APRUN="aprun -n 4 -N 4 -cc depth cfp "
+
+# EXPORT list here
+
+set -xue
+
+export direxp=naefs.v6.0.0
+
+set -x
+
+export PDY=20170926
+export cyc=00
+ 
+export envir=dev
+export RUN_ENVIR=dev         
+export job=ndgd_cqpf_gempak_$PDY$cyc
+export SENDDBN=NO
+
+########################
+# add the following part
+########################
+
+module load PrgEnv-intel
+module load grib_util/1.0.3
+module load prod_util
+module load cfp-intel-sandybridge
+module load gempak/7.3.0
+
+export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc     
+export DATAROOT=/gpfs/hps3/stmp/$LOGNAME/Bo.Cui/bc/o/com/output/dev
+mkdir -p $DATAROOT
+
+export COM_IN=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev
+export COMROOT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com
+export DCOMROOT=/dcom
+export COMROOTp1=/com
+export KEEPDATA=YES
+
+# versions file for genesis $genesis.ver
+
+VERSION_FILE=${NWROOT}/$direxp/versions/naefs.ver
+if [ -f $VERSION_FILE ]; then
+  . $VERSION_FILE
+else
+  ecflow_client --abort
+  exit
+fi
+
+#######################
+
+
+# CALL executable job script here
+
+${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_NDGD_CQPF_GEMPAK
+
+if [ $? -ne 0 ]; then
+  ecflow_client --abort
+  exit
+fi
+
+#%include <tail.h>
+#%manual
+
+

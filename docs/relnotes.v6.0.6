@@ -1,0 +1,42 @@
+Release Note: NAEFS.v6.0.6
+
+v4.0.0 released Jan 28. 2014  
+v4.0.1 released May 20. 2014  
+v4.0.2 released May 20. 2014  
+v4.0.3 released May/Jun 2015  
+v5.0.0 released Mar 29  2016  
+v6.0.3 released Aug 18  2018  
+v6.0.4 released Sep 18  2018  
+v6.0.5 released Sep 20  2018  
+
+NAEFS minor implementation 
+
+
+- The CMC ensemble has a model upgrade on Sep. 18, 2018, which has higher resolution
+  than before. This means the highest mountains go slightly higher in the atmosphere. 
+  Therefore some points in the CMC forecast data have a value of relative humidity 
+  equal to exactly 0. This caused problems in NCEP post-process system when calculating
+  dew point temperature with CMC RH2m and T2m input. The 0 RH2m value causes unrealistic
+  dew point temperature. Modifications in post-process codes are needed handle with
+  these extreme cases.
+
+The modified source codes include:
+
+NAEFS Jobs
+
+1. jobs/JNAEFS_PROB_AVGSPR  
+
+ 1) sorc/naefs_probability.fd/naefs_bc_probability.f90
+   - modified, add protection for extreme cases with 0 relative humidity
+
+2. jobs/JNAEFS_GEFS_BIAS         
+ 1) sorc/gefs_bias.fd/gefs_bias.f90                
+   - modified, add protection for extreme cases with 0 relative humidity
+
+Implementation instruction
+
+Two source codes are modified for this minor implementation. All the others are kept the
+same as the NAEFS package in /nwprod/naefs.v6.0.4.
+
+Keep use /nwprod/naefs.v6.0.4/ush/naefs_bc_probability.sh
+(roll back the change on naefs.v6.0.5 for this ush script)

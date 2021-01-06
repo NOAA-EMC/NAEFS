@@ -1,0 +1,102 @@
+#!/bin/bash
+#BSUB -J jndgd_cqpf                              
+#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jndgd_cqpf.%J
+#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jndgd_cqpf.%J
+#BSUB -cwd  /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
+#BSUB -P GEN-T2O
+#BSUB -q "devonprod"
+##BSUB -q "debug"
+#BSUB -W 0:55
+#BSUB -M 3000
+#BSUB -extsched 'CRAYLINUX[]'
+
+export NODES=16
+export IOBUF_PARAMS="*:size=32M:count=4:verbose"
+
+# EXPORT list here
+
+set -xue
+
+export direxp=naefs.v6.0.0
+
+set -x
+
+export PDY=20170926
+export cyc=00
+ 
+export envir=prod
+export RUN_ENVIR=dev         
+export job=ndgd_cqpf_$PDY$cyc
+
+########################
+# add the following part
+########################
+
+module use /gpfs/hps/nco/ops/nwprod/modulefiles
+module load prod_util/1.0.12
+module load grib_util/1.0.3
+module load prod_envir/1.0.1
+
+module use  /opt/cray/alt-modulefiles
+module load PrgEnv-intel/5.2.56
+
+module use /opt/cray/craype/default/alt-modulefiles
+module load craype-haswell
+module load iobuf/2.0.5
+
+module use /usrx/local/prod/modulefiles
+module load cfp-intel-sandybridge/1.1.0
+module list
+
+export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc                 
+export DATAROOT=/gpfs/hps3/stmp/$LOGNAME/Bo.Cui/bc/o/com/output/dev
+
+eval dev=` cat /etc/dev `
+eval prod=` cat /etc/prod `
+echo "dev is" $dev "and prod is" $prod
+
+if [  $prod == surge ]; then
+
+# Data on Surge
+export COMROOT=/gpfs/gp2/nco/ops/com
+export DCOMROOT=/gpfs/gp1/nco/ops/dcom        
+export COMROOTp1=/gpfs/gp1/nco/ops/com
+
+else
+
+# Data on Lurna
+export COMROOT=/gpfs/tp2/nco/ops/com
+export DCOMROOT=/gpfs/tp1/nco/ops/dcom
+export COMROOTp1=/gpfs/tp1/nco/ops/com
+
+fi
+
+export APRUNCQPF="aprun -j1 -n64 -N4 -d3"
+
+# versions file for genesis $genesis.ver
+
+VERSION_FILE=${NWROOT}/${direxp}/versions/naefs.ver
+if [ -f $VERSION_FILE ]; then
+  . $VERSION_FILE
+else
+  ecflow_client --abort
+  exit
+fi
+
+#######################
+
+export model_ver=v6.0.0
+
+# CALL executable job script here
+
+${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_NDGD_CQPF
+
+if [ $? -ne 0 ]; then
+  ecflow_client --abort
+  exit
+fi
+
+#%include <tail.h>
+#%manual
+
+

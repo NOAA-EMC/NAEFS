@@ -1,0 +1,26 @@
+##################################################################
+# This parameter file set up the environment variables used in
+# the J-Job scripts to run gefs CQPF/ANFEFI
+##################################################################
+
+  export HOMEgefs=${NWROOT}/${direxp}
+  export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
+  export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
+  export USHgefs=${USHgefs:-$HOMEgefs/ush}
+
+  userid=$LOGNAME
+  group_name=${group_name:-ensemble}
+
+  export COM_IN=${COM_IN:-${COMROOT}/${NET}/dev}
+  export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/dev}
+  export COMINgefs=${COMINgefs:-${COMROOT}/gens/dev/${RUN}.${PDY}/${cyc}}
+  export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}
+  export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/prcp_bc_gb2
+
+  export jlogfile=$DATAROOT/jlogfile
+
+  export SENDCOM=${SENDCOM:-YES}
+  export SENDSMS=NO                     
+  export SENDDBN=${SENDDBN:-NO}
+  export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+

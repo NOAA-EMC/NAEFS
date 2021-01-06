@@ -1,0 +1,100 @@
+#!/bin/sh
+
+########################################
+# Runs NAM Postprocessing up to 24 hours
+########################################
+
+set -xa
+# #### 08/25/1999 ###################
+# SET SHELL PROCESSING VARIABLES
+# ###################################
+export PS4='$SECONDS + ' 
+date
+# 
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export DATA=${DATA:-$DATAROOT/${job}.${pid}}
+mkdir $DATA
+cd $DATA 
+
+####################################
+# Determine Job Output Name on System
+####################################
+export outid="LL$job"
+export jobid="${outid}.o${pid}"
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z 
+
+####################################
+# File To Log Msgs
+####################################
+if [ ${RUN_ENVIR} = dev ]
+then
+  # DEV
+  export jlogfile=/dev/null
+fi
+export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+
+####################################
+# 
+####################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDECF=${SENDECF:-YES}
+export SENDDBN=${SENDDBN:-YES}
+
+#
+# Set up model and cycle specific variables
+#
+export NET=naefs
+export RUN=naefs
+export fend=00
+export finc=6
+export fstart=00
+export model=ensemble
+export GRIB=
+export EXT=""
+export DBN_ALERT_TYPE=NAEFS_GEMPAK
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#. /nwprod/gempak/.gempak
+
+
+#########################
+# Specify Execution Areas
+#########################
+
+export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
+export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
+export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
+export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
+
+###################################
+# Set up the UTILITIES
+###################################
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. PDY
+
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COMIN=${COM_IN}/${RUN}.${PDY}/${cyc}/ndgd_gb2
+export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+ 
+env
+
+########################################################
+# Execute the script.
+########################################################
+${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA 00 00 $COMIN $COMOUT naefs dvrtma NAEFS_GEMPAK
+
+cd $DATAROOT
+if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+
+date

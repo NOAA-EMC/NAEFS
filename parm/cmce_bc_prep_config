@@ -1,0 +1,28 @@
+# This parameter file set up the environment variables used in
+# the J-Job scripts to run cmce/fnmoc ensemble
+##################################################################
+
+  export HOMEcmce=${NWROOT}/${direxp}                  
+  export EXECcmce=${EXECcmce:-$HOMEcmce/exec}
+  export USHcmce=${USHcmce:-$HOMEcmce/ush}
+  export FIXcmce=${FIXcmce:-$HOMEcmce/fix}      
+
+  export DCOM_BASE=${DCOMROOT}/prod
+  export DCOM_IN=${DCOM_IN:-$DCOM_BASE/$PDY/wgrbbul/cmcensbc_gb2}
+
+# export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
+  export COMINbias=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+
+  export COM_OUT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev         
+
+  export COMOUTBC_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
+  export COMOUTAN_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
+  export COMOUTWT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_wt
+
+  export jlogfile=$DATAROOT/jlogfile
+
+  export SENDCOM=${SENDCOM:-YES}
+  export SENDSMS=NO                     
+  export SENDDBN=${SENDDBN:-NO}
+  export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+

@@ -1,0 +1,201 @@
+#!/bin/bash 
+# #### 05/05/2015#######################################
+# Daily Update Bias Estimation from NCEP Global Ensemble              
+# ######################################################
+
+####################################################
+# The following two variable could be defined in the
+# loadleveler submission script (the sms script), if
+# not they will take the default values which is set
+# for the NCO running enviroment
+####################################################
+
+export RUN_ENVIR=${RUN_ENVIR:-nco}
+set -xa
+
+####################################
+# Specify NET and RUN Name and model
+####################################
+
+export NET=${NET:-naefs}
+export RUN=${RUN:-gefs}
+
+#########################################
+# Run config file to get input parameters
+#########################################
+
+if [ "$RUN_ENVIR" = dev ]      ### For Developers
+then
+  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/gefs_bias_config}
+  . $PARA_CONFIG
+fi
+
+export PS4='$SECONDS + '
+date
+
+########################################################
+# obtain unique process id (pid) and make temp directory
+########################################################
+
+export pid=$$
+export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATA=$DATAROOT/${job}.${pid}
+
+mkdir -p $DATA
+cd $DATA
+
+export cycle=t${cyc}z
+
+##################
+# File To Log Msgs
+##################
+
+export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+
+#####################################
+# Determine Job Output Name on System
+#####################################
+export outid="LL$job"
+export jobid="${outid}.o${pid}"
+export pgmout="OUTPUT.${pid}"
+
+##############################################
+# SENDECF  - Flag Events on ECF
+# SENDCOM  - Copy Files From TMPDIR to $COMOUT
+# SENDDBN  - Issue DBNet Client Calls
+##############################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDECF=${SENDECF:-YES}
+export SENDDBN=${SENDDBN:-YES}
+
+###################################################################
+# RUNJOB   - Judge the Job for Regular Run or Extended 00 Cycle Run
+###################################################################
+export RUNJOB=${RUNJOB:-REGULAR}
+
+####################################################################
+# BIASGFS  - Calculate the Bias of High Resolution GFS Forecast
+# BIASAVG  - Calculate the Bias of Ensemble Average 
+# BIASC00  - Calculate the Bias of Ensemble Control Test  
+# BIASMEM  - Calculate the Bias of One Ensemble Member
+# BIASCDAS - Calculate the Difference Between GDAS and CDAS Analysis
+# BIASANL  - Calculate the Difference Between NCEP and CMC Analysis
+#####################################################################
+
+export BIASGFS=${BIASGFS:-YES}
+export BIASAVG=${BIASAVG:-YES}
+export BIASCDAS=${BIASCDAS:-YES}
+export BIASANL=${BIASANL:-YES}
+export BIASC00=${BIASC00:-NO}
+export BIASMEM=${BIASMEM:-NO}
+
+###############################
+# VARWEIGHT - Use varied weight
+###############################
+
+export VARWEIGHT=NO 
+
+###########################################################
+# IF_REFCSTWITH - Combine Reforecast Bias with Decaying Bias
+#                IF_REFCSTWITH=YES
+#                IF_REFCSTONLY=NO
+#                IF_DECAYONLY=NO
+# IF_REFCSTONLY - Consider Reforecast Bias Only
+#                IF_REFCSTONLY=YES
+#                IF_REFCSTWITH=NO 
+#                IF_DECAYONLY=NO
+# IF_DECAYONLY - Consider Decaying Bias Only
+#                IF_DECAYONLY=YES
+#                IF_REFCSTWITH=NO 
+#                IF_REFCSTONLY=NO 
+###########################################################
+
+export IF_REFCSTWITH=YES
+export IF_REFCSTONLY=YES
+export IF_DECAYONLY=NO 
+
+#########################
+# Specify Execution Areas
+#########################
+
+export HOMEgefs=${HOMEgefs:-$NWROOT/naefs.${naefs_ver}}
+export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
+export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
+export USHgefs=${USHgefs:-$HOMEgefs/ush}
+
+export ERRSCRIPT=err_chk
+export LOGSCRIPT=startmsg
+export REDOUT='1>>'
+export REDERR='2>'
+
+#########################################
+# Run setpdy and initialize PDY variables
+#########################################
+setpdy.sh
+. PDY
+
+########################
+# Define COM directories
+########################
+
+export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
+export COMINgefs=${COMINgefs:-$(compath.py gens/prod)}
+
+export DCOM_BASE=${DCOM_BASE:-${DCOMROOT:?}/prod}
+export DCOMINcmce=${DCOMINcmce:-${DCOM_BASE}}
+export COMINcmce=${COMINcmce:-${COMROOT}/${NET}/${envir}}
+
+export COMINcfs=${COMINcfs:-$(compath.py cfs/prod)}
+
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
+export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
+export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2ap5
+
+mkdir -m 775 -p $COMOUT
+mkdir -m 775 -p $COMOUT_M2
+mkdir -m 775 -p $COMOUT_M1
+
+msg="HAS BEGUN on `hostname`"
+postmsg "$jlogfile" "$msg"
+
+env
+
+####################
+# Execute the script
+####################
+
+$HOMEgefs/scripts/exnaefs_gefs_bias.sh.ecf
+
+cat $DATA/dir_decay/$pgmout.015.avg
+cat $DATA/dir_decay/$pgmout.015.gfs
+cat $DATA/dir_decay/$pgmout.024.avg
+cat $DATA/dir_decay/$pgmout.024.gfs
+cat $DATA/dir_decay/$pgmout.180.avg
+cat $DATA/dir_decay/$pgmout.180.gfs
+
+cat $DATA/dir_decay/$pgmout.00.anl 
+cat $DATA/dir_decay/$pgmout.00.mdf 
+
+cat $DATA/dir_coeff/$pgmout.coeff.015.avg
+cat $DATA/dir_coeff/$pgmout.coeff.024.avg
+cat $DATA/dir_coeff/$pgmout.coeff.180.avg
+
+cat $DATA/dir_rfbias/$pgmout.rfbias.015
+cat $DATA/dir_rfbias/$pgmout.rfbias.039
+
+cat $DATA/dir_combine/$pgmout.mecom.015
+cat $DATA/dir_combine/$pgmout.mecom.024
+
+msg="JOB COMPLETED NORMALLY"
+postmsg "$jlogfile" "$msg"
+
+########################################
+# Remove the Temporary working directory
+########################################
+if [ $KEEPDATA != YES ]; then
+  cd $DATAROOT
+  rm -rf $DATA
+fi
+
+date

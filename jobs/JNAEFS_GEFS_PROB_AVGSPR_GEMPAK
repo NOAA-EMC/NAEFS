@@ -1,0 +1,152 @@
+#!/bin/ksh
+
+set -xa
+# #### 08/25/1999 ###################
+# SET SHELL PROCESSING VARIABLES
+# ###################################
+export PS4='${PMI_FORK_RANK}: $SECONDS + ' 
+date
+# 
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export DATA=${DATA:-$DATAROOT/${job}.${pid}}
+mkdir $DATA
+cd $DATA 
+
+####################################
+# File To Log Msgs
+####################################
+if [ $RUN_ENVIR = dev ]
+then
+   # DEV
+   export jlogfile=/dev/null
+fi
+export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+
+####################################
+# Determine Job Output Name on System
+####################################
+export outid="LL$job"
+export jobid="${outid}.o${pid}"
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z 
+
+####################################
+# SENDECF  - Flag Events on ECFlow
+# SENDDBN  - Issue DBNet Client Calls
+# SENDCOM  - Copy files to /com directory
+####################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDECF=${SENDECF:-YES}
+export SENDDBN=${SENDDBN:-YES}
+
+#
+# Set up model and cycle specific variables
+#
+export NET=naefs
+export RUN=gefs
+#export fend=384
+export finc=3
+#export fstart=03
+export model=ensemble
+export GRIB=
+export EXT=""
+export DBN_ALERT_TYPE=NAEFS_GEFS_GEMPAK
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#. /nwprod/gempak/.gempak
+
+#########################
+# Specify Execution Areas
+#########################
+
+export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
+export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
+export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
+export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
+
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. PDY
+
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COMIN_ANV=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
+export COMIN_BC=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
+export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+ 
+env
+
+####################
+# Execute the script
+####################
+
+hourlist="000 003 006 009 012 015 018 021 024 027 030 033 036 039 042 045 048 \
+          051 054 057 060 063 066 069 072 075 078 081 084 087 090 093 096 099 \
+          102 105 108 111 114 117 120 123 126 129 132 135 138 141 144 147 150 \
+          153 156 159 162 165 168 171 174 177 180 183 186 189 192 198 204 \
+          210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
+          306 312 318 324 330 336 342 348 354 360 366 372 378 384"
+
+for nfhrs in $hourlist; do
+
+  fstart=$nfhrs
+  fend=$nfhrs
+  if [ -s poe_gempak_${nfhrs} ]; then rm poe_gempak_${nfhrs}; fi
+
+  mkdir -p $DATA/dir_${nfhrs}
+  echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+  $fstart $fend $COMIN_ANV $COMOUT geavg anv NAEFS_GEFS_GEMPAK &>     \
+  $DATA/dir_${nfhrs}/output_geavg_anv_${nfhrs}" > $DATA/poe_gempak_${nfhrs}
+
+  echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+  $fstart $fend $COMIN_ANV $COMOUT/an geefi bc NAEFS_GEFS_GEMPAK &>   \
+  $DATA/dir_${nfhrs}/output_geefi_bc_$nfhrs" >> $DATA/poe_gempak_${nfhrs}
+
+  echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+  $fstart $fend $COMIN_ANV $COMOUT/an geavg an NAEFS_GEFS_GEMPAK &>   \
+  $DATA/dir_${nfhrs}/output_geavg_an_${nfhrs}" >> $DATA/poe_gempak_${nfhrs}
+
+  for member in 10pt 50pt 90pt avg spr mode; do
+    echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+    $fstart $fend $COMIN_BC $COMOUT/bc ge${member} bc NAEFS_GEFS_GEMPAK &> \
+    $DATA/dir_${nfhrs}/output_ge${member}_bc_$nfhrs" >> $DATA/poe_gempak_${nfhrs}
+  done
+
+done
+
+if [ -s poescript_gempak ]; then rm poescript_gempak; fi
+
+for nfhrs in $hourlist; do
+  chmod 775 $DATA/poe_gempak_${nfhrs}
+  echo "poe_gempak_${nfhrs}" >>poescript_gempak
+done
+chmod 775 $DATA/poescript_gempak
+
+# Execute the script.
+$APRUN $DATA/poescript_gempak      
+export err=$?; err_chk
+
+cat $DATA/dir_024/output_geavg_bc_024
+cat $DATA/dir_384/output_geavg_bc_384
+cat $DATA/dir_024/output_geavg_an_024
+cat $DATA/dir_384/output_geavg_an_384
+cat $DATA/dir_024/output_geavg_anv_024
+cat $DATA/dir_384/output_geavg_anv_384
+cat $DATA/dir_024/output_geefi_bc_024
+cat $DATA/dir_384/output_geefi_bc_384
+
+########################################################
+
+cd $DATAROOT
+
+if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+
+date

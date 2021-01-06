@@ -1,0 +1,162 @@
+#!/bin/bash 
+#########################################################
+# Daily Update Bias Estimation from FNMOC Global Ensemble              
+# #######################################################
+
+######################################################
+# The following two variable could be defined in the
+# loadleveler submission script (the sms script), if
+# not they will take the default values which is set
+# for the NCO running enviroment
+#######################################################
+export RUN_ENVIR=${RUN_ENVIR:-nco}
+
+set -xa
+
+####################################
+# Specify NET and RUN Name and model
+####################################
+export NET=${NET:-naefs}
+export RUN=${RUN:-fens} 
+
+#####################################################################################
+# This block is for Developer's test run:
+# Run config file to get input parameters
+# This config file should define the following variables
+# DATAROOT: Location of working directory, default to /gpfs/hps2/nco/ops/tmpnwprd
+# SENDECF: If the job is to be running using SMS, default to YES
+# SENDDBN: Set to NO for developers, default to YES
+# COM_IN:  Directory for input files, default to ${COMROOT}/$NET/${envir}
+# COM_OUT: Directory for output file, default to ${COMROOT}/$NET/${envir}
+# gespath: Directory for the guess or restart files, default to /nwges/${envir}
+#####################################################################################
+
+if [ "$RUN_ENVIR" = dev ]; then     
+   PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/fnmoc_bias_config}
+   . $PARA_CONFIG
+fi
+
+export PS4='$SECONDS + '
+date
+
+########################################################
+# obtain unique process id (pid) and make temp directory
+########################################################
+export pid=$$
+export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATA=$DATAROOT/${job}.${pid}
+
+mkdir -p $DATA
+cd $DATA
+
+#####################################
+# Determine Job Output Name on System
+#####################################
+
+export outid="LL$job"
+export jobid="${outid}.o${pid}"
+export pgmout="OUTPUT.${pid}"
+export pgmerr=errfile
+
+export cycle=t${cyc}z
+
+##################
+# File To Log Msgs
+##################
+
+export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+
+################################################################
+# SENDCOM=YES--Copy output file to ${COMROOT}
+# SENDECF=YES--Allow to talk back to SMS
+# SENDDBN=YES--Alert output file to TOC, set to NO for testing
+################################################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDDBN=${SENDDBN:-YES}          # need to set to NO for testing
+export SENDECF=${SENDECF:-YES}
+
+###################################################################
+# RUNJOB   - Judge the Job for Regular Run or Extended 00 Cycle Run
+###################################################################
+export RUNJOB=${RUNJOB:-REGULAR}
+
+#####################################################################
+# BIASAVG  - Calculate the Bias of Ensemble Average 
+# BIASC00  - Calculate the Bias of Ensemble Control Test  
+# BIASMEM  - Calculate the Bias of One Ensemble Member
+# BIASCDAS - Calculate the Difference Between GDAS and CDAS Analysis
+# BIASANL  - Calculate the Difference Between NCEP and FNMOC Analysis
+#####################################################################
+export BIASAVG=${BIASAVG:-NO}
+export BIASC00=${BIASC00:-NO} 
+export BIASMEM=${BIASMEM:-NO} 
+export BIASCDAS=${BIASCDAS:-YES}
+export BIASANL=${BIASANL:-YES}
+
+#########################
+# Specify Execution Areas
+#########################
+
+export HOMEfnmoc=${HOMEfnmoc:-${NWROOT}/naefs.${naefs_ver}}
+export EXECfnmoc=${EXECfnmoc:-$HOMEfnmoc/exec}
+export FIXfnmoc=${FIXfnmoc:-$HOMEfnmoc/fix}
+export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
+
+export ERRSCRIPT=err_chk
+export LOGSCRIPT=startmsg
+export REDOUT='1>>'
+export REDERR='2>'
+
+#########################################
+# Run setpdy and initialize PDY variables
+#########################################
+setpdy.sh
+. PDY
+
+########################
+# Define COM directories
+########################
+
+export COM_FENS=${COM_FENS:-${COMROOT}/${NET}/${envir}}
+export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
+export COMINgefs=${COMINgefs:-$(compath.py gens/prod)}
+
+export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}/prod}
+export COMINnavgem=${COMINnavgem:-$DCOM_BASE/navgem}
+export COMINcfs=${COMINcfs:-$(compath.py cfs/prod)}
+
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+
+export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
+export COMOUTNCEP_M1=$COM_OUT/gefs.${PDYm1}/${cyc}/pgrb2a
+export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2a
+
+mkdir -m 775 -p $COMOUT
+mkdir -m 775 -p $COMOUT_M2
+mkdir -m 775 -p $COMOUTNCEP_M1
+
+msg="HAS BEGUN on `hostname`"
+postmsg "$jlogfile" "$msg"
+
+env
+
+####################
+# Execute the script
+####################
+
+$HOMEfnmoc/scripts/exnaefs_fnmoc_ens_bias.sh.ecf
+
+cat $pgmout.00*
+
+msg="JOB COMPLETED NORMALLY"
+postmsg "$jlogfile" "$msg"
+
+##############################
+# Remove the Temporary working directory
+##############################
+if [ $KEEPDATA != YES ]; then
+  cd $DATAROOT
+  rm -rf $DATA
+fi
+
+date

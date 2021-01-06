@@ -1,0 +1,120 @@
+#!/bin/sh
+# ###########################################################################################
+# This Job Updates Downscaling Vector Estimation Between RTMA and NCEP Analysis for Alaska Region
+# ###########################################################################################
+
+######################################################
+# The following two variable could be defined in the
+# loadleveler submission script (the sms script), if
+# not they will take the default values which is set
+# for the NCO running enviroment
+#######################################################
+
+set -xa
+
+export PS4='$SECONDS + '
+date
+
+###########################################
+# Run config file to get input parameters
+###########################################
+if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from the SMS script
+then
+  export jlogfile=/dev/null
+fi
+export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+
+
+########################################################
+# obtain unique process id (pid) and make temp directory
+########################################################
+export pid=$$
+export DATA=${DATA:-$DATAROOT/${job}.${pid}}
+mkdir -p $DATA
+cd $DATA
+
+####################################
+# Determine Job Output Name on System
+####################################
+export outid="LL$job"
+export jobid="${outid}.o${pid}"
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z 
+
+################################################################
+# SENDCOM=YES--Copy output file to /com
+# SENDECF=YES--Allow to talk back to ecFLOW
+# SENDDBN=YES--Alert output file to TOC, set to NO for testing
+################################################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDDBN=${SENDDBN:-YES}          # need to set to NO for testing
+export SENDECF=${SENDECF:-YES}
+
+#
+# Set up model and cycle specific variables
+#
+export NET=naefs
+export RUN=naefs
+export fend=00
+export finc=6
+export fstart=00
+export model=ensemble
+export GRIB=
+export EXT=""
+export DBN_ALERT_TYPE=NAEFS_GEMPAK
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#. /nwprod/gempak/.gempak
+
+
+#########################
+# Specify Execution Areas
+#########################
+
+export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
+export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
+export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
+export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
+
+###################################
+# Set up the UTILITIES
+###################################
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. PDY
+
+#################################################
+# Set up the INPUT and OUTPUT directories
+#################################################
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_NAWIPS=${COM_NAWIPS:-$COMROOT/nawips/${envir}}
+
+export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}/ndgd_gb2
+export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+
+env
+
+########################################################
+# Execute the script.
+export RUN=naefs
+export model=dvrtma
+export region=alaska
+
+${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA 00 00 $COMIN $COMOUT naefs dvrtma NAEFS_GEMPAK alaska
+
+msg="JOB COMPLETED NORMALLY"
+postmsg "$jlogfile" "$msg"
+
+########################################################
+cd $DATAROOT
+
+if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+
+date
