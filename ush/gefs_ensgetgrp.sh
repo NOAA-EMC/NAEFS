@@ -59,7 +59,7 @@ for nfhrs in $hourlist; do
     fi
   fi
     file=ge${nens}.t${cyc}z.pgrb2a.0p50.f${nfhrs}
-    infile=$COMINgefs/gefs.$fymd/${cyc}/pgrb2ap5/$file
+    infile=$COMINgefs/gefs.$fymd/${cyc}/atmos/pgrb2ap5/$file
     outfile=$DATA/$cyc/$RUNID\_$fymd${cyc}_${grptime}
 
   if [ -f $infile ]; then
@@ -74,7 +74,7 @@ for nfhrs in $hourlist; do
     aymdh=`$NDATE -$cyc $YMDHM12`
     aymd=`echo $aymdh | cut -c1-8`
     file=ge${nens}.t${cyc}z.pgrb2a.0p50.f006
-    infile=$COMINgefs/gefs.$aymd/${cyc}/pgrb2ap5/$file
+    infile=$COMINgefs/gefs.$aymd/${cyc}/atmos/pgrb2ap5/$file
     outfile=$DATA/$cyc/precip.${RUNID}"_"t${cyc}z
   if [ -f $infile ]; then
       $WGRIB2 -match ":APCP:" $infile -append -grib $outfile

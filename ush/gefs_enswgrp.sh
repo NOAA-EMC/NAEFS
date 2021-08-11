@@ -33,7 +33,7 @@ fi
  fi
   for nens in $memberlist; do
     file=ge${nens}.t${cyc}z.pgrb2a.0p50.f${nfhrs}
-    infile=$COMINgefs/gefs.$YMD/${cyc}/pgrb2ap5/$file
+    infile=$COMINgefs/gefs.$YMD/${cyc}/atmos/pgrb2ap5/$file
     outfile=$DATA/$cyc/geprcp.t${cyc}z.pgrb2a.0p50.f${nfhrs}
 
     if [ -f $infile ]; then

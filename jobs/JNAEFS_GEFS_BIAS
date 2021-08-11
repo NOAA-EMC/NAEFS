@@ -139,7 +139,7 @@ setpdy.sh
 ########################
 
 export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
-export COMINgefs=${COMINgefs:-$(compath.py gens/prod)}
+export COMINgefs=${COMINgefs:-$(compath.py gefs/prod)}
 
 export DCOM_BASE=${DCOM_BASE:-${DCOMROOT:?}/prod}
 export DCOMINcmce=${DCOMINcmce:-${DCOM_BASE}}

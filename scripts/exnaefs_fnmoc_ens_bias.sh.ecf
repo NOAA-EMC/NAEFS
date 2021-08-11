@@ -338,7 +338,9 @@ for nfhrs in 00; do
   aymd_m06=`echo $aymdh_m06 | cut -c1-8`
   acyc_m06=`echo $aymdh_m06 | cut -c9-10`
 
-  nfile=$COMINgefs/gefs.${aymd}/${acyc}/pgrb2a/gec00.t${acyc}z.pgrb2af00
+  $COPYGB2 -g "0 6 0 0 0 0 0 0 360 181 0 0 90000000 0 48 -90000000 359000000 1000000 1000000 0" -i0 -x $COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000 gec00.t${acyc}z.pgrb2af00   
+
+  nfile=gec00.t${acyc}z.pgrb2af00     
 
   if [ -s $nfile ]; then
     echo " "

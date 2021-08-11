@@ -152,7 +152,7 @@ for nens in $memlist; do
   aymd_m06=`echo $aymdh_m06 | cut -c1-8`
   acyc_m06=`echo $aymdh_m06 | cut -c9-10`
 
-  afile=$COMINgefs/gefs.${aymd}/${acyc}/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
+  afile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
 
   if [ -s $afile ]; then
     echo " "
@@ -164,7 +164,7 @@ for nens in $memlist; do
 # forecast files entry
 ###
 
-  cfile=$COMINgefs/gefs.${fymd}/${cyc}/pgrb2ap5/ge${nens}.t${cyc}z.pgrb2a.0p50.f$nfhrs
+  cfile=$COMINgefs/gefs.${fymd}/${cyc}/atmos/pgrb2ap5/ge${nens}.t${cyc}z.pgrb2a.0p50.f$nfhrs
 
   if [ -s $cfile ]; then
    echo " "

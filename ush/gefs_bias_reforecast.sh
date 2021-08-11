@@ -34,7 +34,7 @@ done
 
 for nfhrs in $hourlist; do
 
-  infile=$FIXgefs/rfbias_1d.2015${MD}00
+  infile=$FIXgefs/rfbias_1d.2019${MD}00
   outfile=rfbias_1d.${MD}00.f${nfhrs}
 
   if [ -s $outfile ]; then

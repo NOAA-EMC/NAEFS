@@ -103,7 +103,8 @@ setpdy.sh
 
 export COMIN=${COMIN:-${COMROOT}/${NET}/${envir}}
 export COMOUT=${COMOUT:-${COMROOT}/${NET}/${envir}}
-export COMINgefs=${COMINgefs:-$(compath.py gens/prod)}
+export COMINgefs=${COMINgefs:-$(compath.py gefs/prod)}
+
 export COMINccpa=${COMINccpa:-$(compath.py ccpa/prod)}
 
 mkdir -m 775 -p $COMOUT

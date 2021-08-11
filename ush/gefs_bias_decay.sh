@@ -86,11 +86,11 @@ for nens in $memberlist; do
     aymdh_m06=`$NDATE -6 $aymdh `
     aymd_m06=`echo $aymdh_m06 | cut -c1-8`
     acyc_m06=`echo $aymdh_m06 | cut -c9-10`
-    afile=$COMINgefs/gefs.${aymd}/${acyc}/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
-    afile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/pgrb2ap5/gec00.t${acyc_m06}z.pgrb2a.0p50.f006
+    afile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
+    afile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/atmos/pgrb2ap5/gec00.t${acyc_m06}z.pgrb2a.0p50.f006
     if [ "$nens" = "gfs" ]; then
-      afile=$COMINgefs/gefs.${aymd}/${acyc}/pgrb2ap5/gegfs.t${acyc}z.pgrb2a.0p50.f000
-      afile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/pgrb2ap5/gegfs.t${acyc_m06}z.pgrb2a.0p50.f006
+      afile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gegfs.t${acyc}z.pgrb2a.0p50.f000
+      afile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/atmos/pgrb2ap5/gegfs.t${acyc_m06}z.pgrb2a.0p50.f006
     fi
   else
     echo "$nfhrs is odd number"
@@ -111,7 +111,7 @@ for nens in $memberlist; do
 # forecast files entry
 ###
 
-  cfile=$COMINgefs/gefs.${fymd}/${cyc}/pgrb2ap5/ge$nens.t${cyc}z.pgrb2a.0p50.f$nfhrs  
+  cfile=$COMINgefs/gefs.${fymd}/${cyc}/atmos/pgrb2ap5/ge$nens.t${cyc}z.pgrb2a.0p50.f$nfhrs  
 
   icnt=0
   while [ $icnt -le 30 ]; do
@@ -245,8 +245,8 @@ for nfhrs in 00; do
   aymd_m06=`echo $aymdh_m06 | cut -c1-8`
   acyc_m06=`echo $aymdh_m06 | cut -c9-10`
                                                            
-  afile=$COMINgefs/gefs.${aymd}/${acyc}/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
-  afile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/pgrb2ap5/gec00.t${acyc_m06}z.pgrb2a.0p50.f006
+  afile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
+  afile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/atmos/pgrb2ap5/gec00.t${acyc_m06}z.pgrb2a.0p50.f006
 
   icnt=0
   while [ $icnt -le 30 ]; do
@@ -368,8 +368,8 @@ for nfhrs in 00; do
   aymd_m06=`echo $aymdh_m06 | cut -c1-8`
   acyc_m06=`echo $aymdh_m06 | cut -c9-10`
 
-  nfile=$COMINgefs/gefs.${aymd}/${acyc}/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
-  nfile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/pgrb2ap5/gec00.t${acyc_m06}z.pgrb2a.0p50.f006
+  nfile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
+  nfile_m06=$COMINgefs/gefs.${aymd_m06}/${acyc_m06}/atmos/pgrb2ap5/gec00.t${acyc_m06}z.pgrb2a.0p50.f006
 
   icnt=0
   while [ $icnt -le 30 ]; do

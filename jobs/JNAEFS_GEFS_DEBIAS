@@ -102,7 +102,7 @@ setpdy.sh
 ##############################################
 
 export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
-export COMINgefs=${COMINgefs:-$(compath.py gens/prod/${RUN}.${PDY})/${cyc}/pgrb2ap5}
+export COMINgefs=${COMINgefs:-$(compath.py gefs/prod/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
 
 export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
 

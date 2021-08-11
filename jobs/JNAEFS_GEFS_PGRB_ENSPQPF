@@ -106,7 +106,7 @@ setpdy.sh
 ##############################################
 export COM_IN=${COM_IN:-${COMROOT}/${NET}/${envir}}
 export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
-export COMINgefs=${COMINgefs:-$(compath.py gens/prod/${RUN}.${PDY})/${cyc}/pgrb2ap5}
+export COMINgefs=${COMINgefs:-$(compath.py gefs/prod/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
 
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/prcp_gb2
 

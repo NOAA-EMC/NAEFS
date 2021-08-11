@@ -119,7 +119,7 @@ setpdy.sh
 
 export COM_FENS=${COM_FENS:-${COMROOT}/${NET}/${envir}}
 export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
-export COMINgefs=${COMINgefs:-$(compath.py gens/prod)}
+export COMINgefs=${COMINgefs:-$(compath.py gefs/prod)}
 
 export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}/prod}
 export COMINnavgem=${COMINnavgem:-$DCOM_BASE/navgem}

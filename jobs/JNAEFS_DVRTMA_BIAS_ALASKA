@@ -111,7 +111,7 @@ export cycm03=`$NDATE -3 $PDY$cyc | cut -c9-10`
 
 export COM_DV=${COM_DV:-${COMROOT}/${NET}/${envir}}
 export COM_RTMA=${COM_RTMA:-$(compath.py rtma/prod)}
-export COMINgefs=${COMINgefs:-$(compath.py gens/prod/gefs.${PDY})/${cyc}/pgrb2ap5}
+export COMINgefs=${COMINgefs:-$(compath.py gefs/prod/gefs.${PDY})/${cyc}/atmos/pgrb2ap5}
 
 export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
 export COMOUT=${COM_OUT}/${RUN}.${PDY}/${cyc}/ndgd_gb2
