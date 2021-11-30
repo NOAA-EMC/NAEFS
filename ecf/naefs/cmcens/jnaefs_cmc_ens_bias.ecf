@@ -1,12 +1,11 @@
-#BSUB -J %E%naefs_cmc_ens_bias_%CYC%
-#BSUB -o %COM%/output/%ENVIR%/today/naefs_cmc_ens_bias_%CYC%.o%J
-#BSUB -e %COM%/output/%ENVIR%/today/naefs_cmc_ens_bias_%CYC%.o%J
-#BSUB -cwd /tmp
-#BSUB -q %QUEUE%
-#BSUB -L /bin/sh
-#BSUB -W 00:45
-#BSUB -P %PROJ%-%PROJENVIR%
-#BSUB -M 2000
+#PBS -N $naefs_cmc_ens_bias_%CYC%
+#PBS -j oe                  
+#PBS -S /bin/bash
+#PBS -q %QUEUE%
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -l walltime=00:45:00
+#PBS -l select=1:ncpus=1:mem=2000MB
+#PBS -l debug=true
 
 %include <head.h>
 %include <envir-xc40.h>
@@ -15,28 +14,41 @@
 model=naefs
 %include <model_ver.h>
 
-set -xue
+## HOMEnaefs will de defined by the eclfow apps
 
-module load PrgEnv-intel/${intel_ver}
+source ${HOMEnaefs}/versions/run.ver
+
+cd $PBS_O_WORKDIR
+
+set -x
+
+module purge
+module load envvar/${envvar_ver}
+module load PrgEnv-intel/${PrgEnv_intel_ver}
+module load craype/${craype_ver}
+module load intel/${intel_ver}
+module load prod_envir/${prod_envir_ver}
+module load prod_util/${prod_util_ver}
+module load libjpeg/${libjpeg_ver}
 module load grib_util/${grib_util_ver}
-module load ESMF-intel-haswell/${ESMF_intel_haswell_ver}
-module load cfp-intel-sandybridge/${cfp_ver}
 module load iobuf/${iobuf_ver}
 module load craype-hugepages2M
 module list
 
+##
 # EXPORT list here
+
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
 export cyc=%CYC%
 
 # CALL executable job script here
-${HOMEnaefs}/jobs/JNAEFS_CMC_ENS_BIAS
+${HOMEnaefs}/jobs/JNAEFS_CMC_ENS_BIAS                         
 
 %include <tail.h>
 %manual
 ######################################################################
-# Purpose: To execute the CMC ENS bias processing.
+# Purpose: Runs post-processing for the 00Z ensemble.
 ######################################################################
 
 ######################################################################

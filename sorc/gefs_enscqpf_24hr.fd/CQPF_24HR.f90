@@ -13,7 +13,8 @@
 ! PROGRAM HISTORY LOG:
 !   01-09-21   YUEJIAN ZHU (WX20YZ)
 !   15-07-06   BO Cui:  Modify for grib2 encode/decode.
-!   17-05-06   Yan Luo: Modify for 24hr bias corrected QPF.
+!   17-05-06   Yan Luo: Create for 24hr bias corrected QPF.
+!   21-11-05   Yan Luo: Modify for WCOSS2 transition 
 !
 ! USAGE:
 !
@@ -352,8 +353,17 @@ do n = 1, len         !### 16 (days) * 4 = 64 (6-hr)
         gfldo%fld(1:ijd) = avg(1:ijd)
 
         print *, '-----  Ensemble Average for Current Time ------'
-        call putgb2(51,gfldo,iret)
+
+      if(hrinter.eq.24.and.n.ge.4) then
         call printinfr(gfldo,1)
+        call putgb2(51,gfldo,iret)
+      elseif(hrinter.eq.12.and.n.ge.2) then
+        call printinfr(gfldo,1)
+        call putgb2(51,gfldo,iret)
+      elseif(hrinter.eq.6) then
+        call printinfr(gfldo,1)
+        call putgb2(51,gfldo,iret)
+      endif
 
 ! extensions for ensemble spread
 
@@ -363,8 +373,16 @@ do n = 1, len         !### 16 (days) * 4 = 64 (6-hr)
         gfldo%fld(1:ijd) = spr(1:ijd)
 
         print *, '-----  Ensemble Spread for Current Time ------'
-        call putgb2(51,gfldo,iret)
+      if(hrinter.eq.24.and.n.ge.4) then
         call printinfr(gfldo,1)
+        call putgb2(51,gfldo,iret)
+      elseif(hrinter.eq.12.and.n.ge.2) then
+        call printinfr(gfldo,1)
+        call putgb2(51,gfldo,iret)
+      elseif(hrinter.eq.6) then
+        call printinfr(gfldo,1)
+        call putgb2(51,gfldo,iret)
+      endif
 
         call gf_free(gfldo)
 

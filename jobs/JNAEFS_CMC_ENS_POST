@@ -36,7 +36,7 @@ date
 # obtain unique process id (pid) and make temp directory
 ########################################################
 export pid=$$
-export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATAROOT=${DATAROOT:-/lfs/f1/ops/${envir}/tmp}
 export DATA=$DATAROOT/${job}.${pid}
 
 mkdir -p $DATA
@@ -48,7 +48,7 @@ export cycle=t${cyc}z
 # File To Log Msgs
 ##################
 
-export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # Determine Job Output Name on System
@@ -104,12 +104,12 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}/prod}
+export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
 export COMIN=${COMIN:-$DCOM_BASE/$PDY/wgrbbul/cmcens_gb2}
 #export COMINm1=${COMINm1:-$DCOM_BASE/${PDYm1}/wgrbbul/cmcens_gb2}
 export COMINm1=$DCOM_BASE/${PDYm1}/wgrbbul/cmcens_gb2
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
 export COMOUTm1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUTenst=$COM_OUT/${RUN}.${PDY}/${cyc}/ensstat
@@ -127,7 +127,7 @@ env
 # Execute the script
 ####################
 
-$HOMEcmce/scripts/exnaefs_cmcens_post.sh.ecf
+$HOMEcmce/scripts/exnaefs_cmcens_post.sh
 
 #cat $pgmout.003.p10
 #cat $pgmout.024.p12

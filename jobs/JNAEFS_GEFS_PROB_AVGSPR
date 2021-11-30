@@ -36,7 +36,7 @@ date
 # obtain unique process id (pid) and make temp directory
 ########################################################
 export pid=$$
-export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATAROOT=${DATAROOT:-/lfs/f1/ops/${envir}/tmp}
 export DATA=$DATAROOT/${job}.${pid}
 
 mkdir -p $DATA
@@ -48,7 +48,7 @@ export cycle=t${cyc}z
 # File To Log Msgs
 ####################################
 
-export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 #####################################
 # Determine Job Output Name on System
@@ -99,11 +99,11 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COM_NCEP=${COM_NCEP:-${COMROOT}/${NET}/${envir}} 
-export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${envir}} 
-export COM_FENS=${COM_FENS:-${COMROOT}/${NET}/${envir}}
+export COM_NCEP=${COM_NCEP:-${COMROOT}/${NET}/${ver}} 
+export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${ver}} 
+export COM_FENS=${COM_FENS:-${COMROOT}/${NET}/${ver}}
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT:?}/prod}
+export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
 export DCOM_CMC=${DCOM_CMC:-${DCOM_BASE}}
 export COMINCMC=${COMINCMC:-$DCOM_CMC/$PDY/wgrbbul/cmcensbc_gb2}
 
@@ -114,7 +114,7 @@ export COM_NCEPANL=${COM_NCEPANL:-${COM_NCEP}}
 export COM_CMCANL=${COM_CMCANL:-${COM_CMC}} 
 export COM_FENSANL=${COM_FENSANL:-${COM_FENS}} 
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
 export COMOUTGEFS_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTGEFSAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 
@@ -149,7 +149,7 @@ if [ -s $DATA/poescript ]; then
   rm $DATA/poescript
 fi
 
-runscript=$HOMEnaefs/scripts/exnaefs_prob_avgspr.sh.ecf
+runscript=$HOMEnaefs/scripts/exnaefs_prob_avgspr.sh
 
 for nfhrs in $hourlist; do
   mkdir -p $DATA/group.$nfhrs

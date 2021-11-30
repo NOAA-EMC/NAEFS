@@ -36,7 +36,7 @@ date
 #########################################################
 
 export pid=$$
-export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATAROOT=${DATAROOT:-/lfs/f1/ops/${envir}/tmp}
 export DATA=$DATAROOT/${job}.${pid}
 
 mkdir -p $DATA
@@ -48,7 +48,7 @@ export cycle=t${cyc}z
 # File To Log Msgs
 ##################
 
-export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # Determine Job Output Name on System
@@ -101,10 +101,10 @@ setpdy.sh
 # Define COM directories
 ##############################################
 
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${envir}}
-export COMINgefs=${COMINgefs:-$(compath.py gefs/prod/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
+export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
+export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
 
 export COMOUTBC_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
@@ -135,7 +135,7 @@ cd $DATA
 # Execute the script
 #####################
 
-runscript=$HOMEgefs/scripts/exnaefs_gefs_debias.sh.ecf
+runscript=$HOMEgefs/scripts/exnaefs_gefs_debias.sh
 
 export memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
                    p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 \

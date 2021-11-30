@@ -1,74 +1,85 @@
-#/bin/bash
-#BSUB -J jgefs_cqpf_gempak
-#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jgefs_cqpf_gempak_00.o%J
-#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jgefs_cqpf_gempak_00.o%J
-#BSUB -cwd /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
-#BSUB -P GEN-T2O
-#BSUB -q devonprod
-#BSUB -W 1:30
-#BSUB -M 1000
-#BSUB -extsched 'CRAYLINUX[]'
+#PBS -N naefs_gefs_cqpf_gempak
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -q dev
+#PBS -A NAEFS-DEV
+#PBS -l walltime=00:30:00
+#PBS -l select=1:ncpus=7:mpiprocs=7:mem=4GB
+#PBS -l debug=true
 
-export NODES=1
-export APRUN="aprun -n 7 -N 7 -cc depth cfp "
+#%include <head.h>
+#%include <envir-xc40.h>
+
+# versions file for naefs sets $naefs_ver and $code_ver
+model=naefs
+#%include <model_ver.h>
+
+## HOMEnaefs will de defined by the eclfow apps
+export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/Yan.Luo/naefs.v6.1.0}
+
+source ${HOMEnaefs}/versions/run.ver
+
+cd $PBS_O_WORKDIR
+
+set -x
+
+module purge
+module load envvar/${envvar_ver}
+module load PrgEnv-intel/${PrgEnv_intel_ver}
+module load craype/${craype_ver}
+module load intel/${intel_ver}
+module load cray-mpich/${cray_mpich_ver}
+module load cray-pals/${cray_pals_ver}
+module load cfp/${cfp_ver}
+module load prod_envir/${prod_envir_ver}
+module load prod_util/${prod_util_ver}
+module load libjpeg/${libjpeg_ver}
+module load grib_util/${grib_util_ver}
+module load wgrib2/${wgrib2_ver}
+module load gempak/${gempak_ver}
+module load iobuf/${iobuf_ver}
+module list
+
+#
+
+export direxp=naefs.v6.1.0
+export envir=canned
+export RUN_ENVIR=dev
+
+export PDY=20210824
+export cyc=00
+export job=naefs_gefs_cqpf_gempak_$PDY$cyc
+
+export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/$direxp
+export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/$direxp
+export NWROOT=/lfs/h2/emc/vpppg/noscrub/Yan.Luo
+export DATAROOT=/lfs/h2/emc/ptmp/Yan.Luo/tmpnwprd
+
+export COMROOT=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/com
+export KEEPDATA=YES
 
 # EXPORT list here
 
-set -xue
+export APRUN="mpiexec -np 7 --cpu-bind core cfp "
+export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
-export direxp=naefs.v6.0.0
+#export cyc=%CYC%
 
-set -x
-export PDY=20170926
-export cyc=00
- 
-export envir=dev
-export RUN_ENVIR=dev         
-export job=gefs_cqpf_gempak_$PDY$cyc
-export SENDDBN=NO
-
-########################
-# add the following part
-########################
-
-module load PrgEnv-intel
-module load grib_util/1.0.3
-module load prod_util
-module load cfp-intel-sandybridge
-module load gempak/7.3.0
-
-export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc     
-export DATAROOT=/gpfs/hps3/stmp/$LOGNAME/Bo.Cui/bc/o/com/output/dev
-mkdir -p $DATAROOT
-export COM_IN=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev
-export COMROOT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com
-export DCOMROOT=/dcom
-export COMROOTp1=/com
-export KEEPDATA=YES
-
-# versions file for genesis $genesis.ver
-
-VERSION_FILE=${NWROOT}/$direxp/versions/naefs.ver
-if [ -f $VERSION_FILE ]; then
-  . $VERSION_FILE
-else
-  ecflow_client --abort
-  exit
-fi
-
-#######################
-
-
-# CALL executable job script here
-
-${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_GEFS_CQPF_GEMPAK
-
-if [ $? -ne 0 ]; then
-  ecflow_client --abort
-  exit
-fi
+${HOMEnaefs}/jobs/JNAEFS_GEFS_CQPF_GEMPAK
 
 #%include <tail.h>
 #%manual
+######################################################################
+# Purpose: Create gempak files for the gefs bias estimated grib files.
+#
+#
+######################################################################
 
+######################################################################
+# Job specific troubleshooting instructions:
+#  see generic troubleshoot manual page
+#
+######################################################################
 
+# include manual page below
+#%end

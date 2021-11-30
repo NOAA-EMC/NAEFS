@@ -11,9 +11,9 @@
   userid=$LOGNAME
   group_name=${group_name:-ensemble}
 
-  export COMINgefs=${COMINgefs:-${COMROOT}/gens/${envir}}
-  export COMIN=/gpfs/hps3/ptmp/$LOGNAME/bc/o/com/naefs/dev
-  export COMOUT=/gpfs/hps3/ptmp/$LOGNAME/bc/o/com/naefs/dev
+  export COMINgefs=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/$envir/com/gefs/${gefs_ver}
+  export COMIN=${COMROOT}/${NET}/${ver}
+  export COMOUT=${COMROOT}/${NET}/${ver}
 
   export jlogfile=$DATAROOT/jlogfile
 

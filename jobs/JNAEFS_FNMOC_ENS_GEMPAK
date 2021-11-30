@@ -22,18 +22,17 @@ date
 # This block is for Developer's test run:
 # Run config file to get input parameters
 # This config file should define the following variables
-# DATA_IN: Location of working directory, default to /gpfs/hps2/nco/ops/tmpnwprd
+# DATA_IN: Location of working directory, default to /lfs/f1/ops/${envir}/tmp
 # SENDECF: If the job is to be running using ecFLOW, default to YES
 # SENDDBN: Set to NO for developers, default to YES
 # COM_IN:  Directory for input files, default to /com/$NET/${envir}
 # COM_OUT: Directory for output file, default to /com/$NET/${envir}
-# gespath: Directory for the guess or restart files, default to /nwges/${envir}
 #####################################################################################
 if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from the SMS script
 then
    export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # obtain unique process id (pid) and make temp directory
@@ -55,7 +54,7 @@ export cycle=t${cyc}z
 ####################################
 # File To Log Msgs
 ####################################
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ################################################################
 # SENDCOM=YES--Copy output file to /com
@@ -98,11 +97,12 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT:?}/prod}
+export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
 export COMIN=${COMIN:-$DCOM_BASE/$PDY/wgrbbul}
 export COMIN_raw=$COMIN/fnmocens_gb2
 export COMIN_bc=$COMIN/fnmoc_ens_bc_gb2
-export COM_NAWIPS=${COM_NAWIPS:-$COMROOT/nawips/${envir}}
+COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com
+export COM_NAWIPS=${COM_NAWIPS:-$COMROOT/nawips/${nawips_ver}}
 export COMOUT=${COMOUT:-${COM_NAWIPS}/${RUN}.${PDY}}
 
 if [ ! -f $COMOUT ] ; then
@@ -119,9 +119,9 @@ do
   do
     mkdir -p $DATA/${member}_$ftype
     if [ $ftype = "et" ]; then
-      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh.ecf $DATA/${member}_$ftype 00 384 $COMIN_raw $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}_$ftype/output"  >> $DATA/poescript
+      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh $DATA/${member}_$ftype 00 384 $COMIN_raw $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}_$ftype/output"  >> $DATA/poescript
     else
-      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh.ecf $DATA/${member}_$ftype 00 384 $COMIN_bc $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}/output"  >> $DATA/poescript
+      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh $DATA/${member}_$ftype 00 384 $COMIN_bc $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}/output"  >> $DATA/poescript
     fi
   done
 done

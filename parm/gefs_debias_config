@@ -4,13 +4,15 @@
 
   export HOMEgefs=${NWROOT}/${direxp}
   export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
-  export FIXgefs=${NWROOT}/${direxp}/fix
+# export FIXgefs=${NWROOT}/${direxp}/fix
+  export FIXgefs=/lfs/h1/ops/canned/packages/hps/naefs.v6.0.11/fix    
   export USHgefs=${USHgefs:-$HOMEgefs/ush}
 
-  export COMINbias=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
-  export COMINgefs=${COMROOT}/gens/para/${RUN}.${PDY}/${cyc}/pgrb2ap5
+# export COMINbias=${COMROOT}/naefs/v6.1  
+  export COMINgefs=${COMROOT}/gefs/v12.2/gefs.${PDY}/${cyc}/atmos/pgrb2ap5
 
-  export COM_OUT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev   
+  export COMINbias=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com/naefs/v6.1
+  export COM_OUT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com/naefs/v6.1   
 
   export COMOUTBC_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
   export COMOUTAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
@@ -24,4 +26,5 @@
 
   export SENDCOM=${SENDCOM:-YES}
   export SENDDBN=${SENDDBN:-NO}
+  export KEEPDATA=YES
 

@@ -7,6 +7,10 @@ program gefs_bias_gen
 ! abstract: calculate bias estimation 3hourly
 !           bias of f03, f09, f15, f21, ... will use average of f00+f06, f06+f12,
 !           f12+f18, f18+f24 ....
+!
+!  PROGRAM HISTORY LOG:
+!    2021-11-12  Bo Cui - update code for new g2 lib routine gf_free,the old gf_free use to
+!                         nullify a pointer, and the newer one deallocates it.
 ! 
 ! usage:
 !
@@ -78,6 +82,7 @@ read (5,namens)
 
 print *, ' '; print *, 'Input files size ', nfiles                  
 if(nfiles.eq.0) goto 1020
+if(iskip(2).eq.1.and.iskip(1).eq.0) goto 1020
 
 ! set the fort.* of intput file, open forecast files
 
@@ -243,10 +248,6 @@ do
         gfldo%ipdtmpl(9)=3*(gfldo%ipdtmpl(9)+2)
       endif
     endif
-
-    ! clean gfld 
-
-    call gf_free(gfld)
 
   else
     print*, 'there is no bias input for 3hr before'

@@ -30,7 +30,7 @@ if [ ${RUN_ENVIR} = dev ]; then
    # DEV
   export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # SENDSMS  - Flag Events on SMS
@@ -77,11 +77,11 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
 export COMIN_AN=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 export COMIN_BC=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMIN_WT=${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5_wt
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT $COMOUT/an  $COMOUT/bc
@@ -113,12 +113,12 @@ for nfhrs in $hourlist; do
       export MODEL=`echo $ftype |tr [a-z] [A-Z]`
       eval COMIN=\$COMIN_${MODEL}
       if [ $member != gfs ]; then
-        echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${ftype}_${nfhrs} \
+        echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/dir_${ftype}_${nfhrs} \
               $nfhrs $nfhrs $COMIN $COMOUT/${ftype} ge${member} $ftype NAEFS_GEFS_GEMPAK &> \
               $DATA/dir_${ftype}_${nfhrs}/output" >> $DATA/poe_gempak_${ftype}_${nfhrs}
       else
         if [ $nfhrs -le 180 ]; then
-          echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${ftype}_${nfhrs} \
+          echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/dir_${ftype}_${nfhrs} \
                 $nfhrs $nfhrs $COMIN $COMOUT/${ftype} ge${member} $ftype NAEFS_GEFS_GEMPAK &> \
                 $DATA/dir_${ftype}_${nfhrs}/output" >> $DATA/poe_gempak_${ftype}_${nfhrs}
         else

@@ -1,0 +1,87 @@
+#!/bin/bash
+#PBS -N naefs_gefs_debias
+#PBS -j oe                  
+#PBS -q dev
+#PBS -l walltime=01:30:00
+#PBS -A NAEFS-DEV                
+#PBS -l select=1:ncpus=22:mpiprocs=22:mem=50GB
+#PBS -l debug=true
+
+#%include <head.h>
+#%include <envir-xc40.h>
+
+# versions file for naefs sets $naefs_ver and $code_ver
+model=naefs
+#%include <model_ver.h>
+
+## HOMEnaefs will de defined by the eclfow apps
+export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/Bo.Cui/naefs.v6.1.0}
+
+source ${HOMEnaefs}/versions/run.ver
+
+cd $PBS_O_WORKDIR
+
+set -x
+
+module purge
+module load envvar/${envvar_ver}
+module load PrgEnv-intel/${PrgEnv_intel_ver}
+module load craype/${craype_ver}
+module load intel/${intel_ver}
+module load cray-mpich/${cray_mpich_ver}
+module load cray-pals/${cray_pals_ver}
+module load cfp/${cfp_ver}
+module load prod_envir/${prod_envir_ver}
+module load prod_util/${prod_util_ver}
+module load libjpeg/${libjpeg_ver}
+module load grib_util/${grib_util_ver}
+module load wgrib2/${wgrib2_ver}
+module load iobuf/${iobuf_ver}
+module load craype-hugepages2M
+module list
+
+##
+
+export direxp=naefs.v6.1.0
+export envir=prod
+export RUN_ENVIR=dev
+
+export PDY=20210824
+export cyc=00               
+export job=gefs_debias_$PDY$cyc
+
+export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/$direxp
+export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/$direxp
+export NWROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui
+export DATAROOT=/lfs/h2/emc/ptmp/Bo.Cui/tmpnwprd
+
+#export COMROOT=/lfs/h1/emc/vpppg/noscrub/Bo.Cui/com
+#export DCOMROOT=/lfs/h1/emc/vpppg/noscrub/Bo.Cui/dcom
+#export COMROOTp1=/lfs/h1/emc/vpppg/noscrub/Bo.Cui/com
+export COMROOT=/lfs/h1/ops/canned/com                    
+export DCOMROOT=/lfs/h1/ops/canned/dcom                     
+
+# EXPORT list here
+
+export APRUN="mpiexec -np 22 --cpu-bind core cfp  "         
+export IOBUF_PARAMS='*:sync,%%stdout:sync'
+
+#export cyc=%CYC%
+
+# CALL executable job script here
+${HOMEnaefs}/jobs/JNAEFS_GEFS_DEBIAS
+
+#%include <tail.h>
+#%manual
+######################################################################
+# Purpose: Runs post-processing for the 00Z ensemble.
+######################################################################
+
+######################################################################
+# Job specific troubleshooting instructions:
+#  see generic troubleshoot manual page
+#
+######################################################################
+
+# include manual page below
+#%end

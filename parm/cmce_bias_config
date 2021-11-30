@@ -7,11 +7,12 @@
   export FIXcmce=${FIXcmce:-${NWROOT}/fix}
   export USHcmce=${USHcmce:-$HOMEcmce/ush}
 
-  export COMINbias=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
-  export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${envir}}
-  export COMINcfs=${COMINcfs:-${COMROOTp3}/cfs/prod}
+  export COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/canned/com
+  export COMINbias=${COMROOT}/naefs/v6.1                                                     
+  export COM_CMC=${COMROOT}/naefs/v6.1                       
+  export COMINcfs=${COMINcfs:-${COMROOT}/cfs/v2.3}
 
-  export COM_OUT=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+  export COM_OUT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com/naefs/v6.1
 
   export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
   export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2ap5
@@ -22,4 +23,5 @@
   export SENDSMS=NO                     
   export SENDDBN=${SENDDBN:-NO}
   export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+  export KEEPDATA=YES
 

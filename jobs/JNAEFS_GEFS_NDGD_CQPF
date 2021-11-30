@@ -41,7 +41,7 @@ date
 ########################################################
 
 export pid=$$
-export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATAROOT=${DATAROOT:-/lfs/f1/ops/${envir}/tmp}
 export DATA=$DATAROOT/${job}.${pid}
 
 mkdir -p $DATA
@@ -53,7 +53,7 @@ export cycle=t${cyc}z
 # File To Log Msgs
 ##################
 
-export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 #####################################
 # Determine Job Output Name on System
@@ -101,8 +101,8 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COMIN=${COMIN:-${COMROOT}/${NET}/${envir}}
-export COMOUT=${COMOUT:-${COMROOT}/${NET}/${envir}}
+export COMIN=${COMIN:-${COMROOT}/${NET}/${ver}}
+export COMOUT=${COMOUT:-${COMROOT}/${NET}/${ver}}
 
 mkdir -m 775 -p $COMOUT
 
@@ -114,7 +114,7 @@ env
 ####################
 # Execute the script
 ####################
-$HOMEndgd/scripts/exnaefs_gefs_conus_ndgd_enscqpf.sh.ecf
+$HOMEndgd/scripts/exnaefs_gefs_conus_ndgd_enscqpf.sh
 
 #############################################################
 

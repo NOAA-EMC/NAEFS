@@ -43,7 +43,7 @@ date
 ########################################################
 
 export pid=$$
-export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATAROOT=${DATAROOT:-/lfs/f1/ops/${envir}/tmp}
 export DATA=$DATAROOT/${job}.${pid}
 
 mkdir -p $DATA
@@ -55,7 +55,7 @@ export cycle=t${cyc}z
 # File To Log Msgs
 ##################
 
-export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 #####################################
 # Determine Job Output Name on System
@@ -101,18 +101,18 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COM_NCEP=${COM_NCEP:-${COMROOT}/${NET}/${envir}} 
-export COM_DV=${COM_DV:-${COMROOT}/${NET}/${envir}}
-export COM_IN=${COM_IN:-${COMROOT}/${NET}/${envir}}
+export COM_NCEP=${COM_NCEP:-${COMROOT}/${NET}/${ver}} 
+export COM_DV=${COM_DV:-${COMROOT}/${NET}/${ver}}
+export COM_IN=${COM_IN:-${COMROOT}/${NET}/${ver}}
 export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 
-export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${envir}}
-export COM_CMCANL=${COM_CMCANL:-${COMROOT}/${NET}/${envir}}
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}/prod}
+export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${ver}}
+export COM_CMCANL=${COM_CMCANL:-${COMROOT}/${NET}/${ver}}
+export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
 export DCOM_CMC=${DCOM_CMC:-${DCOM_BASE}}
 export COMINCMC=${COMINCMC:-$DCOM_CMC/$PDY/wgrbbul/cmcensbc_gb2}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
 export COMOUT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/ndgd_gb2
 
 mkdir -m 775 -p ${COMOUT_GB2}
@@ -126,7 +126,7 @@ env
 # Execute the script
 ####################
 
-$HOMErtma/scripts/exnaefs_dvrtma_prob_avgspr_conus.sh.ecf
+$HOMErtma/scripts/exnaefs_dvrtma_prob_avgspr_conus.sh
 
 #############################################################
 

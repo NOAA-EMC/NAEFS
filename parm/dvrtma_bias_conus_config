@@ -7,15 +7,13 @@
   export FIXrtma=${FIXrtma:-$HOMErtma/fix}
   export USHrtma=${USHrtma:-$HOMErtma/ush}
 
-  export COM_DV=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
-  export COM_RTMA=${COM_RTMA:-${COMROOT}/rtma/prod}
+  export COM_RTMA=${COMROOT}/rtma/v2.9
+  export COMINgefs=${COMROOT}/gefs/v12.2/gefs.${PDY}/${cyc}/atmos/pgrb2ap5
 
-# export COM=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
-# export COMINgefs=$COM/gefs.${PDY}/${cyc}/pgrb2ap5
-  export COMINgefs=${COMROOT}/gens/para/gefs.${PDY}/${cyc}/pgrb2ap5
+# export COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com
+  export COM_DV=${COMROOT}/naefs/v6.1                                          
 
-  export COM_OUT=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
-
+  export COM_OUT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com/naefs/v6.1
   export COMOUT=${COM_OUT}/${RUN}.${PDY}/${cyc}/ndgd_gb2
   export COMOUT_GEFS=${COM_OUT}/gefs.${PDY}/${cyc}/ndgd_gb2
  
@@ -28,4 +26,5 @@
   export SENDSMS=NO                     
   export SENDDBN=${SENDDBN:-NO}
   export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+  export KEEPDATA=YES
 

@@ -7,18 +7,19 @@
   export FIXrtma=${FIXrtma:-$HOMErtma/fix}
   export USHrtma=${USHrtma:-$HOMErtma/ush}
 
-  export COM_NCEP=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev
-  export COM_DV=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+  export COM_NCEP=${COMROOT}/naefs/v6.1                                        
+  export COM_DV=${COMROOT}/naefs/v6.1                                                       
 
-  export COM_IN=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev               
+  export COM_IN=$COM_NCEP                                                     
   export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 
   export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${envir}}
   export COM_CMCANL=${COM_CMCANL:-${COMROOT}/${NET}/${envir}}
-  export DCOM_CMC=${DCOM_CMC:-${DCOMROOT}/prod}
+  export DCOM_CMC=${DCOM_CMC:-${DCOMROOT}}
   export COMINCMC=${COMINCMC:-$DCOM_CMC/$PDY/wgrbbul/cmcensbc_gb2}
 
-  export COM_OUT=/gpfs/hps3/ptmp/emc.enspara1/bc/o/com/naefs/dev
+# export COM_OUT=/lfs/h2/emc/ptmp/Bo.Cui/com/naefs/dev
+  export COM_OUT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com/naefs/v6.1
   export COMOUT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/ndgd_gb2
 
   export jlogfile=$DATAROOT/jlogfile
@@ -26,4 +27,5 @@
   export SENDCOM=${SENDCOM:-YES}
   export SENDECF=NO                     
   export SENDDBN=${SENDDBN:-NO}
+  export KEEPDATA=YES
 

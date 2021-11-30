@@ -22,7 +22,7 @@ if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from t
 then
   export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 
 ########################################################
@@ -89,11 +89,11 @@ setpdy.sh
 #################################################
 # Set up the INPUT and OUTPUT directories
 #################################################
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
-export COM_NAWIPS=${COM_NAWIPS:-$COMROOT/nawips/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
+export COM_NAWIPS=${COM_NAWIPS:-$COMROOT/nawips/${nawips_ver}}
 
 export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}/ndgd_gb2
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -107,7 +107,7 @@ export RUN=naefs
 export model=dvrtma
 export region=alaska
 
-${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA 00 00 $COMIN $COMOUT naefs dvrtma NAEFS_GEMPAK alaska
+${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA 00 00 $COMIN $COMOUT naefs dvrtma NAEFS_GEMPAK alaska
 
 msg="JOB COMPLETED NORMALLY"
 postmsg "$jlogfile" "$msg"

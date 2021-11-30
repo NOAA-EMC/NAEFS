@@ -11,9 +11,10 @@
   userid=$LOGNAME
   group_name=${group_name:-ensemble}
 
-  export COM_IN=${COM_IN:-${COMROOT}/${NET}/dev}
-  export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/dev}
-  export COMINgefs=${COMINgefs:-${COMROOT}/gens/dev/${RUN}.${PDY}/${cyc}}
+  export COM_IN=${COM_IN:-${COMROOT}/${NET}/${ver}}
+  export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+#  export COM_OUT=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/com/${NET}/${ver}
+  export COMINgefs=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/$envir/com/gefs/${gefs_ver}
   export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}
   export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/prcp_bc_gb2
 

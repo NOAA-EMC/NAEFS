@@ -35,7 +35,7 @@ if [ $RUN_ENVIR = dev ]; then
    # DEV
    export jlogfile=/dev/null
 fi
-jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 #
@@ -72,9 +72,9 @@ export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
 setpdy.sh
 . PDY
 
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
 export COMIN=${COMIN:-$COM_IN/${RUN}.${PDY}/${cyc}/pgrb2ap5}
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -105,7 +105,7 @@ for nfhrs in $hourlist; do
   mkdir -m 775 $DATA/dir_${nfhrs}
   for member in $memberlist; do
     export RUN=cmc_ge${member}
-    echo "${HOMEnaefs}/scripts/exnawips_cmce.sh.ecf $DATA/dir_${nfhrs} $fstart $fend $RUN $member &> \
+    echo "${HOMEnaefs}/scripts/exnawips_cmce.sh $DATA/dir_${nfhrs} $fstart $fend $RUN $member &> \
     $DATA/dir_${nfhrs}/output_${member}_${nfhrs}" >> $DATA/poe_gempak_${nfhrs}
   done
 done

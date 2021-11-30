@@ -22,7 +22,7 @@ if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from t
 then
   export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 
 ########################################################
@@ -87,10 +87,10 @@ setpdy.sh
 #################################################
 # Set up the INPUT and OUTPUT directories
 #################################################
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
 
 export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}/ndgd_gb2
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -116,7 +116,7 @@ for nfhrs in $hourlist; do
   if [ -s poe_gempak_${nfhrs} ]; then rm poe_gempak_${nfhrs}; fi
   for member in 10pt 50pt 90pt avg spr mode; do
     export DBN_ALERT_TYPE=NAEFS_NDGD_GEMPAK
-    echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/dir_${nfhrs} \
+    echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/dir_${nfhrs} \
     $fstart $fend $COMIN $COMOUT naefs ndgd_alaska ${DBN_ALERT_TYPE} $member &> \
     $DATA/dir_${nfhrs}/output_ge${member}_$nfhrs" >> $DATA/poe_gempak_${nfhrs}
   done

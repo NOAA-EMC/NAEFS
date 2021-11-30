@@ -29,7 +29,7 @@ export cycle=t${cyc}z
 if [ $RUN_ENVIR = dev ]; then
    export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # SENDECF  - Flag Events on ECF
@@ -71,11 +71,11 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
 export COMIN_ME=${COMIN_ME:-${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5}
 export COMIN_ANL=${COMIN_ANL:-${COM_IN}/${RUN}.${PDYm2}/${cyc}/pgrb2ap5}
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
-export COMOUTm2=${COMOUTm2:-$COMROOT/nawips/${envir}/${RUN}.${PDYm2}}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
+export COMOUTm2=${COMOUTm2:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDYm2}}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -91,10 +91,10 @@ env
 # Execute the script.
 mkdir -p $DATA/avg_me $DATA/gfs_me $DATA/gefs_anl
 
-echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/avg_me 03 384 ${COMIN_ME} $COMOUT geavg me NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
-echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/gfs_me 03 180 ${COMIN_ME} $COMOUT gegfs me NAEFS_GEFS_GEMPAK &> $DATA/gfs_me/output" >> $DATA/poescript
-echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/gefs_anl 00 00 ${COMIN_ANL} $COMOUTm2 gefs glbanl NAEFS_GEFS_GEMPAK &> $DATA/gefs_anl/output" >> $DATA/poescript
-echo "${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA/avg_mecom 03 384 ${COMIN_ME} $COMOUT geavg mecom NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_me 03 384 ${COMIN_ME} $COMOUT geavg me NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/gfs_me 03 180 ${COMIN_ME} $COMOUT gegfs me NAEFS_GEFS_GEMPAK &> $DATA/gfs_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/gefs_anl 00 00 ${COMIN_ANL} $COMOUTm2 gefs glbanl NAEFS_GEFS_GEMPAK &> $DATA/gefs_anl/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_mecom 03 384 ${COMIN_ME} $COMOUT geavg mecom NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
 chmod 775 $DATA/poescript
 
 # Execute the script.

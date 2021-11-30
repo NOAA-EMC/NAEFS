@@ -1,0 +1,64 @@
+Release Note: NAEFS.v6.1.0
+
+v4.0.0  released Jan 28. 2014 
+v4.0.1  released May 20. 2014 
+v4.0.2  released May 20. 2014 
+v4.0.3  released May/Jun 2015 
+v5.0.0  released Mar 29  2016 
+v6.0.3  released Aug 18  2018 
+v6.0.4  released Sep 18  2018 
+v6.0.5  released Sep 20  2018 
+v6.0.10 released May 22  2020
+v6.1.0  released Dec 06  2021
+
+NAEFS Transation WCOSS2    
+
+- all the J-jobs are modified for new ex-scripts names and new architecture in WCOSS2                                               
+- all the ex-scripts file names haver extension .ecf removed 
+- all PBSpro qsub directives follow new format in ecf/naefs 
+- update five codes to work with new g2 lib on WCOSS2
+- remove two J-jobs scripts for the CQPF jobs 
+- update two ex-scripts and remove one ex-script for the CQPF jobs 
+
+The modified codes include:
+
+1. sorc/gefs_bias_gen.fd
+   - modified, updated for new g2 lib routine gf_free,the old one use to nullify a pointer, and the newe one deallocates it
+
+
+2. sorc/gefs_dv_gen.fd  
+   - modified, updated for new g2 lib routine gf_free,the old one use to nullify a pointer, and the newe one deallocates it
+
+3. sorc/gefs_enscqpf_6hr.fd
+   - modified, updated for new g2 lib routine gf_free
+ 
+4. sorc/conus_ndgd_enscqpf.fd
+   - modified, updated for new g2 lib routine gf_free
+
+5. sorc/gefs_enscqpf_24hr.fd
+   - modified, updated for new g2 lib, added conditions for output variables
+
+The changes of scripts for the CQPF jobs include:
+
+1. jobs/JNAEFS_NDGD_CQPF
+   - not in operation, removed due to the repetition with jobs/JNAEFS_GEFS_NDGD_CQPF
+
+2. jobs/JNAEFS_NDGD_CQPF_GEMPAK
+  - not in operation, removed due to the repetition with jobs/jobs/JNAEFS_GEFS_NDGD_CQPF_GEMPAK
+   
+3. scripts/exnaefs_conus_ndgd_enscqpf.sh
+  - not in operation, removed due to the repetition with scripts/exnaefs_gefs_conus_ndgd_enscqpf.sh
+
+4. scripts/exnaefs_gefs_6hr_enscqpf.sh
+  - modified to support the new architecture
+
+5. scripts/exnaefs_gefs_conus_ndgd_enscqpf.sh
+  - modified to support the new architecture
+
+Implementation instruction:
+
+Clone NAEFS respositoy devlop branch from https://github.com/NOAA-EMC/NAEFS/tree/develop.
+
+Five source codes and two ex-scripts are modified for this WCOSS2 translation, alll the other codes, ex-scrpts and ush are kept the same. 
+ 
+The fix files are avaiable from: /lfs/h2/emc/vpppg/noscrub/Yan.Luo/wcoss_nco/naefs.v6.0.11/fix

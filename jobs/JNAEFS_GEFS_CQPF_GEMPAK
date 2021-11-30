@@ -30,7 +30,7 @@ if [ ${RUN_ENVIR} = dev ]; then
    # DEV
   export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # SENDSMS  - Flag Events on SMS
@@ -77,10 +77,10 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
 export COMIN1=$COM_IN/${RUN}.${PDY}/${cyc}/prcp_gb2
 export COMIN2=$COM_IN/${RUN}.${PDY}/${cyc}/prcp_bc_gb2
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}/prcp}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}/prcp}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -94,22 +94,22 @@ DATAHOLD=$DATA
 # Execute the script.
 
 mkdir -m 775 $DATA/24h_pqpf
-echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh.ecf $DATA/24h_pqpf 24 384 $COMIN1 $COMOUT gepqpf 24h NAEFS_GEFS_GEMPAK &> $DATA/24h_pqpf/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh $DATA/24h_pqpf 24 384 $COMIN1 $COMOUT gepqpf 24h NAEFS_GEFS_GEMPAK &> $DATA/24h_pqpf/output" >> $DATA/poescript
 
 for ftype in pqpf prcp 
 do
   for hrinter in bc_24h bc_06h
   do
     mkdir -m 775 $DATA/${hrinter}_${ftype}
-      echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh.ecf $DATA/${hrinter}_${ftype} 06 384 $COMIN2 $COMOUT ge${ftype} $hrinter NAEFS_GEFS_GEMPAK &> $DATA/${hrinter}_${ftype}/output" >> $DATA/poescript
+      echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh $DATA/${hrinter}_${ftype} 06 384 $COMIN2 $COMOUT ge${ftype} $hrinter NAEFS_GEFS_GEMPAK &> $DATA/${hrinter}_${ftype}/output" >> $DATA/poescript
   done
 done
 
 mkdir -m 775 $DATA/24h_anv
-echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh.ecf $DATA/24h_anv 24 384 $COMIN2 $COMOUT geprcp anv NAEFS_GEFS_GEMPAK &> $DATA/24h_anv/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh $DATA/24h_anv 24 384 $COMIN2 $COMOUT geprcp anv NAEFS_GEFS_GEMPAK &> $DATA/24h_anv/output" >> $DATA/poescript
 
 mkdir -m 775 $DATA/24h_efi
-echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh.ecf $DATA/24h_efi 24 384 $COMIN2 $COMOUT geprcp efi NAEFS_GEFS_GEMPAK &> $DATA/24h_efi/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_gefs_enscqpf.sh $DATA/24h_efi 24 384 $COMIN2 $COMOUT geprcp efi NAEFS_GEFS_GEMPAK &> $DATA/24h_efi/output" >> $DATA/poescript
 
 chmod 775 $DATA/poescript
 

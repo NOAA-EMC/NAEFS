@@ -1,100 +1,88 @@
-#!/bin/bash
-#BSUB -J jgefs_6hr_cqpf                              
-#BSUB -o /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jgefs_6hr_cqpf.%J
-#BSUB -e /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output/jgefs_6hr_cqpf.%J
-#BSUB -cwd  /gpfs/hps3/ptmp/emc.enspara1/bc/o/com/output
-#BSUB -P GEN-T2O
-#BSUB -q devonprod
-#BSUB -W 0:50
-#BSUB -M 3000
-#BSUB -extsched 'CRAYLINUX[]'
+#PBS -N naefs_gefs_6hr_cqpf
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -q dev
+#PBS -A NAEFS-DEV
+#PBS -l walltime=00:50:00
+#PBS -l select=1:ncpus=64:mpiprocs=64:mem=4GB
+#PBS -l debug=true
 
-export NODES=16
-export IOBUF_PARAMS="*:size=32M:count=4:verbose"
+#%include <head.h>
+#%include <envir-xc40.h>
+
+# versions file for naefs sets $naefs_ver and $code_ver
+model=naefs
+#%include <model_ver.h>
+
+## HOMEnaefs will de defined by the eclfow apps
+export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/Yan.Luo/naefs.v6.1.0}
+
+source ${HOMEnaefs}/versions/run.ver
+
+cd $PBS_O_WORKDIR
+
+set -x
+
+module purge
+module load envvar/${envvar_ver}
+module load PrgEnv-intel/${PrgEnv_intel_ver}
+module load craype/${craype_ver}
+module load intel/${intel_ver}
+module load cray-mpich/${cray_mpich_ver}
+module load cray-pals/${cray_pals_ver}
+module load cfp/${cfp_ver}
+module load prod_envir/${prod_envir_ver}
+module load prod_util/${prod_util_ver}
+module load libjpeg/${libjpeg_ver}
+module load grib_util/${grib_util_ver}
+module load wgrib2/${wgrib2_ver}
+module load iobuf/${iobuf_ver}
+module load craype-hugepages2M
+module list
+
+export direxp=naefs.v6.1.0
+export envir=canned
+export RUN_ENVIR=dev
+
+export PDY=20210824
+export cyc=00
+export job=naefs_gefs_6hr_cqpf_$PDY$cyc
+
+export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/$direxp
+export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/$direxp
+export NWROOT=/lfs/h2/emc/vpppg/noscrub/Yan.Luo
+export DATAROOT=/lfs/h2/emc/ptmp/Yan.Luo/tmpnwprd
+
+export COMROOT=/lfs/h2/emc/vpppg/noscrub/Yan.Luo/com
+export KEEPDATA=YES
 
 # EXPORT list here
 
-set -xue
+export APRUNCQPF="mpiexec -np 64 --cpu-bind core cfp  "
+export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
-export direxp=naefs.v6.0.0
+#export NODES=16
+#export APRUNCQPF="aprun -j1 -n64 -N4 -d1"
+#export IOBUF_PARAMS="*:size=32M:count=4:verbose"
 
-set -x
-export PDY=20170926
-export cyc=00
- 
-export envir=prod
-export RUN_ENVIR=dev         
-export job=gefs_6hr_cqpf_$PDY$cyc
-
-########################
-# add the following part
-########################
-
-module use /gpfs/hps/nco/ops/nwprod/modulefiles
-module load prod_util/1.0.12
-module load grib_util/1.0.3
-module load prod_envir/1.0.1
-
-module use  /opt/cray/alt-modulefiles
-module load PrgEnv-intel/5.2.56
-
-module use /opt/cray/craype/default/alt-modulefiles
-module load craype-haswell
-module load iobuf/2.0.5
-
-module use /usrx/local/prod/modulefiles
-module load cfp-intel-sandybridge/1.1.0
-module list
-
-export NWROOT=/gpfs/hps3/emc/ensemble/save/emc.enspara1/bc        
-export DATAROOT=/gpfs/hps3/stmp/$LOGNAME/Bo.Cui/bc/o/com/output/dev
-
-eval dev=` cat /etc/dev `
-eval prod=` cat /etc/prod `
-echo "dev is" $dev "and prod is" $prod
-
-if [  $prod == surge ]; then
-
-# Data on Surge
-export COMROOT=/gpfs/gp2/nco/ops/com
-export DCOMROOT=/gpfs/gp1/nco/ops/dcom        
-export COMROOTp1=/gpfs/gp1/nco/ops/com
-
-else
-
-# Data on Lurna
-export COMROOT=/gpfs/tp2/nco/ops/com
-export DCOMROOT=/gpfs/tp1/nco/ops/dcom
-export COMROOTp1=/gpfs/tp1/nco/ops/com
-
-fi
-
-export APRUNCQPF="aprun -j1 -n64 -N4 -d1"
-
-# versions file for genesis $genesis.ver
-
-VERSION_FILE=${NWROOT}/${direxp}/versions/naefs.ver
-if [ -f $VERSION_FILE ]; then
-  . $VERSION_FILE
-else
-  ecflow_client --abort
-  exit
-fi
-
-#######################
-
-export model_ver=v6.0.0
+#export cyc=%CYC%
 
 # CALL executable job script here
-
-${NWROOT}/naefs.${model_ver}/jobs/JNAEFS_GEFS_6HR_CQPF
-
-if [ $? -ne 0 ]; then
-  ecflow_client --abort
-  exit
-fi
+${HOMEnaefs}/jobs/JNAEFS_GEFS_6HR_CQPF
 
 #%include <tail.h>
 #%manual
+######################################################################
+# Purpose: Generate the GEFS based probabilistic quantitative precip
+#          forecast in support of the Hanson Dam Project.
+#
+######################################################################
 
+######################################################################
+# Job specific troubleshooting instructions:
+#  see generic troubleshoot manual page
+#
+######################################################################
 
+# include manual page below
+#%end

@@ -7,15 +7,17 @@
   export FIXfnmoc=${FIXfnmoc:-$HOMEfnmoc/fix}          
   export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
 
-  export COM_FENS=${COMROOT}/gens/${envir}       
-# export COMINbias=${COMROOT}/gens/${envir}                   
-  export COMINbias=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
-  export COMINgefs=${COMINgefs:-${COMROOT}/gens/prod}
+  COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/canned/com
+  DCOMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/canned/dcom
+  export COM_FENS=${COMROOT}/naefs/v6.1          
+  export COMINbias=${COMROOT}/naefs/v6.1                      
+  export COMINgefs=${COMROOT}/gefs/v12.2
 
-  export COMINnavgem=${COMINnavgem:-$DCOMROOT/prod/navgem}
-  export COMINcfs=${COMINcfs:-${COMROOTp3}/cfs/${envir}}
+  export COMINnavgem=${COMINnavgem:-$DCOMROOT/navgem}
+  export COMINcfs=${COMINcfs:-${COMROOT}/cfs/v2.3}
 
-  export COM_OUT=/gpfs/hps3/emc/ensemble/noscrub/emc.enspara1/bc/o/com/naefs/dev
+  export COM_OUT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com/naefs/v6.1
+
   export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
   export COMOUTNCEP_M1=$COM_OUT/gefs.${PDYm1}/${cyc}/pgrb2a
   export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2a
@@ -26,4 +28,5 @@
   export SENDSMS=NO                     
   export SENDDBN=${SENDDBN:-NO}
   export SENDDBN_GB2=${SENDDBN_GB2:-NO}
+  export KEEPDATA=YES
 

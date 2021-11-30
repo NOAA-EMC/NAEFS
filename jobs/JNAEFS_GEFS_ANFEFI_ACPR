@@ -41,7 +41,7 @@ date
 ########################################################
 
 export pid=$$
-export DATAROOT=${DATAROOT:-/gpfs/hps2/nco/ops/tmpnwprd}
+export DATAROOT=${DATAROOT:-/lfs/f1/ops/${envir}/tmp}
 export DATA=$DATAROOT/${job}.${pid}
 
 mkdir -p $DATA
@@ -53,7 +53,7 @@ export cycle=t${cyc}z
 # File To Log Msgs
 ##################
 
-export jlogfile=${jlogfile:-${COMROOT}/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 #####################################
 # Determine Job Output Name on System
@@ -101,10 +101,10 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COM_IN=${COM_IN:-${COMROOT}/${NET}/${envir}}
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${envir}}
+export COM_IN=${COM_IN:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
 
-export COMINgefs=${COMINgefs:-$(compath.py gefs/prod/${RUN}.${PDY})/${cyc}/atmos}
+export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/${RUN}.${PDY})/${cyc}/atmos}
 export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}
 export COMOUTANFEFI_p5=$COM_OUT/${RUN}.${PDY}/${cyc}/prcp_bc_gb2
 
@@ -119,7 +119,7 @@ env
 # Execute the script
 ####################
 
-$HOMEgefs/scripts/exnaefs_gefs_anfefi_acpr.sh.ecf
+$HOMEgefs/scripts/exnaefs_gefs_anfefi_acpr.sh
 
 #############################################################
 

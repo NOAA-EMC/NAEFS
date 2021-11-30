@@ -17,7 +17,8 @@
 !     4. istd    ---> number of thresholds for PQPF output
 !
 ! PROGRAM HISTORY LOG:
-! 2017-02-18 YAN LUO 
+! 2017-02-18 YAN LUO IBM-Cray implementation              
+! 2021-10-26 YAN LUO Modify for WCOSS2 transition
 !
 ! USAGE:
 !
@@ -339,7 +340,7 @@
         call putgb2(50,gfld,iret)
         call printinfr(gfld,1)
        enddo
-        call gf_free(gfld)
+!        call gf_free(gfld)
 
        print *,"======================================================"
 
@@ -427,7 +428,7 @@
       call putgb2(51,gfldo,iret)
 
        enddo    ! for k = 1, istd
-      call gf_free(gfldo)
+!      call gf_free(gfldo)
 
        call baclose (20,ier20)
        call baclose (50,ier50)

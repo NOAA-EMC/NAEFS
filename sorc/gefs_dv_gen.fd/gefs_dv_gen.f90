@@ -6,6 +6,9 @@ program gefs_dv_gen
 !
 ! abstract: calculate downscaling vector for 03z 09z 15z and 21z
 ! 
+!  PROGRAM HISTORY LOG:
+!    2021-11-12  Bo Cui - update code for new g2 lib routine gf_free,the old gf_free use to
+!                         nullify a pointer, and the newer one deallocates it.  
 ! usage:
 !
 !   input file: downscaling vector at cyc-03 and cyc+03
@@ -240,7 +243,7 @@ do
     endif
     print*, 'there is no bias input for 3hr before'
     fbias(1:maxgrd,1)=0.0                 
-    call gf_free(gfld)
+!   call gf_free(gfld)   
 
   endif
 

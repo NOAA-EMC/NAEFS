@@ -35,7 +35,7 @@ then
   # DEV
   export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-$COMROOT/logs/jlogfiles/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 # 
@@ -79,9 +79,9 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${envir}}
+export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
 export COMIN=${COM_IN}/${RUN}.${PDY}/${cyc}/ndgd_gb2
-export COMOUT=${COMOUT:-$COMROOT/nawips/${envir}/${RUN}.${PDY}}
+export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -92,7 +92,7 @@ env
 ########################################################
 # Execute the script.
 ########################################################
-${HOMEnaefs}/scripts/exnawips_naefs.sh.ecf $DATA 00 00 $COMIN $COMOUT naefs dvrtma NAEFS_GEMPAK
+${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA 00 00 $COMIN $COMOUT naefs dvrtma NAEFS_GEMPAK
 
 cd $DATAROOT
 if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi

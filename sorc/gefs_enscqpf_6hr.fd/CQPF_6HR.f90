@@ -31,6 +31,7 @@
 ! 2011-12-15 YAN LUO Upgrade to 1 deg and 6 hourly
 ! 2013-12-18 YAN LUO Convert I/O from GRIB1 to GRIB2
 ! 2016-12-05 YAN LUO Upgrade to 0.5 deg and 6 hourly
+! 2021-10-26 YAN LUO Modify for WCOSS2 transition
 !
 ! USAGE:
 !
@@ -544,7 +545,7 @@
         call putgb2(50,gfld,iret)
         call printinfr(gfld,1)
 
-        call gf_free(gfld)
+!        call gf_free(gfld)
      
        print *,"======================================================"
 
@@ -646,7 +647,7 @@
       call putgb2(52,gfldo,iret)
 
        enddo    ! for k = 1, istd
-      call gf_free(gfldo)
+!      call gf_free(gfldo)
 
        call baclose (20,ier20)
        call baclose (50,ier50)
