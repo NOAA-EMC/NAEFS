@@ -1,20 +1,19 @@
 NAEFS v6.0.0 Implementation Instructions:
 
-1. Checkout svn tags:
+1. Checkout NAEFS repository
 
-https://svnemc.ncep.noaa.gov/trac/naefs/browser/tags/naefs.v6.0.0
+ https://github.com/NOAA-EMC/NAEFS/tree/develop                        
 
 2. Set up the package
 
-   copy this directory to naefs.v6.0.0 "(your file location)"
+   copy this directory to your file location
 
   (2) Build the executables of NAEFS
       Go to the sorc sub-directory, following the instructions in README.build file,
       all the executables will be generated and saved in the exec sub-directory.
 
-3. Start the test run on cray
-   Please check and modify (if it is necessary) the ecf and job files in sub-directory
-   ecf and jobs, to make sure the paths of the source and output files are correct.
+3. Start the test run
+   Check and modify (if it is necessary) job cards in sub-directory ecf/naefs
   
 4. Resources requirements
 
@@ -83,9 +82,5 @@ https://svnemc.ncep.noaa.gov/trac/naefs/browser/tags/naefs.v6.0.0
   (1) File names for NAEFS EFI 
       GEFS filenames pgrb2ap5_an/naefs_geefi.t##z.pgrb2a.0p50_bcf###                
 
-6. Copy files from para to prod directory before implementation
-   cd /nwprod/naefs.v6.0.0/util/imp_util/run_para_to_prod
-   vi run_copy_para_to_prod and set "CDATE=2016020106"
-   ./run_copy_para_to_prod
 
 

@@ -11,7 +11,7 @@ v6.0.5  released Sep 20  2018
 v6.0.10 released May 22  2020
 v6.1.0  released Dec 06  2021
 
-NAEFS Transation WCOSS2    
+NAEFS Translation WCOSS2    
 
 - all the J-jobs are modified for new ex-scripts names and new architecture in WCOSS2                                               
 - all the ex-scripts file names haver extension .ecf removed 
@@ -23,11 +23,11 @@ NAEFS Transation WCOSS2
 The modified codes include:
 
 1. sorc/gefs_bias_gen.fd
-   - modified, updated for new g2 lib routine gf_free,the old one use to nullify a pointer, and the newe one deallocates it
+   - modified, updated for new g2 lib routine gf_free,the old one use to nullify a pointer, and the new one deallocates it
 
 
 2. sorc/gefs_dv_gen.fd  
-   - modified, updated for new g2 lib routine gf_free,the old one use to nullify a pointer, and the newe one deallocates it
+   - modified, updated for new g2 lib routine gf_free,the old one use to nullify a pointer, and the new one deallocates it
 
 3. sorc/gefs_enscqpf_6hr.fd
    - modified, updated for new g2 lib routine gf_free
@@ -57,8 +57,19 @@ The changes of scripts for the CQPF jobs include:
 
 Implementation instruction:
 
-Clone NAEFS respositoy devlop branch from https://github.com/NOAA-EMC/NAEFS/tree/develop.
+1. Checkout NAEFS repository devlop branch from https://github.com/NOAA-EMC/NAEFS/tree/develop
 
-Five source codes and two ex-scripts are modified for this WCOSS2 translation, alll the other codes, ex-scrpts and ush are kept the same. 
- 
-The fix files are avaiable from: /lfs/h2/emc/vpppg/noscrub/Yan.Luo/wcoss_nco/naefs.v6.0.11/fix
+2. Build the executables of NAEFS
+   Go to the sorc sub-directory and follow the instructions in README.build file.
+   All the executables will be generated and saved in the exec sub-directory.
+
+   Five source codes and two ex-scripts are modified for this WCOSS2 translation, all the other codes, ex-scripts and ush are kept the same.
+
+3. Start the test run on WCOSS2
+   Check and modify (if it is necessary) job cards in sub-directory ecf/naefs
+
+4. Resources requirements
+
+   The fix files are available at: /lfs/h2/emc/vpppg/noscrub/Yan.Luo/wcoss_nco/naefs.v6.0.11/fix
+
+
