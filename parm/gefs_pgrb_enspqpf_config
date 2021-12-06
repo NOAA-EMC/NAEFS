@@ -2,7 +2,7 @@
 # the J-Job scripts to run gefs/fnmoc ensemble
 ##################################################################
 
-
+  export PACKAGEROOT=$COMROOT
   export HOMEgefs=${NWROOT}/${direxp}
   export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
 

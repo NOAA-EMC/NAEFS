@@ -3,6 +3,7 @@
 # the J-Job scripts to run gefs CQPF/ANFEFI
 ##################################################################
 
+  export PACKAGEROOT=$COMROOT
   export HOMEgefs=${NWROOT}/${direxp}
   export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
   export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
