@@ -64,7 +64,7 @@ export DBN_ALERT_TYPE=NAEFS_GEFS_GEMPAK
 # Specify Execution Areas
 #########################
 
-export HOMEnaefs=${HOMEnaefs:-$PACKAGEROOT/naefs.${model_ver}}
+export HOMEnaefs=${HOMEnaefs:-$PACKAGEROOT/naefs.${naefs_ver}}
 export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
 export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
 export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}

@@ -1,3 +1,4 @@
+#!/bin/sh
 ###################################################################
 echo "----------------------------------------------------"
 echo "exnawips_gefs_enscqpf.sh.ecf - convert NCEP GRIB files into GEMPAK Grids for NAEFS precipitaion related product"

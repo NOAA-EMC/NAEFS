@@ -101,8 +101,8 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COMIN=${COMIN:-${COMROOT}/${NET}/${ver}}
-export COMOUT=${COMOUT:-${COMROOT}/${NET}/${ver}}
+export COMIN=${COMIN:-$(compath.py $envir/$NET/${naefs_ver})}
+export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver})}
 export COMINccpa=${COMINccpa:-$(compath.py ${envir}/com/ccpa/${ccpa_ver})}
 

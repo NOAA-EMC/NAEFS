@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################### EXENSCQPF ################################
 echo "------------------------------------------------"
 echo "Ensemble Postprocessing - Calibration for QPF   "
@@ -8,6 +9,7 @@ echo "AUTHOR: Yuejian Zhu (wx20yz)"
 echo "History: Dec 2011 - Upgrade to 1 degree and 6 hourly"
 echo "History: Dec 2013 - Change I/O from GRIB1 to GRIB2"
 echo "History: Dec 2016 - Upgrade to 0.5 degree and 6 hourly"
+echo "History: Nov 2021 - Modify for WCOSS2 transition"
 echo "AUTHOR: Yan Luo (wx22lu)"
 #######################################################################
 
@@ -244,10 +246,10 @@ done      # for  nfhrs in $hourlist
 cat wgrp.cmdfile
 chmod 775 wgrp.cmdfile
 export MP_CMDFILE=$DATA/$cyc/wgrp.cmdfile
-export MP_PGMMODEL=mpmd
+#export MP_PGMMODEL=mpmd
 
 #mpirun.lsf
-${APRUNCQPF} cfp ${MP_CMDFILE}
+${APRUNCQPF} ${MP_CMDFILE}
 
 ###
 ### STEP-ONE:

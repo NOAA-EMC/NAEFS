@@ -1,5 +1,4 @@
 export model=naefs
-export model_ver=v6.1.0
 export naefs_ver=v6.1.0
 export ver=v6.1
 

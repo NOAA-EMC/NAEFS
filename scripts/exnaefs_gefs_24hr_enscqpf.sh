@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################### EXENSCQPF ####################################
 echo "------------------------------------------------"
 echo "Ensemble Postprocessing - Accumulate for 24-hour Bias-corrected QPF"

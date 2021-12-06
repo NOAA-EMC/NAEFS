@@ -1,8 +1,10 @@
+#!/bin/sh
 ########################### EXENSDSCQPF ################################
 echo "------------------------------------------------"
 echo "Ensemble Postprocessing - Downscaling for Bias-corrected QPF   "
 echo "------------------------------------------------"
 echo "History: Feb 2017 - First implementation of this new script."
+echo "History: Nov 2021 - Modify for WCOSS2 transition"
 echo "AUTHOR: Yan Luo (wx22lu)"
 #######################################################################
 
@@ -91,10 +93,10 @@ done      # for  nfhrs in $hourlist
 cat ndgd.cmdfile
 chmod 775 ndgd.cmdfile
 export MP_CMDFILE=$DATA/$cyc/${iacc}hr/ndgd.cmdfile
-export MP_PGMMODEL=mpmd
+#export MP_PGMMODEL=mpmd
 
 #mpirun.lsf
-${APRUNCQPF} cfp ${MP_CMDFILE}
+${APRUNCQPF} ${MP_CMDFILE}
 
 ###
 ### STEP-TWO:

@@ -1,7 +1,4 @@
-# Calculate ensemble mean anomaly foreacst and EFI for NCEP GEFS forecasts
-# History:
-#         March 2017 - First implementation of this new script
-# AUTHOR: Hong Guan (Hong.Guan)
+#!/bin/sh
 ###############################################################################################
 
 echo "---------------------------------------------------------"

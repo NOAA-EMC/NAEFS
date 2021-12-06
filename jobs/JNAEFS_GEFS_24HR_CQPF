@@ -103,10 +103,9 @@ setpdy.sh
 ##############################################
 # Define COM directories
 ##############################################
-export COM_IN=${COM_IN:-${COMROOT}/${NET}/${ver}}
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
-
-export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/${RUN}.${PDY})/${cyc}/atmos}
+export COM_IN=${COM_IN:-$(compath.py $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/${RUN}.${PDY}/${cyc}/atmos)}
 
 export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/prcp_bc_gb2
