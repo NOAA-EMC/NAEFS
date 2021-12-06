@@ -1,3 +1,4 @@
+#!/bin/sh
 ###################################@##################################
 # Script:   dvrtma_debias_3regs.sh
 # Abstract: Product downscale ensemble products for 3 regions

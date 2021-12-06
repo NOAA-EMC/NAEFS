@@ -1,3 +1,4 @@
+#!/bin/sh
 #############################################################################
 # Script: cmcens_post_avgspr.sh
 # Abstract: produces mean and spread of CMC raw ensemble forecast

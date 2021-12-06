@@ -1,4 +1,4 @@
-
+#!/bin/sh
 ########################### RTMA_BIAS ################################################
 echo "------------------------------------------------"
 echo "Update Downscaling Vector For Hawaii between RTMA and NCEP operational analysis"

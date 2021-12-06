@@ -1,3 +1,4 @@
+#!/bin/sh
 ######################################################################
 # Script: gefs_bias_coeff_avggen.sh
 # Abstract: this script generate coeff for 03hr, 09hr and etc forecast 

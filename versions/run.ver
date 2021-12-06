@@ -1,7 +1,6 @@
 export model=naefs
 export model_ver=v6.1.0
 export naefs_ver=v6.1.0
-export version=v6.1.0
 export ver=v6.1
 
 export gefs_ver=v12.2 
@@ -9,13 +8,6 @@ export cfs_ver=v2.3
 export rtma_ver=v2.9  
 export nawips_ver=v0.0  
 export ccpa_ver=v4.2
-
-export naefs_output_ver=v6.1  
-export gefs_output_ver=v12.2 
-export cfs_output_ver=v2.3  
-export rtma_output_ver=v2.9  
-export nawips_output_ver=v0.0  
-export ccpa_output_ver=v4.2
 
 export envvar_ver=1.0
 export PrgEnv_intel_ver=8.1.0

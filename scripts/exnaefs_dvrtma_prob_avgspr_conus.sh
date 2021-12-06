@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################### NDGD PRODUCTS #################################################
 echo "------------------------------------------------------------------------------------"
 echo "Apply Downscaling Method to Generat Ensemble Forecast on NDGD Grid for Conus Region"

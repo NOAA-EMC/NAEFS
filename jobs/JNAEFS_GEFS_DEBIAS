@@ -24,7 +24,7 @@ export RUN=${RUN:-gefs}
 ###########################################
 
 if [ "$RUN_ENVIR" = dev ]; then  
-  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/gefs_debias_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/gefs_debias_config}
   . $PARA_CONFIG
 fi
 
@@ -81,7 +81,7 @@ export IFENSBC1D=YES
 ####################################
 # Specify Execution Areas
 ####################################
-export HOMEgefs=${HOMEgefs:-$NWROOT/naefs.${naefs_ver}}
+export HOMEgefs=${HOMEgefs:-$PACKAGEROOT/naefs.${naefs_ver}}
 export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
 export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
 export USHgefs=${USHgefs:-$HOMEgefs/ush}
@@ -101,10 +101,10 @@ setpdy.sh
 # Define COM directories
 ##############################################
 
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
-export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
+export COMINgefs=${COMINgefs:-$(compath.py $envir/com/gefs/${gefs_ver}/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 
 export COMOUTBC_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an

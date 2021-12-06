@@ -1,3 +1,4 @@
+#!/bin/sh
 ##################################################################################
 # Script:   dvrtma_debias_conus_tmaxmin.sh
 # Abstract: Downscale Ensemble Products on Conus Region for Variables Tmax & Tmin                    

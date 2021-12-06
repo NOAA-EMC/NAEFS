@@ -32,7 +32,7 @@ export RUN=${RUN:-fens}
 
 if [ "$RUN_ENVIR" = dev ]      ### For Developers
 then
-   PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/fnmoc_debias_config}
+   PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/fnmoc_debias_config}
    . $PARA_CONFIG
 fi
 
@@ -79,7 +79,7 @@ export SENDECF=${SENDECF:-YES}
 # Specify Execution Areas
 ####################################
  
-export HOMEfnmoc=${HOMEfnmoc:-${NWROOT}/naefs.${naefs_ver}}
+export HOMEfnmoc=${HOMEfnmoc:-${PACKAGEROOT}/naefs.${naefs_ver}}
 export EXECfnmoc=${EXECfnmoc:-$HOMEfnmoc/exec}
 export FIXfnmoc=${FIXfnmoc:-$HOMEfnmoc/fix}
 export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
@@ -99,14 +99,13 @@ setpdy.sh
 # Define COM directories
 ##############################################
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
-export DCOM=${DCOM:-${DCOM_BASE}}
-export COMIN=${COMIN:-$DCOM/$PDY/wgrbbul/fnmocens_gb2}
-export COMINBC=${COMINBC:-$DCOM/$PDY/wgrbbul/fnmoc_ens_bc_gb2}
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
+export DCOM=${DCOM:-/lfs/h1/ops/canned/dcom/$PDY/wgrbbul}
+export COMIN=${COMIN:-$DCOM/fnmocens_gb2}
+export COMINBC=${COMINBC:-$DCOM/fnmoc_ens_bc_gb2}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}   
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
 export COMOUTAN=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_an
 export COMOUTWT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_wt

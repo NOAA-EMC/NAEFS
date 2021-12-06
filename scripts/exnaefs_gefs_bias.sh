@@ -1,3 +1,4 @@
+#!/bin/sh
 #############################################################################################
 # Update Bias Estimation of Global Ensemble Forecast & GFS Forecast Daily
 # AUTHOR: Bo Cui  (wx20cb)

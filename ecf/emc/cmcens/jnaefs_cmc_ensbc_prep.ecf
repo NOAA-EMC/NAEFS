@@ -41,8 +41,8 @@ module load craype-hugepages2M
 module list
 
 export direxp=naefs.v6.1.0
-export envir=prod
-export RUN_ENVIR=dev
+#export envir=prod
+export RUN_ENVIR=nco 
 
 export PDY=20210824
 export cyc=00               
@@ -62,6 +62,10 @@ export APRUN="mpiexec -np 97 --cpu-bind verbose,core cfp "
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
 #export cyc=%CYC%
+
+export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui
+export COMPATH=/lfs/h1/ops/canned/com/naefs:/lfs/h1/ops/canned/com/gefs:/lfs/h1/ops/canned/com/cfs
+export COMROOT=/lfs/h2/emc/ptmp/Bo.Cui/com
 
 # CALL executable job script here
 ${HOMEnaefs}/jobs/JNAEFS_CMC_ENSBC_PREP

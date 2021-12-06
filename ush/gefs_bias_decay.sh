@@ -1,3 +1,4 @@
+#!/bin/sh
 ##########################################################################################
 # Script: gefs_bias_decay.sh
 # Abstract: update bias estimation of GEFS & GFS forecast daily

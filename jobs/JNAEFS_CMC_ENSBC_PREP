@@ -25,7 +25,7 @@ export RUN=${RUN:-cmce}
 
 if [ "$RUN_ENVIR" != nco ]      ### For Developers
 then
-  export PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/cmce_bc_prep_config}
+  export PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/cmce_bc_prep_config}
   . $PARA_CONFIG
 fi
 
@@ -72,7 +72,7 @@ export SENDDBN=${SENDDBN:-YES}
 # Specify Execution Areas
 #########################
 
-export HOMEcmce=${HOMEcmce:-${NWROOT}/naefs.${naefs_ver}}
+export HOMEcmce=${HOMEcmce:-${PACKAGEROOT}/naefs.${naefs_ver}}
 export EXECcmce=${EXECcmce:-$HOMEcmce/exec}
 export USHcmce=${USHcmce:-$HOMEcmce/ush}
 export FIXcmce=${FIXcmce:-$HOMEcmce/fix}
@@ -93,13 +93,10 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
-export DCOM_IN=${DCOM_IN:-$DCOM_BASE/$PDY/wgrbbul/cmcensbc_gb2}
+export DCOM_IN=${DCOM_IN:-/lfs/h1/ops/canned/dcom/$PDY/wgrbbul/cmcensbc_gb2}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
-
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
-
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUTBC_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTAN_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 export COMOUTWT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_wt

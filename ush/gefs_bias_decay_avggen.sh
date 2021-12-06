@@ -1,3 +1,4 @@
+#!/bin/sh
 #########################################################
 # Script: gefs_bias_decay_avggen.sh
 # Abstract: this script generate bias estimation 3 hourly 

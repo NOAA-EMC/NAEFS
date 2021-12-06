@@ -1,3 +1,4 @@
+#!/bin/sh
 #################################################################
 # Script: gefs_bias_reforecast.sh
 # Abstract: this script generate reforecast bias estimation files    

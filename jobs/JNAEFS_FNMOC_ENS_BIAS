@@ -31,7 +31,7 @@ export RUN=${RUN:-fens}
 #####################################################################################
 
 if [ "$RUN_ENVIR" = dev ]; then     
-   PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/fnmoc_bias_config}
+   PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/fnmoc_bias_config}
    . $PARA_CONFIG
 fi
 
@@ -96,7 +96,7 @@ export BIASANL=${BIASANL:-YES}
 # Specify Execution Areas
 #########################
 
-export HOMEfnmoc=${HOMEfnmoc:-${NWROOT}/naefs.${naefs_ver}}
+export HOMEfnmoc=${HOMEfnmoc:-${PACKAGEROOT}/naefs.${naefs_ver}}
 export EXECfnmoc=${EXECfnmoc:-$HOMEfnmoc/exec}
 export FIXfnmoc=${FIXfnmoc:-$HOMEfnmoc/fix}
 export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
@@ -116,16 +116,14 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COM_FENS=${COM_FENS:-${COMROOT}/${NET}/${ver}}
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
+export COM_FENS=${COM_FENS:-$(compath.py $envir/$NET/${naefs_ver})}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver})}
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
-export COMINnavgem=${COMINnavgem:-$DCOM_BASE/navgem}
+export COMINnavgem=${COMINnavgem:-/lfs/h1/ops/canned/dcom/navgem}
 export COMINcfs=${COMINcfs:-$(compath.py ${envir}/com/cfs/${cfs_ver})}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
-
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
 export COMOUTNCEP_M1=$COM_OUT/gefs.${PDYm1}/${cyc}/pgrb2a
 export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2a

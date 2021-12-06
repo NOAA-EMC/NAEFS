@@ -63,7 +63,7 @@ export DBN_ALERT_TYPE=NAEFS_GEFS_GEMPAK
 # Specify Execution Areas
 #########################
 
-export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
+export HOMEnaefs=${HOMEnaefs:-$PACKAGEROOT/naefs.${model_ver}}
 export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
 export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
 export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
@@ -71,11 +71,10 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export COM_IN=${COM_IN:-$COMROOT/${NET}/${ver}}
-export COMIN_ME=${COMIN_ME:-${COM_IN}/${RUN}.${PDY}/${cyc}/pgrb2ap5}
-export COMIN_ANL=${COMIN_ANL:-${COM_IN}/${RUN}.${PDYm2}/${cyc}/pgrb2ap5}
-export COMOUT=${COMOUT:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDY}}
-export COMOUTm2=${COMOUTm2:-$COMROOT/nawips/${nawips_ver}/${RUN}.${PDYm2}}
+export COMIN_ME=${COMIN_ME:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDY}/${cyc}/pgrb2ap5}
+export COMIN_ANL=${COMIN_ANL:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDYm2}/${cyc}/pgrb2ap5}
+export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})/${RUN}.${PDY}/gempak}
+export COMOUTm2=${COMOUTm2:-$(compath.py -o $envir/$NET/${naefs_ver})/${RUN}.${PDYm2}/gempak}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT

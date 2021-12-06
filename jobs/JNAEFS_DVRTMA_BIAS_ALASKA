@@ -27,7 +27,7 @@ export RUN=naefs
 
 if [ "$RUN_ENVIR" != nco ]      ### For Developers
 then
-  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/dvrtma_bias_conus_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/dvrtma_bias_conus_config}
   . $PARA_CONFIG
 fi
 
@@ -76,7 +76,7 @@ export SENDDBN=${SENDDBN:-YES}
 # Specify Execution Areas
 #########################
 
-export HOMErtma=${HOMErtma:-${NWROOT}/naefs.${naefs_ver}}
+export HOMErtma=${HOMErtma:-${PACKAGEROOT}/naefs.${naefs_ver}}
 export EXECrtma=${EXECrtma:-$HOMErtma/exec}
 export FIXrtma=${FIXrtma:-$HOMErtma/fix}
 export USHrtma=${USHrtma:-$HOMErtma/ush}
@@ -109,11 +109,11 @@ export cycm03=`$NDATE -3 $PDY$cyc | cut -c9-10`
 # Define COM directories
 ########################
 
-export COM_DV=${COM_DV:-${COMROOT}/${NET}/${ver}}
+export COM_DV=${COM_DV:-$(compath.py $envir/$NET/${naefs_ver})}
 export COM_RTMA=${COM_RTMA:-$(compath.py ${envir}/com/rtma/${rtma_ver})}
 export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/gefs.${PDY})/${cyc}/atmos/pgrb2ap5}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUT=${COM_OUT}/${RUN}.${PDY}/${cyc}/ndgd_gb2
 export COMOUT_GEFS=${COM_OUT}/gefs.${PDY}/${cyc}/ndgd_gb2
 export COMOUTm03=${COM_OUT}/${RUN}.${PDYm03}/${cycm03}/ndgd_gb2

@@ -1,3 +1,4 @@
+#!/bin/sh
 ###############################################################################################
 # Script:   cmce_adjust_tmaxmin_alaska.sh 
 # Abstract: Use accumulated NCEP and CMC analysis difference to adjust CMC T2m, Tmax and Tmin

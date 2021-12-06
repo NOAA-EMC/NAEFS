@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################################################################
 # Script:   naefs_climate_anomaly.sh 
 # Abstract: this script produces GRIB files of climate anomaly forecast

@@ -1,3 +1,4 @@
+#!/bin/sh
 #####################################################################################
 # Script: naefs_climate_anv.sh    
 # ABSTRACT:  This script calculte difference between ensemble average and climatology

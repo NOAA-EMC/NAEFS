@@ -25,7 +25,7 @@ export RUN=naefs
 #########################################
 
 if [ "$RUN_ENVIR" = dev ]; then
-  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/naefs_prob_avgspr_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/naefs_prob_avgspr_config}
   . $PARA_CONFIG
 fi
 
@@ -84,7 +84,7 @@ export IFENSBC1D=YES
 # Specify Execution Areas
 #########################
 
-export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${naefs_ver}}
+export HOMEnaefs=${HOMEnaefs:-$PACKAGEROOT/naefs.${naefs_ver}}
 export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
 export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
 export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
@@ -99,25 +99,22 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COM_NCEP=${COM_NCEP:-${COMROOT}/${NET}/${ver}} 
-export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${ver}} 
-export COM_FENS=${COM_FENS:-${COMROOT}/${NET}/${ver}}
+export DCOM=${DCOM:-/lfs/h1/ops/canned/dcom}
+export COMINCMC=${COMINCMC:-$DCOM/$PDY/wgrbbul/cmcensbc_gb2}
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
-export DCOM_CMC=${DCOM_CMC:-${DCOM_BASE}}
-export COMINCMC=${COMINCMC:-$DCOM_CMC/$PDY/wgrbbul/cmcensbc_gb2}
-
+export COM_NCEP=${COM_NCEP:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINNCEP=$COM_NCEP/gefs.${PDY}/${cyc}/pgrb2ap5_bc
+
+export COM_FENS=${COM_FENS:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINFENS=$COM_FENS/fens.${PDY}/${cyc}/pgrb2ap5_bc
 
-export COM_NCEPANL=${COM_NCEPANL:-${COM_NCEP}} 
-export COM_CMCANL=${COM_CMCANL:-${COM_CMC}} 
-export COM_FENSANL=${COM_FENSANL:-${COM_FENS}} 
+export COM_NCEPANL=${COM_NCEPANL:-$(compath.py $envir/$NET/${naefs_ver})}
+export COM_CMCANL=${COM_CMCANL:-$(compath.py $envir/$NET/${naefs_ver})}
+export COM_FENSANL=${COM_FENSANL:-$(compath.py $envir/$NET/${naefs_ver})}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUTNAEFS_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTNAEFSAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
-
 export COMOUTNAEFS=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_bc
 export COMOUTNAEFSAN=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_an
 

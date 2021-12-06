@@ -1,3 +1,4 @@
+#!/bin/sh
 #################################################################################
 # CMC Ensemble Postprocessing, Convert CMC Bias Corrected Ens from Grib2 to Grib1 
 # History: Oct 2011 - First implementation of this new script

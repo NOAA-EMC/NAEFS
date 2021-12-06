@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################### BIASUPDATE ############################################################
 echo "-------------------------------------------------------------"
 echo "Update Bias Estimation of CMC Global Ensemble Forecast Daily"

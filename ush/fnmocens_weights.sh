@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################################
 # Script: fnmocens_weights.sh
 # Abstract: this script produces weights of ensemble member

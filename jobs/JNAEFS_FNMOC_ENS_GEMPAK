@@ -88,7 +88,7 @@ export DBN_ALERT_TYPE=NAEFS_FNMOCENS_GEMPAK
 # Specify Execution Areas
 #########################
 
-export HOMEnaefs=${HOMEnaefs:-$NWROOT/naefs.${model_ver}}
+export HOMEnaefs=${HOMEnaefs:-$PACKAGEROOT/naefs.${model_ver}}
 export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
 export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
 export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
@@ -97,13 +97,11 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 setpdy.sh
 . PDY
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
-export COMIN=${COMIN:-$DCOM_BASE/$PDY/wgrbbul}
+export COMIN=${COMIN:-/lfs/h1/ops/canned/dcom/${PDY}/wgrbbul}
 export COMIN_raw=$COMIN/fnmocens_gb2
 export COMIN_bc=$COMIN/fnmoc_ens_bc_gb2
-COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com
-export COM_NAWIPS=${COM_NAWIPS:-$COMROOT/nawips/${nawips_ver}}
-export COMOUT=${COMOUT:-${COM_NAWIPS}/${RUN}.${PDY}}
+
+export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT

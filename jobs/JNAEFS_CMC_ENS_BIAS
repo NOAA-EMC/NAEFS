@@ -25,7 +25,7 @@ export RUN=${RUN:-cmce}
 
 if [ "$RUN_ENVIR" != nco ]      ### For Developers
 then
-  export PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/cmce_bias_config}
+  export PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/cmce_bias_config}
   . $PARA_CONFIG
 fi
 
@@ -71,7 +71,7 @@ export SENDECF=${SENDECF:-YES}
 # Specify Execution Areas
 #########################
 
-export HOMEcmce=${HOMEcmce:-${NWROOT}/naefs.${naefs_ver}}
+export HOMEcmce=${HOMEcmce:-${PACKAGEROOT}/naefs.${naefs_ver}}
 export EXECcmce=${EXECcmce:-$HOMEcmce/exec}
 export FIXcmce=${FIXcmce:-$HOMEcmce/fix}
 export USHcmce=${USHcmce:-$HOMEcmce/ush}
@@ -103,11 +103,11 @@ export BIASC00=NO
 # Define COM directories
 ########################
 
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
-export COM_CMC=${COM_CMC:-${COMROOT}/${NET}/${ver}}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
+export COM_CMC=${COM_CMC:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINcfs=${COMINcfs:-$(compath.py ${envir}/com/cfs/${cfs_ver})}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2ap5
 

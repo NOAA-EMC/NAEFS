@@ -1,3 +1,4 @@
+#!/bin/sh
 ######################################################################################
 # Script:   dvrtma_debias_alaska_wind10m.sh
 # Abstract: Downscale Ensemble Products on alaska Region for Variables 10m Wdir & Wspd 

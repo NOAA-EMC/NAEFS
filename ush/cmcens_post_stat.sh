@@ -1,3 +1,4 @@
+#!/bin/sh
 ##############################################################
 # Script: cmcens_post_stat.sh
 # Abstract: this script generate CMC enspost and ensstat files

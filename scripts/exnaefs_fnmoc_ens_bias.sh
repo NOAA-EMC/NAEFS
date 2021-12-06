@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################### BIASUPDATE ############################################################
 echo "--------------------------------------------------------------"
 echo "Update Bias Estimation of FNMOC Global Ensemble Forecast Daily"

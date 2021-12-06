@@ -1,3 +1,4 @@
+#!/bin/sh
 #####################################################################
 # Script:   gefs_bias_combine.sh  
 # Abstract: Calculate Combined Bias From Decaying and Reforecast Bias

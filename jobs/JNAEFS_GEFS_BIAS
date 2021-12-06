@@ -26,7 +26,7 @@ export RUN=${RUN:-gefs}
 
 if [ "$RUN_ENVIR" = dev ]      ### For Developers
 then
-  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/gefs_bias_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/gefs_bias_config}
   . $PARA_CONFIG
 fi
 
@@ -118,7 +118,7 @@ export IF_DECAYONLY=NO
 # Specify Execution Areas
 #########################
 
-export HOMEgefs=${HOMEgefs:-$NWROOT/naefs.${naefs_ver}}
+export HOMEgefs=${HOMEgefs:-$PACKAGEROOT/naefs.${naefs_ver}}
 export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
 export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
 export USHgefs=${USHgefs:-$HOMEgefs/ush}
@@ -138,16 +138,15 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COMINbias=${COMINbias:-${COMROOT}/${NET}/${ver}}
-export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver})}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
+export COMINgefs=${COMINgefs:-$(compath.py $envir/com/gefs/${gefs_ver})}
 
-export DCOM_BASE=${DCOM_BASE:-${DCOMROOT}}
-export DCOMINcmce=${DCOMINcmce:-${DCOM_BASE}}
-export COMINcmce=${COMINcmce:-${COMROOT}/${NET}/${ver}}
+export DCOMINcmce=${DCOMINcmce:-/lfs/h1/ops/canned/dcom}
+export COMINcmce=${COMINcmce:-$(compath.py $envir/$NET/${naefs_ver})}
 
-export COMINcfs=${COMINcfs:-$(compath.py ${envir}/com/cfs/${cfs_ver})}
+export COMINcfs=${COMINcfs:-$(compath.py $envir/com/cfs/${cfs_ver})}
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
 export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2ap5

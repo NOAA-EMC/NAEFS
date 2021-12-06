@@ -31,7 +31,7 @@ export RUN=gefs
 
 if [ "$RUN_ENVIR" = dev ]      ### For Developers
 then
-  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/dvrtma_avgspr_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/dvrtma_avgspr_config}
   . $PARA_CONFIG
 fi
 
@@ -86,7 +86,7 @@ export IFCMCE=NO
 #########################
 # Specify Execution Areas
 #########################
-export HOMErtma=${HOMErtma:-${NWROOT}/naefs.${naefs_ver}}
+export HOMErtma=${HOMErtma:-${PACKAGEROOT}/naefs.${naefs_ver}}
 export EXECrtma=${EXECrtma:-$HOMErtma/exec}
 export FIXrtma=${FIXrtma:-$HOMErtma/fix}
 export USHrtma=${USHrtma:-$HOMErtma/ush}
@@ -101,12 +101,11 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COM_NCEP=${COM_NCEP:-${COMROOT}/${NET}/${ver}} 
-export COM_DV=${COM_DV:-${COMROOT}/${NET}/${ver}}
-export COM_IN=${COM_IN:-${COMROOT}/${NET}/${ver}}
-export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
+export COM_DV=${COM_DV:-$(compath.py $envir/$NET/${naefs_ver})}
+export COM_NCEP=${COM_NCEP:-$(compath.py $envir/$NET/${naefs_ver})}
+export COMIN=$COM_NCEP/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 
-export COM_OUT=${COM_OUT:-${COMROOT}/${NET}/${ver}}
+export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
 export COMOUT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/ndgd_gb2
 
 mkdir -m 775 -p ${COMOUT_GB2}

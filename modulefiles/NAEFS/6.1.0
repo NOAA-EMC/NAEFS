@@ -1,12 +1,3 @@
-#%Module##
-## NAEFS   
-#########
-
-# Loading pe environment
-
-#source /apps/prod/lmodules/startLmod
-#source /lfs/h2/emc/vpppg/noscrub/Bo.Cui/naefs.v6.1.0/versions/build.ver
-
 module purge
 
 module load envvar/${envvar_ver}

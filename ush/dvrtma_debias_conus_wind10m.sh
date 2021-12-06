@@ -1,3 +1,4 @@
+#!/bin/sh
 ######################################################################################
 # Script:   dvrtma_debias_conus_wind10m.sh
 # Abstract: Downscale Ensemble Products on Conus Region for Variables 10m Wdir & Wspd 

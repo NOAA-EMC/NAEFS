@@ -1,4 +1,4 @@
-
+#!/bin/sh
 ########################### NAEFS PRODUCTS ####################################
 echo "------------------------------------------------"
 echo "NAEFS products generation from combined NCEP/GEFS and CMC/EPS ensembles"

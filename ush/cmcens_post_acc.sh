@@ -1,3 +1,4 @@
+#!/bin/sh
 ################################################################################
 # Script: cmcens_post_acc.sh
 # Abstract: this script generate CMC preciptation/flux variables 3 and 6 hourly 

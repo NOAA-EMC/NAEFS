@@ -1,13 +1,7 @@
-Library are defined in Module_NAEFS_v6.0.0    
-
 To build codes:
 
     cd /nwprod/naefs.v6.1.0/sorc
-     1) ./build.sh WCOSS2                   ! for WCOSS2
+     1) ./build.sh 
      2) ./install.sh
 
-test version for a single subroutine
-
-     1) ./22.sh WCOSS2    
-     2) ./install.sh
 

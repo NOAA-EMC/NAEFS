@@ -1,3 +1,4 @@
+#!/bin/sh
 #############################################################
 # Script: gefs_weights.sh
 # Abstract: this script produces weights of ensemble member

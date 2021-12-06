@@ -29,7 +29,7 @@ export RUN=${RUN:-gefs}
 
 if [ "$RUN_ENVIR" = dev ]      ### For Developers
 then
-  PARA_CONFIG=${PARA_CONFIG:-${NWROOT}/${direxp}/parm/gefs_cqpf_24hr_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/gefs_cqpf_24hr_config}
   . $PARA_CONFIG
 fi
 
@@ -81,7 +81,7 @@ export RUNJOB=${RUNJOB:-REGULAR}
 # Specify Execution Areas
 #########################
 
-export HOMEgefs=${HOMEgefs:-$NWROOT/naefs.${naefs_ver}}
+export HOMEgefs=${HOMEgefs:-$PACKAGEROOT/naefs.${naefs_ver}}
 export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
 export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
 export USHgefs=${USHgefs:-$HOMEgefs/ush}

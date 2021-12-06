@@ -82,7 +82,7 @@ read (5,namens)
 
 print *, ' '; print *, 'Input files size ', nfiles                  
 if(nfiles.eq.0) goto 1020
-if(iskip(2).eq.1.and.iskip(1).eq.0) goto 1020
+!if(iskip(2).eq.1.and.iskip(1).eq.0) goto 1020
 
 ! set the fort.* of intput file, open forecast files
 

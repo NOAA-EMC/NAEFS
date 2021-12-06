@@ -1,3 +1,4 @@
+#!/bin/sh
 ############################################################
 # Script: naefs_climate_efi.sh
 # ABSTRACT:  produces ensemble mean climate anomaly forecast

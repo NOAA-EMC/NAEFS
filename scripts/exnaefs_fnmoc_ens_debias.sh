@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/sh
 #################################### FORECAST DEBIAS ###############################################
 echo "------------------------------------------"
 echo "Bias Correct FNMOC Global Ensemble Forecast "

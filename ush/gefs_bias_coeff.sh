@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################### BIASUPDATE #############################
 echo "--------------------------------------------------"
 echo "Update Avergaed Parameters and Coefficient r Daily  "

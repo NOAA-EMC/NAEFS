@@ -1,3 +1,4 @@
+#!/bin/sh
 #################################### FORECAST DEBIAS #########################################
 # Bias Correct NCEP Global Ensemble Forecast & GFS Forecast
 # History:

@@ -1,3 +1,4 @@
+#!/bin/sh
 ###################################@##################################
 # Script:   dvrtma_debias_conus.sh
 # Abstract: Product downscale ensemble products for Conus region

@@ -1,3 +1,4 @@
+#!/bin/sh
 ###############################################################################################
 # Script:   cmce_adjust_wind10m_alaska.sh 
 # Abstract: Use accumulated NCEP and CMC analysis difference to adjust CMC 10m wind u and v of

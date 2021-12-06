@@ -1,3 +1,4 @@
+#!/bin/sh
 ###########################################################################################
 # Script: naefs_bc_probability.sh
 # Abstract: produces ensemble 10%, 50% and 90% probability forecast

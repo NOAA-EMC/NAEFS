@@ -1,3 +1,4 @@
+#!/bin/sh
 ###########################################################################
 # Script: fnmocens_avgspr.sh
 # Abstract: this script produces mean and spread of FNMOC ensemble forecast

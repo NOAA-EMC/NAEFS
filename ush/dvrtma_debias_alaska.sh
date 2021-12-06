@@ -1,3 +1,4 @@
+#!/bin/sh
 ###################################@##################################
 # Script:   dvrtma_debias_alaska.sh
 # Abstract: Product downscale ensemble products for alaska region

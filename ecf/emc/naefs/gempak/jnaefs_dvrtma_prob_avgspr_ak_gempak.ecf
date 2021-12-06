@@ -44,8 +44,8 @@ module list
 ##
 
 export direxp=naefs.v6.1.0
-export envir=prod
-export RUN_ENVIR=dev
+#export envir=prod
+export RUN_ENVIR=nco
 
 export PDY=20210824
 export cyc=00               
@@ -58,7 +58,7 @@ export DATAROOT=/lfs/h2/emc/ptmp/Bo.Cui/tmpnwprd
 
 #export COMROOT=/lfs/h1/ops/canned/com                    
 #export DCOMROOT=/lfs/h1/ops/canned/dcom                     
-export COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com
+#export COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com
 export DCOMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/dcom
 export KEEPDATA=YES
 
@@ -68,6 +68,9 @@ export APRUN="mpiexec -np 97 --cpu-bind core cfp "
 
 #export cyc=%CYC%
 #export cyc_fcst=%CYC%
+
+export COMPATH=/lfs/h1/ops/canned/com/naefs
+export COMROOT=/lfs/h2/emc/ptmp/Bo.Cui/com
 
 # CALL executable job script here
 ${HOMEnaefs}/jobs/JNAEFS_DVRTMA_PROB_AVGSPR_ALASKA_GEMPAK   

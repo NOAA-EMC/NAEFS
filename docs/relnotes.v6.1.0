@@ -19,6 +19,7 @@ NAEFS Translation WCOSS2
 - update five codes to work with new g2 lib on WCOSS2
 - remove two J-jobs scripts for the CQPF jobs 
 - update two ex-scripts and remove one ex-script for the CQPF jobs 
+- every script has its first line as interpreter 
 
 The modified codes include:
 
@@ -70,6 +71,6 @@ Implementation instruction:
 
 4. Resources requirements
 
-   The fix files are available at: /lfs/h2/emc/vpppg/noscrub/Yan.Luo/wcoss_nco/naefs.v6.0.11/fix
+   The fix files are available at: /lfs/h1/ops/canned/packages/hps/naefs.v6.0.11/fix               
 
 

@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/sh
 echo "Entering sub script  global_ensstat_cmc.sh"
 echo "------------------------------------------------"
 echo "Ensemble Statistical Postprocessing (Canadian)"

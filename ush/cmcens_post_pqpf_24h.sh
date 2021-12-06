@@ -1,3 +1,4 @@
+#!/bin/sh
 #######################################
 # script: cmcens_post_pqpf_24h.sh
 # ABSTRACT:  This script produces CMC's ensemble based

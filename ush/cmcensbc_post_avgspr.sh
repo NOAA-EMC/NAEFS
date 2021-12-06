@@ -1,3 +1,4 @@
+#!/bin/sh
 #############################################################################
 # Script: cmcensbc_post_avgspr.sh
 # Abstract: produces mean and spread of CMC bias corrected ensemble forecast
