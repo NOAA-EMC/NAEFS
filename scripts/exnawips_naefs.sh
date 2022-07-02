@@ -1,7 +1,7 @@
 #!/bin/ksh
 ###################################################################
 echo "----------------------------------------------------"
-echo "exnawips_gefs_bias.sh.sms - convert NCEP GRIB files into GEMPAK Grids for GEFS Bias"
+echo "exnawips_gefs_bias.sh - convert NCEP GRIB files into GEMPAK Grids for GEFS Bias"
 echo "----------------------------------------------------"
 echo "History: Jan 2012 - First implementation of this new script."
 #####################################################################
@@ -13,7 +13,7 @@ export fstart=$2
 export fend=$3
 export COMIN=$4
 export COMOUT=$5
-export RUN=$6
+export SUBRUN=$6
 export model=$7
 export DBN_ALERT_TYPE=$8
 if [ $# = 9 ]; then
@@ -47,7 +47,7 @@ NAGRIB_TABLE=$HOMEnaefs/gempak/fix/nagrib.tbl
 NAGRIB=nagrib2
 #
 
-entry=`grep "^$RUN " $NAGRIB_TABLE | awk 'index($1,"#") != 1 {print $0}'`
+entry=`grep "^$SUBRUN " $NAGRIB_TABLE | awk 'index($1,"#") != 1 {print $0}'`
 
 if [ "$entry" != "" ] ; then
   cpyfil=`echo $entry  | awk 'BEGIN {FS="|"} {print $2}'`
@@ -87,47 +87,47 @@ while [ $fhcnt -le $fend ] ; do
 # fhr3=`printf "%03d" $fhr`
   typeset -Z3 fhr3
  
-  case $RUN in 
+  case $SUBRUN in 
     ge*)     if test "$model" = "glbanl"
              then
                GRIBIN=$COMIN/${model}.${cycle}.pgrb2a.0p50_mdf${fhr3}
                GEMGRD=${model}_${PDYm2}${cyc}f${fhr3}
              elif test "$model" = "ndgd"
              then 
-               GRIBIN=$COMIN/${RUN}.${cycle}.${model}_conusf${fhr}.grib2
-               GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+               GRIBIN=$COMIN/${SUBRUN}.${cycle}.${model}_conusf${fhr}.grib2
+               GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
              elif test "$model" = "ndgd_alaska"
              then
-               GRIBIN=$COMIN/${RUN}.${cycle}.${model}f${fhr}.grib2
-               GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+               GRIBIN=$COMIN/${SUBRUN}.${cycle}.${model}f${fhr}.grib2
+               GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
              elif test "$model" = "avgan"
              then
                GRIBIN=$COMIN/geavg.${cycle}.pgrb2a.0p50_anf${fhr3}
-               GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+               GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
              else		# model= bc,an,wt,me anv
-               GRIBIN=$COMIN/${RUN}.${cycle}.pgrb2a.0p50_${model}f${fhr3}
-               GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+               GRIBIN=$COMIN/${SUBRUN}.${cycle}.pgrb2a.0p50_${model}f${fhr3}
+               GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
             fi;;
     naefs)  if test "$model" = "geavganv"
             then
-              GRIBIN=$COMIN/${RUN}_geavg.${cycle}.pgrb2a.0p50_anvf${fhr3}
+              GRIBIN=$COMIN/${SUBRUN}_geavg.${cycle}.pgrb2a.0p50_anvf${fhr3}
               GEMGRD=${model}_${PDY}${cyc}f${fhr3}
             elif test "$model" = "geavgan"
             then
-              GRIBIN=$COMIN/${RUN}_geavg.${cycle}.pgrb2a.0p50_anf${fhr3}
+              GRIBIN=$COMIN/${SUBRUN}_geavg.${cycle}.pgrb2a.0p50_anf${fhr3}
               GEMGRD=${model}_${PDY}${cyc}f${fhr3}
             elif test "$model" = "geefi"
             then
-              GRIBIN=$COMIN/${RUN}_geefi.${cycle}.pgrb2a.0p50_bcf${fhr3}
+              GRIBIN=$COMIN/${SUBRUN}_geefi.${cycle}.pgrb2a.0p50_bcf${fhr3}
               GEMGRD=${model}_${PDY}${cyc}f${fhr3}
             elif test "$model" = "ndgd"
             then
-              GRIBIN=$COMIN/${RUN}.${cycle}.ge${member}.f${fhr3}.conus_ext_2p5.grib2
+              GRIBIN=$COMIN/${SUBRUN}.${cycle}.ge${member}.f${fhr3}.conus_ext_2p5.grib2
               GEMGRD=${model}ge${member}_${PDY}${cyc}f${fhr3}
             elif test "$model" = "ndgd_alaska"
             then
-              GRIBIN=$COMIN/${RUN}.${cycle}.ge${member}.f${fhr3}.alaska_3p0.grib2
-#              GRIBIN=$COMIN/${RUN}_ge${member}.${cycle}.${model}f${fhr}.grib2
+              GRIBIN=$COMIN/${SUBRUN}.${cycle}.ge${member}.f${fhr3}.alaska_3p0.grib2
+#              GRIBIN=$COMIN/${SUBRUN}_ge${member}.${cycle}.${model}f${fhr}.grib2
               GEMGRD=${model}ge${member}_${PDY}${cyc}f${fhr3}
             elif test "$model" = "dvrtma"
             then
@@ -140,36 +140,36 @@ while [ $fhcnt -le $fend ] ; do
                  GEMGRD=${model}_${PDY}${cyc}
                fi
             else
-              GRIBIN=$COMIN/${RUN}_${model}.${cycle}.pgrb2a.0p50_bcf${fhr3}
+              GRIBIN=$COMIN/${SUBRUN}_${model}.${cycle}.pgrb2a.0p50_bcf${fhr3}
               GEMGRD=${model}_${PDY}${cyc}f${fhr3}
             fi;;
-          cmc) GRIBIN=$COMIN/${RUN}_${model}.${cycle}.pgrb2a.0p50.f${fhr3}
-               GEMGRD=${RUN}_${model}_${PDY}${cyc}f${fhr3}
+          cmc) GRIBIN=$COMIN/${SUBRUN}_${model}.${cycle}.pgrb2a.0p50.f${fhr3}
+               GEMGRD=${SUBRUN}_${model}_${PDY}${cyc}f${fhr3}
                ;;
     fnmoc_ge*) if test "$model" = "an" 
               then
-                GRIBIN=$COMIN/${RUN}.${cycle}.pgrb2a_${model}f${fhr}
-                GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+                GRIBIN=$COMIN/${SUBRUN}.${cycle}.pgrb2a_${model}f${fhr}
+                GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
               else
                 GRIBIN=$COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc}
                 if test "model" = "bc"
                 then
-                  GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+                  GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
                 else
-                  GEMGRD=${RUN}_${PDY}${cyc}f${fhr3}
+                  GEMGRD=${SUBRUN}_${PDY}${cyc}f${fhr3}
                 fi
               fi ;;
         ecme*) if test "$model" = "bc"
                then
-                 GRIBIN=$COMIN/${RUN}.${cycle}.pgrb2a_${model}.1p00.f${fhr3}
-                 GEMGRD=${RUN}_${PDY}${cyc}f${fhr3}
+                 GRIBIN=$COMIN/${SUBRUN}.${cycle}.pgrb2a_${model}.1p00.f${fhr3}
+                 GEMGRD=${SUBRUN}_${PDY}${cyc}f${fhr3}
                elif test "$model" = "ndgd"
                then
-                 GRIBIN=$COMIN/${RUN}.${cycle}.ge${member}.f${fhr3}.conus_ext_2p5.grib2
+                 GRIBIN=$COMIN/${SUBRUN}.${cycle}.ge${member}.f${fhr3}.conus_ext_2p5.grib2
                  GEMGRD=${model}${member}_${PDY}${cyc}f${fhr3}
                elif test "$model" = "ndgd_alaska"
                then
-                 GRIBIN=$COMIN/${RUN}.${cycle}.ge${member}.f${fhr3}.alaska_3p0.grib2
+                 GRIBIN=$COMIN/${SUBRUN}.${cycle}.ge${member}.f${fhr3}.alaska_3p0.grib2
                  GEMGRD=${model}${member}_${PDY}${cyc}f${fhr3}
                fi ;;
   esac
@@ -254,9 +254,9 @@ done
 #####################################################################
 # GOOD RUN
 set +x
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
 set -x
 #####################################################################
 

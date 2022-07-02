@@ -254,7 +254,7 @@ if [ -s poescript_cat ]; then rm poescript_cat; fi
 for nfhrs in $hourlist; do
   for nens in $outlist; do
     chmod +x poe_cat.${nfhrs}.${nens}
-    echo "poe_cat.${nfhrs}.${nens}" >>poescript_cat
+    echo ". ./poe_cat.${nfhrs}.${nens}" >>poescript_cat
   done
 done
 

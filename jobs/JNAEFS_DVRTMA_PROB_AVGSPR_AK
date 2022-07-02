@@ -95,7 +95,7 @@ export USHrtma=${USHrtma:-$HOMErtma/ush}
 # Run setpdy and initialize PDY variables
 #########################################
 setpdy.sh
-. PDY
+. ./PDY
 
 ########################
 # Define COM directories
@@ -105,11 +105,11 @@ export COM_DV=${COM_DV:-$(compath.py $envir/$NET/${naefs_ver})}
 export COM_NCEP=${COM_NCEP:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMIN=$COM_NCEP/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 
-export DCOM=${DCOM:-/lfs/h1/ops/canned/dcom}
+export DCOM=${DCOM:-${DCOMROOT}}
 export COMINCMC=${COMINCMC:-$DCOM/$PDY/wgrbbul/cmcensbc_gb2}
 export COM_CMCANL=${COM_CMCANL:-$(compath.py $envir/$NET/${naefs_ver})}
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/ndgd_gb2
 
 mkdir -m 775 -p ${COMOUT_GB2}

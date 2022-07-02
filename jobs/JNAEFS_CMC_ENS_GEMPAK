@@ -18,7 +18,6 @@ export DATA=${DATA:-$DATAROOT/${job}.${pid}}
 mkdir $DATA
 cd $DATA 
 
-
 ####################################
 # Determine Job Output Name on System
 ####################################
@@ -35,7 +34,7 @@ if [ $RUN_ENVIR = dev ]; then
    # DEV
    export jlogfile=/dev/null
 fi
-jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################
 #
@@ -70,10 +69,10 @@ export HOMEnaefs=${HOMEnaefs:-$PACKAGEROOT/naefs.${naefs_ver}}
 
 # Run setpdy and initialize PDY variables
 setpdy.sh
-. PDY
+. ./PDY
 
 export COMIN=${COMIN:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDY}/${cyc}/pgrb2ap5}
-export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})/${RUN}.${PDY}/gempak}
+export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
 
 if [ ! -f $COMOUT ] ; then
@@ -104,8 +103,8 @@ for nfhrs in $hourlist; do
   if [ -s poe_gempak_${nfhrs} ]; then rm poe_gempak_${nfhrs}; fi
   mkdir -m 775 $DATA/dir_${nfhrs}
   for member in $memberlist; do
-    export RUN=cmc_ge${member}
-    echo "${HOMEnaefs}/scripts/exnawips_cmce.sh $DATA/dir_${nfhrs} $fstart $fend $RUN $member &> \
+    export SUBRUN=cmc_ge${member}
+    echo "${HOMEnaefs}/scripts/exnawips_cmce.sh $DATA/dir_${nfhrs} $fstart $fend $SUBRUN $member &> \
     $DATA/dir_${nfhrs}/output_${member}_${nfhrs}" >> $DATA/poe_gempak_${nfhrs}
   done
 done
@@ -115,7 +114,7 @@ done
 if [ -s poescript_gempak ]; then rm poescript_gempak; fi
 for nfhrs in $hourlist; do
   chmod +x poe_gempak_${nfhrs}
-  echo "poe_gempak_${nfhrs}" >>poescript_gempak
+  echo ". ./poe_gempak_${nfhrs}" >>poescript_gempak
 done
 
 chmod 775 $DATA/poescript_gempak

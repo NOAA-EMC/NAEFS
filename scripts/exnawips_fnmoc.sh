@@ -14,13 +14,13 @@ postmsg "$jlogfile" "$msg"
 #
 #export MM=`echo $1 |cut -c2-3`
 #export DATA=$2
-#export RUN=fnmoc_ge$1
+#export SUBRUN=fnmoc_ge$1
 export DATA=$1
 export fstart=$2
 export fend=$3
 export COMIN=$4
 export COMOUT=$5
-export RUN=$6
+export SUBRUN=$6
 export model=$7
 export DBN_ALERT_TYPE=$8
 if [ $# = 9 ]; then
@@ -59,18 +59,18 @@ while [ $fhcnt -le $fend ] ; do
   fhr3=$fhcnt
   typeset -Z3 fhr3
 
-#  GRIBIN=$COMIN/${RUN}.${cycle}.pgrbaf${fhr}
+#  GRIBIN=$COMIN/${SUBRUN}.${cycle}.pgrbaf${fhr}
   GRIB2IN=$COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc}
-  GRIBIN=${RUN}.${cycle}.pgrbaf${fhr}
+  GRIBIN=${SUBRUN}.${cycle}.pgrbaf${fhr}
 if [ -s $COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc} ]
 then
   $CNVGRIB -g21 $GRIB2IN $GRIBIN
 
   if [ $model = "bc" ]
   then
-    GEMGRD=${RUN}${model}_${PDY}${cyc}f${fhr3}
+    GEMGRD=${SUBRUN}${model}_${PDY}${cyc}f${fhr3}
   else
-    GEMGRD=${RUN}_${PDY}${cyc}f${fhr3}
+    GEMGRD=${SUBRUN}_${PDY}${cyc}f${fhr3}
   fi
 
 $GEMEXE/$NAGRIB << EOF
@@ -194,9 +194,9 @@ done
 #####################################################################
 # GOOD RUN
 set +x
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
 set -x
 #####################################################################
 

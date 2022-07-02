@@ -9,7 +9,9 @@ module purge
 moduledir=`dirname $(readlink -f ../modulefiles/NAEFS)`
 source ../versions/build.ver
 module use ${moduledir}
-source  ${moduledir}/NAEFS/${naefs_ver}
+#source  ${moduledir}/NAEFS/${naefs_ver}
+module load NAEFS/${naefs_ver}
+module list
 
 export INC="${G2_INC4} "
 export FC=ftn

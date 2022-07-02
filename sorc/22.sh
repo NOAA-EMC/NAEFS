@@ -10,10 +10,16 @@ machine=${1:-"default"}
 
 if [ -f Module_NAEFS_$machine ]; then
     module purge
-    module use .
-    source ../versions/build.ver
-    source ./Module_NAEFS_$machine
+#   module use .
+#   source ../versions/build.ver
+#   source ./Module_NAEFS_$machine
 #   module list
+    moduledir=`dirname $(readlink -f ../modulefiles/NAEFS)`
+    source ../versions/build.ver
+    module use ${moduledir}
+    #source  ${moduledir}/NAEFS/${naefs_ver}
+    module load NAEFS/${naefs_ver}
+    module list
 else
     echo "machine $machine is not supported"
 fi

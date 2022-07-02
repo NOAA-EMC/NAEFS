@@ -1,0 +1,267 @@
+
+#extern /para/primary/18/gefs/v12.2/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+ 
+suite para
+  family primary
+  family 18
+  family gefs
+  family v12.2
+    family members
+      family d0_16
+        family c00
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+      endfamily
+    endfamily
+  endfamily
+  endfamily
+  endfamily
+  
+
+  family 00
+
+  family rtma
+  family v2.9
+    family 00z
+      family 30
+      family 2p5
+        task jrtma_post
+      endfamily
+      endfamily
+    endfamily
+  endfamily
+  endfamily
+
+
+  family gefs
+  family v12.2
+    family members
+      family d0_16
+        family c00
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p01
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p02
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p03
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p04
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p05
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p06
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p07
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p08
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p09
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p10
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p11
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p12
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p13
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p14
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p15
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p16
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p17
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p18
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p19
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p20
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        task jgefs_prdgen_done
+        task jgefs_pgrb2abp5_f192_done
+      endfamily
+    endfamily
+  endfamily
+  endfamily
+
+
+
+  family naefs
+  edit PROJ 'NAEFS'
+  family v6.1
+    edit PACKAGEHOME '/lfs/h1/ops/%ENVIR%/packages/naefs.%naefs_ver%'
+    family naefs
+      task jnaefs_dvrtma_bias_ak
+        trigger /para/primary/00/rtma/v2.9/00z/30/2p5/jrtma_post == complete and /para/primary/00/gefs/v12.2/members/d0_16/jgefs_prdgen_done == complete
+      task jnaefs_dvrtma_bias_conus
+        trigger /para/primary/00/rtma/v2.9/00z/30/2p5/jrtma_post == complete and /para/primary/00/gefs/v12.2/members/d0_16/jgefs_prdgen_done == complete
+      task jnaefs_prob_avgspr
+        trigger ../gefs/jnaefs_gefs_debias == complete
+      task jnaefs_dvrtma_prob_avgspr_ak
+        trigger jnaefs_dvrtma_bias_ak == complete and jnaefs_prob_avgspr == complete
+      task jnaefs_dvrtma_prob_avgspr_conus
+        trigger jnaefs_prob_avgspr == complete
+      family gempak
+        task jnaefs_dvrtma_bias_conus_gempak
+          trigger ../jnaefs_dvrtma_bias_conus == complete
+        task jnaefs_dvrtma_bias_ak_gempak
+          trigger ../jnaefs_dvrtma_bias_ak == complete
+        task jnaefs_prob_avgspr_gempak
+          trigger ../jnaefs_prob_avgspr == complete
+        task jnaefs_dvrtma_prob_avgspr_ak_gempak
+          trigger ../jnaefs_dvrtma_prob_avgspr_ak == complete
+        task jnaefs_dvrtma_prob_avgspr_conus_gempak
+          trigger ../jnaefs_dvrtma_prob_avgspr_conus == complete
+      endfamily
+    endfamily
+    family gefs
+      task jnaefs_gefs_bias
+        trigger /para/primary/18/gefs/v12.2/members/d0_16/c00/atmos/jgefs_atmos_prdgen == complete
+        time 02:00
+      task jnaefs_gefs_debias
+        trigger jnaefs_gefs_bias eq complete and ( /para/primary/00/gefs/v12.2/members/d0_16/jgefs_prdgen_done eq complete or ( /para/primary/00/gefs/v12.2/members/d0_16/c00/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p01/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p02/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p03/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p04/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p05/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p06/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p07/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p08/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p09/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p10/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p11/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p12/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p13/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p14/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p15/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p16/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p17/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p18/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p19/atmos/jgefs_atmos_prdgen == active or /para/primary/00/gefs/v12.2/members/d0_16/p20/atmos/jgefs_atmos_prdgen == active ))
+        event 1 pgrb2a.0p50_bcf240_gec00
+        event 2 pgrb2a.0p50_bcf240_gep01
+        event 3 pgrb2a.0p50_bcf240_gep02
+        event 4 pgrb2a.0p50_bcf240_gep03
+        event 5 pgrb2a.0p50_bcf240_gep04
+        event 6 pgrb2a.0p50_bcf240_gep05
+        event 7 pgrb2a.0p50_bcf240_gep06
+        event 8 pgrb2a.0p50_bcf240_gep07
+        event 9 pgrb2a.0p50_bcf240_gep08
+        event 10 pgrb2a.0p50_bcf240_gep09
+        event 11 pgrb2a.0p50_bcf240_gep10
+        event 12 pgrb2a.0p50_bcf240_gep11
+        event 13 pgrb2a.0p50_bcf240_gep12
+        event 14 pgrb2a.0p50_bcf240_gep13
+        event 15 pgrb2a.0p50_bcf240_gep14
+        event 16 pgrb2a.0p50_bcf240_gep15
+        event 17 pgrb2a.0p50_bcf240_gep16
+        event 18 pgrb2a.0p50_bcf240_gep17
+        event 19 pgrb2a.0p50_bcf240_gep18
+        event 20 pgrb2a.0p50_bcf240_gep19
+        event 21 pgrb2a.0p50_bcf240_gep20
+      task jnaefs_gefs_pgrb_enspqpf
+        trigger /para/primary/00/gefs/v12.2/members/d0_16/jgefs_pgrb2abp5_f192_done eq complete and /para/primary/00/gefs/v12.2/members/d0_16/jgefs_prdgen_done eq complete
+      task jnaefs_gefs_prob_avgspr
+        trigger jnaefs_gefs_debias eq complete
+      task jnaefs_gefs_dvrtma_prob_avgspr_ak
+        trigger ../naefs/jnaefs_dvrtma_bias_conus eq complete and ../naefs/jnaefs_dvrtma_bias_ak eq complete and jnaefs_gefs_prob_avgspr eq complete
+      task jnaefs_gefs_dvrtma_prob_avgspr_conus
+        trigger ../naefs/jnaefs_dvrtma_bias_conus eq complete and jnaefs_gefs_prob_avgspr eq complete
+      task jnaefs_gefs_6hr_cqpf
+        trigger /para/primary/00/gefs/v12.2/members/d0_16/jgefs_pgrb2abp5_f192_done eq complete and /para/primary/00/gefs/v12.2/members/d0_16/jgefs_prdgen_done eq complete
+      task jnaefs_gefs_24hr_cqpf
+        trigger jnaefs_gefs_6hr_cqpf eq complete
+      task jnaefs_gefs_ndgd_cqpf
+        trigger jnaefs_gefs_6hr_cqpf eq complete and jnaefs_gefs_24hr_cqpf eq complete
+      task jnaefs_gefs_anfefi_acpr
+        trigger jnaefs_gefs_24hr_cqpf eq complete
+      family gempak
+        task jnaefs_gefs_bias_gempak
+          trigger ../jnaefs_gefs_bias eq complete
+        task jnaefs_gefs_debias_gempak
+          trigger ../jnaefs_gefs_debias eq complete
+        task jnaefs_gefs_prob_avgspr_gempak
+          trigger ../jnaefs_gefs_prob_avgspr eq complete
+        task jnaefs_gefs_cqpf_gempak
+          trigger ../jnaefs_gefs_6hr_cqpf eq complete and ../jnaefs_gefs_24hr_cqpf eq complete and ../jnaefs_gefs_anfefi_acpr eq complete
+        task jnaefs_gefs_ndgd_cqpf_gempak
+          trigger ../jnaefs_gefs_ndgd_cqpf == complete
+      endfamily
+    endfamily
+    family fnmocens
+      task jnaefs_fnmoc_ens_bias
+        time 03:30
+      task jnaefs_fnmoc_ens_gempak
+        time 07:20
+      task jnaefs_fnmoc_ens_debias
+        time 08:30
+    endfamily
+    family cmcens
+      task jnaefs_cmc_ens_bias
+        time 00:30
+      task jnaefs_cmc_ens_post
+        event 1 release_debias
+        time 05:50
+      task jnaefs_cmc_ens_gempak
+        trigger jnaefs_cmc_ens_post:release_debias
+      task jnaefs_cmc_ens_post_extend
+        time 06:45
+      task jnaefs_cmc_ensbc_prep
+        event 1 release_naefs_avgspr
+        time 05:30
+    endfamily
+  endfamily  # v6.1
+  endfamily  # naefs
+  endfamily    # 00
+  endfamily    # primary
+endsuite  
+

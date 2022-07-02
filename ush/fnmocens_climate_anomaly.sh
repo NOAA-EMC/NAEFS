@@ -88,9 +88,15 @@ do
 
  startmsg
  $EXECfnmoc/$pgm  <input_$ens >$pgmout.$FHR.${ens}_an 2> errfile
- export err=$?;err_chk
-
- mv anom_$ens.dat fnmoc_ge${ens}.t${cyc}z.pgrb2a_anf${FHR}
+#export err=$?;err_chk
+ export err=$?
+ if [ $err -eq 0 ]; then
+   mv anom_$ens.dat fnmoc_ge${ens}.t${cyc}z.pgrb2a_anf${FHR}
+ else
+   filename=$(readlink -f fnmoc_ge${ens}.t${cyc}z.pgrb2a_bcf${FHR})
+   msg="SOS NAEFS FENS data error, Please check file " $filename
+   echo $msg
+ fi
 
  done
 

@@ -154,7 +154,7 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   if [ -s poescript_gefs_wgrib ]; then rm poescript_gefs_wgrib; fi
   for nfhrs in $hourlist; do
     chmod +x poe.$nfhrs
-    echo "poe.$nfhrs" >> poescript_gefs_wgrib
+    echo ". ./poe.$nfhrs" >> poescript_gefs_wgrib
   done
 
   chmod +x poescript_gefs_wgrib

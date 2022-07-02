@@ -85,7 +85,7 @@ export REDERR='2>'
 # Run setpdy and initialize PDY variables
 #########################################
 setpdy.sh
-. PDY
+. ./PDY
 
 ####################################################################
 # BIASMEM  - Calculate the Bias of One Ensemble Member
@@ -107,7 +107,7 @@ export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 export COM_CMC=${COM_CMC:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINcfs=${COMINcfs:-$(compath.py ${envir}/com/cfs/${cfs_ver})}
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2ap5
 

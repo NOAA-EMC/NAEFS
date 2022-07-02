@@ -71,7 +71,8 @@ namelist/message/icstart_ens,icstart_rf,nfhr
 read(5,message,end=1020)
 write(6,message)
 
-if(icstart_ens.eq.1.and.icstart_rf.eq.1) goto 1020
+! updated on 04/19/2022 if(icstart_ens.eq.1.and.icstart_rf.eq.1) goto 1020
+if(icstart_ens.eq.1) goto 1020
 
 ibias_ens=11
 ifile_r2=12

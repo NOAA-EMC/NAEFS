@@ -95,14 +95,14 @@ export REDERR='2>'
 # Run setpdy and initialize PDY variables
 #########################################
 setpdy.sh
-. PDY
+. ./PDY
 
 ########################
 # Define COM directories
 ########################
 
 export COMIN=${COMIN:-$(compath.py $envir/$NET/${naefs_ver})}
-export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})}
 
 mkdir -m 775 -p $COMOUT
 

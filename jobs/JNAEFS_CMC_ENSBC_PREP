@@ -87,16 +87,16 @@ export REDERR='2>'
 #########################################
 
 setpdy.sh
-. PDY
+. ./PDY
 
 ########################
 # Define COM directories
 ########################
 
-export DCOM_IN=${DCOM_IN:-/lfs/h1/ops/canned/dcom/$PDY/wgrbbul/cmcensbc_gb2}
+export DCOM_IN=${DCOM_IN:-${DCOMROOT}/$PDY/wgrbbul/cmcensbc_gb2}
 export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUTBC_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTAN_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 export COMOUTWT_GB2=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_wt

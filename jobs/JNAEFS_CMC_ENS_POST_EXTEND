@@ -98,7 +98,7 @@ export REDERR='2>'
 #########################################
 
 setpdy.sh
-. PDY
+. ./PDY
 
 # if [ "$(date -u +%a)" != "Thu" ]; then
 if [ "$(date -d $PDY +%a)" != "Thu" ]; then
@@ -113,11 +113,11 @@ fi
 # Define COM directories
 ########################
 
-export DCOM=${DCOM:-/lfs/h1/ops/canned/dcom}
+export DCOM=${DCOM:-${DCOMROOT}}
 export COMIN=$DCOM/$PDY/wgrbbul/cmcens_gb2
 export COMINm1=$DCOM/${PDYm1}/wgrbbul/cmcens_gb2
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
 export COMOUTm1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUTenst=$COM_OUT/${RUN}.${PDY}/${cyc}/ensstat

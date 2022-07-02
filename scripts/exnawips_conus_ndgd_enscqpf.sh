@@ -16,7 +16,7 @@ export fstart=$2
 export fend=$3
 export COMIN=$4
 export COMOUT=$5
-export RUN=$6
+export SUBRUN=$6
 export hrinter=$7
 export DBN_ALERT_TYPE=$8
 
@@ -42,7 +42,7 @@ NAGRIB_TABLE=$HOMEnaefs/gempak/fix/nagrib.tbl
 NAGRIB=nagrib2
 #
 
-entry=`grep "^$RUN " $NAGRIB_TABLE | awk 'index($1,"#") != 1 {print $0}'`
+entry=`grep "^$SUBRUN " $NAGRIB_TABLE | awk 'index($1,"#") != 1 {print $0}'`
 
 if [ "$entry" != "" ] ; then
   cpyfil=`echo $entry  | awk 'BEGIN {FS="|"} {print $2}'`
@@ -79,8 +79,8 @@ while [ $fhcnt -le $fend ] ; do
   fhr3=$fhcnt
   fhr3=`printf "%03d" $fhr`
 
-  GRIBIN=$COMIN/${RUN}.${cycle}.ndgd2p5_conus.${hrinter}f${fhr3}.gb2
-  GEMGRD=${RUN}_ndgd2p5_conus_${hrinter}_${PDY}${cyc}f${fhr3}
+  GRIBIN=$COMIN/${SUBRUN}.${cycle}.ndgd2p5_conus.${hrinter}f${fhr3}.gb2
+  GEMGRD=${SUBRUN}_ndgd2p5_conus_${hrinter}_${PDY}${cyc}f${fhr3}
  
   icnt=1
   skip=0
@@ -153,9 +153,9 @@ done
 #####################################################################
 # GOOD RUN
 set +x
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
 set -x
 #####################################################################
 

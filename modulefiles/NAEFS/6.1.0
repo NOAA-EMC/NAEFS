@@ -17,6 +17,9 @@ module load g2tmpl/${g2tmpl_ver}
 module load crtm/${crtm_ver}
 module load esmf/${esmf_ver}
 
+module load netcdf/${netcdf_ver}
+module load udunits/${udunits_ver}
+module load gsl/${gsl_ver}
 module load nco/${nco_ver}
 module load iobuf/${iobuf_ver}
 

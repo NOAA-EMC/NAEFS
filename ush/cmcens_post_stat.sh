@@ -75,7 +75,7 @@ fi
 
 for var in $varlpost; do
   chmod +x poe_${var}_enspostc
-  echo "poe_${var}_enspostc" >>poescript_enspostc      
+  echo ". ./poe_${var}_enspostc" >>poescript_enspostc      
 done
 
 chmod +x poescript_enspostc    
@@ -143,7 +143,7 @@ fi
 
 for var in $varlstat; do
   chmod +x poe_${var}_ensstat
-  echo "poe_${var}_ensstat" >>poescript_ensstat      
+  echo ". ./poe_${var}_ensstat" >>poescript_ensstat      
 done
 
 chmod +x poescript_ensstat    

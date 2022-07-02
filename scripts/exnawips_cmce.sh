@@ -15,7 +15,7 @@ set -xa
 export DATA=$1
 export fstart=$2
 export fend=$3
-export RUN=$4
+export SUBRUN=$4
 export member=$5
 cd $DATA
 
@@ -35,7 +35,7 @@ NAGRIB_TABLE=$HOMEnaefs/gempak/fix/nagrib.tbl
 NAGRIB=nagrib2  
 #
 
-entry=`grep "^$RUN " $NAGRIB_TABLE | awk 'index($1,"#") != 1 {print $0}'`
+entry=`grep "^$SUBRUN " $NAGRIB_TABLE | awk 'index($1,"#") != 1 {print $0}'`
 
 if [ "$entry" != "" ] ; then
   cpyfil=`echo $entry  | awk 'BEGIN {FS="|"} {print $2}'`
@@ -78,7 +78,7 @@ while [ $fhcnt -le $fend ] ; do
   if [ -s $GRIBIN ]
   then
 
-  GEMGRD=${RUN}_${PDY}${cyc}f${fhr3}
+  GEMGRD=${SUBRUN}_${PDY}${cyc}f${fhr3}
 
   GRIBIN_chk=$GRIBIN
 
@@ -134,11 +134,11 @@ fi
 done
 
 #####################################################################
-# GOOD RUN
+# GOOD SUBRUN
 set +x
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
-echo "**************JOB $RUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
+echo "**************JOB $SUBRUN NAWIPS COMPLETED NORMALLY ON THE IBM"
 set -x
 #####################################################################
 

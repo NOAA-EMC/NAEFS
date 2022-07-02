@@ -138,7 +138,7 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 
   for nfhrs in $hourlist; do
     chmod +x poe_separate.${nfhrs}
-    echo "poe_separate.${nfhrs}" >>poescript_wgrib
+    echo ". ./poe_separate.${nfhrs}" >>poescript_wgrib
   done
 
   chmod +x poescript_wgrib
@@ -186,7 +186,7 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 
   for nfhrs in $hourlist; do
     chmod +x poe_cat.${nfhrs}
-    echo "poe_cat.${nfhrs}" >>poescript_cat
+    echo ". ./poe_cat.${nfhrs}" >>poescript_cat
   done
 
   chmod +x poescript_cat
@@ -228,7 +228,7 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 
     for nfhrs in $hourlist; do
       chmod +x poe_idx.${nfhrs}
-      echo "poe_idx.${nfhrs}" >>poescript_idx
+      echo ". ./poe_idx.${nfhrs}" >>poescript_idx
     done
 
     chmod +x poescript_idx
@@ -260,7 +260,7 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 
   for nfhrs in $hourlist; do
     chmod +x poe_alert.${nfhrs}
-    echo "poe_alert.${nfhrs}" >>poescript_alert
+    echo ". ./poe_alert.${nfhrs}" >>poescript_alert
   done
 
   chmod +x poescript_alert

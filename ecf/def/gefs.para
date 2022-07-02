@@ -1,0 +1,481 @@
+suite para
+  family primary
+  family 00
+
+  family gefs
+  family v12.2
+    defstatus complete
+    family members
+      family d0_16
+        family c00
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p01
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p02
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p03
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p04
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p05
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p06
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p07
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p08
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p09
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p10
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p11
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p12
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p13
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p14
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p15
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p16
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p17
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p18
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p19
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p20
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        task jgefs_prdgen_done
+        task jgefs_pgrb2abp5_f192_done
+      endfamily
+    endfamily
+  endfamily  # v
+  endfamily  # gefs
+  endfamily    # 00
+  
+  family 06
+  family gefs
+  family v12.2
+    defstatus complete
+    family members
+      family d0_16
+        family c00
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p01
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p02
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p03
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p04
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p05
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p06
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p07
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p08
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p09
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p10
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p11
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p12
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p13
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p14
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p15
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p16
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p17
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p18
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p19
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p20
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        task jgefs_prdgen_done
+        task jgefs_pgrb2abp5_f192_done
+      endfamily
+    endfamily
+  endfamily  # v
+  endfamily  # gefs
+  endfamily    # 00
+
+  family 12
+  family gefs
+  family v12.2
+    defstatus complete
+    family members
+      family d0_16
+        family c00
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p01
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p02
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p03
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p04
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p05
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p06
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p07
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p08
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p09
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p10
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p11
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p12
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p13
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p14
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p15
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p16
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p17
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p18
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p19
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p20
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        task jgefs_prdgen_done
+        task jgefs_pgrb2abp5_f192_done
+      endfamily
+    endfamily
+  endfamily  # v
+  endfamily  # gefs
+  endfamily    # 00
+
+  family 18
+  family gefs
+  family v12.2
+    defstatus complete
+    family members
+      family d0_16
+        family c00
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p01
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p02
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p03
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p04
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p05
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p06
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p07
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p08
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p09
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p10
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p11
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p12
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p13
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p14
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p15
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p16
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p17
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p18
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p19
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        family p20
+        family atmos
+          task jgefs_atmos_prdgen
+        endfamily
+        endfamily
+        task jgefs_prdgen_done
+        task jgefs_pgrb2abp5_f192_done
+      endfamily
+    endfamily
+  endfamily  # v
+  endfamily  # gefs
+  endfamily    # 00
+  endfamily    # primary
+endsuite  
+

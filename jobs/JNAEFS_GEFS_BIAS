@@ -132,7 +132,7 @@ export REDERR='2>'
 # Run setpdy and initialize PDY variables
 #########################################
 setpdy.sh
-. PDY
+. ./PDY
 
 ########################
 # Define COM directories
@@ -141,12 +141,12 @@ setpdy.sh
 export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINgefs=${COMINgefs:-$(compath.py $envir/com/gefs/${gefs_ver})}
 
-export DCOMINcmce=${DCOMINcmce:-/lfs/h1/ops/canned/dcom}
+export DCOMINcmce=${DCOMINcmce:-${DCOMROOT}}
 export COMINcmce=${COMINcmce:-$(compath.py $envir/$NET/${naefs_ver})}
 
 export COMINcfs=${COMINcfs:-$(compath.py $envir/com/cfs/${cfs_ver})}
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
 export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2ap5

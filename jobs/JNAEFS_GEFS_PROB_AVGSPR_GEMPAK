@@ -71,11 +71,11 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 
 # Run setpdy and initialize PDY variables
 setpdy.sh
-. PDY
+. ./PDY
 
 export COMIN_BC=${COMIN_BC:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc}
 export COMIN_ANV=${COMIN_ANV:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDY}/${cyc}/pgrb2ap5_an}
-export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})/${RUN}.${PDY}/gempak}
+export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
 
 if [ ! -f $COMOUT ] ; then
@@ -126,7 +126,7 @@ if [ -s poescript_gempak ]; then rm poescript_gempak; fi
 
 for nfhrs in $hourlist; do
   chmod 775 $DATA/poe_gempak_${nfhrs}
-  echo "poe_gempak_${nfhrs}" >>poescript_gempak
+  echo ". ./poe_gempak_${nfhrs}" >>poescript_gempak
 done
 chmod 775 $DATA/poescript_gempak
 

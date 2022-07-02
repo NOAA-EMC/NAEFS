@@ -100,7 +100,7 @@ if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist; do
     for nens in $prodlist; do
       chmod +x poe_move.${nfhrs}.${nens}
-      echo "poe_move.${nfhrs}.${nens}" >>poescript_move
+      echo ". ./poe_move.${nfhrs}.${nens}" >>poescript_move
     done
   done
 
@@ -133,7 +133,7 @@ if [ "$SENDDBN" = "YES" ]; then
         for nfhrs in $hourlist; do
           for nens in $prodlist; do
             chmod +x poe_alert.${nfhrs}.${nens}
-            echo "poe_alert.${nfhrs}.${nens}" >>poescript_alert
+            echo ". ./poe_alert.${nfhrs}.${nens}" >>poescript_alert
           done
         done
         chmod +x poescript_alert
@@ -155,7 +155,7 @@ if [ "$SENDDBN" = "YES" ]; then
     for nfhrs in $hourlist; do
       for nens in $prodlist; do
         chmod +x poe_alert.${nfhrs}.${nens}
-        echo "poe_alert.${nfhrs}.${nens}" >>poescript_alert
+        echo ". ./poe_alert.${nfhrs}.${nens}" >>poescript_alert
       done
     done
     chmod +x poescript_alert

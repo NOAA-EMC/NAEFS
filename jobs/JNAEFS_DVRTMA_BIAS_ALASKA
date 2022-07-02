@@ -90,7 +90,7 @@ export REDERR='2>'
 # Run setpdy and initialize PDY variables
 #########################################
 setpdy.sh
-. PDY
+. ./PDY
 
 ##################################
 # REGID  - Define the NDGD Region
@@ -113,7 +113,7 @@ export COM_DV=${COM_DV:-$(compath.py $envir/$NET/${naefs_ver})}
 export COM_RTMA=${COM_RTMA:-$(compath.py ${envir}/com/rtma/${rtma_ver})}
 export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/gefs.${PDY})/${cyc}/atmos/pgrb2ap5}
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUT=${COM_OUT}/${RUN}.${PDY}/${cyc}/ndgd_gb2
 export COMOUT_GEFS=${COM_OUT}/gefs.${PDY}/${cyc}/ndgd_gb2
 export COMOUTm03=${COM_OUT}/${RUN}.${PDYm03}/${cycm03}/ndgd_gb2

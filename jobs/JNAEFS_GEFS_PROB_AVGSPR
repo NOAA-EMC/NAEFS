@@ -93,13 +93,13 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 # Run setpdy and initialize PDY variables
 #########################################
 setpdy.sh
-. PDY
+. ./PDY
 
 ########################
 # Define COM directories
 ########################
 
-export DCOM=${DCOM:-/lfs/h1/ops/canned/dcom}
+export DCOM=${DCOM:-${DCOMROOT}}
 export COMINCMC=${COMINCMC:-$DCOM/$PDY/wgrbbul/cmcensbc_gb2}
 
 export COM_NCEP=${COM_NCEP:-$(compath.py $envir/$NET/${naefs_ver})}
@@ -112,7 +112,7 @@ export COM_NCEPANL=${COM_NCEPANL:-$(compath.py $envir/$NET/${naefs_ver})}
 export COM_CMCANL=${COM_CMCANL:-$(compath.py $envir/$NET/${naefs_ver})}
 export COM_FENSANL=${COM_FENSANL:-$(compath.py $envir/$NET/${naefs_ver})}
 
-export COM_OUT=${COM_OUT:-$(compath.py -o $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 export COMOUTGEFS_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 export COMOUTGEFSAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 export COMOUTGEFS=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_bc

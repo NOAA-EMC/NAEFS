@@ -1,0 +1,57 @@
+#PBS -N naefs_dvrtma_prob_avgspr_conus_%CYC%
+#PBS -j oe                  
+#PBS -S /bin/bash
+#PBS -q %QUEUE%
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -l walltime=01:30:00
+#!#PBS -l place=vscatter,select=5:ncpus=128:mpiprocs=128:mem=450GB
+#!#PBS -l place=vscatter,select=5:ncpus=116:mpiprocs=116:mem=450GB
+#PBS -l place=vscatter:exclhost,select=1:ncpus=128:mpiprocs=128
+#PBS -l debug=true
+
+model=naefs
+%include <head.h>
+%include <envir-p1.h>
+
+## module load 
+module load PrgEnv-intel/${PrgEnv_intel_ver}
+module load craype/${craype_ver}
+module load intel/${intel_ver}
+module load cray-mpich/${cray_mpich_ver}
+module load cray-pals/${cray_pals_ver}
+module load cfp/${cfp_ver}
+module load libjpeg/${libjpeg_ver}
+module load grib_util/${grib_util_ver}
+module load wgrib2/${wgrib2_ver}
+module load iobuf/${iobuf_ver}
+module load craype-hugepages2M
+module list
+
+export OMP_NUM_THREADS=1 
+
+# EXPORT list here
+# 04/21 export APRUN="mpiexec -n 96 -ppn 96 --cpu-bind core cfp "
+# export APRUN_post="mpiexec -n 576 -ppn 116 --cpu-bind core cfp "
+export APRUN="mpiexec -n 96 -ppn 96 --cpu-bind depth cfp "
+export APRUN_post="mpiexec -l -np 128 --cpu-bind verbose,depth cfp "
+export IOBUF_PARAMS='*:sync,%%stdout:sync'
+export cyc=%CYC%
+export runlabel=late
+
+# CALL executable job script here
+${HOMEnaefs}/jobs/JNAEFS_DVRTMA_PROB_AVGSPR_CONUS
+
+%include <tail.h>
+%manual
+######################################################################
+# Purpose: Runs post-processing for the 00Z ensemble.
+######################################################################
+
+######################################################################
+# Job specific troubleshooting instructions:
+#  see generic troubleshoot manual page
+#
+######################################################################
+
+# include manual page below
+%end

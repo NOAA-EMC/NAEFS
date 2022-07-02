@@ -163,7 +163,7 @@ for nens in $outlist; do
   fi
   for nfhrs in $hourlist; do
     chmod +x poe_${nens}.${nfhrs}
-    echo "poe_${nens}.${nfhrs}" >>poescript_wgrib_$nens
+    echo ". ./poe_${nens}.${nfhrs}" >>poescript_wgrib_$nens
   done
   chmod +x poescript_wgrib_$nens
   startmsg

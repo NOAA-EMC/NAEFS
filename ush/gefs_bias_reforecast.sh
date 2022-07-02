@@ -75,7 +75,7 @@ fi
 
 for nfhrs in $hourlist; do
   chmod +x poe_rfbias_${nfhrs}
-  echo "poe_rfbias_${nfhrs}" >> poescript_wgrib_rfbias 
+  echo ". ./poe_rfbias_${nfhrs}" >> poescript_wgrib_rfbias 
 done
 
 chmod +x poescript_wgrib_rfbias

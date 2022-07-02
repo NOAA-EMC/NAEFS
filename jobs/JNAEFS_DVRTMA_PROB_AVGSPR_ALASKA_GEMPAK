@@ -22,8 +22,6 @@ if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from t
 then
   export jlogfile=/dev/null
 fi
-export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
-
 
 ########################################################
 # obtain unique process id (pid) and make temp directory
@@ -31,6 +29,7 @@ export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 export pid=$$
 export DATA=${DATA:-$DATAROOT/${job}.${pid}}
 mkdir -p $DATA
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 cd $DATA
 
 ####################################
@@ -82,14 +81,14 @@ export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 ###################################
 # Run setpdy and initialize PDY variables
 setpdy.sh
-. PDY
+. ./PDY
 
 #################################################
 # Set up the INPUT and OUTPUT directories
 #################################################
 
 export COMIN=${COMIN:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDY}/${cyc}/ndgd_gb2}
-export COMOUT=${COMOUT:-$(compath.py -o $envir/$NET/${naefs_ver})/${RUN}.${PDY}/gempak}
+export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -125,7 +124,7 @@ if [ -s poescript_gempak ]; then rm poescript_gempak; fi
 
 for nfhrs in $hourlist; do
   chmod 775 $DATA/poe_gempak_${nfhrs}
-  echo "poe_gempak_${nfhrs}" >>poescript_gempak
+  echo ". ./poe_gempak_${nfhrs}" >>poescript_gempak
 done
 
 chmod 775 $DATA/poescript_gempak
