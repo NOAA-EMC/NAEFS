@@ -146,6 +146,19 @@ startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
 wait
+if [ -e ${DATA}/wallkill ]; then
+  echo "................................................."                                  		>> ${DATA}/wallemail
+  echo "jnaefs_fnmoc_ens_debias_${cyc} is about to exceed wall clock processing data of opportunity"	>> ${DATA}/wallemail
+  echo "Job will be allowed to complete"								>> ${DATA}/wallemail
+  echo "Run: ls ${COMIN}/ENSEMBLE.MET.fcst_et0*${cyc} | wc -l"						>> ${DATA}/wallemail
+  echo "and" 												>> ${DATA}/wallemail
+  echo "Run: ls ${COMINBC}/ENSEMBLE.MET.fcst_bc0*${cyc} | wc -l" 					>> ${DATA}/wallemail
+  echo "There should be 1365 files per directory per cycle" 						>> ${DATA}/wallemail
+  echo "If files arrive soon, feel free to rerun" 							>> ${DATA}/wallemail
+  echo "................................................."                                              >> ${DATA}/wallemail
+  cat ${DATA}/wallemail | mail.py -s "naefs - fnmoc outage" "nco.spa@noaa.gov,ncep.sos@noaa.gov" -v
+  exit
+fi
 
 #####################################
 #  calculate ensemble mean and spread

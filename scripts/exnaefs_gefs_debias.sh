@@ -397,7 +397,8 @@ for nens in $memberlist; do
 #             export event_flag=YES
 #           fi
 #         fi
-          if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
+          #if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
+	  if [ "$SENDDBN" = "YES" ]; then
             MEMBER=`echo $nens | tr '[a-z]' '[A-Z]'`
             $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PGB2A_BC $job $COMOUTBC_p5/$ofile
             $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PGB2A_BC_WIDX $job $COMOUTBC_p5/$ofile.idx 

@@ -1,0 +1,455 @@
+++ module purge
++++ /usr/share/lmod/lmod/libexec/lmod bash purge
+++ eval unset 'CRAYPE_NETWORK_TARGET;' unset 'CRAY_CPU_TARGET;' unset 'CRAY_LMOD_CPU;' unset 'CRAY_LMOD_NET;' unset 'HPC_OPT;' unset '__LMOD_REF_COUNT_LD_LIBRARY_PATH;' unset 'LD_LIBRARY_PATH;' unset 'LMOD_FAMILY_CRAYPE_CPU;' unset 'LMOD_FAMILY_CRAYPE_CPU_VERSION;' unset 'LMOD_FAMILY_CRAYPE_NETWORK;' unset 'LMOD_FAMILY_CRAYPE_NETWORK_VERSION;' unset '__LMOD_REF_COUNT_LOADEDMODULES;' unset 'LOADEDMODULES;' '__LMOD_REF_COUNT_MANPATH=/usr/share/lmod/lmod/share/man:1\;/usr/share/man:1\;/opt/pbs/share/man:1\;/opt/clmgr/man:1\;/opt/sgi/share/man:1\;/opt/clmgr/share/man:1\;/opt/clmgr/lib/cm-cli/man:1;' export '__LMOD_REF_COUNT_MANPATH;' 'MANPATH=/usr/share/lmod/lmod/share/man:/usr/share/man:/opt/pbs/share/man:/opt/clmgr/man:/opt/sgi/share/man:/opt/clmgr/share/man:/opt/clmgr/lib/cm-cli/man;' export 'MANPATH;' '__LMOD_REF_COUNT_MODULEPATH=/usr/share/modules:1\;/usr/share/Modules/\$MODULE_VERSION/modulefiles:1\;/usr/share/modules/modulefiles:1\;/usr/share/modulefiles/Linux:1\;/usr/share/modulefiles/Core:1\;/usr/share/lmod/lmod/modulefiles/Core:1\;/opt/cray/pe/lmod/modulefiles/core:1\;/opt/cray/pe/lmod/modulefiles/craype-targets/default:1\;/apps/prod/lmodules/sys_core:1\;/apps/ops/prod/nco/modulefiles/core:1\;/apps/prod/lmodules/core:1\;/opt/cray/modulefiles:1\;/opt/modulefiles:1;' export '__LMOD_REF_COUNT_MODULEPATH;' 'MODULEPATH=/usr/share/modules:/usr/share/Modules/\$MODULE_VERSION/modulefiles:/usr/share/modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/apps/prod/lmodules/sys_core:/apps/ops/prod/nco/modulefiles/core:/apps/prod/lmodules/core:/opt/cray/modulefiles:/opt/modulefiles;' export 'MODULEPATH;' '__LMOD_REF_COUNT_PATH=/opt/clmgr/sbin:1\;/opt/clmgr/bin:1\;/opt/sgi/sbin:1\;/opt/sgi/bin:1\;/usr/local/bin:1\;/usr/bin:1\;/bin:2\;/usr/lib/mit/bin:1\;/usr/lib/mit/sbin:1\;/opt/pbs/bin:1\;/sbin:1;' export '__LMOD_REF_COUNT_PATH;' 'PATH=/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/pbs/bin:/sbin;' export 'PATH;' unset '__LMOD_REF_COUNT_PE_PRODUCT_LIST;' unset 'PE_PRODUCT_LIST;' unset '__LMOD_REF_COUNT_PKG_CONFIG_PATH;' unset 'PKG_CONFIG_PATH;' unset '__LMOD_REF_COUNT__LMFILES_;' unset '_LMFILES_;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXt9LG1wYXRoQT17Ii91c3Ivc2hhcmUvbW9kdWxlcyIsIi91c3Ivc2hhcmUvTW9kdWxlcy8kTU9EVUxFX1ZFUlNJT04vbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZXMvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmUiLCIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9j;' export '_ModuleTable001_;' '_ModuleTable002_=cmF5cGUtdGFyZ2V0cy9kZWZhdWx0IiwiL2FwcHMvcHJvZC9sbW9kdWxlcy9zeXNfY29yZSIsIi9hcHBzL29wcy9wcm9kL25jby9tb2R1bGVmaWxlcy9jb3JlIiwiL2FwcHMvcHJvZC9sbW9kdWxlcy9jb3JlIiwiL29wdC9jcmF5L21vZHVsZWZpbGVzIiwiL29wdC9tb2R1bGVmaWxlcyIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvdXNyL3NoYXJlL21vZHVsZXM6L3Vzci9zaGFyZS9Nb2R1bGVzLyRNT0RVTEVfVkVSU0lPTi9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZXMvbW9kdWxlZmlsZXM6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9MaW51eDovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmU6L3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZTovb3B0L2Ny;' export '_ModuleTable002_;' '_ModuleTable003_=YXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQ6L2FwcHMvcHJvZC9sbW9kdWxlcy9zeXNfY29yZTovYXBwcy9vcHMvcHJvZC9uY28vbW9kdWxlZmlsZXMvY29yZTovYXBwcy9wcm9kL2xtb2R1bGVzL2NvcmU6L29wdC9jcmF5L21vZHVsZWZpbGVzOi9vcHQvbW9kdWxlZmlsZXMiLH0=;' export '_ModuleTable003_;' '_ModuleTable_Sz_=3;' export '_ModuleTable_Sz_;' unset '_ModuleTable005_;' unset '_ModuleTable006_;'
++++ unset CRAYPE_NETWORK_TARGET
++++ unset CRAY_CPU_TARGET
++++ unset CRAY_LMOD_CPU
++++ unset CRAY_LMOD_NET
++++ unset HPC_OPT
++++ unset __LMOD_REF_COUNT_LD_LIBRARY_PATH
++++ unset LD_LIBRARY_PATH
++++ unset LMOD_FAMILY_CRAYPE_CPU
++++ unset LMOD_FAMILY_CRAYPE_CPU_VERSION
++++ unset LMOD_FAMILY_CRAYPE_NETWORK
++++ unset LMOD_FAMILY_CRAYPE_NETWORK_VERSION
++++ unset __LMOD_REF_COUNT_LOADEDMODULES
++++ unset LOADEDMODULES
++++ __LMOD_REF_COUNT_MANPATH='/usr/share/lmod/lmod/share/man:1;/usr/share/man:1;/opt/pbs/share/man:1;/opt/clmgr/man:1;/opt/sgi/share/man:1;/opt/clmgr/share/man:1;/opt/clmgr/lib/cm-cli/man:1'
++++ export __LMOD_REF_COUNT_MANPATH
++++ MANPATH=/usr/share/lmod/lmod/share/man:/usr/share/man:/opt/pbs/share/man:/opt/clmgr/man:/opt/sgi/share/man:/opt/clmgr/share/man:/opt/clmgr/lib/cm-cli/man
++++ export MANPATH
++++ __LMOD_REF_COUNT_MODULEPATH='/usr/share/modules:1;/usr/share/Modules/$MODULE_VERSION/modulefiles:1;/usr/share/modules/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1;/opt/cray/pe/lmod/modulefiles/core:1;/opt/cray/pe/lmod/modulefiles/craype-targets/default:1;/apps/prod/lmodules/sys_core:1;/apps/ops/prod/nco/modulefiles/core:1;/apps/prod/lmodules/core:1;/opt/cray/modulefiles:1;/opt/modulefiles:1'
++++ export __LMOD_REF_COUNT_MODULEPATH
++++ MODULEPATH='/usr/share/modules:/usr/share/Modules/$MODULE_VERSION/modulefiles:/usr/share/modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/apps/prod/lmodules/sys_core:/apps/ops/prod/nco/modulefiles/core:/apps/prod/lmodules/core:/opt/cray/modulefiles:/opt/modulefiles'
++++ export MODULEPATH
++++ __LMOD_REF_COUNT_PATH='/opt/clmgr/sbin:1;/opt/clmgr/bin:1;/opt/sgi/sbin:1;/opt/sgi/bin:1;/usr/local/bin:1;/usr/bin:1;/bin:2;/usr/lib/mit/bin:1;/usr/lib/mit/sbin:1;/opt/pbs/bin:1;/sbin:1'
++++ export __LMOD_REF_COUNT_PATH
++++ PATH=/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/pbs/bin:/sbin
++++ export PATH
++++ unset __LMOD_REF_COUNT_PE_PRODUCT_LIST
++++ unset PE_PRODUCT_LIST
++++ unset __LMOD_REF_COUNT_PKG_CONFIG_PATH
++++ unset PKG_CONFIG_PATH
++++ unset __LMOD_REF_COUNT__LMFILES_
++++ unset _LMFILES_
++++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXt9LG1wYXRoQT17Ii91c3Ivc2hhcmUvbW9kdWxlcyIsIi91c3Ivc2hhcmUvTW9kdWxlcy8kTU9EVUxFX1ZFUlNJT04vbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZXMvbW9kdWxlZmlsZXMiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4IiwiL3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9Db3JlIiwiL3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZSIsIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmUiLCIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9j
++++ export _ModuleTable001_
++++ _ModuleTable002_=cmF5cGUtdGFyZ2V0cy9kZWZhdWx0IiwiL2FwcHMvcHJvZC9sbW9kdWxlcy9zeXNfY29yZSIsIi9hcHBzL29wcy9wcm9kL25jby9tb2R1bGVmaWxlcy9jb3JlIiwiL2FwcHMvcHJvZC9sbW9kdWxlcy9jb3JlIiwiL29wdC9jcmF5L21vZHVsZWZpbGVzIiwiL29wdC9tb2R1bGVmaWxlcyIsfSxbInN5c3RlbUJhc2VNUEFUSCJdPSIvdXNyL3NoYXJlL21vZHVsZXM6L3Vzci9zaGFyZS9Nb2R1bGVzLyRNT0RVTEVfVkVSU0lPTi9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZXMvbW9kdWxlZmlsZXM6L3Vzci9zaGFyZS9tb2R1bGVmaWxlcy9MaW51eDovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmU6L3Vzci9zaGFyZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZTovb3B0L2Ny
++++ export _ModuleTable002_
++++ _ModuleTable003_=YXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQ6L2FwcHMvcHJvZC9sbW9kdWxlcy9zeXNfY29yZTovYXBwcy9vcHMvcHJvZC9uY28vbW9kdWxlZmlsZXMvY29yZTovYXBwcy9wcm9kL2xtb2R1bGVzL2NvcmU6L29wdC9jcmF5L21vZHVsZWZpbGVzOi9vcHQvbW9kdWxlZmlsZXMiLH0=
++++ export _ModuleTable003_
++++ _ModuleTable_Sz_=3
++++ export _ModuleTable_Sz_
++++ unset _ModuleTable005_
++++ unset _ModuleTable006_
++++ : -s sh
+++ eval
+++++ readlink -f ../modulefiles/NAEFS
++++ dirname /lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles/NAEFS
+++ moduledir=/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles
+++ source ../versions/build.ver
++++ export naefs_ver=6.1.0
++++ naefs_ver=6.1.0
++++ export envvar_ver=1.0
++++ envvar_ver=1.0
++++ export PrgEnv_intel_ver=8.1.0
++++ PrgEnv_intel_ver=8.1.0
++++ export craype_ver=2.7.8
++++ craype_ver=2.7.8
++++ export intel_ver=19.1.3.304
++++ intel_ver=19.1.3.304
++++ export cray_mpich_ver=8.1.7
++++ cray_mpich_ver=8.1.7
++++ export cray_pals_ver=1.0.12
++++ cray_pals_ver=1.0.12
++++ export cfp_ver=2.0.4
++++ cfp_ver=2.0.4
++++ export prod_envir_ver=2.0.4
++++ prod_envir_ver=2.0.4
++++ export prod_util_ver=2.0.8
++++ prod_util_ver=2.0.8
++++ export libjpeg_ver=9c
++++ libjpeg_ver=9c
++++ export grib_util_ver=1.2.3
++++ grib_util_ver=1.2.3
++++ export wgrib2_ver=2.0.8
++++ wgrib2_ver=2.0.8
++++ export gempak_ver=7.14.0
++++ gempak_ver=7.14.0
++++ export iobuf_ver=2.0.10
++++ iobuf_ver=2.0.10
++++ export g2tmpl_ver=1.9.1
++++ g2tmpl_ver=1.9.1
++++ export crtm_ver=2.3.0
++++ crtm_ver=2.3.0
++++ export esmf_ver=8.1.0
++++ esmf_ver=8.1.0
++++ export nco_ver=4.7.9
++++ nco_ver=4.7.9
++++ export w3emc_ver=2.9.1
++++ w3emc_ver=2.9.1
++++ export sp_ver=2.3.3
++++ sp_ver=2.3.3
++++ export g2_ver=3.4.1
++++ g2_ver=3.4.1
++++ export w3nco_ver=2.4.1
++++ w3nco_ver=2.4.1
++++ export bacio_ver=2.4.1
++++ bacio_ver=2.4.1
++++ export jasper_ver=2.0.25
++++ jasper_ver=2.0.25
++++ export libpng_ver=1.6.37
++++ libpng_ver=1.6.37
++++ export zlib_ver=1.2.11
++++ zlib_ver=1.2.11
+++ module use /lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles
++++ /usr/share/lmod/lmod/libexec/lmod bash use /lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles
+++ eval '__LMOD_REF_COUNT_MODULEPATH=/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles:1\;/usr/share/modules:1\;/usr/share/Modules/\$MODULE_VERSION/modulefiles:1\;/usr/share/modules/modulefiles:1\;/usr/share/modulefiles/Linux:1\;/usr/share/modulefiles/Core:1\;/usr/share/lmod/lmod/modulefiles/Core:1\;/opt/cray/pe/lmod/modulefiles/core:1\;/opt/cray/pe/lmod/modulefiles/craype-targets/default:1\;/apps/prod/lmodules/sys_core:1\;/apps/ops/prod/nco/modulefiles/core:1\;/apps/prod/lmodules/core:1\;/opt/cray/modulefiles:1\;/opt/modulefiles:1;' export '__LMOD_REF_COUNT_MODULEPATH;' 'MODULEPATH=/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles:/usr/share/modules:/usr/share/Modules/\$MODULE_VERSION/modulefiles:/usr/share/modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/apps/prod/lmodules/sys_core:/apps/ops/prod/nco/modulefiles/core:/apps/prod/lmodules/core:/opt/cray/modulefiles:/opt/modulefiles;' export 'MODULEPATH;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXt9LG1wYXRoQT17Ii9sZnMvaDEvb3BzL3Byb2QvcGFja2FnZXMvbmFlZnMudjYuMS4wL21vZHVsZWZpbGVzIiwiL3Vzci9zaGFyZS9tb2R1bGVzIiwiL3Vzci9zaGFyZS9Nb2R1bGVzLyRNT0RVTEVfVkVSU0lPTi9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXgiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmUiLCIvdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlIiwiL29wdC9jcmF5L3BlL2xt;' export '_ModuleTable001_;' '_ModuleTable002_=b2QvbW9kdWxlZmlsZXMvY29yZSIsIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlIiwiL2FwcHMvb3BzL3Byb2QvbmNvL21vZHVsZWZpbGVzL2NvcmUiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL2NvcmUiLCIvb3B0L2NyYXkvbW9kdWxlZmlsZXMiLCIvb3B0L21vZHVsZWZpbGVzIix9LFsic3lzdGVtQmFzZU1QQVRIIl09Ii91c3Ivc2hhcmUvbW9kdWxlczovdXNyL3NoYXJlL01vZHVsZXMvJE1PRFVMRV9WRVJTSU9OL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4Oi91c3Ivc2hhcmUvbW9kdWxlZmls;' export '_ModuleTable002_;' '_ModuleTable003_=ZXMvQ29yZTovdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmU6L29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3JheXBlLXRhcmdldHMvZGVmYXVsdDovYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlOi9hcHBzL29wcy9wcm9kL25jby9tb2R1bGVmaWxlcy9jb3JlOi9hcHBzL3Byb2QvbG1vZHVsZXMvY29yZTovb3B0L2NyYXkvbW9kdWxlZmlsZXM6L29wdC9tb2R1bGVmaWxlcyIsfQ==;' export '_ModuleTable003_;' '_ModuleTable_Sz_=3;' export '_ModuleTable_Sz_;'
++++ __LMOD_REF_COUNT_MODULEPATH='/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles:1;/usr/share/modules:1;/usr/share/Modules/$MODULE_VERSION/modulefiles:1;/usr/share/modules/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1;/opt/cray/pe/lmod/modulefiles/core:1;/opt/cray/pe/lmod/modulefiles/craype-targets/default:1;/apps/prod/lmodules/sys_core:1;/apps/ops/prod/nco/modulefiles/core:1;/apps/prod/lmodules/core:1;/opt/cray/modulefiles:1;/opt/modulefiles:1'
++++ export __LMOD_REF_COUNT_MODULEPATH
++++ MODULEPATH='/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles:/usr/share/modules:/usr/share/Modules/$MODULE_VERSION/modulefiles:/usr/share/modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/apps/prod/lmodules/sys_core:/apps/ops/prod/nco/modulefiles/core:/apps/prod/lmodules/core:/opt/cray/modulefiles:/opt/modulefiles'
++++ export MODULEPATH
++++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXt9LG1wYXRoQT17Ii9sZnMvaDEvb3BzL3Byb2QvcGFja2FnZXMvbmFlZnMudjYuMS4wL21vZHVsZWZpbGVzIiwiL3Vzci9zaGFyZS9tb2R1bGVzIiwiL3Vzci9zaGFyZS9Nb2R1bGVzLyRNT0RVTEVfVkVSU0lPTi9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXgiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmUiLCIvdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlIiwiL29wdC9jcmF5L3BlL2xt
++++ export _ModuleTable001_
++++ _ModuleTable002_=b2QvbW9kdWxlZmlsZXMvY29yZSIsIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlIiwiL2FwcHMvb3BzL3Byb2QvbmNvL21vZHVsZWZpbGVzL2NvcmUiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL2NvcmUiLCIvb3B0L2NyYXkvbW9kdWxlZmlsZXMiLCIvb3B0L21vZHVsZWZpbGVzIix9LFsic3lzdGVtQmFzZU1QQVRIIl09Ii91c3Ivc2hhcmUvbW9kdWxlczovdXNyL3NoYXJlL01vZHVsZXMvJE1PRFVMRV9WRVJTSU9OL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4Oi91c3Ivc2hhcmUvbW9kdWxlZmls
++++ export _ModuleTable002_
++++ _ModuleTable003_=ZXMvQ29yZTovdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmU6L29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3JheXBlLXRhcmdldHMvZGVmYXVsdDovYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlOi9hcHBzL29wcy9wcm9kL25jby9tb2R1bGVmaWxlcy9jb3JlOi9hcHBzL3Byb2QvbG1vZHVsZXMvY29yZTovb3B0L2NyYXkvbW9kdWxlZmlsZXM6L29wdC9tb2R1bGVmaWxlcyIsfQ==
++++ export _ModuleTable003_
++++ _ModuleTable_Sz_=3
++++ export _ModuleTable_Sz_
++++ : -s sh
+++ eval
+++ module load NAEFS/6.1.0
++++ /usr/share/lmod/lmod/libexec/lmod bash load NAEFS/6.1.0
+Lmod has detected the following error: Cannot load module "nco/4.7.9". At least one of these module(s) must be loaded:
+   netcdf/4.7.4
+
+While processing the following module(s):
+    Module fullname  Module Filename
+    ---------------  ---------------
+    nco/4.7.9        /apps/prod/lmodules/intel/19.1.3.304/nco/4.7.9
+    NAEFS/6.1.0      /lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles/NAEFS/6.1.0.lua
+
+++ eval false
++++ false
+++ module list
++++ /usr/share/lmod/lmod/libexec/lmod bash list
+No modules loaded
+++ eval 'MODULEPATH=/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles:/usr/share/modules:/usr/share/Modules/\$MODULE_VERSION/modulefiles:/usr/share/modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/apps/prod/lmodules/sys_core:/apps/ops/prod/nco/modulefiles/core:/apps/prod/lmodules/core:/opt/cray/modulefiles:/opt/modulefiles;' export 'MODULEPATH;' '_ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXt9LG1wYXRoQT17Ii9sZnMvaDEvb3BzL3Byb2QvcGFja2FnZXMvbmFlZnMudjYuMS4wL21vZHVsZWZpbGVzIiwiL3Vzci9zaGFyZS9tb2R1bGVzIiwiL3Vzci9zaGFyZS9Nb2R1bGVzLyRNT0RVTEVfVkVSU0lPTi9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXgiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmUiLCIvdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlIiwiL29wdC9jcmF5L3BlL2xt;' export '_ModuleTable001_;' '_ModuleTable002_=b2QvbW9kdWxlZmlsZXMvY29yZSIsIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlIiwiL2FwcHMvb3BzL3Byb2QvbmNvL21vZHVsZWZpbGVzL2NvcmUiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL2NvcmUiLCIvb3B0L2NyYXkvbW9kdWxlZmlsZXMiLCIvb3B0L21vZHVsZWZpbGVzIix9LFsic3lzdGVtQmFzZU1QQVRIIl09Ii91c3Ivc2hhcmUvbW9kdWxlczovdXNyL3NoYXJlL01vZHVsZXMvJE1PRFVMRV9WRVJTSU9OL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4Oi91c3Ivc2hhcmUvbW9kdWxlZmls;' export '_ModuleTable002_;' '_ModuleTable003_=ZXMvQ29yZTovdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmU6L29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3JheXBlLXRhcmdldHMvZGVmYXVsdDovYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlOi9hcHBzL29wcy9wcm9kL25jby9tb2R1bGVmaWxlcy9jb3JlOi9hcHBzL3Byb2QvbG1vZHVsZXMvY29yZTovb3B0L2NyYXkvbW9kdWxlZmlsZXM6L29wdC9tb2R1bGVmaWxlcyIsfQ==;' export '_ModuleTable003_;' '_ModuleTable_Sz_=3;' export '_ModuleTable_Sz_;'
++++ MODULEPATH='/lfs/h1/ops/prod/packages/naefs.v6.1.0/modulefiles:/usr/share/modules:/usr/share/Modules/$MODULE_VERSION/modulefiles:/usr/share/modules/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/apps/prod/lmodules/sys_core:/apps/ops/prod/nco/modulefiles/core:/apps/prod/lmodules/core:/opt/cray/modulefiles:/opt/modulefiles'
++++ export MODULEPATH
++++ _ModuleTable001_=X01vZHVsZVRhYmxlXz17WyJNVHZlcnNpb24iXT0zLFsiY19yZWJ1aWxkVGltZSJdPWZhbHNlLFsiY19zaG9ydFRpbWUiXT1mYWxzZSxkZXB0aFQ9e30sZmFtaWx5PXt9LG1UPXt9LG1wYXRoQT17Ii9sZnMvaDEvb3BzL3Byb2QvcGFja2FnZXMvbmFlZnMudjYuMS4wL21vZHVsZWZpbGVzIiwiL3Vzci9zaGFyZS9tb2R1bGVzIiwiL3Vzci9zaGFyZS9Nb2R1bGVzLyRNT0RVTEVfVkVSU0lPTi9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlcyIsIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMvTGludXgiLCIvdXNyL3NoYXJlL21vZHVsZWZpbGVzL0NvcmUiLCIvdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlIiwiL29wdC9jcmF5L3BlL2xt
++++ export _ModuleTable001_
++++ _ModuleTable002_=b2QvbW9kdWxlZmlsZXMvY29yZSIsIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlIiwiL2FwcHMvb3BzL3Byb2QvbmNvL21vZHVsZWZpbGVzL2NvcmUiLCIvYXBwcy9wcm9kL2xtb2R1bGVzL2NvcmUiLCIvb3B0L2NyYXkvbW9kdWxlZmlsZXMiLCIvb3B0L21vZHVsZWZpbGVzIix9LFsic3lzdGVtQmFzZU1QQVRIIl09Ii91c3Ivc2hhcmUvbW9kdWxlczovdXNyL3NoYXJlL01vZHVsZXMvJE1PRFVMRV9WRVJTSU9OL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlcy9tb2R1bGVmaWxlczovdXNyL3NoYXJlL21vZHVsZWZpbGVzL0xpbnV4Oi91c3Ivc2hhcmUvbW9kdWxlZmls
++++ export _ModuleTable002_
++++ _ModuleTable003_=ZXMvQ29yZTovdXNyL3NoYXJlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmU6L29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3JheXBlLXRhcmdldHMvZGVmYXVsdDovYXBwcy9wcm9kL2xtb2R1bGVzL3N5c19jb3JlOi9hcHBzL29wcy9wcm9kL25jby9tb2R1bGVmaWxlcy9jb3JlOi9hcHBzL3Byb2QvbG1vZHVsZXMvY29yZTovb3B0L2NyYXkvbW9kdWxlZmlsZXM6L29wdC9tb2R1bGVmaWxlcyIsfQ==
++++ export _ModuleTable003_
++++ _ModuleTable_Sz_=3
++++ export _ModuleTable_Sz_
++++ : -s sh
+++ eval
+++ export 'INC= '
+++ INC=' '
+++ export FC=ftn
+++ FC=ftn
+++ export 'FFLAGS=-O3 -g -convert big_endian -I '
+++ FFLAGS='-O3 -g -convert big_endian -I '
+++ export 'LIBS=     '
+++ LIBS='     '
+++ for dir in *.fd
+++ cd cmce_adjust_tmaxmin.fd
+++ make clean
+rm -f cmce_adjust_tmaxmin.o grid_cnvncep.o printinfr.o init_parm.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c cmce_adjust_tmaxmin.f90 grid_cnvncep.f90 printinfr.f90 init_parm.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:25: cmce_adjust_tmaxmin.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd cmce_adjust_wind10m.fd
+++ make clean
+rm -f cmce_adjust_wind10m.o grid_cnvncep.o printinfr.o init_parm.o gtbits.o isrchne.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c cmce_adjust_wind10m.f90 grid_cnvncep.f90 printinfr.f90 init_parm.f90 gtbits.f90 isrchne.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:25: cmce_adjust_wind10m.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd cmcens_bias.fd
+++ make clean
+rm -f naefs_mod.o cmcens_bias.o get_dpt.o printinfr.o init_parm.o grib_cnvfnmoc.o grib_cnvncep.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 cmcens_bias.f90 get_dpt.f90 printinfr.f90 init_parm.f90 grib_cnvfnmoc.f90 grib_cnvncep.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:26: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd cmcens_post_acc.fd
+++ make clean
+rm -f cmcens_post_acc.o init_parm.o printinfr.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c cmcens_post_acc.f90 init_parm.f90 printinfr.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:23: cmcens_post_acc.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd cmcens_post_pqpf_24h.fd
+++ make clean
+rm -f cmcens_post_pqpf_24h.o printinfr.o init_parm.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c cmcens_post_pqpf_24h.f90 printinfr.f90 init_parm.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:22: cmcens_post_pqpf_24h.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd conus_ndgd_enscqpf.fd
+++ make clean
+rm -f DSCQPF.o INIT_PARM.o PRINTINFR.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c DSCQPF.f90 INIT_PARM.f90 PRINTINFR.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:28: DSCQPF.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd dvrtma_bias_alaska.fd
+++ make clean
+rm -f dvrtma_bias_alaska.o get_dpt.o get_rh.o printinfr.o init_parm.o gtbits.o isrchne.o 
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c dvrtma_bias_alaska.f90 get_dpt.f90 get_rh.f90 printinfr.f90 init_parm.f90 gtbits.f90 isrchne.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:26: dvrtma_bias_alaska.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd dvrtma_bias_conus.fd
+++ make clean
+rm -f dvrtma_bias_conus.o get_dpt.o get_rh.o printinfr.o init_parm.o gtbits.o isrchne.o 
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c dvrtma_bias_conus.f90 get_dpt.f90 get_rh.f90 printinfr.f90 init_parm.f90 gtbits.f90 isrchne.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:26: dvrtma_bias_conus.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd dvrtma_debias_alaska.fd
+++ make clean
+rm -f dvrtma_debias_alaska.o init_parm.o printinfr.o gtbits.o isrchne.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c dvrtma_debias_alaska.f90 init_parm.f90 printinfr.f90 gtbits.f90 isrchne.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:25: dvrtma_debias_alaska.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd dvrtma_debias_conus.fd
+++ make clean
+rm -f dvrtma_debias_conus.o init_parm.o printinfr.o gtbits.o isrchne.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c dvrtma_debias_conus.f90 init_parm.f90 printinfr.f90 gtbits.f90 isrchne.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:25: dvrtma_debias_conus.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd dvrtma_debias_conus_tmaxmin.fd
+++ make clean
+rm -f probability.o EPDF.o SAMLMR.o PELGEV.o QUAGEV.o SORTD.o SORTMM.o dvrtma_debias_conus_tmaxmin.o init_parm.o printinfr.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c dvrtma_debias_conus_tmaxmin.f90  init_parm.f90  printinfr.f90 change_template4.f90 probability.f EPDF.f SAMLMR.f PELGEV.f QUAGEV.f SORTD.f SORTMM.f
+/bin/bash: ftn: command not found
+make: *** [makefile:24: probability.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd dvrtma_debias_conus_wind10m.fd
+++ make clean
+rm -f probability.o EPDF.o SAMLMR.o PELGEV.o QUAGEV.o SORTD.o SORTMM.o SORTR.o dvrtma_debias_conus_wind10m.o init_parm.o printinfr.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c dvrtma_debias_conus_wind10m.f90  init_parm.f90  printinfr.f90 change_template4.f90 probability.f EPDF.f SAMLMR.f PELGEV.f QUAGEV.f SORTD.f SORTMM.f SORTR.f
+/bin/bash: ftn: command not found
+make: *** [makefile:24: probability.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd ens_avgspr.fd
+++ make clean
+rm -f EPDF.o SORTMM.o ens_avgspr.o init_parm.o printinfr.o change_template4.o gtbits.o isrchne.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c ens_avgspr.f90 init_parm.f90 printinfr.f90 change_template4.f90 gtbits.f90 isrchne.f90 EPDF.f SORTMM.f
+/bin/bash: ftn: command not found
+make: *** [makefile:24: EPDF.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd fnmocens_bias.fd
+++ make clean
+rm -f naefs_mod.o fnmocens_bias.o get_dpt.o printinfr.o init_parm.o grib_cnvfnmoc.o grib_cnvncep.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 fnmocens_bias.f90 get_dpt.f90 printinfr.f90 init_parm.f90 grib_cnvfnmoc.f90 grib_cnvncep.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:26: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd fnmocens_debias.fd
+++ make clean
+rm -f naefs_mod.o fnmocens_debias.o printinfr.o init_parm.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 fnmocens_debias.f90 printinfr.f90 init_parm.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:25: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_bias_combine.fd
+++ make clean
+rm -f naefs_mod.o gefs_bias_combine.o printinfr.o init_parm.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 gefs_bias_combine.f90 printinfr.f90 init_parm.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:26: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_bias.fd
+++ make clean
+rm -f naefs_mod.o gefs_bias.o get_dpt.o printinfr.o init_parm.o grid_cnvncep.o getipdt_surface.o get_wspd10m.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 gefs_bias.f90 get_dpt.f90 printinfr.f90 init_parm.f90 grid_cnvncep.f90 getipdt_surface.f90 get_wspd10m.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:23: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_bias_gen.fd
+++ make clean
+rm -f gefs_bias_gen.o init_parm.o printinfr.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c gefs_bias_gen.f90 init_parm.f90 printinfr.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:23: gefs_bias_gen.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_climate_anfefi_acpr.fd
+++ make clean
+rm -f probability.o quastn.o quagam.o pelgam.o sort.o samlmr.o dlgama.o gamind.o cdfgam.o gefs_climate_anfefi_acpr.o INIT_PARM.o PRINTINFR.o grib_cnvfnmoc.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c gefs_climate_anfefi_acpr.f90 INIT_PARM.f90 PRINTINFR.f90 grib_cnvfnmoc.f90 change_template4.f90 probability.f quastn.f quagam.f pelgam.f sort.f samlmr.f dlgama.f gamind.f cdfgam.f
+/bin/bash: ftn: command not found
+make: *** [makefile:25: probability.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_climate_anomaly.fd
+++ make clean
+rm -f anomaly_mod.o gefs_climate_anomaly.o CDFNOR.o printinfr.o init_parm.o grib_cnvfnmoc.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c anomaly_mod.f90 gefs_climate_anomaly.f90 CDFNOR.f90 printinfr.f90 init_parm.f90 grib_cnvfnmoc.f90 change_template4.f90    
+/bin/bash: ftn: command not found
+make: *** [makefile:26: anomaly_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_climate_anomefi.fd
+++ make clean
+rm -f CDFNOR.o QUANOR.o QUASTN.o anomaly_mod.o gefs_climate_anomefi.o printinfr.o init_parm.o grib_cnvfnmoc.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c anomaly_mod.f90 gefs_climate_anomefi.f90 printinfr.f90 init_parm.f90 grib_cnvfnmoc.f90 CDFNOR.f QUANOR.f QUASTN.f    
+/bin/bash: ftn: command not found
+make: *** [makefile:31: CDFNOR.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_coeff_r.fd
+++ make clean
+rm -f naefs_mod.o gefs_coeff_r.o printinfr.o init_parm.o getipdt_surface.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 gefs_coeff_r.f90 printinfr.f90 init_parm.f90 getipdt_surface.f90 change_template4.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:26: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_debias.fd
+++ make clean
+rm -f naefs_mod.o gefs_debias.o get_dpt.o printinfr.o init_parm.o get_wspd10m.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 gefs_debias.f90 get_dpt.f90 printinfr.f90 init_parm.f90 get_wspd10m.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:22: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_dv_gen.fd
+++ make clean
+rm -f gefs_dv_gen.o init_parm.o printinfr.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c gefs_dv_gen.f90 init_parm.f90 printinfr.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:23: gefs_dv_gen.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_enscqpf_24hr.fd
+++ make clean
+rm -f EPDF.o SORTMM.o CQPF_24HR.o INIT_PARM.o PRINTINFR.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c CQPF_24HR.f90 INIT_PARM.f90 PRINTINFR.f90 change_template4.f90 EPDF.f SORTMM.f
+/bin/bash: ftn: command not found
+make: *** [makefile:24: EPDF.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_enscqpf_6hr.fd
+++ make clean
+rm -f EPDF.o SORTMM.o CQPF_6HR.o QTPINT.o INIT_PARM.o PRINTINFR.o change_template4.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c CQPF_6HR.f90 QTPINT.f90 INIT_PARM.f90 PRINTINFR.f90 change_template4.f90 EPDF.f SORTMM.f
+/bin/bash: ftn: command not found
+make: *** [makefile:24: EPDF.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_enspvrfy.fd
+++ make clean
+rm -f PVRFY.o VRFY.o INIT_PARM.o PRINTINFR.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c PVRFY.f90 VRFY.f90 INIT_PARM.f90 PRINTINFR.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:28: PVRFY.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_enssrbias.fd
+++ make clean
+rm -f STAT_RM_BIAS_WET.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c STAT_RM_BIAS_WET.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:28: STAT_RM_BIAS_WET.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_pgrb_enspqpf.fd
+++ make clean
+rm -f gefs_pgrb_enspqpf.o printinfr.o init_parm.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c gefs_pgrb_enspqpf.f90 printinfr.f90 init_parm.f90
+/bin/bash: ftn: command not found
+make: *** [makefile:28: gefs_pgrb_enspqpf.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd gefs_weights.fd
+++ make clean
+rm -f naefs_mod.o gefs_weights.o printinfr.o init_parm.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_mod.f90 gefs_weights.f90 printinfr.f90 init_parm.f90 
+/bin/bash: ftn: command not found
+make: *** [makefile:25: naefs_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd naefs_climate_anomaly.fd
+++ make clean
+rm -f anomaly_mod.o naefs_climate_anomaly.o CDFNOR.o printinfr.o init_parm.o grib_cnvfnmoc.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c anomaly_mod.f90 naefs_climate_anomaly.f90 CDFNOR.f90 printinfr.f90 init_parm.f90 grib_cnvfnmoc.f90  
+/bin/bash: ftn: command not found
+make: *** [makefile:26: anomaly_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd naefs_climate_anv.fd
+++ make clean
+rm -f anomaly_mod.o naefs_climate_anv.o printinfr.o init_parm.o grib_cnvfnmoc.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c anomaly_mod.f90 naefs_climate_anv.f90 printinfr.f90 init_parm.f90 grib_cnvfnmoc.f90  
+/bin/bash: ftn: command not found
+make: *** [makefile:26: anomaly_mod.o] Error 127
+++ cd ..
+++ for dir in *.fd
+++ cd naefs_probability.fd
+++ make clean
+rm -f probability.o EPDF.o SAMLMR.o PELGEV.o QUAGEV.o SORTD.o SORTMM.o naefs_bc_probability.o init_parm.o get_dpt.o change_template4.o debias_tmaxmin.o printinfr.o grid_cnvncep.o getipdt_cmc.o getipdt_surface.o get_wspd10m.o
+++ make -f makefile
+ftn -O3 -g -convert big_endian -I  -c naefs_bc_probability.f90 init_parm.f90 get_dpt.f90 change_template4.f90 debias_tmaxmin.f90 printinfr.f90 grid_cnvncep.f90 getipdt_cmc.f90 getipdt_surface.f90 get_wspd10m.f90 probability.f EPDF.f SAMLMR.f PELGEV.f QUAGEV.f SORTD.f SORTMM.f
+/bin/bash: ftn: command not found
+make: *** [makefile:26: probability.o] Error 127
+++ cd ..

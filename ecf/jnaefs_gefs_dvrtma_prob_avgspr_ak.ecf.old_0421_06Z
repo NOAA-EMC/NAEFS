@@ -5,8 +5,7 @@
 #PBS -A %PROJ%-%PROJENVIR%
 #PBS -l walltime=00:30:00
 #!#PBS -l place=vscatter,select=5:ncpus=128:mpiprocs=128:mem=400GB
-#!#PBS -l place=vscatter,select=5:ncpus=116:mpiprocs=116:mem=400GB
-#PBS -l place=vscatter:exclhost,select=1:ncpus=128:mpiprocs=128
+#PBS -l place=vscatter,select=5:ncpus=116:mpiprocs=116:mem=400GB
 #PBS -l debug=true
 
 model=naefs
@@ -30,10 +29,8 @@ module list
 export OMP_NUM_THREADS=1 
 
 # EXPORT list here
-# 04/21 export APRUN="mpiexec -n 96 -ppn 96 --cpu-bind core cfp "
-# export APRUN_post="mpiexec -n 576 -ppn 116 --cpu-bind core cfp "
-export APRUN="mpiexec -n 96 -ppn 96 --cpu-bind depth cfp "
-export APRUN_post="mpiexec -l -np 128 --cpu-bind verbose,depth cfp "
+export APRUN="mpiexec -n 96 -ppn 96 --cpu-bind core cfp "
+export APRUN_post="mpiexec -n 576 -ppn 116 --cpu-bind core cfp "
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 export cyc=%CYC%
 
