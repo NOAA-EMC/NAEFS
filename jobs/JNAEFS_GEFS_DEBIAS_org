@@ -150,6 +150,9 @@ for mem in $memberlist; do
   echo "$runscript \"$mem\" $DATA/group.$mem " >>$DATA/poescript
 done
 
+export MP_LABELIO=${MP_LABELIO:-YES}
+export MP_STDOUTMODE=${MP_STDOUTMODE:-ordered}
+
 chmod +x $DATA/poescript
 startmsg
 $APRUN $DATA/poescript

@@ -70,7 +70,7 @@ export SENDECF=${SENDECF:-YES}
 export NET=naefs
 export RUN=fens
 export fend=384
-#export finc=6
+export finc=6
 export fstart=00
 export model=ensemble
 export GRIB=
@@ -97,8 +97,8 @@ setpdy.sh
 . ./PDY
 
 export COMIN=${COMIN:-${DCOMROOT}/${PDY}/wgrbbul}
-export COMIN_raw=$COMIN/fnmoc_0p5_ens_gb2
-export COMIN_bc=$COMIN/fnmoc_0p5_ens_bc_gb2
+export COMIN_raw=$COMIN/fnmocens_gb2
+export COMIN_bc=$COMIN/fnmoc_ens_bc_gb2
 
 export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
@@ -110,15 +110,15 @@ env
 
 ########################################################
 # Execute the script.
-for ftype in et   
+for ftype in et 
 do
   for member in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 
   do
     mkdir -p $DATA/${member}_$ftype
     if [ $ftype = "et" ]; then
-      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh $DATA/${member}_$ftype 000 384 $COMIN_raw $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}_$ftype/output"  >> $DATA/poescript
+      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh $DATA/${member}_$ftype 00 384 $COMIN_raw $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}_$ftype/output"  >> $DATA/poescript
     else
-      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh $DATA/${member}_$ftype 000 384 $COMIN_bc $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}/output"  >> $DATA/poescript
+      echo "${HOMEnaefs}/scripts/exnawips_fnmoc.sh $DATA/${member}_$ftype 00 384 $COMIN_bc $COMOUT fnmoc_gep${member} $ftype ${DBN_ALERT_TYPE} $member &> $DATA/${member}/output"  >> $DATA/poescript
     fi
   done
 done
@@ -130,8 +130,8 @@ chmod 775 $DATA/poescript
 $APRUN $DATA/poescript
 export err=$?; err_chk
 
-cat $DATA/01_et/output
-cat $DATA/11_et/output
+msg="JOB COMPLETED NORMALLY"
+postmsg "$jlogfile" "$msg"
 
 ##############################
 # Remove the Temporary working directory

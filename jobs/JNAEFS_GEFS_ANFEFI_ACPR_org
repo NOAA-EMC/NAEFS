@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 ###### 12/16/2016 ###################
-# SETUP ENS CQPF PROCESSING VARIABLES
+# SETUP ENS CQPF/ANFEFI PROCESSING VARIABLES
 #####################################
 
 ####################################################
@@ -29,7 +29,7 @@ export RUN=${RUN:-gefs}
 
 if [ "$RUN_ENVIR" = dev ]      ### For Developers
 then
-  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/ndgd_cqpf_config}
+  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/gefs_cqpf_24hr_config}
   . $PARA_CONFIG
 fi
 
@@ -81,10 +81,10 @@ export RUNJOB=${RUNJOB:-REGULAR}
 # Specify Execution Areas
 #########################
 
-export HOMEndgd=${HOMEndgd:-$PACKAGEROOT/naefs.${naefs_ver}}
-export EXECndgd=${EXECndgd:-$HOMEndgd/exec}
-export FIXndgd=${FIXndgd:-$HOMEndgd/fix}
-export USHndgd=${USHndgd:-$HOMEndgd/ush}
+export HOMEgefs=${HOMEgefs:-$PACKAGEROOT/naefs.${naefs_ver}}
+export EXECgefs=${EXECgefs:-$HOMEgefs/exec}
+export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
+export USHgefs=${USHgefs:-$HOMEgefs/ush}
 
 export ERRSCRIPT=err_chk
 export LOGSCRIPT=startmsg
@@ -101,10 +101,14 @@ setpdy.sh
 # Define COM directories
 ########################
 
-export COMIN=${COMIN:-$(compath.py $envir/$NET/${naefs_ver})}
-export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})}
+export COM_IN=${COM_IN:-$(compath.py $envir/$NET/${naefs_ver})}
+export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
 
-mkdir -m 775 -p $COMOUT
+export COMINgefs=${COMINgefs:-$(compath.py ${envir}/com/gefs/${gefs_ver}/${RUN}.${PDY}/${cyc}/atmos)}
+export COMIN=$COM_IN/${RUN}.${PDY}/${cyc}
+export COMOUTANFEFI_p5=$COM_OUT/${RUN}.${PDY}/${cyc}/prcp_bc_gb2
+
+mkdir -m 775 -p $COMOUTANFEFI_p5
 
 msg="HAS BEGUN on `hostname`"
 postmsg "$jlogfile" "$msg"
@@ -114,13 +118,12 @@ env
 ####################
 # Execute the script
 ####################
-$HOMEndgd/scripts/exnaefs_gefs_conus_ndgd_enscqpf.sh
+
+$HOMEgefs/scripts/exnaefs_gefs_anfefi_acpr.sh
 
 #############################################################
 
-cat $DATA/$cyc/06hr/$pgmout
-cat $DATA/$cyc/06hr/$pgmout
-
+cat $pgmout.*
 msg="JOB COMPLETED NORMALLY"
 postmsg "$jlogfile" "$msg"
 

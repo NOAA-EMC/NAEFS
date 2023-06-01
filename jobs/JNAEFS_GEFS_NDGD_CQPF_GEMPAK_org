@@ -105,13 +105,8 @@ chmod 775 $DATA/poescript
 # Execute the script.
 $APRUN $DATA/poescript
 export err=$?; err_chk
-
 cd $DATA
-for ftype in pqpf prcp; do
-  for hrinter in 24h 06h; do
-    cat ${hrinter}_${ftype}/output 
-  Done
-done
+cat ${hrinter}_${ftype}/output 
 
 ########################################################
 
