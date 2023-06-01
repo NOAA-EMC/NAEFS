@@ -4,7 +4,7 @@
 
 export gefs_ver=v12.3
 export cfs_ver=v2.3  
-export rtma_ver=v2.9  
+export rtma_ver=v2.10  
 export ccpa_ver=v4.2
 
 #export envvar_ver=1.0
