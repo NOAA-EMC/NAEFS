@@ -101,8 +101,7 @@ setpdy.sh
 # Define COM directories
 ##############################################
 
-#export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
-export COMINbias=${COMINbias:-$(compath.py $envir/$NET/v6.1)}
+export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 export COMINgefs=${COMINgefs:-$(compath.py $envir/com/gefs/${gefs_ver}/${RUN}.${PDY})/${cyc}/atmos/pgrb2ap5}
 
 export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
