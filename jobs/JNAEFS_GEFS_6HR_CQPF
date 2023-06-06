@@ -60,8 +60,7 @@ export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 #####################################
 export outid="LL$job"
 export jobid="${outid}.o${pid}"
-export pgmout="OUTPUT.${pid}"
-#export pgmout="OUTPUT"
+export pgmout="OUTPUT"
 
 ##############################################
 # SENDECF  - Flag Events on ECF
@@ -120,7 +119,8 @@ $HOMEgefs/scripts/exnaefs_gefs_6hr_enscqpf.sh
 
 #############################################################
 
-cat $pgmout.*
+cat $DATA/$cyc/$pgmout
+
 msg="JOB COMPLETED NORMALLY"
 postmsg "$jlogfile" "$msg"
 

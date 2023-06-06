@@ -100,16 +100,15 @@ setpdy.sh
 ##############################################
 
 export DCOM=${DCOM:-${DCOMROOT}/$PDY/wgrbbul}
-export COMIN=${COMIN:-$DCOM/fnmocens_gb2}
-export COMINBC=${COMINBC:-$DCOM/fnmoc_ens_bc_gb2}
-
+export COMIN=${COMIN:-$DCOM/fnmoc_0p5_ens_gb2}
+export COMINBC=${COMINBC:-$DCOM/fnmoc_0p5_ens_bc_gb2} 
 export COMINbias=${COMINbias:-$(compath.py $envir/$NET/${naefs_ver})}
 
 export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}   
-export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
-export COMOUTAN=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_an
-export COMOUTWT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_wt
-export COMOUTBC=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a_bc
+export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
+export COMOUTAN=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
+export COMOUTWT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_wt
+export COMOUTBC=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5_bc
 
 mkdir -m 775 -p ${COMOUT}
 mkdir -m 775 -p ${COMOUTAN}
@@ -127,9 +126,11 @@ env
 
 runscript=$HOMEfnmoc/scripts/exnaefs_fnmoc_ens_debias.sh
 
-hourlist=" 00  06  12  18  24  30  36  42  48  54  60  66  72  78  84  90  96 \
-          102 108 114 120 126 132 138 144 150 156 162 168 174 180 186 192 198 \
-          204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
+hourlist="000 003 006 009 012 015 018 021 024 027 030 033 036 039 042 045 048 \
+          051 054 057 060 063 066 069 072 075 078 081 084 087 090 093 096 099 \
+          102 105 108 111 114 117 120 123 126 129 132 135 138 141 144 147 150 \
+          153 156 159 162 165 168 171 174 177 180 183 186 189 192 198 204 \
+          210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
           306 312 318 324 330 336 342 348 354 360 366 372 378 384"
 
 if [ -s $DATA/poescript ]; then
@@ -146,6 +147,7 @@ startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
 wait
+
 if [ -e ${DATA}/wallkill ]; then
   echo "................................................."                                  		>> ${DATA}/wallemail
   echo "jnaefs_fnmoc_ens_debias_${cyc} is about to exceed wall clock processing data of opportunity"	>> ${DATA}/wallemail
@@ -176,12 +178,12 @@ mkdir -p $DATA
 cd $DATA
 $USHfnmoc/fnmocens_avgspr.sh                  
 
-cat $DATAHOLD/group.06/$pgmout.06.p02_an
-cat $DATAHOLD/group.06/$pgmout.06.p02_wt 
+cat $DATAHOLD/group.006/$pgmout.006.p02_an
+cat $DATAHOLD/group.006/$pgmout.006.p02_wt 
 cat $DATAHOLD/group.360/$pgmout.360.p02_an
 
-cat $DATAHOLD/dir_avgspr_bc/$pgmout.12_avgspr
-cat $DATAHOLD/dir_avgspr/$pgmout.12_avgspr
+cat $DATAHOLD/dir_avgspr_bc/$pgmout.012_avgspr
+cat $DATAHOLD/dir_avgspr/$pgmout.012_avgspr
 
 cat $DATAHOLD/dir_avgspr_bc/$pgmout.360_avgspr
 cat $DATAHOLD/dir_avgspr/$pgmout.360_avgspr
