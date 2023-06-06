@@ -25,7 +25,7 @@ export RUN=naefs
 # Run config file to get input parameters
 #########################################
 
-if [ "$RUN_ENVIR" = dev ]      ### For Developers
+if [ "$RUN_ENVIR" != nco ]      ### For Developers
 then
   PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/dvrtma_bias_conus_config}
   . $PARA_CONFIG
