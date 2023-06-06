@@ -80,8 +80,8 @@ export SENDECF=${SENDECF:-YES}
 export RUNJOB=${RUNJOB:-REGULAR}
 
 #####################################################################
-# BIASAVG  - Calculate the Bias of Ensemble Average
-# BIASC00  - Calculate the Bias of Ensemble Control Test
+# BIASAVG  - Calculate the Bias of Ensemble Average 
+# BIASC00  - Calculate the Bias of Ensemble Control Test 
 # BIASMEM  - Calculate the Bias of One Ensemble Member
 # BIASCDAS - Calculate the Difference Between GDAS and CDAS Analysis
 # BIASANL  - Calculate the Difference Between NCEP and FNMOC Analysis
