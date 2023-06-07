@@ -56,34 +56,14 @@ export PDYm16=`$NDATE -384 $ymdh | cut -c1-8`
 #          204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
 #          306 312 318 324 330 336 342 348 354 360 366 372 378 384"
 
-memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
-            p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 c00"
+memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 c00"
 
-# check fnmoc files
+wallcnt=0
+for nens in $memberlist
+do
 
-for nfhrs in $hourlist; do
-  ifile=0
-  for nens in $memberlist; do
-    fensmem=`echo $nens | cut -c2-3`
-    ifile_in=$COMINBC/ENSEMBLE.halfDegree.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
-    echo $ifile_in
-    echo "Bo Cui Test" 
-    if [ -s $ifile_in ]; then
-      (( ifile = ifile + 1 ))
-    fi
-  done
-  if [ $ifile -eq 0 ]; then
-    echo "Warning!!! All FNMOC ensemble files not available for fcst hr " $nfhrs
-    echo "Warning!!! Keep running and waiting for data to arrive"
-#   export err=1; err_chk
-  fi
-done
-
-for nfhrs in $hourlist; do
-
-  ifile=0
-
-  for nens in $memberlist; do
+  for nfhrs in $hourlist
+  do
 
 ###
 #  check FNMOC bias corrected forecast file
@@ -97,9 +77,8 @@ for nfhrs in $hourlist; do
 
     icnt=0
     while [ $icnt -le 30 ]; do
+    start_time=$(date +%s)
       if [ -s $ifile_in ]; then
-
-        (( ifile = ifile + 1 ))
 
         ln -sf $ifile_in $ofile
         export MEMLIST=$nens
@@ -127,21 +106,19 @@ for nfhrs in $hourlist; do
         sleep 10
         icnt=`expr $icnt + 1`
 	echo $icnt
-        if [ $icnt -eq 31 ]; then 
-          echo "Warning!!! FNMOC file not available " $ifile_in
-        fi
-
       fi
+    end_time=$(date +%s)
+    elapsed_time=$(( end_time - start_time ))
+    wallcnt=$(( wallcnt + elapsed_time ))
+    echo "wallcnt=${wallcnt}"
+    if [ ${wallcnt} -ge 3540 ]; then
+      echo "jnaefs_fnmoc_ens_debias_${cyc} is about to exceed wall clock for data of opportunity"   >> ${DATA}/wallkill
+      echo "allow job to complete and send email"                                                   >> ${DATA}/wallkill
+      exit
+    fi
     done
 
   done
-  
-  if [ $ifile -le 2 ]; then 
-    echo "Warning!!! Fewer than 2 FNMOC files available for fcst hr " $nfhrs
-#   echo "Warning!!! Keep running and waiting for data to arrive"
-#   export err=1; err_chk
-  fi
-
 done
 
 msg="HAS COMPLETED NORMALLY!"
