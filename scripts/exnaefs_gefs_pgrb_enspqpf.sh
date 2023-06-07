@@ -27,7 +27,8 @@ hourlist="    006 012 018 024 030 036 042 048 054 060 066 072 078 084 090 096 \
           204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
           306 312 318 324 330 336 342 348 354 360 366 372 378 384"
 
-memberlist="c00 p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20"
+memberlist="c00 p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 \
+                   p21 p22 p23 p24 p25 p26 p27 p28 p29 p30"
 
 outfile_prcp=enspost.t${cyc}z.prcp                      
 outfile_rain=enspost.t${cyc}z.rain                      

@@ -34,7 +34,8 @@ export hourlist="    003 006 009 012 015 018 021 024 027 030 033 036 039 042 045
                  306 312 318 324 330 336 342 348 354 360 366 372 378 384"
 
 export memberlist_ncep="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
-                        p11 p12 p13 p14 p15 p16 p17 p18 p19 p20"
+                        p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 \
+                        p21 p22 p23 p24 p25 p26 p27 p28 p29 p30"
 
 export memberlist_cmc="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
                        p11 p12 p13 p14 p15 p16 p17 p18 p19 p20"

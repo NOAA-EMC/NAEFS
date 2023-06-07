@@ -1,11 +1,13 @@
 #!/bin/sh
-#################################### FORECAST DEBIAS ###############################################
-echo "------------------------------------------"
-echo "Bias Correct FNMOC Global Ensemble Forecast "
-echo "------------------------------------------"
-echo "History: Oct 2010 - First implementation of this new script"
-echo "AUTHOR: Bo Cui  (wx20cb)"
-####################################################################################################
+#################################### FORECAST DEBIAS #######
+#echo "------------------------------------------"
+#echo "Bias Correct FNMOC Global Ensemble Forecast "
+#echo "------------------------------------------"
+# AUTHOR: Bo Cui  (wx20cb)
+# History:
+#    Oct 2010 - First implementation of this new script 
+#    2022-07-03  Bo Cui - modified for 0.5 degree input
+############################################################
 
 ### To submit this job for T00Z and T12Z, twice per day
 ### need pass the values of PDY, CYC, DATA, COMIN, COM, COMOUTBC, COMOUTAN and COMOUTWT
@@ -54,14 +56,34 @@ export PDYm16=`$NDATE -384 $ymdh | cut -c1-8`
 #          204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
 #          306 312 318 324 330 336 342 348 354 360 366 372 378 384"
 
-memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 c00"
+memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
+            p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 c00"
 
-wallcnt=0
-for nens in $memberlist
-do
+# check fnmoc files
 
-  for nfhrs in $hourlist
-  do
+for nfhrs in $hourlist; do
+  ifile=0
+  for nens in $memberlist; do
+    fensmem=`echo $nens | cut -c2-3`
+    ifile_in=$COMINBC/ENSEMBLE.halfDegree.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
+    echo $ifile_in
+    echo "Bo Cui Test" 
+    if [ -s $ifile_in ]; then
+      (( ifile = ifile + 1 ))
+    fi
+  done
+  if [ $ifile -eq 0 ]; then
+    echo "Warning!!! All FNMOC ensemble files not available for fcst hr " $nfhrs
+    echo "Warning!!! Keep running and waiting for data to arrive"
+#   export err=1; err_chk
+  fi
+done
+
+for nfhrs in $hourlist; do
+
+  ifile=0
+
+  for nens in $memberlist; do
 
 ###
 #  check FNMOC bias corrected forecast file
@@ -69,18 +91,15 @@ do
 
     fensmem=`echo $nens | cut -c2-3`
 
-    if [ $nfhrs -le 99 ];then
-      ifile_in=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.0${nfhrs}.${PDY}${cyc}
-    else
-      ifile_in=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
-    fi
+    ifile_in=$COMINBC/ENSEMBLE.halfDegree.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
 
-    ofile=fnmoc_ge${nens}.t${cyc}z.pgrb2a_bcf${nfhrs}
+    ofile=fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}
 
     icnt=0
     while [ $icnt -le 30 ]; do
-    start_time=$(date +%s)
       if [ -s $ifile_in ]; then
+
+        (( ifile = ifile + 1 ))
 
         ln -sf $ifile_in $ofile
         export MEMLIST=$nens
@@ -94,12 +113,12 @@ do
 
         if [ "$SENDCOM" = "YES" ]; then
 
-          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a_anf$nfhrs ]; then
-            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a_anf$nfhrs $COMOUTAN/
+          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs ]; then
+            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs $COMOUTAN/
           fi
 
-          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a_wtf$nfhrs ]; then
-            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a_wtf$nfhrs $COMOUTWT/
+          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs ]; then
+            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs $COMOUTWT/
           fi
         fi
 
@@ -108,21 +127,22 @@ do
         sleep 10
         icnt=`expr $icnt + 1`
 	echo $icnt
+        if [ $icnt -eq 31 ]; then 
+          echo "Warning!!! FNMOC file not available " $ifile_in
+        fi
+
       fi
-    end_time=$(date +%s)
-    elapsed_time=$(( end_time - start_time ))
-    wallcnt=$(( wallcnt + elapsed_time ))
-    echo "wallcnt=${wallcnt}"
-    if [ ${wallcnt} -ge 3540 ]; then
-      echo "jnaefs_fnmoc_ens_debias_${cyc} is about to exceed wall clock for data of opportunity"   >> ${DATA}/wallkill
-      echo "allow job to complete and send email"                                                   >> ${DATA}/wallkill
-      exit
-    fi
     done
 
   done
-done
+  
+  if [ $ifile -le 2 ]; then 
+    echo "Warning!!! Fewer than 2 FNMOC files available for fcst hr " $nfhrs
+#   echo "Warning!!! Keep running and waiting for data to arrive"
+#   export err=1; err_chk
+  fi
 
+done
 
 msg="HAS COMPLETED NORMALLY!"
 postmsg "$jlogfile" "$msg"
