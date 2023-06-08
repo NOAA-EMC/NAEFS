@@ -244,21 +244,21 @@ for nens in $memberlist; do
             mv $outfile $COMOUTBC_p5/
             $WGRIB2 -s $COMOUTBC_p5/$outfile > $COMOUTBC_p5/$outfile.idx
 
-            if [ ${nfhrs} = 240 ]; then
-              ic=0
-              for hr in ${event_hourlist};do
-                if [ -s $COMOUTBC_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${hr} ]; then
-                  let ic=ic+1
-                else
-                  echo " MISSING FILE "ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${hr}" !"
-                  echo " WILL MAKE UP at all other hour finishes!"
-                fi
-               done
-               if [ $ic -eq  73 ]; then
-                 ecflow_client --event pgrb2a.0p50_bcf240_ge${nens}
-                 export event_flag=YES
+           if [ ${nfhrs} = 240 ]; then
+             ic=0
+             for hr in ${event_hourlist};do
+               if [ -s $COMOUTBC_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${hr} ]; then
+                 let ic=ic+1
+               else
+                 echo " MISSING FILE "ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${hr}" !"
+                 echo " WILL MAKE UP at all other hour finishes!"
                fi
-            fi
+             done
+             if [ $ic -eq  73 ]; then
+               ecflow_client --event pgrb2a.0p50_bcf240_ge${nens}
+               export event_flag=YES
+             fi
+           fi
 
             if [ "$SENDDBN" = "YES" ]; then
                MEMBER=`echo $nens | tr '[a-z]' '[A-Z]'`
@@ -386,7 +386,25 @@ for nens in $memberlist; do
             outfile=ge${nens}.t${cyc}z.pgrb2a_bcf${nfhrs}
             $COPYGB2 -g "$grid2" -x $COMOUTBC_p5/$infile $COMOUTBC/$outfile
           fi
-          if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
+#         if [ ${nfhrs} = 240 ]; then
+#           ic=0
+#           for hr in ${event_hourlist};
+#           do
+#             if [ -s $COMOUTBC_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${hr} ]; then
+#               let ic=ic+1
+#             else
+#               echo " MISSING FILE "ge${nens}.t${cyc}z.pgrb2a..0p50.f${hr}" !"
+#               echo " WILL MAKE UP at all other hour finishes!"
+#             fi
+#           done
+#           if [ $ic -eq  72 -a ${event_flag} = NO ]; then
+#             ecflow_client --event pgrba_bcf240_ge${nens}
+#             export event_flag=YES
+#           fi
+#         fi
+
+          #if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
+	  if [ "$SENDDBN" = "YES" ]; then
             MEMBER=`echo $nens | tr '[a-z]' '[A-Z]'`
             $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PGB2A_BC $job $COMOUTBC_p5/$ofile
             $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PGB2A_BC_WIDX $job $COMOUTBC_p5/$ofile.idx 
@@ -417,16 +435,21 @@ for nens in $memberlist; do
       fi
     fi
     if [ "$nens" != "gfs" ]; then
-      if [ ! -s $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs ]; then
-        echo $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs "Missing, Make up this file"
-        export MEMLIST=$nens
-        $ENSWEIGHTS $PDY$cyc $nfhrs
-        if [ "$SENDCOM" = "YES" ]; then
-          outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs
-          if [ -s $outfile ]; then
-            mv $outfile $COMOUTWT_p5/
-          fi
+    if [ ! -s $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs ]; then
+      echo $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs "Missing, Make up this file"
+      export MEMLIST=$nens
+      $ENSWEIGHTS $PDY$cyc $nfhrs
+      if [ "$SENDCOM" = "YES" ]; then
+        outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs
+        if [ -s $outfile ]; then
+          mv $outfile $COMOUTWT_p5/
+#         if [ "$IFENSBC1D" = "YES" ]; then
+#           infile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf${nfhrs}
+#           outfile=ge${nens}.t${cyc}z.pgrb2a_wtf${nfhrs}
+#           $COPYGB2 -g "$grid2" -x $COMOUTWT_p5/$infile $COMOUTWT/$outfile
+#         fi
         fi
+      fi
       fi
     fi
   done
