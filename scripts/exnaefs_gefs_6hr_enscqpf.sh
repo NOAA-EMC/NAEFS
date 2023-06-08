@@ -94,6 +94,7 @@ if [ -s $COMINccpa/ccpa.$oymd/$tt/ccpa.t${tt}z.06h.hrap.conus.gb2 ]; then
   out0p5=$DATA/$cyc/ccpa.t${tt}z.06h.0p5.conus.gb2
   $COPYGB2 -g "$grid" -i3 -x  $inhrap $out0p5
 else 
+  echo "WARNING:$COMINccpa/ccpa.$oymd/$tt/ccpa.t${tt}z.06h.hrap.conus.gb2 is missing!!!"
   ESCAPE=YES
 fi
 done
@@ -159,9 +160,12 @@ elif [ -s $COMOUT/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
 elif [ -s $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
   cp $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-else
+elif [ -s ${FIXgefs}/STAT_RM_BIAS_gfs_M${MM}_t${cyc}z.dat ]; then
   cp ${FIXgefs}/STAT_RM_BIAS_gfs_M${MM}_t${cyc}z.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
+else
+  echo "FATAL ERROR: Input gfs STAT bias file not available"
+  export err=1; err_chk
 fi
 
 if [ -s $COMOUT/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
@@ -212,9 +216,12 @@ elif [ -s $COMOUT/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
 elif [ -s $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
   cp $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-else
+elif [ -s ${FIXgefs}/STAT_RM_BIAS_ctl_M${MM}_t${cyc}z.dat ]; then
   cp ${FIXgefs}/STAT_RM_BIAS_ctl_M${MM}_t${cyc}z.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
+else
+  echo "FATAL ERROR: Input ctl STAT bias file not available"
+  export err=1; err_chk
 fi
 
 ###

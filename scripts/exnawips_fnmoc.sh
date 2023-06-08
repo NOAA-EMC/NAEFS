@@ -4,6 +4,7 @@ echo "----------------------------------------------------"
 echo "exnawips - convert FNMOC GRIB files into GEMPAK Grids"
 echo "----------------------------------------------------"
 echo "History: Jan 2011 - First implementation of this new script."
+echo "         Aug 2022 - Modified for 0.5d ensmeble forecast"
 #####################################################################
 
 
@@ -12,9 +13,6 @@ msg="Begin job for $job"
 postmsg "$jlogfile" "$msg"
 
 #
-#export MM=`echo $1 |cut -c2-3`
-#export DATA=$2
-#export SUBRUN=fnmoc_ge$1
 export DATA=$1
 export fstart=$2
 export fend=$3
@@ -59,10 +57,9 @@ while [ $fhcnt -le $fend ] ; do
   fhr3=$fhcnt
   typeset -Z3 fhr3
 
-#  GRIBIN=$COMIN/${SUBRUN}.${cycle}.pgrbaf${fhr}
-  GRIB2IN=$COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc}
-  GRIBIN=${SUBRUN}.${cycle}.pgrbaf${fhr}
-if [ -s $COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc} ]
+  GRIB2IN=$COMIN/ENSEMBLE.halfDegree.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc}
+  GRIBIN=${SUBRUN}.${cycle}.0p50.pgrbaf${fhr}
+if [ -s $GRIB2IN ]
 then
   $CNVGRIB -g21 $GRIB2IN $GRIBIN
 
@@ -185,9 +182,14 @@ fi    # if fhr=00
    fi
  fi
 
-elif [ ! -s $COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc} ]; then
-  echo "WARNING:$COMIN/ENSEMBLE.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc} is missing"
+elif [ ! -s $GRIB2IN ]; then
+  echo "WARNING:$GRIB2IN is missing!!!"
 fi
+  if [ $fhcnt -lt 192 ] ; then
+    finc=03
+  else
+    finc=06
+  fi
  let fhcnt=fhcnt+finc
 done
 

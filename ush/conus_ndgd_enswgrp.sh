@@ -6,7 +6,7 @@ echo "------------------------------------------------"
 echo "History: Feb 2017 - First implementation of this new script."
 echo "AUTHOR: Yan Luo (wx22lu)"
 
-#set -x
+set -x
 
 nfhrs=$1
 iacc=$2

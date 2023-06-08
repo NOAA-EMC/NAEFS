@@ -3,6 +3,8 @@
 # Script: fnmocens_bc_avgspr.sh
 # Abstract: this script produces mean and spread of FNMOC ensemble forecast
 # Author: Bo Cui ---- Oct. 2013
+# History:  
+#         2022-07-03  Bo Cui - modified for 0.5 degree input
 ###########################################################################
 
 set -x
@@ -14,13 +16,15 @@ pgm=ens_avgspr
 #  calculate ensemble mean and spread
 #---------------------------------------
 
-hourlist=" 00  06  12  18  24  30  36  42  48  54  60  66  72  78  84  90  96 \
-          102 108 114 120 126 132 138 144 150 156 162 168 174 180 186 192 198 \
-          204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
+hourlist="000 003 006 009 012 015 018 021 024 027 030 033 036 039 042 045 048 \
+          051 054 057 060 063 066 069 072 075 078 081 084 087 090 093 096 099 \
+          102 105 108 111 114 117 120 123 126 129 132 135 138 141 144 147 150 \
+          153 156 159 162 165 168 171 174 177 180 183 186 189 192 198 204 \
+          210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
           306 312 318 324 330 336 342 348 354 360 366 372 378 384"
 
-memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
-            p11 p12 p13 p14 p15 p16 p17 p18 p19 p20"
+memberlist="bc001 bc002 bc003 bc004 bc005 bc006 bc007 bc008 bc009 bc010 \
+            bc011 bc012 bc013 bc014 bc015 bc016 bc017 bc018 bc019 bc020"
 
 ######################################################
 # start mean and spread calculation for each lead time
@@ -34,15 +38,7 @@ do
   ifile=0
   for mem in $memberlist
   do
-    fensmem=`echo $mem | cut -c2-3`
-    if [ $nfhrs -le 99 ];then
-      file=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.0${nfhrs}.${PDY}${cyc}
-      if [ $nfhrs -eq 00 ];then
-        file=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.000.${PDY}${cyc}
-      fi
-    else
-      file=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
-    fi
+    file=$COMINBC/ENSEMBLE.halfDegree.MET.fcst_${mem}.${nfhrs}.${PDY}${cyc}
     if [ -s $file ]; then
       (( ifile = ifile + 1 ))
       iskip=0
@@ -52,9 +48,15 @@ do
   done
 
   echo " nfiles=${ifile}," >>namin_avgspr_${nfhrs}
-  echo " cfopg1='fnmoc_geavg.t${cyc}z.pgrb2a_bcf${nfhrs}'," >>namin_avgspr_${nfhrs}
-  echo " cfopg2='fnmoc_gespr.t${cyc}z.pgrb2a_bcf${nfhrs}'," >>namin_avgspr_${nfhrs}
+  echo " cfopg1='fnmoc_geavg.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}'," >>namin_avgspr_${nfhrs}
+  echo " cfopg2='fnmoc_gespr.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}'," >>namin_avgspr_${nfhrs}
   echo " /" >>namin_avgspr_${nfhrs}
+
+  if [ $ifile -le 2 ]; then
+    echo "FATAL ERROR in fnmocens_bc_avgspr.sh!!!"
+    echo "Fewer than 2 FNMOC calibrated files available for fcst hr " $nfhrs
+    export err=1; err_chk
+  fi
 
 done
 
@@ -72,13 +74,17 @@ wait
 if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist
   do
-    file=fnmoc_geavg.t${cyc}z.pgrb2a_bcf$nfhrs
+    file=fnmoc_geavg.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
     if [ -s $file ]; then
       mv $file $COMOUTBC/
+    else
+      echo "Warning $file missing"
     fi
-    file=fnmoc_gespr.t${cyc}z.pgrb2a_bcf$nfhrs
+    file=fnmoc_gespr.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
     if [ -s $file ]; then
       mv $file $COMOUTBC/
+    else
+      echo "Warning $file missing"
     fi
   done
 fi
