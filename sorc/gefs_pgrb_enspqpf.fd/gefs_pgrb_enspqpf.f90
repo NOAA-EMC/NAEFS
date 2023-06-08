@@ -21,6 +21,7 @@
 !                      24 hour output at 6 hour increments to 16 days for more threads
 !                      (1, 2, 4 and 6 inches).
 !   15-07-06   BO Cui: Modify for grib2 encode/decode.
+!   23-01-18   BO Cui: Change ensmeble size from 21 to 31
 !
 ! USAGE:
 !
@@ -76,7 +77,7 @@ integer   temp(200),ipdt8,ipdt9,ipdt30
 integer   hrinter,ivar,jj
 real      bb,cc
 
-parameter(len=64,mem=21,irk=13)
+parameter(len=64,mem=31,irk=13)
 
 real, allocatable :: ff(:,:),pp(:,:),ss(:,:),aa(:)
 real, allocatable :: pp1(:,:),pp2(:,:),pp3(:,:)

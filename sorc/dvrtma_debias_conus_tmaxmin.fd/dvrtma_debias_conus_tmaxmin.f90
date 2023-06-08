@@ -1,8 +1,14 @@
-program dvrtma_debias_conus_tmaxmin_g2
+program dvrtma_debias_conus_tmaxmin
 !
-! main program: dvrtma_debias_conus_tmaxmin_g2
+! main program: dvrtma_debias_conus_tmaxmin
 !
 ! prgmmr: Bo Cui           org: np/wx20        date: 2013-10-01
+!
+! Program history log:
+!  Date | Programmer | Comments
+!  -----|------------|---------
+!  2013-10-01 | Bo Cui       | Initial
+!  2023-01-13 | Bo Cui       | Update GRIB2 message to add 10 NCEP/GEFS ensemble members
 !
 ! abstract: get downscaled tmax and tmin forecast for conus region
 !
@@ -319,14 +325,31 @@ do imem=1,tmems
 
     ipdt(1)=ipd1;ipdt(2)=ipd2;ipdt(10)=ipd10;ipdt(11)=ipd11;ipdt(12)=ipd12
 
-    ! read and process input member               
+    ! iids(1) is for product generation center
+    ! ipdtmpl(5) is for generation process identifier
+    ! %iids(1)=  7: US National Weather Service - NCEP (WMC)
+    ! %iids(1) =54: Canadian Meteorological Service - Montreal (RSMC)s
+    ! %ipdtmpl(5)=114: NAEFS Products from joined NCEP,CMC global ensembles
+    ! %ipdtmpl(5)=107: Global Ensemble Forecast System (GEFS)
 
-    ipdt(17)=imem   
-    if(imem.le.20.and.ifallcmc.eq.1) ipdt(17)=20+imem
+    ! read and process input member for NCEP 30 members               
+
+    if(imem.le.30) then
+      ipdt(17)=imem   
+      iids(1)=7    
+    endif
 
     ! check if all member are from cmc ensmeble 
 
     if(imem.le.20.and.ifallcmc.eq.1) ipdt(17)=20+imem
+
+    ! NCEP adds 10 members withwipdt(17) from 1 to 30, CMC has ipdt(17) from 21 to 40  
+    ! after reading NCEP 30 members, adjust ipdt(17) starting with 21 for CMC ensemble
+
+    if(imem.gt.30) then
+       ipdt(17)=imem
+       iids(1)=54    
+    endif
 
     ! get operational forecast tmax or tmin
 
@@ -352,8 +375,23 @@ do imem=1,tmems
     idisc=-1;  ipdtn=-1;   igdtn=-1
     ipdt(1)=0;ipdt(2)=0;ipdt(10)=103;ipdt(11)=0;ipdt(12)=2
     ipdtn=1; igdtn=-1
-    ipdt(17)=imem   
+
+    ! read and process input member for NCEP 30 members               
+
+    if(imem.le.30) then
+      ipdt(17)=imem   
+      iids(1)=7    
+    endif
+
+    ! check if all member are from cmc ensmeble 
+
     if(imem.le.20.and.ifallcmc.eq.1) ipdt(17)=20+imem
+
+    if(imem.gt.30) then
+       ipdt(17)=imem
+       iids(1)=54    
+    endif
+
     call init_parm(ipdtn,ipdt,igdtn,igdt,idisc,iids)
     call getgb2(nunit(ifile-1),0,jskp,jdisc,jids,jpdtn,jpdt,jgdtn,jgdt,unpack,jskp,gfld,iret)
 
@@ -371,8 +409,23 @@ do imem=1,tmems
     idisc=-1;  ipdtn=-1;   igdtn=-1
     ipdt(1)=0;ipdt(2)=0;ipdt(10)=103;ipdt(11)=0;ipdt(12)=2
     ipdtn=1; igdtn=-1
-    ipdt(17)=imem   
+
+    ! read and process input member for NCEP 30 members               
+
+    if(imem.le.30) then
+      ipdt(17)=imem   
+      iids(1)=7    
+    endif
+
+    ! check if all member are from cmc ensmeble 
+
     if(imem.le.20.and.ifallcmc.eq.1) ipdt(17)=20+imem
+
+    if(imem.gt.30) then
+       ipdt(17)=imem   
+       iids(1)=54     
+    endif
+
     call init_parm(ipdtn,ipdt,igdtn,igdt,idisc,iids)
     call getgb2(nunit(ifile),0,jskp,jdisc,jids,jpdtn,jpdt,jgdtn,jgdt,unpack,jskp,gfld,iret)
 

@@ -4,6 +4,12 @@ program cmce_adjust_wind10m_g2
 !
 ! prgmmr: Bo Cui           org: np/wx20        date: 2013-12-01
 !
+! Program history log:
+!  Date | Programmer | Comments
+!  -----|------------|---------
+!  2013-10-01 | Bo Cui       | Initial
+!  2023-01-13 | Bo Cui       | Update CMC GRIB2 message with 10 more NCEP/GEFS ensemble members
+!
 ! abstract: adjust CMC ensemble u10m and v10m for future downscaling process
 ! 
 ! usage:
@@ -235,7 +241,7 @@ do ivar = 1, nvar
 
       !  adjust the cmc ensmeble message for future combination
 
-      gfldo%ipdtmpl(17)=20+gfldo%ipdtmpl(17)
+      gfldo%ipdtmpl(17)=30+gfldo%ipdtmpl(17)
 
       ! get the number of bits
       ! gfldo%idrtmpl(3) : GRIB2 DRT 5.40 decimal scale factor
