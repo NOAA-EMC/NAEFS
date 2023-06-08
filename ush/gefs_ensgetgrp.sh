@@ -10,7 +10,7 @@ echo "History: Dec 2013 - Change I/O from GRIB1 to GRIB2"
 echo "History: Dec 2016 - Upgrade to 0.5 degree and 6 hourly"
 echo "AUTHOR: Yan Luo (wx22lu)"
 
-#set -x 
+set -x 
 
 RUNID=$1
  case $RUNID in 

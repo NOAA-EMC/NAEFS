@@ -92,7 +92,10 @@ do
 
  done
 
- rm fcst_*.dat mean_*.dat stdv_*.dat bias_*dat input_$ens.$FHR
+ rm fcst_*.dat mean_*.dat stdv_*.dat input_$ens.$FHR
+ if [ -s bias_$ens.dat ]; then
+   rm bias_$ens.dat
+ fi
 
 done
 

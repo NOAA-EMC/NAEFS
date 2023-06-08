@@ -91,7 +91,10 @@ do
  mv anom_$ens.dat ge${ens}.t${cyc}z.pgrb2a.0p50_anf${FHR}
  done
 
- rm fcst_*.dat mean_*.dat stdv_*.dat bias_*.dat
+ rm fcst_*.dat mean_*.dat stdv_*.dat 
+ if [ -s bias_$ens.dat ]; then
+   rm bias_$ens.dat
+ fi
 
 #cat output_$ens.$FHR
 

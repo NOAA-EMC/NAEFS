@@ -251,6 +251,7 @@ for nfhrs in $hourlist; do
   echo " &namens" >>namin.prob.$nfhrs
 
   ifile=0
+  ifile_cmconly=0
 
   if [ "$IFNAEFS" = "YES" ]; then
    pidswitch=1
@@ -330,6 +331,7 @@ for nfhrs in $hourlist; do
 
       if [ -s $ifile_cmc ]; then
         (( ifile = ifile + 1 ))
+        (( ifile_cmconly = ifile_cmconly + 1 ))
         iskip=2
         if [ "$mem" = "c00" ]; then
           iskip=0
@@ -572,6 +574,17 @@ for nfhrs in $hourlist; do
   echo " /" >>namin.prob.$nfhrs
 
   cat namin.varlist >>namin.prob.$nfhrs
+
+  if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
+    if [ "$IFNAEFS" = "YES" -a $ifile_cmconly -eq 0 -a $ifile -ne 0 ]; then
+      echo "Warning!!! NAEFS has only GEFS input for fcst " $nfhrs
+    fi
+  fi
+
+  if [ $ifile -eq 0 ]; then
+    echo "FATAL ERROR: Input ensemble files not available for fcst hr " $nfhrs
+    export err=1; err_chk
+  fi
 
   startmsg
   $EXECnaefs/naefs_bc_probability <namin.prob.$nfhrs > $pgmout.${nfhrs}_prob  2> errfile

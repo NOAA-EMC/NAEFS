@@ -3,7 +3,9 @@
 # Script: fnmocens_climate_anomaly.sh 
 # Abstract: this script produces GRIB files of climate anomaly forecast
 # Author: Bo Cui         
-# History: Oct 2010 - First implementation of this new script
+# History:
+#         2010-10-15 Bo Cui  - First implementation of this new script
+#         2022-07-03  Bo Cui - modified for 0.5 degree input
 ######################################################################
 
 if [ $# -lt 2 ]; then
@@ -46,11 +48,13 @@ do
  for ens in $MEMLIST                                         
  do
 
- rm input_$ens
+ if [ -s input_$ens ]; then
+   rm input_$ens
+ fi
 
- ln -fs fnmoc_ge${ens}.t${cyc}z.pgrb2a_bcf${FHR} fcst_$ens.dat
- ln -fs $FIXfnmoc/cmean_1d.1979${MD}          mean_$ens.dat
- ln -fs $FIXfnmoc/cstdv_1d.1979${MD}          stdv_$ens.dat
+ ln -fs fnmoc_ge${ens}.t${cyc}z.pgrb2a.0p50_bcf${FHR} fcst_$ens.dat
+ ln -fs $FIXfnmoc/cmean_p5d.1979${MD}                 mean_$ens.dat
+ ln -fs $FIXfnmoc/cstdv_p5d.1979${MD}                 stdv_$ens.dat
 
  ### get analysis difference between CDAS and FNMOC aanalysis
 
@@ -59,18 +63,20 @@ do
  #####################################################################
 
  ifbias=0
- pgb=fnmoc_glbanl.t${bcyc}z.pgrb2a_mdf00
+ pgb=fnmoc_glbanl.t${bcyc}z.pgrb2a.0p50_mdf00
 
- if [ -s $COMINbias/fens.${PDYm2}/${bcyc}/pgrb2a/$pgb ]; then
-   ln -fs $COMINbias/fens.${PDYm2}/${bcyc}/pgrb2a/$pgb bias_$ens.dat                                    
- elif [ -s $COMINbias/fens.${PDYm3}/${bcyc}/pgrb2a/$pgb ]; then
-   ln -fs $COMINbias/fens.${PDYm3}/${bcyc}/pgrb2a/$pgb bias_$ens.dat                                    
- elif [ -s $COMINbias/fens.${PDYm4}/${bcyc}/pgrb2a/$pgb ]; then
-   ln -fs $COMINbias/fens.${PDYm4}/${bcyc}/pgrb2a/$pgb bias_$ens.dat                                    
- elif [ -s $COMINbias/fens.${PDYm5}/${bcyc}/pgrb2a/$pgb ]; then
-   ln -fs $COMINbias/fens.${PDYm5}/${bcyc}/pgrb2a/$pgb bias_$ens.dat                                    
- elif [ -s $COMINbias/fens.${PDYm6}/${bcyc}/pgrb2a/$pgb ]; then
-   ln -fs $COMINbias/fens.${PDYm6}/${bcyc}/pgrb2a/$pgb bias_$ens.dat                                    
+ if [ -s $COMINbias/fens.${PDYm1}/${bcyc}/pgrb2ap5/$pgb ]; then
+   ln -fs $COMINbias/fens.${PDYm1}/${bcyc}/pgrb2ap5/$pgb bias_$ens.dat                                    
+ elif [ -s $COMINbias/fens.${PDYm2}/${bcyc}/pgrb2ap5/$pgb ]; then
+   ln -fs $COMINbias/fens.${PDYm2}/${bcyc}/pgrb2ap5/$pgb bias_$ens.dat                                    
+ elif [ -s $COMINbias/fens.${PDYm3}/${bcyc}/pgrb2ap5/$pgb ]; then
+   ln -fs $COMINbias/fens.${PDYm3}/${bcyc}/pgrb2ap5/$pgb bias_$ens.dat                                    
+ elif [ -s $COMINbias/fens.${PDYm4}/${bcyc}/pgrb2ap5/$pgb ]; then
+   ln -fs $COMINbias/fens.${PDYm4}/${bcyc}/pgrb2ap5/$pgb bias_$ens.dat                                    
+ elif [ -s $COMINbias/fens.${PDYm5}/${bcyc}/pgrb2ap5/$pgb ]; then
+   ln -fs $COMINbias/fens.${PDYm5}/${bcyc}/pgrb2ap5/$pgb bias_$ens.dat                                    
+ elif [ -s $COMINbias/fens.${PDYm6}/${bcyc}/pgrb2ap5/$pgb ]; then
+   ln -fs $COMINbias/fens.${PDYm6}/${bcyc}/pgrb2ap5/$pgb bias_$ens.dat                                    
  else
    ifbias=1
  fi
@@ -88,19 +94,21 @@ do
 
  startmsg
  $EXECfnmoc/$pgm  <input_$ens >$pgmout.$FHR.${ens}_an 2> errfile
-#export err=$?;err_chk
  export err=$?
  if [ $err -eq 0 ]; then
-   mv anom_$ens.dat fnmoc_ge${ens}.t${cyc}z.pgrb2a_anf${FHR}
+   mv anom_$ens.dat fnmoc_ge${ens}.t${cyc}z.pgrb2a.0p50_anf${FHR}
  else
-   filename=$(readlink -f fnmoc_ge${ens}.t${cyc}z.pgrb2a_bcf${FHR})
+   filename=$(readlink -f fnmoc_ge${ens}.t${cyc}z.pgrb2a.0p50_bcf${FHR})
    msg="SOS NAEFS FENS data error, Please check file " $filename
    echo $msg
  fi
 
  done
 
- rm fcst_*.dat mean_*.dat stdv_*.dat bias*.dat
+ rm fcst_*.dat mean_*.dat stdv_*.dat 
+ if [ -s bias_$ens.dat ]; then
+   rm bias_$ens.dat
+ fi
 
 done
 
