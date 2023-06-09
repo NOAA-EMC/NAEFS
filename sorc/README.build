@@ -1,6 +1,6 @@
 To build codes:
 
-    cd /nwprod/naefs.v6.1.0/sorc
+    cd /nwprod/naefs.v7.0.0/sorc
      1) ./build.sh 
      2) ./install.sh
 
