@@ -310,7 +310,7 @@ do ivar = 1, 2
 
     if(imem.le.20.and.ifallcmc.eq.1) ipdt(17)=20+imem
 
-    ! NCEP adds 10 members withwipdt(17) from 1 to 30, CMC has ipdt(17) from 21 to 40
+    ! NCEP adds 10 members with ipdt(17) from 1 to 30, CMC has ipdt(17) from 21 to 40
     ! after reading NCEP 30 members, adjust ipdt(17) starting with 21 for CMC ensemble
 
     if(imem.gt.30) then
