@@ -12,9 +12,10 @@
 !
 ! PROGRAM HISTORY LOG:
 !   01-09-21   YUEJIAN ZHU (WX20YZ)
-!   15-07-06   BO Cui:  Modify for grib2 encode/decode.
+!   15-07-06   Bo Cui:  Modify for grib2 encode/decode.
 !   17-05-06   Yan Luo: Create for 24hr bias corrected QPF.
 !   21-11-05   Yan Luo: Modify for WCOSS2 transition 
+!   23-01-19   Bo Cui:  Change ensemble size from 21 to 31
 !
 ! USAGE:
 !
@@ -62,7 +63,7 @@ integer   temp(200),ipdt8,ipdt9,ipdt30
 integer   hrinter,jj
 real      bb
 
-parameter(len=64,mem=21,irk=13)
+parameter(len=64,mem=31,irk=13)
 
 real, allocatable :: ff(:,:),ss(:,:),aa(:)
 real, allocatable :: pp1(:,:),pp2(:,:),pp3(:,:)

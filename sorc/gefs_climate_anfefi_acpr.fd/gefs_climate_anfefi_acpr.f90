@@ -31,7 +31,7 @@ real      dmin,dmax
 real      PI
 
 parameter (iv=1)
-parameter (im=20)
+parameter (im=30)
 parameter (PI=3.1415926)
 
 double precision fstd(im)

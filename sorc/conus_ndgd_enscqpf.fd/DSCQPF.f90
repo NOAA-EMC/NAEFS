@@ -19,6 +19,7 @@
 ! PROGRAM HISTORY LOG:
 ! 2017-02-18 YAN LUO IBM-Cray implementation              
 ! 2021-10-26 YAN LUO Modify for WCOSS2 transition
+! 2022-09-22 BO CUI  Change ensemble size from 22 to 32
 !
 ! USAGE:
 !
@@ -54,7 +55,7 @@
       implicit none
 
       integer jpoint,iensem,fhrs,istd
-      parameter(jpoint=2145*1377,iensem=21)
+      parameter(jpoint=2145*1377,iensem=31)
       parameter(istd=13)
       real rk(istd),smask(jpoint),rmax,rmin
       real, allocatable :: f(:),q(:),ratio(:)
@@ -90,8 +91,8 @@
       data ipd10/1/
       data ipd11/0/
       data ipd12/0/
-      data ee16/1,3,3,3,3,3,3,3,3,3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3/
-      data ee17/0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20/
+      data ee16/1,3,3,3,3,3,3,3,3,3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3/
+      data ee17/0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30/
 
       data rk/0.254,1.00,1.27,2.54,5.00,6.35,10.00,12.7,20.0,25.4, &
               50.8,101.6,152.4/
