@@ -270,8 +270,8 @@
 !
 !  SET UP DATES FOR VERIFICATION VALID TIME
 !      write (6,*) 'YEAR MN DY HR  =', (gfld%idsect(i),i=6,9)
-      write (6,*)  'gfld%ipdtmpl(9)=',gfld%ipdtmpl(9),&
-                   'gfld%idsect(9)=', gfld%idsect(9)
+!     write (6,*)  'gfld%ipdtmpl(9)=',gfld%ipdtmpl(9),&
+!                  'gfld%idsect(9)=', gfld%idsect(9)
       iacc = gfld%ipdtmpl(30)
       ivyr = gfld%idsect(6)
       ivmn = gfld%idsect(7)
@@ -435,8 +435,8 @@
       endif
 
 !  SET UP DATES FOR FORECAST STARTED TIME
-      write (6,*)  'gfldo%ipdtmpl(9)=', gfldo%ipdtmpl(9),&
-                   'gfldo%idsect(9)=', gfldo%idsect(9)
+!     write (6,*)  'gfldo%ipdtmpl(9)=', gfldo%ipdtmpl(9),&
+!                  'gfldo%idsect(9)=', gfldo%idsect(9)
       isyr = gfldo%idsect(6)
       ismn = gfldo%idsect(7)
       if (mod(isyr,100).ne.0.and.mod(isyr,4).eq.0) mnth(2)=29
@@ -529,8 +529,8 @@
        goto 9000
       endif
 !  SET UP DATES FOR VERIFICATION VALID TIME
-      write (6,*)  'gfldo%ipdtmpl(9)=',gfldo%ipdtmpl(9),&
-                   'gfldo%idsect(9)=', gfldo%idsect(9)
+!     write (6,*)  'gfldo%ipdtmpl(9)=',gfldo%ipdtmpl(9),&
+!                  'gfldo%idsect(9)=', gfldo%idsect(9)
       jacc = gfldo%ipdtmpl(9) + 6
       jvyr = gfldo%idsect(6)
       jvmn = gfldo%idsect(7)
