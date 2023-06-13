@@ -4,7 +4,7 @@
 #PBS -q %QUEUE%
 #PBS -A %PROJ%-%PROJENVIR%
 #PBS -l walltime=03:30:00
-#PBS -l select=1:ncpus=22:mpiprocs=22:mem=50GB
+#PBS -l select=1:ncpus=32:mpiprocs=32:mem=75GB
 #PBS -l debug=true
 
 model=naefs
@@ -28,7 +28,7 @@ module list
 export export OMP_NUM_THREADS=1
 
 # EXPORT list here
-export APRUN="mpiexec -np 22 --cpu-bind core cfp  "         
+export APRUN="mpiexec -np 32 --cpu-bind core cfp  "         
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 export cyc=%CYC%
 
