@@ -318,6 +318,8 @@ done
 #  final check up and make up
 ###
 
+echo "Final Check Up and Make up GEFS Bias Corrected Products"
+
 for nens in $memberlist; do
 
   hourlist="000 003 006 009 012 015 018 021 024 027 030 033 036 039 042 045 048 \
@@ -344,7 +346,9 @@ for nens in $memberlist; do
 
     if [ ! -s $COMOUTBC_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs} ]; then  
 
-      rm fort.* input.$nfhrs.$nens
+      echo $COMOUTBC_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs} "Missing, Make up this file"
+
+      rm input.$nfhrs.$nens
       echo "&message"  >input.$nfhrs.$nens
       echo " icstart_ens=${cstart_ens}," >> input.$nfhrs.$nens
       echo " icstart_gfs=${cstart_gfs}," >> input.$nfhrs.$nens
@@ -372,6 +376,7 @@ for nens in $memberlist; do
       startmsg
       $EXECgefs/$pgm   <input.$nfhrs.$nens    > $pgmout.$nfhrs.$nens 2> errfile
       export err=$?;err_chk
+      rm fort.*
       if [ "$SENDCOM" = "YES" ]; then
         if [ -s $ofile ]; then  
           cp $ofile $COMOUTBC_p5/
@@ -397,6 +402,7 @@ for nens in $memberlist; do
 #             export event_flag=YES
 #           fi
 #         fi
+
           #if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
 	  if [ "$SENDDBN" = "YES" ]; then
             MEMBER=`echo $nens | tr '[a-z]' '[A-Z]'`
@@ -407,8 +413,7 @@ for nens in $memberlist; do
       fi
     fi
     if [ ! -s $COMOUTAN_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs ]; then
-      rm fort.*
-      echo " No Anomaly " $COMOUTAN_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs
+      echo $COMOUTAN_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs "Missing, Make up this file"
       export MEMLIST=$nens
       $ENSANOMALY $PDY$cyc $nfhrs
       if [ "$SENDCOM" = "YES" ]; then
@@ -429,12 +434,11 @@ for nens in $memberlist; do
         fi
       fi
     fi
-    if [ ! -s $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a_wtf$nfhrs ]; then
-      rm fort.*
+    if [ "$nens" != "gfs" ]; then
+    if [ ! -s $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs ]; then
+      echo $COMOUTWT_p5/ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs "Missing, Make up this file"
       export MEMLIST=$nens
-      if [ "$nens" != "gfs" ]; then
-        $ENSWEIGHTS $PDY$cyc $nfhrs
-      fi
+      $ENSWEIGHTS $PDY$cyc $nfhrs
       if [ "$SENDCOM" = "YES" ]; then
         outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs
         if [ -s $outfile ]; then
@@ -445,6 +449,7 @@ for nens in $memberlist; do
 #           $COPYGB2 -g "$grid2" -x $COMOUTWT_p5/$infile $COMOUTWT/$outfile
 #         fi
         fi
+      fi
       fi
     fi
   done

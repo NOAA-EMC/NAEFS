@@ -1,11 +1,11 @@
 #!/bin/sh
-########################### BIASUPDATE ############################################################
-echo "--------------------------------------------------------------"
-echo "Update Bias Estimation of FNMOC Global Ensemble Forecast Daily"
-echo "--------------------------------------------------------------"
-echo "History: Oct 2010 - First implementation of this new script."
-echo "AUTHOR: Bo Cui  (wx20cb)"
-########################### BIASUPDATE ############################################################
+########################### BIASUPDATE #################################
+# script: Update Bias Estimation of FNMOC Global Ensemble Forecast Daily
+# AUTHOR: Bo Cui  (wx20cb)"
+# History: 
+#    Oct 2010 - First implementation of this new script."
+#    2022-07-03  Bo Cui - modified for 0.5 degree input
+########################### BIASUPDATE #################################
 
 ### To submit this job for T00Z, and T12Z , two cycles per day
 
@@ -221,9 +221,7 @@ fi
 
 if [ "$BIASCDAS" = "YES" ]; then
 
-rm fort.*
-
-for nfhrs in 00; do
+for nfhrs in 000; do
  for nens in mdf; do
 
 ###
@@ -235,7 +233,7 @@ for nfhrs in 00; do
 # FNMOC operational analysis file entry
 ###
 
-  aymdh=$PDYm2$cyc
+  aymdh=$PDYm1$cyc
   aymd=`echo $aymdh | cut -c1-8`
   acyc=`echo $aymdh | cut -c9-10`
   echo $aymdh $aymd $acyc
@@ -244,40 +242,54 @@ for nfhrs in 00; do
   aymd_m06=`echo $aymdh_m06 | cut -c1-8`
   acyc_m06=`echo $aymdh_m06 | cut -c9-10`
 
-  $COPYGB2 -g "0 0 0 0 0 0 0 0 360 181 0 0 -90000000 0 48 90000000 359000000 1000000 1000000 64" -i0 -x $COMINnavgem/US058GMET-OPSbd2.NAVGEM000-${aymd}${acyc}-NOAA-halfdeg.gr2 ${aymd}${acyc}-NOAA-1deg.gr2
-  afile=${aymd}${acyc}-NOAA-1deg.gr2
+  afile=$COMINnavgem/US058GMET-OPSbd2.NAVGEM000-${aymd}${acyc}-NOAA-halfdeg.gr2
 
-  if [ -s $afile ]; then
-    echo " "
-  else
-    echo " There is no Analysis data, Stop! for " $acyc
-#   exit
+  if [ ! -s $afile ]; then
+    echo " FATAL ERROR: There is no FNMOC Analysis data, Stop! for " ${aymd}${acyc}
+    export err=1; err_chk
   fi
 
 ###
 # cfs reanalysi file entry
 ###
 
-  rfile=$COMINcfs/cdas.${aymd}/cdas1.t${acyc}z.pgrbf00.grib2
-  rfile_m06=$COMINcfs/cdas.${aymd_m06}/cdas1.t${acyc_m06}z.pgrbf06.grib2
+  rfile_in=$COMINcfs/cdas.${aymd}/cdas1.t${acyc}z.pgrbf00.grib2
+  rfile_m06in=$COMINcfs/cdas.${aymd_m06}/cdas1.t${acyc_m06}z.pgrbf06.grib2
+
+  rfile=cdas1.t${acyc}z.pgrbf00.0p50.grib2
+  rfile_m06=cdas1.t${acyc_m06}z.pgrbf06.0p50.grib2
+  grid2="0 6 0 0 0 0 0 0 720 361 0 0 90000000 0 48 -90000000 359500000 500000 500000 0"
+
+  if [ ! -s $rfile_in ]; then
+    echo "FATAL ERROR: There is no CFS Reanalysis data, Stop! for " ${aymd}${acyc}
+    export err=1; err_chk
+  fi
+  if [ ! -s $rfile_m06in ]; then
+    echo " There is no CFS Reanalysis data, Stop! for " ${aymd_m06}${acyc_m06}
+  fi
+
+  $COPYGB2 -g "$grid2" -x $rfile_in    $rfile
+  $COPYGB2 -g "$grid2" -x $rfile_m06in $rfile_m06
 
 ###
 #  get initialized bias between analyais and reanalysis entry
 ###
 
-  pgbmdf=fnmoc_glbanl.t${cyc}z.pgrb2a_mdf00
-  pgbmean=glbanl.t${cyc}z.pgrb2a_meandif
+  pgbmdf=fnmoc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
+  pgbmean=glbanl.t${cyc}z.pgrb2a.0p50_meandif
 
-  if [ -s $COMINbias/fens.$PDYm3/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/fens.$PDYm3/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/fens.$PDYm4/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/fens.$PDYm4/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/fens.$PDYm5/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/fens.$PDYm5/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/fens.$PDYm6/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/fens.$PDYm6/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/fens.$PDYm7/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/fens.$PDYm7/${cyc}/pgrb2a/$pgbmdf $pgbmean
+  if [ -s $COMINbias/fens.$PDYm2/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/fens.$PDYm2/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/fens.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/fens.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/fens.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/fens.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/fens.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/fens.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/fens.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/fens.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/fens.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/fens.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
   else
     echo " Cold Start for Bias Estimation between CDAS and GDAS Fcst. Hour " $nfhrs 
     cstart=1
@@ -287,7 +299,7 @@ for nfhrs in 00; do
 #  output bias estimation between CDAS and GDAS            
 ###
 
-  ofile=fnmoc_glbanl.t${cyc}z.pgrb2a_mdf00                        
+  ofile=fnmoc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000                        
 
   echo "&message"  >input.$nfhrs.$nens
   echo " icstart=${cstart}," >> input.$nfhrs.$nens
@@ -319,7 +331,7 @@ if [ "$BIASANL" = "YES" ]; then
 
 rm fort.*
 
-for nfhrs in 00; do
+for nfhrs in 000; do
  for nens in anl; do
 
 ###
@@ -339,43 +351,43 @@ for nfhrs in 00; do
   aymd_m06=`echo $aymdh_m06 | cut -c1-8`
   acyc_m06=`echo $aymdh_m06 | cut -c9-10`
 
-  $COPYGB2 -g "0 6 0 0 0 0 0 0 360 181 0 0 90000000 0 48 -90000000 359000000 1000000 1000000 0" -i0 -x $COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000 gec00.t${acyc}z.pgrb2af00   
+  nfile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
 
-  nfile=gec00.t${acyc}z.pgrb2af00     
-
-  if [ -s $nfile ]; then
-    echo " "
-  else
-    echo " There is no Analysis data, Stop! for " $acyc
-#   exit
+  if [ ! -s $nfile ]; then
+    echo " FATAL ERROR:There is no GEFS Analysis data, Stop! for " ${aymd}${acyc}
+    export err=1; err_chk
   fi
 
 ###
 # FNMOC analysi file entry
 ###
 
-  $COPYGB2 -g "0 0 0 0 0 0 0 0 360 181 0 0 -90000000 0 48 90000000 359000000 1000000 1000000 64" -i0 -x $COMINnavgem/US058GMET-OPSbd2.NAVGEM000-${aymd}${acyc}-NOAA-halfdeg.gr2 ${aymd}${acyc}-NOAA-1deg.gr2
-  cfile=${aymd}${acyc}-NOAA-1deg.gr2
+  cfile=$COMINnavgem/US058GMET-OPSbd2.NAVGEM000-${aymd}${acyc}-NOAA-halfdeg.gr2
+
+  if [ ! -s $cfile ]; then
+    echo "FATAL ERROR: There is no FNMOC Analysis data, Stop! for " ${aymd}${acyc}
+    export err=1; err_chk
+  fi
 
 ###
 #  get initialized bias between NCEP and FNMOC analysis 
 ###
 
-  pgbmdf=ncepfnmoc_glbanl.t${cyc}z.pgrb2a_mdf00
-  pgbmean=glbanl.t${cyc}z.pgrb2a_meandif
+  pgbmdf=ncepfnmoc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
+  pgbmean=glbanl.t${cyc}z.pgrb2a.0p50_meandif
 
-  if [ -s $COMINbias/gefs.$PDYm2/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/gefs.$PDYm2/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/gefs.$PDYm3/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/gefs.$PDYm3/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/gefs.$PDYm4/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/gefs.$PDYm4/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/gefs.$PDYm5/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/gefs.$PDYm5/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/gefs.$PDYm6/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/gefs.$PDYm6/${cyc}/pgrb2a/$pgbmdf $pgbmean
-  elif [ -s $COMINbias/gefs.$PDYm7/${cyc}/pgrb2a/$pgbmdf ]; then
-    cp $COMINbias/gefs.$PDYm7/${cyc}/pgrb2a/$pgbmdf $pgbmean
+  if [ -s $COMINbias/gefs.$PDYm2/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/gefs.$PDYm2/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/gefs.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/gefs.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/gefs.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/gefs.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/gefs.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/gefs.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/gefs.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/gefs.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/gefs.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/gefs.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
   else
     echo " Cold Start for Bias Estimation between CDAS and GDAS Fcst. Hour " $nfhrs 
     cstart=1
@@ -385,7 +397,7 @@ for nfhrs in 00; do
 #  output bias estimation between NCEP and FNMOC analysis   
 ###
 
-  ofile=ncepfnmoc_glbanl.t${cyc}z.pgrb2a_mdf00                        
+  ofile=ncepfnmoc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000                        
 
   echo "&message"  >input.$nfhrs.$nens
   echo " icstart=${cstart}," >> input.$nfhrs.$nens
@@ -407,28 +419,18 @@ for nfhrs in 00; do
 done
 fi
 
-hourlist=" 00  06  12  18  24  30  36  42  48  54  60  66  72  78  84  90  96 \
-          102 108 114 120 126 132 138 144 150 156 162 168 174 180 186 192 198 \
-          204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
-          306 312 318 324 330 336 342 348 354 360 366 372 378 384"
-
 if [ "$SENDCOM" = "YES" ]; then
-  for nfhrs in $hourlist
-  do
-    for nens in $memberlist; do
-      file=fnmoc_ge${nens}.t${cyc}z.pgrb2a_mef${nfhrs}
-      if [ -s $file ]; then
-        cp $file $COMOUT/
-      fi
-    done
-  done
-  file=fnmoc_glbanl.t${cyc}z.pgrb2a_mdf00
+  file=fnmoc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
   if [ -s $file ]; then
-    cp $file $COMOUT_M2/
+    cp $file $COMOUT_M1/
+  else
+    echo "Warning $file missing"
   fi
-  file=ncepfnmoc_glbanl.t${cyc}z.pgrb2a_mdf00
+  file=ncepfnmoc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
   if [ -s $file ]; then
     cp $file $COMOUTNCEP_M1/
+  else
+    echo "Warning $file missing"
   fi
 fi
 

@@ -95,7 +95,10 @@ do
 
   done
 
-  rm fcstm.dat fcstm.dat anlm anls
+  rm fcstm.dat fcsts.dat anlm anls
+  if [ -s bias_$ens.dat ]; then
+   rm bias_$ens.dat
+  fi
 
 done
 

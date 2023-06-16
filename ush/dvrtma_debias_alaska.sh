@@ -113,7 +113,7 @@ for nens in $outlist; do
     fi
 
     if [[ ! -s $infile ]]; then
-      echo "Input pgrb2ap5_bc files not available"
+      echo "Warning !!! Input pgrb2ap5_bc files not available"
       export err=1; err_chk
     fi
 

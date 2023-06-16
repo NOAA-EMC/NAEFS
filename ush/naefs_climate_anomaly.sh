@@ -50,7 +50,7 @@ do
  for ens in $MEMLIST                                         
  do
 
- ln -fs ge${ens}.t${cyc}z.pgrb2a.0p50_bcf${FHR}  fcst_$ens.dat
+ ln -fs ge${ens}.t${cyc}z.pgrb2a.0p50_bcf${FHR}   fcst_$ens.dat
  ln -fs $FIXnaefs/cmean_p5d.1979${MD}             mean_$ens.dat
  ln -fs $FIXnaefs/cstdv_p5d.1979${MD}             stdv_$ens.dat
 
@@ -94,7 +94,10 @@ do
  mv anom_$ens.dat ge${ens}.t${cyc}z.pgrb2a.0p50_anf${FHR}
  done
 
- rm fcst_*.dat mean_*.dat stdv_*.dat bias_*.dat
+ rm fcst_*.dat mean_*.dat stdv_*.dat 
+ if [ -s bias_$ens.dat ]; then
+   rm bias_$ens.dat
+ fi
 
 done
 

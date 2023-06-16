@@ -4,6 +4,12 @@ program cmce_adjust_tmaxmin_g2
 !
 ! prgmmr: Bo Cui           org: np/wx20        date: 2013-10-01
 !
+! Program history log:
+!  Date | Programmer | Comments
+!  -----|------------|---------
+!  2013-10-01 | Bo Cui       | Initial
+!  2023-01-13 | Bo Cui       | Update CMC GRIB2 message with 10 more NCEP/GEFS ensemble members
+!
 ! abstract: adjust CMC ensemble T2m, Tmax and Tmin for future downscaling process
 !
 ! usage:
@@ -403,7 +409,7 @@ do ivar = 1, nvar
       !  adjust the cmc ensmeble message for future combination
       
       gfldo%fld(1:maxgrd)=fgrid_im(1:maxgrd)
-      gfldo%ipdtmpl(17)=20+gfldo%ipdtmpl(17)
+      gfldo%ipdtmpl(17)=30+gfldo%ipdtmpl(17)
 
       ! check GRID TEMPLATE
      

@@ -46,7 +46,7 @@ use params
 implicit none
 
 integer     nvar,ivar,i,icstart,ij
-parameter   (nvar=6)
+parameter   (nvar=4)
 
 real,       allocatable :: fgrid(:),bias(:),t2m(:)
 
@@ -63,13 +63,13 @@ integer :: currlen=0
 logical :: unpack=.true.
 logical :: expand=.false.
 
-! variables: pres u10m v10m t2m dpt2m rh2m
+! variables: pres t2m dpt2m rh2m
 
-data ipd1 /  3,  2,  2,  0,  1,  0/
-data ipd2 /  0,  2,  3,  0,  1,  6/
-data ipd10/  1,103,103,103,103,103/
-data ipd11/  0,  0,  0,  0,  0,  0/
-data ipd12/  0, 10, 10,  2,  2,  2/
+data ipd1 /  3,  0,  1,  0/
+data ipd2 /  0,  0,  1,  6/
+data ipd10/  1,103,103,103/
+data ipd11/  0,  0,  0,  0/
+data ipd12/  0,  2,  2,  2/
 
 integer     maxgrd,length
 integer     index,j,n,iret,jret             

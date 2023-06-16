@@ -1,8 +1,14 @@
-program dvrtma_debias_alaska_wind10m_g2
+program dvrtma_debias_alaska_wind10m
 !
-! main program: dvrtma_debias_alaska_wind10m_g2
+! main program: dvrtma_debias_alaska_wind10m
 !
 ! prgmmr: Bo Cui           org: np/wx20        date: 2013-10-01
+!
+! Program history log:
+!  Date | Programmer | Comments
+!  -----|------------|---------
+!  2013-10-01 | Bo Cui       | Initial
+!  2023-01-13 | Bo Cui       | Update GRIB2 message to add 10 NCEP/GEFS ensemble members
 !
 ! abstract: get downscaled wind speed and wind direction
 !            products include 10%,50% & 90% probability forecast, ensemble mean, & spread
@@ -286,13 +292,31 @@ do ivar = 1, 2
     ipdt(11)=ipd11(ivar)
     ipdt(12)=ipd12(ivar)
 
-   ! read and process input member
+    ! iids(1) is for product generation center
+    ! ipdtmpl(5) is for generation process identifier
+    ! %iids(1)=  7: US National Weather Service - NCEP (WMC)
+    ! %iids(1) =54: Canadian Meteorological Service - Montreal (RSMC)s
+    ! %ipdtmpl(5)=114: NAEFS Products from joined NCEP,CMC global ensembles
+    ! %ipdtmpl(5)=107: Global Ensemble Forecast System (GEFS)
 
-    ipdt(17)=imem
+    ! read and process input member for NCEP 30 members
+
+    if(imem.le.30) then
+      ipdt(17)=imem
+      iids(1)=7
+    endif
 
     ! check if all member are from cmc ensmeble
 
     if(imem.le.20.and.ifallcmc.eq.1) ipdt(17)=20+imem
+
+    ! NCEP adds 10 members with ipdt(17) from 1 to 30, CMC has ipdt(17) from 21 to 40
+    ! after reading NCEP 30 members, adjust ipdt(17) starting with 21 for CMC ensemble
+
+    if(imem.gt.30) then
+       ipdt(17)=imem
+       iids(1)=54
+    endif
 
     fgrid_im=-9999.9999
 

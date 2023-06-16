@@ -4,6 +4,7 @@
 # Abstract: this script produces weights of ensemble member
 # Author: Bo Cui       
 # History: Oct 2010 - First implementation of this new script
+#         2022-07-03  Bo Cui - modified for 0.5 degree input
 ########################################
 
 set -x
@@ -34,7 +35,7 @@ do
  for ens in $MEMLIST    
  do
 
- ln -sf fnmoc_ge${ens}.t${CYC}z.pgrb2a_bcf${FHR} fcst_$ens.dat
+ ln -sf fnmoc_ge${ens}.t${CYC}z.pgrb2a.0p50_bcf${FHR} fcst_$ens.dat
 
  echo "&namin " >input_$ens
  echo "cfcst='fcst_$ens.dat'," >>input_$ens
@@ -46,7 +47,7 @@ do
  $EXECfnmoc/$pgm         <input_$ens > $pgmout.$FHR.${ens}_wt 2> errfile
  export err=$?;err_chk
 
- mv wght_$ens.dat fnmoc_ge${ens}.t${CYC}z.pgrb2a_wtf${FHR}
+ mv wght_$ens.dat fnmoc_ge${ens}.t${CYC}z.pgrb2a.0p50_wtf${FHR}
 
  done
 

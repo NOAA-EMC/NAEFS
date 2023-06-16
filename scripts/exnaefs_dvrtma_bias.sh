@@ -64,9 +64,27 @@ fi
 if [ -s $COMINRTMA/$afile ]; then
   cp $COMINRTMA/$afile .
 else
-  echo " FATAL ERROR: No RTMA Analysis"
-  export err=9; err_chk
-# exit
+  echo " Warning!!! There is no RTMA analysis, use previous 1 hour analysis"
+  CDATE=`$NDATE -01 $PDY$cyc`
+  PDY_m1=`echo $CDATE | cut -c1-8`
+  cyc_m1=`echo $CDATE | cut -c9-10`
+  if [ "$regid" = "conus" ]; then
+    COMINRTMA_m1=${COM_RTMA}/rtma2p5.${PDY_m1}
+    afile_m1=rtma2p5.t${cyc_m1}z.2dvaranl_ndfd.grb2_ext
+  elif [ "$regid" = "ak" ]; then
+    COMINRTMA_m1=${COM_RTMA}/${regid}rtma.${PDY_m1}
+    afile_m1=akrtma.t${cyc_m1}z.2dvaranl_ndfd_3p0.grb2 
+  else 
+    COMINRTMA_m1=${COM_RTMA}/${regid}rtma.${PDY_m1}
+    afile_m1=${regid}rtma.t${cyc_m1}z.2dvaranl_ndfd.grb2
+  fi 
+  if [ -s $COMINRTMA_m1/$afile_m1 ]; then
+    cp $COMINRTMA_m1/$afile_m1 $afile
+  else
+    echo " FATAL ERROR: No Current RTMA Analysis" $COMINRTMA/$afile
+    echo " FATAL ERROR: No Previous 1hr RTMA Analysis" $COMINRTMA_m1/$afile_m1
+    export err=1; err_chk
+  fi
 fi
 
 ###

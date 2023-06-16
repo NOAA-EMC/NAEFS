@@ -352,7 +352,9 @@ do ivar = 1, nvar
   ! skip the bias correction step for 3hrly variables
   ! skep tmax tmin TCDC and 2 flux variable 
 
-  if(gfldo%ipdtmpl(29).eq.1.and.gfldo%ipdtmpl(30).eq.3) goto 100
+  if(gfldo%ipdtlen.ge.29) then
+    if(gfldo%ipdtmpl(29).eq.1.and.gfldo%ipdtmpl(30).eq.3) goto 100
+  endif
 
   call debias_hrbrid(bias_ens,bias_gfs,fgrid_ens,fgrid_gfs,fgrid_ctl,maxgrd,weight)
 

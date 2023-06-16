@@ -122,7 +122,7 @@ env
 ####################
 $HOMEgefs/scripts/exnaefs_gefs_24hr_enscqpf.sh
 
-cat $pgmout.*
+cat $DATA/output
 msg="JOB COMPLETED NORMALLY"
 postmsg "$jlogfile" "$msg"
 

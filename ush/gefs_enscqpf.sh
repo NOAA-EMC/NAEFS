@@ -10,7 +10,7 @@ echo "AUTHOR: Yan Luo (wx22lu)"
 
 set -x 
 
- ls geprcp."t"$cyc"z"pgrb2_bc_06hf*  gepqpf."t"$cyc"z".pgrb2_bc_06hf* > cqpf.list
+ ls geprcp."t"$cyc"z".pgrb2_bc_06hf*  gepqpf."t"$cyc"z".pgrb2_bc_06hf* > cqpf.list
  cat cqpf.list
  sizelist=`ls -l cqpf.list | awk {'print $5'} `
  echo "sizelist == $sizelist"

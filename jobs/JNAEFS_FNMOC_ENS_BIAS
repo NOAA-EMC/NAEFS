@@ -81,14 +81,14 @@ export RUNJOB=${RUNJOB:-REGULAR}
 
 #####################################################################
 # BIASAVG  - Calculate the Bias of Ensemble Average 
-# BIASC00  - Calculate the Bias of Ensemble Control Test  
+# BIASC00  - Calculate the Bias of Ensemble Control Test 
 # BIASMEM  - Calculate the Bias of One Ensemble Member
 # BIASCDAS - Calculate the Difference Between GDAS and CDAS Analysis
 # BIASANL  - Calculate the Difference Between NCEP and FNMOC Analysis
 #####################################################################
 export BIASAVG=${BIASAVG:-NO}
-export BIASC00=${BIASC00:-NO} 
-export BIASMEM=${BIASMEM:-NO} 
+export BIASC00=${BIASC00:-NO}
+export BIASMEM=${BIASMEM:-NO}
 export BIASCDAS=${BIASCDAS:-YES}
 export BIASANL=${BIASANL:-YES}
 
@@ -124,12 +124,12 @@ export COMINnavgem=${COMINnavgem:-${DCOMROOT}/navgem}
 export COMINcfs=${COMINcfs:-$(compath.py ${envir}/com/cfs/${cfs_ver})}
 
 export COM_OUT=${COM_OUT:-$(compath.py -o $NET/${naefs_ver})}
-export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2a
-export COMOUTNCEP_M1=$COM_OUT/gefs.${PDYm1}/${cyc}/pgrb2a
-export COMOUT_M2=$COM_OUT/${RUN}.${PDYm2}/${cyc}/pgrb2a
+export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
+export COMOUTNCEP_M1=$COM_OUT/gefs.${PDYm1}/${cyc}/pgrb2ap5
+export COMOUT_M1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 
 mkdir -m 775 -p $COMOUT
-mkdir -m 775 -p $COMOUT_M2
+mkdir -m 775 -p $COMOUT_M1
 mkdir -m 775 -p $COMOUTNCEP_M1
 
 msg="HAS BEGUN on `hostname`"
@@ -143,7 +143,8 @@ env
 
 $HOMEfnmoc/scripts/exnaefs_fnmoc_ens_bias.sh
 
-cat $pgmout.00*
+cat $pgmout.000.anl
+cat $pgmout.000.mdf
 
 msg="JOB COMPLETED NORMALLY"
 postmsg "$jlogfile" "$msg"

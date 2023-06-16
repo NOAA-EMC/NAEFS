@@ -1,11 +1,13 @@
 #!/bin/sh
-#################################### FORECAST DEBIAS ###############################################
-echo "------------------------------------------"
-echo "Bias Correct FNMOC Global Ensemble Forecast "
-echo "------------------------------------------"
-echo "History: Oct 2010 - First implementation of this new script"
-echo "AUTHOR: Bo Cui  (wx20cb)"
-####################################################################################################
+#################################### FORECAST DEBIAS #######
+#echo "------------------------------------------"
+#echo "Bias Correct FNMOC Global Ensemble Forecast "
+#echo "------------------------------------------"
+# AUTHOR: Bo Cui  (wx20cb)
+# History:
+#    Oct 2010 - First implementation of this new script 
+#    2022-07-03  Bo Cui - modified for 0.5 degree input
+############################################################
 
 ### To submit this job for T00Z and T12Z, twice per day
 ### need pass the values of PDY, CYC, DATA, COMIN, COM, COMOUTBC, COMOUTAN and COMOUTWT
@@ -69,13 +71,9 @@ do
 
     fensmem=`echo $nens | cut -c2-3`
 
-    if [ $nfhrs -le 99 ];then
-      ifile_in=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.0${nfhrs}.${PDY}${cyc}
-    else
-      ifile_in=$COMINBC/ENSEMBLE.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
-    fi
+    ifile_in=$COMINBC/ENSEMBLE.halfDegree.MET.fcst_bc0${fensmem}.${nfhrs}.${PDY}${cyc}
 
-    ofile=fnmoc_ge${nens}.t${cyc}z.pgrb2a_bcf${nfhrs}
+    ofile=fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}
 
     icnt=0
     while [ $icnt -le 30 ]; do
@@ -94,12 +92,12 @@ do
 
         if [ "$SENDCOM" = "YES" ]; then
 
-          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a_anf$nfhrs ]; then
-            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a_anf$nfhrs $COMOUTAN/
+          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs ]; then
+            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs $COMOUTAN/
           fi
 
-          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a_wtf$nfhrs ]; then
-            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a_wtf$nfhrs $COMOUTWT/
+          if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs ]; then
+            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs $COMOUTWT/
           fi
         fi
 
@@ -122,7 +120,6 @@ do
 
   done
 done
-
 
 msg="HAS COMPLETED NORMALLY!"
 postmsg "$jlogfile" "$msg"
