@@ -1,4 +1,4 @@
-NAEFS v6.0.0 Implementation Instructions:
+NAEFS v7.0.0 Implementation Instructions:
 
 1. Checkout NAEFS repository
 
@@ -13,74 +13,90 @@ NAEFS v6.0.0 Implementation Instructions:
       all the executables will be generated and saved in the exec sub-directory.
 
 3. Start the test run
-   Check and modify (if it is necessary) job cards in sub-directory ecf/naefs
+   Check and modify (if it is necessary) job cards in sub-directory ecf
   
 4. Resources requirements
 
   (1) Compute resource information:
-      Computer: Current need around 10 nodes; future will need more nodes 
-      Please check the ecf sub-directory, the computer resource requirement
+      Computer: currently needs about 25 nodes (peak), no change in total nodes, but changed ncpus and mpiprocs settings
+      Please check the ecf directory, the computer resource requirement
       can be found in each jobs' ecf file
 
   (2) Disk space
-      Main change happen for new directories pgrb2ap5_bc, pgrb2ap5_an, pgrb2ap5_wt
-      - new pgrb2ap5_bc: 22GB, 0.5d bias corrected forecasts (3 hourly for day 8)
-      - new pgrb2ap5_an: 10GB, 0.5d anomaly forecast
-      - new pgrb2ap5_wt: 500mb, 0.5d weight for each member
-      - prcp_gb2: 1GB, 0.5d bias corrected prcp
-      - new ndgd_prcp_gb2: 1GB, 2.5km bias corrected and downscaled prcp for CONUS
+
+      NCEP GEFS ensmeble:
+
+      Main changes happen for directories with 10 more ensemble members,
+      disk space changes from 649GB to 848G per day 
+      - pgrb2ap5_bc:   40GB per cycle, 0.5d bias corrected forecasts (3 hourly for day 8)
+      - pgrb2ap5_an:   17GB per cycle, 0.5d anomaly forecast
+      - pgrb2ap5_wt:   13MB per cycle, 0.5d weight for each member
+      - prcp_bc_gb2:   611MB per cycle, 6-hour and 24-hour APCP 
+      - ndgd_prcp_gb2: 2.3GB per cycle, 6-hour and 24-hour APCP 
+      - gempak:        448GB for 30 members
+
+      FNMOC ensmeble:
+
+      Main changes happen for new directories pgrb2ap5 pgrb2ap5_bc, pgrb2ap5_an, pgrb2ap5_w,
+      disk space changes from 25GB to 142G per day
+      - new pgrb2ap5   : 2.1GB per cycle, 0.5d ensemble forecasts (3 hourly for day 8)
+      - new pgrb2ap5_bc: 1.4GB per cycle, 0.5d bias corrected forecasts (3 hourly for day 8)
+      - new pgrb2ap5_an: 8.8GB per cycle, 0.5d anomaly forecast
+      - new pgrb2ap5_wt: 8.2MB per cycle, 0.5d weight for each member
+      - gempak:          117GB, 0.5d bias corrected forecasts
+
+   (3) fix files are available at: /lfs/h1/ops/canned/packages/hps/naefs.v6.0.11/fix
+
 
 5. New Products
 
-   GEFS 0.5d bias corrected forecasts, 0.5d anomaly forecasts
+   GEFS 0.5d bias corrected forecasts, 0.5d anomaly forecasts for member 21 to 30
 
   (1) File names for GEFS bias corrected products  
-      GEFS filenames pgrb2ap5_bc/ge###.t##z.pgrb2a.0p50_bcf###                
+      GEFS filenames pgrb2ap5_bc/geMMM.tCCz.pgrb2a.0p50_bcfHHH                
 
   (2) File names for GEFS anomaly forecast  
-      GEFS filenames pgrb2ap5_an/ge###.t##z.pgrb2a.0p50_anf###                
+      GEFS filenames pgrb2ap5_an/geMMM.tCCz.pgrb2a.0p50_anfHHH                
 
-  (3) File names for GEFS anomaly forecast for ensemble average 
-      GEFS filenames pgrb2ap5_an/geavg.t##z.pgrb2a.0p50_anf###                
+  (3) File names for GEFS bias weight for each ensemble member 
+      GEFS filenames pgrb2ap5_wt/geMMM.tCCz.pgrb2a.0p50_wtfHHH                
 
-  (4) File names for GEFS EFI 
-      GEFS filenames pgrb2ap5_an/geefi.t##z.pgrb2a.0p50_bcf###                
+      where MMM=21, 22, ..., 30 and HHH=003, 006, 009, ...... 192, 198, 204,...,384.
 
-  (5) File names for GEFS bias weight for each ensemble member 
-      GEFS filenames pgrb2ap5_wt/ge###.t##z.pgrb2a.0p50_wtf###                
+   GEFS precipitation forecasts, contents change with 10 addded members
+  
+  (1) Files in prcp_bc_gb2
+      prcp_bc_gb2/geprcp.tCCz.pgrb2a.0p50.bc_06hfHHH: 34 records (old:24 records)  
+      prcp_bc_gb2/geprcp.tCCz.pgrb2a.0p50.bc_24hfHHH: 33 recordes (old:23 records)
 
-  (6) File names for ensemble based PQPF forecast
-      GEFS filenames prcp_gb2/gepqpf.tCCz.pgrb2a.0p50.24hf###                 
+  (2) Files in ndgd_prcp_gb2
+      prcp_bc_gb2/geprcp.tCCz.ndgd2p5_conus.06hfHHH: 31 recordes (old:21 records)
+      prcp_bc_gb2/geprcp.tCCz.ndgd2p5_conus.24hfHHH: 31 recordes (old:21 records)
 
-  (7) File names for ensemble quantitative precipitation forecast
-      GEFS filenames prcp_bc_gb2/geprcp.t##z.pgrb2a.0p50.bc_24hf###           
-                     prcp_bc_gb2/geprcp.t##z.pgrb2a.0p50.bc_06hf###
-                     prcp_bc_gb2/gepqpf.t##z.pgrb2a.0p50.bc_24hf###
-                     prcp_bc_gb2/gepqpf.t##z.pgrb2a.0p50.bc_06hf###
+      where HHH=006, 012, 018, ...... 198, 204,...,384.
 
-  (8) File names for extreme precipitation forecast                     
-      GEFS filenames prcp_bc_gb2/geprcp.t##z.pgrb2a.0p50.anvf###              
-                     prcp_bc_gb2/geprcp.t##z.pgrb2a.0p50.efif###
+  (1) Replacing the FNMOC sub-directory pgrb2a with pgrb2ap5
 
-  (9) File names for quantitative precipitation forecast for CONUS       
-      GEFS filenames ndgd_prcp_gb2/geprcp.t##z.ndgd2p5_conus.24hf###.gb2      
-                     ndgd_prcp_gb2/geprcp.t##z.ndgd2p5_conus.06hf###.gb2
-                     ndgd_prcp_gb2/gepqpf.t##z.ndgd2p5_conus.24hf###.gb2
-                     ndgd_prcp_gb2/gepqpf.t##z.ndgd2p5_conus.06hf###.gb2
+      File names are changed to
+      pgrb2ap5/geavg.tCCz.pgrb2a.0p50fHHH  
+      pgrb2ap5/gespr.tCCz.pgrb2a.0p50fHHH
 
+  (2) Replacing the FNMOC sub-directory pgrb2a_bc with pgrb2ap5_bc 
 
-   CMC 0.5d raw and bias corrected forecasts
+      File names are changed to
+      pgrb2ap5_bc/geavg.tCCz.pgrb2a.0p50_bcfHHH  
+      pgrb2ap5_bc/gespr.tCCz.pgrb2a.0p50_bcfHHH
 
-  (1) File names for CMC raw ensmeble forecast
-      CMC filenames pgrb2ap5/cmc_ge###.t##z.pgrb2a.0p50.f###                
+  (3) Replacing the FNMOC sub-directory pgrb2a_an with pgrb2ap5_an 
 
-  (2) File names for CMC bias corrected ensmeble forecast
-      CMC filenames pgrb2ap5_bc/cmc_ge###.t##z.pgrb2a.0p50_bcf###                
+      File names are changed to
+      pgrb2ap5_an/geavg.tCCz.pgrb2a.0p50_anfHHH  
+      pgrb2ap5_an/gespr.tCCz.pgrb2a.0p50_anfHHH
 
-   NAEFS 0.5d bias corrected forecasts
+  (4) Replacing the FNMOC sub-directory pgrb2a_wt with pgrb2ap5_wt 
 
-  (1) File names for NAEFS EFI 
-      GEFS filenames pgrb2ap5_an/naefs_geefi.t##z.pgrb2a.0p50_bcf###                
+      File names are changed to
+      pgrb2ap5_wt/geavg.tCCz.pgrb2a.0p50_wtfHHH  
+      pgrb2ap5_wt/gespr.tCCz.pgrb2a.0p50_wtfHHH
 
-
-
+      where HHH=003, 006, 009, ...... 192, 198, 204,...,384.
