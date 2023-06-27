@@ -1,0 +1,144 @@
+Release Note: NAEFS.v7.0.0
+
+v4.0.0  released Jan 28. 2014
+v4.0.1  released May 20. 2014
+v4.0.2  released May 20. 2014
+v4.0.3  released May/Jun 2015
+v5.0.0  released Mar 29  2016
+v6.0.3  released Aug 18  2018
+v6.0.4  released Sep 18  2018
+v6.0.5  released Sep 20  2018
+v6.0.10 released May 22  2020
+v6.1.0  released Dec 06  2021
+
+NAEFS upgrade
+
+- Added GEFS ensemble members from 21 to 30 to all NAEFS products
+- Upgrade FNMOC ensembl data from using 1 degree data to 0.5 degree.
+
+DESCRIPTION OF CHANGE:  
+
+The modified J-jobs and scripts/ush include:
+
+FNMOC Jobs
+
+1. jobs/JNAEFS_FNMOC_ENS_BIAS
+   1) scripts/exnaefs_fnmoc_ens_bias.sh
+   - modified for 0.5d ensemble data input
+
+2. jobs/JNAEFS_FNMOC_ENS_DEBIAS
+   1) scripts/exnaefs_fnmoc_ens_debias.sh
+   2) ush/fnmocens_avgspr.sh                 
+   3) ush/fnmocens_bc_avgspr.sh                 
+   4) ush/fnmocens_weights.sh                 
+   - modified for 0.5d ensemble data input with 3 hourly from 000-192 hr
+   5) ush/fnmocens_climate_anomaly.sh           
+   - modified for 0.5d data input
+   - modified for 0.5d climate mean and standard deviation files
+
+3. jobs/JNAEFS_FNMOC_ENS_GEMPAK
+   1) scripts/exnawips_fnmoc.sh
+   - modified for 0.5d data input
+
+4.  ecf/jnaefs_fnmoc_ens_debias.ecf
+   - modified ncpus and mpiprocs setting from 65 to 97
+
+NCEP/GEFS Jobs
+
+1. jobs/JGEFS_BIAS
+  1) scripts/exnaefs_gefs_bias.sh
+   - modified to add GEFS ensemble member from 21 to 30
+
+2. jobs/JGEFS_DEBIAS
+  1) scripts/exnaefs_gefs_debias.sh
+  2) ush/gefs_climate_anomaly.sh 
+   - modified to add GEFS ensemble member from 21 to 30
+  3) ecf/jnaefs_gefs_debias.ecf            
+   - modified ncpus and mpiprocs setting from 22 to 32
+
+3. jobs/JNAEFS_GEFS_PROB_AVGSPR
+  1) ush/naefs_climate_efi.sh
+  2) ush/naefs_climate_anv.sh
+  3) ush/naefs_climate_anomaly.sh
+   - modified to add GEFS ensemble member from 21 to 30
+
+4. jobs/JNAEFS_GEFS_DEBIAS_GEMPAK
+   - modified to add GEFS ensemble member from 21 to 30
+
+5. jobs/JNAEFS_GEFS_DVRTMA_PROB_AVGSPR_CONUS
+  1) scripts/exnaefs_dvrtma_prob_avgspr_conus.sh
+   - modified to add GEFS ensemble member from 21 to 30
+
+6. jobs/JNAEFS_GEFS_DVRTMA_PROB_AVGSPR_AK
+   1) scripts/exnaefs_dvrtma_prob_avgspr_ak.sh.ecf
+    - modified to add GEFS ensemble member from 21 to 30
+
+7. jobs/JNAEFS_GEFS_6HR_CQPF 
+  1) ush/gefs_enswgrp.sh              
+  2) ush/gefs_enscqpf.sh              
+  2) sorc/gefs_enscqpf_6hr.fd/CQPF_6HR.f90
+   - modified to change GEFS ensemble size from 22 to 32
+
+8. jobs/JNAEFS_GEFS_24HR_CQPF 
+  1) sorc/gefs_enscqpf_24hr.fd/CQPF_24HR.f90
+   - modified to change GEFS ensemble size from 22 to 32
+
+9. jobs/JNAEFS_GEFS_ANFEFI_ACPR
+  1) sorc/gefs_climate_anfefi_acpr.fd/gefs_climate_anfefi_acpr.f90
+   - modified to change GEFS ensemble size from 20 to 30
+
+10. jobs/JNAEFS_GEFS_NDGD_CQPF
+  1) sorc/conus_ndgd_enscqpf.fd/DSCQPF.f90
+   - modified to add GEFS ensemble member from 21 to 30
+
+11. jobs/JNAEFS_GEFS_PGRB_ENSPQPF
+  1) script/exnaefs_gefs_pgrb_enspqpf.sh    
+  2) sorc/gefs_pgrb_enspqpf.fd/gefs_pgrb_enspqpf.f90
+   - modified GEFS ensemble size from 21 to 31
+
+
+NAEFS Jobs
+
+1. jobs/JNAEFS_PROB_AVGSPR
+  1) scripts/exnaefs_prob_avgspr.sh
+  2) ush/naefs_climate_efi.sh
+  3) ush/naefs_climate_anv.sh
+  4) ush/naefs_climate_anomaly.sh
+   - modified to add GEFS ensemble member from 21 to 30
+
+2. jobs/JNAEFS_DVRTMA_PROB_AVGSPR_CONUS
+  1) scripts/exnaefs_dvrtma_prob_avgspr_conus.sh
+   - modified to add GEFS ensemble member from 21 to 30
+  2) sorc/dvrtma_debias_conus.fd/dvrtma_debias_conus.f90
+   - remove 2 variables not calculated 
+  3) sorc/dvrtma_debias_conus_tmaxmin.fd/dvrtma_debias_conus_tmaxmin.f90
+   - update GRIB2 message to add 10 NCEP/GEFS ensemble members
+  4) sorc/dvrtma_debias_conus_wind10m.fd/dvrtma_debias_conus_wind10m.f90
+   - update GRIB2 message to add 10 NCEP/GEFS ensemble members
+  5) sorc/cmce_adjust_tmaxmin.fd/cmce_adjust_tmaxmin.f90
+   - update CMC GRIB2 message with 10 more NCEP/GEFS members added to the combination
+  6) sorc/cmce_adjust_wind10m.fd/cmce_adjust_wind10m.f90
+   - update CMC GRIB2 message with 10 more NCEP/GEFS members added to the combination
+
+3. jobs/JNAEFS_DVRTMA_PROB_AVGSPR_AK
+  1) scripts/exnaefs_dvrtma_prob_avgspr_ak.sh.ecf
+   - modified to add GEFS ensemble member from 21 to 30
+  2) sorc/dvrtma_debias_alaska.fd/dvrtma_debias_alaska.f90
+   - remove 2 variables not calculated 
+
+
+BENEFIT OF CHANGE: 
+
+NAEFS v7.0 performance will increase over NAEFS v6.1 with the addition of 10 more GEFS members.  
+
+USER IMPACT STATEMENT:
+
+FNMOC ensembl data will be upgraded from using 1 degree data to 0.5 degree.
+GEFS includes 10 new calibrated membes from 21 to 30. No NCEP GEFS/NAEFS file format are changed.
+
+TECHNICAL IMPACT STATEMENT:
+
+No impacts to data distributed via all distribution platforms are specified.
+
+
+
