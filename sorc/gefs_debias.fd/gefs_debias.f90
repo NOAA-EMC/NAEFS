@@ -345,6 +345,8 @@ do ivar = 1, nvar
       fgrid_ctl(1:maxgrd)=gfld%fld(1:maxgrd)
     endif
 
+    call gf_free(gfld)
+
   endif
 
   ! end of GFS and ensemble control forecast read in
