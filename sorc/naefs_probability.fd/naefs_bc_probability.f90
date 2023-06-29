@@ -1,4 +1,4 @@
-program naefs_bc_probability_g2
+        program naefs_bc_probability_g2
 !
 ! main program: naefs_bc_probability_g2
 !
@@ -311,6 +311,8 @@ do ifile=1,tfiles
     idisc=-1;  ipdtn=-1;   igdtn=-1
     call init_parm(ipdtn,ipdt,igdtn,igdt,idisc,iids)
     call getgb2(icfipg(ifile),0,jskp,jdisc,jids,jpdtn,jpdt,jgdtn,jgdt,unpack,jskp,gfld,iret)
+    maxgrd=gfld%ngrdpts
+    call gf_free(gfld)
     if(iret.eq.0) goto 100
   endif       
 enddo
@@ -319,9 +321,6 @@ enddo
 
 if(iret.ne.0) then; print*,' getgbeh, cannot get maxgrd ';endif
 if(iret.ne.0) goto 1020
-
-maxgrd=gfld%ngrdpts
-call gf_free(gfld)
 
 ! get NCEP ensemble ipdt message: fixed surface and its scaled value
 
@@ -942,8 +941,16 @@ do ifile=1,nfiles
   call baclose(icfipg(ifile),iret)
 enddo
 
-call baclose(icfipg1,iret)
-call baclose(icfipg2,iret)
+if(ifdebias.eq.1) then 
+  call baclose(icfipg2,iret)
+  call baclose(icfipg5,iret)
+  if(ifhr.ge.6) then
+    call baclose(icfipg1,iret)
+    call baclose(icfipg3,iret)
+    call baclose(icfipg4,iret)
+    call baclose(icfipg6,iret)
+  endif
+endif
 
 call baclose(icfopg1,iret)
 call baclose(icfopg2,iret)
