@@ -15,7 +15,7 @@ model=naefs
 #%include <model_ver.h>
 
 ## HOMEnaefs will de defined by the eclfow apps
-export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/Bo.Cui/naefs.v6.1.0}
+export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/$LOGNAME/naefs.v7.0.0}
 
 source ${HOMEnaefs}/versions/run.ver
 
@@ -42,24 +42,18 @@ module list
 
 ##
 
-export direxp=naefs.v6.1.0
+export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20210824
+export PDY=20230706
 export cyc=00               
 export job=gefs_bias_$PDY$cyc
 
-export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/$direxp
-export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/$direxp
-export NWROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui
-export DATAROOT=/lfs/h2/emc/ptmp/Bo.Cui/tmpnwprd
-
-#export COMROOT=/lfs/h1/emc/vpppg/noscrub/Bo.Cui/com
-#export DCOMROOT=/lfs/h1/emc/vpppg/noscrub/Bo.Cui/dcom
-#export COMROOTp1=/lfs/h1/emc/vpppg/noscrub/Bo.Cui/com
-export COMROOT=/lfs/h1/ops/canned/com                    
-export DCOMROOT=/lfs/h1/ops/canned/dcom                     
+export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+export NWROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
+export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
 
 # EXPORT list here
 
@@ -68,9 +62,10 @@ export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
 #export cyc=%CYC%
 
-export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui
-export COMPATH=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/canned/com/naefs:/lfs/h2/emc/vpppg/noscrub/Bo.Cui/canned/com/gefs:/lfs/h2/emc/vpppg/noscrub/Bo.Cui/canned/com/cfs
-export COMROOT=/lfs/h2/emc/ptmp/Bo.Cui/com
+export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
+export COMINbias=/lfs/h1/ops/prod/com/naefs/v6.1
+export COMINcmce=/lfs/h1/ops/prod/com/naefs/v6.1
+export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 export KEEPDATA=YES
 
 # CALL executable job script here

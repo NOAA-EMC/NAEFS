@@ -46,8 +46,8 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20230323
-export cyc=12               
+export PDY=20230706
+export cyc=00               
 export job=gefs_debias_$PDY$cyc
 
 export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
@@ -62,6 +62,7 @@ export IOBUF_PARAMS='*:sync,%%stdout:sync'
 #export cyc=%CYC%
 
 export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
+export COMINbias=/lfs/h1/ops/prod/com/naefs/v6.1
 #export COMPATH=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/canned/com/naefs:/lfs/h1/ops/canned/com/gefs:/lfs/h1/ops/canned/com/cfs:/lfs/h2/emc/vpppg/noscrub/$LOGNAME/canned/com/gefs
 export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 

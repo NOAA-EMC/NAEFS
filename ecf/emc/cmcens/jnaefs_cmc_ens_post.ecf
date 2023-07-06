@@ -44,7 +44,7 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20230420
+export PDY=20230706
 export cyc=00               
 export job=naefs_cmc_ens_post_$PDY$cyc
 
@@ -52,9 +52,6 @@ export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
 export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
 export NWROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
 export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
-
-#export COMROOT=/lfs/h1/ops/canned/com                    
-#export DCOMROOT=/lfs/h1/ops/canned/dcom                     
 
 # EXPORT list here
 
