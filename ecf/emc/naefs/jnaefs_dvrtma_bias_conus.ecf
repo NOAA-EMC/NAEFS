@@ -41,7 +41,7 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco 
 
-export PDY=20230331
+export PDY=20230706
 export cyc=00               
 export job=naefs_dvrtma_bias_conus_$PDY$cyc
 
@@ -50,8 +50,6 @@ export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
 export NWROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
 export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
 
-export COMROOT=/lfs/h1/ops/canned/com                    
-export DCOMROOT=/lfs/h1/ops/canned/dcom                     
 
 # EXPORT list here
 
@@ -60,8 +58,8 @@ export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
 export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
 #export COMPATH=/lfs/h1/ops/canned/com/gefs:/lfs/h1/ops/canned/com/rtma:/lfs/h1/ops/canned/com/naefs                            
-#export COM_RTMA=/lfs/h1/ops/prod/com/rtma/v2.10
-export COM_RTMA=/lfs/h2/emc/vpppg/noscrub/bo.cui/com/rtma/v2.9
+export COM_RTMA=/lfs/h1/ops/prod/com/rtma/v2.10
+export COM_DV=/lfs/h1/ops/prod/com/naefs/v6.1
 export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 export KEEPDATA=YES
 
