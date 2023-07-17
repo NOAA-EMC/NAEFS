@@ -25,7 +25,7 @@ module load iobuf/${iobuf_ver}
 module load craype-hugepages2M
 module list
 
-export export OMP_NUM_THREADS=1
+export OMP_NUM_THREADS=1
 
 # EXPORT list here
 export APRUNCQPF="mpiexec -np 64 --cpu-bind core cfp  "

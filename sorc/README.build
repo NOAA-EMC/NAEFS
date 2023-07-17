@@ -1,7 +1,6 @@
 To build codes:
 
-    cd /nwprod/naefs.v7.0.0/sorc
-     1) ./build.sh 
+     1) ./build.sh >& naefs.compile.log
      2) ./install.sh
 
 
