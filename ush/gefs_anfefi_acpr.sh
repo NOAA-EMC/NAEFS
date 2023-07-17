@@ -1,3 +1,4 @@
+#!/bin/sh
 ########################################
 # Script: gefs_anomefi_acpr.sh 
 # ABSTRACT:  This script produces GRIB2
