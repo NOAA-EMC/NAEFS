@@ -110,7 +110,7 @@ cd $DATA
 for ftype in pqpf prcp; do
   for hrinter in 24h 06h; do
     cat ${hrinter}_${ftype}/output 
-  Done
+  done
 done
 
 ########################################################
