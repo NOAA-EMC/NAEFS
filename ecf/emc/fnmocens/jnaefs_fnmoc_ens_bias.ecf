@@ -40,8 +40,8 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20220706
-export cyc=18               
+export PDY=20230720
+export cyc=00               
 export job=naefs_fnmoc_ens_bias_$PDY$cyc
 
 export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp

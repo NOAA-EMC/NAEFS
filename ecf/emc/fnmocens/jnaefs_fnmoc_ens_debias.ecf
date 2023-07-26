@@ -46,8 +46,8 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20220703
-export cyc=18               
+export PDY=20230720
+export cyc=00               
 export job=naefs_fnmoc_ens_debia_$PDY$cyc
 
 export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
@@ -59,6 +59,7 @@ export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
 
 # EXPORT list here
 
+export export OMP_NUM_THREADS=1
 export APRUN="mpiexec -np 97 --cpu-bind core cfp "         
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
