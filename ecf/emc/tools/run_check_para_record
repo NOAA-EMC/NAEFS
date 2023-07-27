@@ -1,0 +1,40 @@
+#####################################
+# input the following 3 parametera"
+# envir:
+# CDATE: 
+# COM_IN
+#####################################
+
+export CDATE=2022080800
+export envir=para
+export COM=/lfs/h1/ops/prod/com/naefs/v6.1                           
+export COM=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs/v7.0                  
+
+##################################
+# no need to modifya the following 
+##################################
+
+nhours=/nwprod/util/exec/ndate
+
+ndays=1
+iday=1
+
+while [ $iday -le $ndays ]; do
+
+  export PDY=`echo $CDATE | cut -c1-8`
+  export cyc=`echo $CDATE | cut -c9-10`
+
+  check_record_ak_gefs.sh gefs  alaska_3p0 > output_record_ak_gefs.$CDATE 
+  check_record_ak_gefs.sh naefs alaska_3p0 > output_record_ak_naefs.$CDATE 
+  check_record_conus_gefs.sh gefs conus_ext_2p5 > output_record_conus_gefs.$CDATE 
+  check_record_conus_gefs.sh naefs conus_ext_2p5 > output_record_conus_naefs.$CDATE 
+
+  check_record_gefs_avgspr.sh gefs > output_record_gefs.$CDATE 
+  check_record_gefs_avgspr.sh naefs > output_record_naefs.$CDATE 
+  check_record_naefs_an.sh    gefs  > output_record_gefs_an.$CDATE 
+
+  iday=`expr $iday + 1`
+  export CDATE=`$NDATE +06 $CDATE`
+
+done
+
