@@ -15,7 +15,7 @@ model=naefs
 #%include <model_ver.h>
 
 ## HOMEnaefs will de defined by the eclfow apps
-export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/Bo.Cui/naefs.v6.1.0}
+export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/$LOGNAME/naefs.v7.0.0}
 
 source ${HOMEnaefs}/versions/run.ver
 
@@ -36,21 +36,21 @@ module list
 
 ##
 
-export direxp=naefs.v6.1.0
+export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20210824
+export PDY=20230720
 export cyc=00               
 export job=naefs_dvrtma_bias_ak_gempak_$PDY$cyc
 
-export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/$direxp
-export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/$direxp
-export NWROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui
-export DATAROOT=/lfs/h2/emc/ptmp/Bo.Cui/tmpnwprd
+export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+export NWROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
+export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
 
 #export COMROOT=/lfs/h1/ops/canned/com                    
-#export COMROOT=/lfs/h2/emc/vpppg/noscrub/Bo.Cui/com      
+#export COMROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/com      
 export KEEPDATA=YES
 
 # EXPORT list here
@@ -59,8 +59,10 @@ export APRUN="mpiexec -np 1 --cpu-bind core cfp "
 
 #export cyc=%CYC%
 
-export COMPATH=/lfs/h1/ops/canned/com/naefs
-export COMROOT=/lfs/h2/emc/ptmp/Bo.Cui/com
+#export COMPATH=/lfs/h1/ops/canned/com/naefs
+
+export COMPATH=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs
+export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 
 # CALL executable job script here
 ${HOMEnaefs}/jobs/JNAEFS_DVRTMA_BIAS_ALASKA_GEMPAK

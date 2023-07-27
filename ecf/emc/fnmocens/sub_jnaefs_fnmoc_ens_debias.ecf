@@ -46,9 +46,7 @@ module list
 
 ##
 
-#export direxp=naefs.v7.0.0
 #export envir=prod
-export RUN_ENVIR=nco
 
 export PDY=YYMMDD
 export cyc=CYC

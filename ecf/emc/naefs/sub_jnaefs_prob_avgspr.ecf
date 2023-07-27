@@ -14,8 +14,11 @@
 model=naefs
 #%include <model_ver.h>
 
+cd $PBS_O_WORKDIR
+cd ../../..
+export HOMEnaefs=`pwd`
 ## HOMEnaefs will de defined by the eclfow apps
-export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/$LOGNAME/naefs.v7.0.0}
+#export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/$LOGNAME/naefs.v7.0.0}
 
 source ${HOMEnaefs}/versions/run.ver
 
@@ -42,21 +45,15 @@ module list
 
 ##
 
-export direxp=naefs.v7.0.0
 #export envir=prod
-export RUN_ENVIR=nco
 
-export PDY=20230323
-export cyc=00               
+export PDY=YYMMDD
+export cyc=CYC
 export job=naefs_prob_avgspr_$PDY$cyc
 
-export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
-export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+#export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+export HOMEgefs=$HOMEnaefs
 export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
-
-#export COMROOT=/lfs/h1/ops/canned/com                    
-#export COMROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/com     
-#export DCOMROOT=/lfs/h1/ops/canned/dcom                     
 
 # EXPORT list here
 
@@ -72,9 +69,6 @@ export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 export COM_NCEPANL=/lfs/h1/ops/prod/com/naefs/v6.1
 export COM_CMCANL=/lfs/h1/ops/prod/com/naefs/v6.1
 export COM_FENSANL=/lfs/h1/ops/prod/com/naefs/v6.1
-
-# for test
-#export DCOM=/lfs/h1/ops/prod/com/naefs/v6.1
 
 export KEEPDATA=YES
 export SENDDBN=NO

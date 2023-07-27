@@ -43,7 +43,6 @@ module load craype-hugepages2M
 module list
 
 #export envir=prod
-export RUN_ENVIR=nco
 
 export PDY=YYMMDD   
 export cyc=CYC              

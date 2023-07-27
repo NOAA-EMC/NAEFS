@@ -72,6 +72,7 @@ export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
 export COMPATH=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs
 export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 export COM_DV=/lfs/h1/ops/prod/com/naefs/v6.1
+export COM_CMCANL=/lfs/h1/ops/prod/com/naefs/v6.1
 
 export KEEPDATA=YES
 export SENDDBN=NO

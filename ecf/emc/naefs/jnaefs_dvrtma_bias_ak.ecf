@@ -41,7 +41,7 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco
 
-export PDY=20230706
+export PDY=20230720
 export cyc=00               
 export job=naefs_dvrtma_bias_ak_$PDY$cyc
 
@@ -59,10 +59,9 @@ export IOBUF_PARAMS='*:sync,%%stdout:sync'
 #export cyc=%CYC%
 
 export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
+#export COMPATH=/lfs/h1/ops/canned/com/gefs:/lfs/h1/ops/canned/com/rtma:/lfs/h1/ops/canned/com/naefs
 
-export COM_RTMA=/lfs/h1/ops/prod/com/rtma/v2.10
 export COM_DV=/lfs/h1/ops/prod/com/naefs/v6.1
-
 export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 export KEEPDATA=YES
 
