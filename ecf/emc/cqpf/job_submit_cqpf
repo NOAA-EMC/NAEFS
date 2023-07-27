@@ -1,0 +1,68 @@
+CDATE=2023072512
+
+CDATEm5=`$NDATE -120 $CDATE`
+job_cp_cqpf_dat $CDATEm5
+
+ntimes=1
+iday=1
+
+while [ $iday -le $ntimes ]; do
+  export PDY=`echo $CDATE | cut -c1-8`
+  export cyc=`echo $CDATE | cut -c9-10`
+  export YYMMDD=`echo $CDATE | cut -c1-8`
+  export CYC=`echo $CDATE | cut -c9-10`
+  echo " day " $PDY$cyc
+
+  job=sub_JNAEFS_GEFS_PGRB_ENSPQPF.ecf                     
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  job=sub_JNAEFS_GEFS_6HR_CQPF.ecf
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  sleep 3600
+
+  job=sub_JNAEFS_GEFS_24HR_CQPF.ecf 
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  sleep 3600
+
+  job=sub_JNAEFS_GEFS_CLIM_ANFEFI.ecf
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  sleep 3600
+
+  job=sub_JNAEFS_NDGD_CQPF.ecf       
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  sleep 3600
+
+  job=sub_JNAEFS_GEFS_CQPF_GEMPAK.ecf
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  job=sub_JNAEFS_NDGD_CQPF_GEMPAK.ecf
+  sed -e "s/YYMMDD/$YYMMDD/" \
+      -e "s/CYC/$CYC/" \
+      $job > $job.temp
+  qsub $job.temp
+
+  iday=`expr $iday + 1`
+  CDATE=`$NDATE +06 $CDATE`
+done

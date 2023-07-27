@@ -1,0 +1,30 @@
+
+#CDATE=2023032000
+CDATE=$1             
+ndays=5 
+
+# copy 6 files from v6.1 to v7.0
+
+COM_IN=/lfs/h1/ops/prod/com/naefs/v6.1
+COM_OUT=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs/v7.0
+
+iday=1
+while [ $iday -le $ndays ]; do
+
+  export PDY=`echo $CDATE | cut -c1-8`
+  export cyc=`echo $CDATE | cut -c9-10`
+
+  for cyc in 00 06 12 18; do
+    mkdir -p $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2
+    cp $COM_IN/gefs.$PDY/$cyc/prcp_bc_gb2/*dat $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2
+    cp $COM_IN/gefs.$PDY/$cyc/prcp_bc_gb2/*txt $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2
+  done
+
+  iday=`expr $iday + 1`
+  CDATE=`$NDATE +24 $CDATE`
+
+  ls $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2/*dat
+  ls $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2/*txt
+done
+
+
