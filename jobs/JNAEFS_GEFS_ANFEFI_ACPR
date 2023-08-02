@@ -11,7 +11,6 @@
 # for the NCO running enviroment
 ####################################################
 
-export RUN_ENVIR=${RUN_ENVIR:-nco}
 set -xa
 
 # JY module load grib_util/1.0.3
@@ -26,12 +25,6 @@ export RUN=${RUN:-gefs}
 #########################################
 # Run config file to get input parameters
 #########################################
-
-if [ "$RUN_ENVIR" = dev ]      ### For Developers
-then
-  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/gefs_cqpf_24hr_config}
-  . $PARA_CONFIG
-fi
 
 export PS4='$SECONDS + '
 date

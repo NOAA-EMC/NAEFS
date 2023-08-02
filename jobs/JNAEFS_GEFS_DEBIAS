@@ -9,7 +9,6 @@
 # not they will take the default values which is set
 # for the NCO running enviroment
 #######################################################
-export RUN_ENVIR=${RUN_ENVIR:-nco}
 
 set -xa
 
@@ -22,11 +21,6 @@ export RUN=${RUN:-gefs}
 ###########################################
 # Run config file to get input parameters
 ###########################################
-
-if [ "$RUN_ENVIR" = dev ]; then  
-  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/gefs_debias_config}
-  . $PARA_CONFIG
-fi
 
 export PS4='${PMI_FORK_RANK}: $SECONDS + '
 date

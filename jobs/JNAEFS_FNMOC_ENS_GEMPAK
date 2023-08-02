@@ -19,19 +19,12 @@ export PS4='${PMI_FORK_RANK}: $SECONDS + '
 date
 
 #####################################################################################
-# This block is for Developer's test run:
-# Run config file to get input parameters
-# This config file should define the following variables
 # DATA_IN: Location of working directory, default to /lfs/f1/ops/${envir}/tmp
 # SENDECF: If the job is to be running using ecFLOW, default to YES
 # SENDDBN: Set to NO for developers, default to YES
 # COM_IN:  Directory for input files, default to /com/$NET/${envir}
 # COM_OUT: Directory for output file, default to /com/$NET/${envir}
 #####################################################################################
-if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from the SMS script
-then
-   export jlogfile=/dev/null
-fi
 
 ####################################
 # obtain unique process id (pid) and make temp directory

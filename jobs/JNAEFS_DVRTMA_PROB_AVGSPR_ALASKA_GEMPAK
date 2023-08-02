@@ -15,14 +15,6 @@ set -xa
 export PS4='${PMI_FORK_RANK}: $SECONDS + '
 date
 
-###########################################
-# Run config file to get input parameters
-###########################################
-if [ "$RUN_ENVIR" = dev ]      ### For Developers, "group_name" is passed from the SMS script
-then
-  export jlogfile=/dev/null
-fi
-
 ########################################################
 # obtain unique process id (pid) and make temp directory
 ########################################################

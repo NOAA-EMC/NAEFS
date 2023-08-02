@@ -11,8 +11,6 @@
 # for the NCO running enviroment
 ####################################################
 
-export RUN_ENVIR=${RUN_ENVIR:-nco}
-
 set -xa
 
 ulimit -s unlimited
@@ -24,16 +22,6 @@ ulimit -c 0
 
 export NET=naefs 
 export RUN=naefs
-
-#########################################
-# Run config file to get input parameters
-#########################################
-
-if [ "$RUN_ENVIR" = dev ]      ### For Developers
-then
-  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/dvrtma_avgspr_config}
-  . $PARA_CONFIG
-fi
 
 export PS4='$SECONDS + '
 date

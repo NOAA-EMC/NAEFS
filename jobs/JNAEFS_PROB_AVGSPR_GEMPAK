@@ -30,11 +30,6 @@ export cycle=t${cyc}z
 ####################################
 # File To Log Msgs
 ####################################
-if [ $RUN_ENVIR = dev ]
-then
-   # DEV
-   export jlogfile=/dev/null
-fi
 export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
 ####################################

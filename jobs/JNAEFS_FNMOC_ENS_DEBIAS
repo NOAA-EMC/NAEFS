@@ -9,7 +9,6 @@
 # not they will take the default values which is set
 # for the NCO running enviroment
 #######################################################
-export RUN_ENVIR=${RUN_ENVIR:-nco}
 
 set -xa
 
@@ -20,21 +19,12 @@ export NET=${NET:-naefs}
 export RUN=${RUN:-fens}
 
 #####################################################################################
-# This block is for Developer's test run:
-# Run config file to get input parameters
-# This config file should define the following variables
 # DATAROOT: Location of working directory, default to /lfs/f1/ops/${envir}/tmp
 # SENDECF: If the job is to be running using SMS, default to YES
 # SENDDBN: Set to NO for developers, default to YES
 # COM_IN:  Directory for input files, default to ${COMROOT}/$NET/${envir}
 # COM_OUT: Directory for output file, default to ${COMROOT}/$NET/${envir}
 #####################################################################################
-
-if [ "$RUN_ENVIR" = dev ]      ### For Developers
-then
-   PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/fnmoc_debias_config}
-   . $PARA_CONFIG
-fi
 
 export PS4='${PMI_FORK_RANK}: $SECONDS + '
 # JY export PS4='${PMI_FORK_RANK}: $SECONDS `basename $0` + '

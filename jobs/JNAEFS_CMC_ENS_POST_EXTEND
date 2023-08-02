@@ -9,7 +9,6 @@
 # not they will take the default values which is set
 # for the NCO running enviroment
 #####################################################
-export RUN_ENVIR=${RUN_ENVIR:-nco}
 
 set -xa
 
@@ -18,16 +17,6 @@ set -xa
 ####################################
 export NET=${NET:-naefs}
 export RUN=${RUN:-cmce}
-
-#########################################
-# Run config file to get input parameters
-#########################################
-
-if [ "$RUN_ENVIR" = dev ]      ### For Developers
-then
-  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/cmce_post_config}
-  . $PARA_CONFIG
-fi
 
 export PS4='$SECONDS + '
 date

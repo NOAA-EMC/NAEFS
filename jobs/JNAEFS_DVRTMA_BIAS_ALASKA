@@ -10,7 +10,6 @@
 # not they will take the default values which is set
 # for the NCO running enviroment
 ####################################################
-export RUN_ENVIR=${RUN_ENVIR:-nco}
 
 set -xa
 
@@ -20,16 +19,6 @@ set -xa
 
 export NET=naefs
 export RUN=naefs
-
-#########################################
-# Run config file to get input parameters
-#########################################
-
-if [ "$RUN_ENVIR" != nco ]      ### For Developers
-then
-  PARA_CONFIG=${PARA_CONFIG:-${PACKAGEROOT}/${direxp}/parm/dvrtma_bias_conus_config}
-  . $PARA_CONFIG
-fi
 
 export PS4='$SECONDS + '
 date
