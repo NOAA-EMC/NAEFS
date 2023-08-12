@@ -258,7 +258,7 @@ do ii = 1, 1
      fmon(1) = gamma1(ij)
      fmon(2) = gamma2(ij)
      
-     if(fmon(1).eq.0.D0.and.bmap(ij).eq..False.) then
+     if(fmon(1).eq.0.D0.or.bmap(ij).eq..False.) then
         efi(ij)=-99.99
         anom(ij)=-99.99
       goto 200
