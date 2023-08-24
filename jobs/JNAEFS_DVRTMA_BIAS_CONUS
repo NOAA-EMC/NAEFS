@@ -123,7 +123,6 @@ env
 # Execute the script
 ####################
 
-#$HOMErtma/scripts/exnaefs_dvrtma_bias_conus.sh
 $HOMErtma/scripts/exnaefs_dvrtma_bias.sh
 
 cat $pgmout.*
