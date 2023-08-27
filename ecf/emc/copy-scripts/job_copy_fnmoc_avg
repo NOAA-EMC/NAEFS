@@ -1,0 +1,54 @@
+CDATE=$1
+ndays=36
+iday=1
+
+export CNVGRIB=/nwprod/util/exec/cnvgrib
+nhours=/nwprod/util/exec/ndate
+
+hourlist=" 00  06  12  18  24  30  36  42  48  54  60  66  72  78  84  90  96 \
+          102 108 114 120 126 132 138 144 150 156 162 168 174 180 186 192 198 \
+          204 210 216 222 228 234 240 246 252 258 264 270 276 282 288 294 300 \
+          306 312 318 324 330 336 342 348 354 360 366 372 378 384"
+
+memberlist="avg"
+
+while [ $iday -le $ndays ]; do
+
+  PDY=`echo $CDATE | cut -c1-8`
+  cyc=`echo $CDATE | cut -c9-10`
+
+  echo " copy FNMOC avg day " $PDY$cyc
+  echo " "
+
+  COMIN=$COM_IN/fens.$PDY/$cyc/pgrb2a
+  COMOUT=$COM_OUT/fens.$PDY/$cyc/pgrb2a
+
+  mkdir -p $COMOUT
+
+  for nens in $memberlist
+  do
+
+    for nfhrs in $hourlist
+    do
+       ifile_in2=fnmoc_ge${nens}.t${cyc}z.pgrb2af${nfhrs}
+       if [ -s $COMIN/$ifile_in2 ]; then
+#        if [ ! -s $COMOUT/$ifile_in2 ]; then
+           cp $COMIN/$ifile_in2 $COMOUT/$ifile_in2
+#        fi
+       fi
+       if [ ! -s $COMOUT/$ifile_in2 ]; then
+         ifile_in1=fnmoc_ge${nens}.t${cyc}z.pgrbaf${nfhrs}
+         ifile_in2=fnmoc_ge${nens}.t${cyc}z.pgrb2af${nfhrs}
+         COM_GB1=/com/gens/prod/fens.$PDY/$cyc/pgrba
+         $CNVGRIB -g12 -p40 $COM_GB1/$ifile_in1 $COMOUT/$ifile_in2
+       fi
+    done
+  done
+
+  iday=`expr $iday + 1`
+  CDATE=`$nhours -12 $CDATE`
+
+done
+
+
+

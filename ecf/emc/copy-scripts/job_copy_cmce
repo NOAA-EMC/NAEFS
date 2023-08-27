@@ -1,0 +1,25 @@
+filelist="cmc_glbanl"
+
+for cyc in 00 06 12 18; do
+
+COMIN=$COM_IN/cmce.$PDY/$cyc/pgrb2ap5
+COMOUT=$COM_OUT/cmce.$PDY/$cyc/pgrb2ap5
+
+mkdir -p $COMOUT
+
+#echo " copy CMC glbanl day " $PDY$cyc
+#echo " "
+
+for file in $filelist; do
+
+   ifile_in2=${file}.t${cyc}z.pgrb2ap5_mdf00
+
+   if [ -s $COMIN/$ifile_in2 ]; then
+#    if [ ! -s $COMOUT/$ifile_in2 ]; then
+       cp $COMIN/$ifile_in2 $COMOUT/$ifile_in2
+#    fi
+   fi
+
+done
+done
+

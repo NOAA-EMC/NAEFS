@@ -1,0 +1,49 @@
+#####################################
+# input the following 3 parametera"
+# CDATE: lastest cycle before implementation 
+# COM_IN: naefs v6 path
+# COM_OUT: naefs v7 path
+#####################################
+
+export CDATE=2023082600
+
+export COM_IN=/lfs/h1/ops/prod/com/naefs/v6.1    
+export COM_OUT=/lfs/h1/ops/prod/com/naefs/v7.0    
+
+#export COM_OUT=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs/v7.0
+
+##################################
+# no need to modify the below setting
+##################################
+
+ndays=5
+iday=1
+
+while [ $iday -le $ndays ]; do
+
+  export PDY=`echo $CDATE | cut -c1-8`
+  export cyc=`echo $CDATE | cut -c9-10`
+
+  echo " Copy CMC glbanl day " $PDY$cyc
+  echo " "
+  job_copy_cmce 
+
+# echo " Copy FNMOC bias & glbanl day " $PDY$cyc
+# echo " "
+# job_copy_fnmoc   $PDY
+
+  echo " Copy GEFS bias & glbanl day " $PDY$cyc
+  echo " "
+  job_copy_gefs
+
+  echo " Copy DV for AK 7 CONUS day " $PDY$cyc
+  echo " "
+  job_copy_dvrtma 
+  echo " "
+  job_copy_cqpf  
+
+  iday=`expr $iday + 1`
+  CDATE=`$NDATE -24 $CDATE`
+
+done
+
