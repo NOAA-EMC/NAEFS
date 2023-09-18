@@ -322,6 +322,7 @@ if [ "$ANAPRDGEN" = "YES" ]; then
     outfile=cmc_gec00.t${cyc}z.pgrb2a.0p50.anl   
     if [ -s $COMINm1/$infile ]; then
       cp $COMINm1/$infile  $COMOUTm1/$outfile                          
+      $WGRIB2 -s $COMINm1/$infile > $COMOUTm1/$outfile.idx 
     fi
   fi
 fi

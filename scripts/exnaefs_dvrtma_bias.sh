@@ -61,7 +61,7 @@ else
   afile=${regid}rtma.t${cyc}z.2dvaranl_ndfd.grb2
 fi
 
-if [ -s $COMINRTMA/$afile ]; then
+if [ -s $COMINRTMA/$afile.idx ]; then
   cp $COMINRTMA/$afile .
 else
   echo " Warning!!! There is no RTMA analysis, use previous 1 hour analysis"
@@ -78,7 +78,7 @@ else
     COMINRTMA_m1=${COM_RTMA}/${regid}rtma.${PDY_m1}
     afile_m1=${regid}rtma.t${cyc_m1}z.2dvaranl_ndfd.grb2
   fi 
-  if [ -s $COMINRTMA_m1/$afile_m1 ]; then
+  if [ -s $COMINRTMA_m1/$afile_m1.idx ]; then
     cp $COMINRTMA_m1/$afile_m1 $afile
   else
     echo " FATAL ERROR: No Current RTMA Analysis" $COMINRTMA/$afile

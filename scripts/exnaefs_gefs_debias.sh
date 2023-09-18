@@ -17,6 +17,7 @@
 ################################################################
 # define exec variable, and entry grib utility 
 ################################################################
+export PS4=' + exnaefs_gefs_debias.sh_$1: '
 
 set -x
 
@@ -212,7 +213,7 @@ for nens in $memberlist; do
     icnt=0
     while [ $icnt -le 30 ]; do
 
-      if [ -s $ifile_ens -a -s $ifile_ctl ]; then
+      if [ -s ${ifile_ens}.idx -a -s ${ifile_ctl}.idx ]; then
 
         ln -sf $ibias_ens fort.11
         ln -sf $ifile_ens fort.12
