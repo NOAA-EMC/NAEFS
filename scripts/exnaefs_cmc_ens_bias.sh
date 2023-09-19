@@ -294,15 +294,15 @@ for nfhrs in 00; do
   pgbmdf=cmc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
   pgbmean=glbanl.t${cyc}z.pgrb2a_meandif
 
-  if [ -s $COMINbias/cmce.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf.idx ]; then
-    cp $COMINbias/cmce.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf.idx $pgbmean
-  elif [ -s $COMINbias/cmce.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf.idx ]; then
-    cp $COMINbias/cmce.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf.idx $pgbmean
-  elif [ -s $COMINbias/cmce.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf.idx ]; then
-    cp $COMINbias/cmce.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf.idx $pgbmean
-  elif [ -s $COMINbias/cmce.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf.idx ]; then
-    cp $COMINbias/cmce.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf.idx $pgbmean
-  elif [ -s $COMINbias/cmce.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf.idx ]; then
+  if [ -s $COMINbias/cmce.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/cmce.$PDYm3/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/cmce.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/cmce.$PDYm4/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/cmce.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/cmce.$PDYm5/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/cmce.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf ]; then
+    cp $COMINbias/cmce.$PDYm6/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
+  elif [ -s $COMINbias/cmce.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf ]; then
     cp $COMINbias/cmce.$PDYm7/${cyc}/pgrb2ap5/$pgbmdf $pgbmean
   else
     echo " Cold Start for Bias Estimation between CDAS and CMC Analysis " $nfhrs 
@@ -350,7 +350,6 @@ if [ "$SENDCOM" = "YES" ]; then
   file=cmc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
   if [ -s $file ]; then
     cp $file $COMOUT_M2/
-    $WGRIB2 -s $file > $COMOUT_M2/$file.idx
   fi
 fi
 
