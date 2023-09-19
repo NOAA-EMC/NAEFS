@@ -99,7 +99,7 @@ for nens in $memberlist; do
 
   icnt=0
   while [ $icnt -le 30 ]; do
-    if [ -s $afile -a -s $afile_m06  ]; then
+    if [ -s $afile.idx -a -s $afile_m06.idx  ]; then
       icnt=31 
     else
       echo " Warning !!!! There is no GEFS Analysis data $afile or $afile_m06 "
@@ -116,7 +116,7 @@ for nens in $memberlist; do
 
   icnt=0
   while [ $icnt -le 30 ]; do
-    if [ -s $cfile ]; then
+    if [ -s $cfile.idx ]; then
       icnt=31 
     else
       echo " Warning !!!! There is no Forecast for hour $nfhrs - $cfile"
@@ -251,7 +251,7 @@ for nfhrs in 00; do
 
   icnt=0
   while [ $icnt -le 30 ]; do
-    if [ -s $afile -a -s $afile_m06 ]; then
+    if [ -s $afile.idx -a -s $afile_m06.idx ]; then
       icnt=31 
     else
       echo " Warning !!!! There is no GEFS Analysis data for $afile or $afile_m06"
@@ -269,7 +269,7 @@ for nfhrs in 00; do
 
   icnt=0
   while [ $icnt -le 30 ]; do
-    if [ -s $rfile_in -a -s $rfile_m06in ]; then
+    if [ -s $rfile_in.idx -a -s $rfile_m06in.idx ]; then
       icnt=31 
     else
       echo " Warning !!!! There is no CFS Analysis data for $rfile_in or $rfile_m06in"
@@ -374,7 +374,7 @@ for nfhrs in 00; do
 
   icnt=0
   while [ $icnt -le 30 ]; do
-    if [ -s $nfile -a -s $nfile_m06 ]; then
+    if [ -s $nfile.idx -a -s $nfile_m06.idx ]; then
       icnt=31 
     else
       echo " Warning !!!! There is no GEFS Analysis data for $nfile or $nfile_m06 "
