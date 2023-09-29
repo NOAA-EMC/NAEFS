@@ -120,7 +120,7 @@ $USHndgd/conus_ndgd_enscqpf.sh $iacc
       echo "*********** Warning!!! Warning!!! ************"
       echo "**** There is empty file for $outfile_gb2 ********"
     else
-        cp ${infile_gb2} $OUTPATH/${outfile_gb2}
+        mv ${infile_gb2} $OUTPATH/${outfile_gb2}
         if [ "$SENDDBN" = "YES" ]; then
            $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PCP_BC_GB2 $job $OUTPATH/${outfile_gb2}
         fi
@@ -131,7 +131,7 @@ $USHndgd/conus_ndgd_enscqpf.sh $iacc
       echo "*********** Warning!!! Warning!!! ************"
       echo "**** There is empty file for $outfile_gb2 ********"
     else
-        cp ${infile_gb2} $OUTPATH/$outfile_gb2 
+        mv ${infile_gb2} $OUTPATH/$outfile_gb2 
         if [ "$SENDDBN" = "YES" ]; then
            $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PQPF_BC_GB2 $job $OUTPATH/${outfile_gb2}
         fi

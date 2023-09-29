@@ -107,8 +107,10 @@ $HOMEndgd/scripts/exnaefs_gefs_conus_ndgd_enscqpf.sh
 
 #############################################################
 
-cat $DATA/$cyc/06hr/$pgmout
-cat $DATA/$cyc/06hr/$pgmout
+cat $DATA/$cyc/06hr/$pgmout.024
+cat $DATA/$cyc/24hr/$pgmout.024
+cat $DATA/$cyc/06hr/$pgmout.240
+cat $DATA/$cyc/24hr/$pgmout.240
 
 msg="JOB COMPLETED NORMALLY"
 postmsg "$jlogfile" "$msg"

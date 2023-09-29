@@ -38,6 +38,10 @@ cd $DATA/$cyc/${iacc}hr
  rm geprcp.t${cyc}z.ndgd2p5_conus.${iacc}hf*.gb2 gepqpf.t${cyc}z.ndgd2p5_conus.${iacc}hf*.gb2
  fi
 
+pgm=conus_ndgd_enscqpf 
+
+>downscale.cmdfile
+
 for fhrs in $hourlist; do
 
 VMM=`$NDATE +${fhrs} $YMDH | cut -c5-6`
@@ -58,13 +62,15 @@ namEOF
 ###
 cat input_ndgd_$fhrs
 
- export pgm=conus_ndgd_enscqpf 
-
- . prep_step
-
-  startmsg
-
- $EXECndgd/conus_ndgd_enscqpf <input_ndgd_$fhrs   >> $pgmout 2>errfile
- export err=$?;err_chk
+echo "$EXECndgd/$pgm <input_ndgd_$fhrs >> $pgmout.$fhrs 2>errfile" >>downscale.cmdfile
 
 done
+
+chmod 775 downscale.cmdfile
+MP_CMDFILE=$DATA/$cyc/${iacc}hr/downscale.cmdfile
+${APRUNCQPF} ${MP_CMDFILE}
+export err=$?; err_chk
+
+echo " "
+
+
