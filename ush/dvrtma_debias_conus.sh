@@ -20,6 +20,8 @@ echo "----------------------------------------"
 
 export pgm1=dvrtma_debias_conus
 
+export conus_grid="lambert:-95:25 -121.554007:2145:2539.703 20.191924:1597:2539.703"
+
 pgmout=output_ds
 
 . prep_step
@@ -172,7 +174,8 @@ for nens in $outlist; do
     file_temp=${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_temp
     outfile=${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_2p5
     if [ -s $file_temp ]; then
-      echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_copygb_$nens
+#     echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_copygb_$nens
+      echo "$WGRIB2 $file_temp -new_grid_interpolation bilinear -new_grid $conus_grid $outfile" >>poescript_copygb_$nens
     else
       echo "echo "no file of" $file_temp "                     >>poescript_copygb_$nens
     fi

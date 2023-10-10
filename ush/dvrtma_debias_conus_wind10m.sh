@@ -100,7 +100,9 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
       file_temp=cmce.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_temp
       outfile=cmce.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_2p5
       if [ -s $file_temp ]; then
-        echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_cmce
+#       echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_cmce
+        echo "$WGRIB2 $file_temp -set_grib_type same -new_grid_winds earth \
+             -new_grid_interpolation bilinear -new_grid $conus_grid $outfile" >>poescript_cmce
       else
         echo "echo "no file of" $file_temp "                     >>poescript_cmce
       fi
@@ -176,7 +178,9 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
     file_temp=gefs.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_temp
     outfile=gefs.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_2p5
     if [ -s $file_temp ]; then
-      echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_gefs
+#     echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_gefs
+      echo "$WGRIB2 $file_temp -set_grib_type same -new_grid_winds earth \
+           -new_grid_interpolation bilinear -new_grid $conus_grid $outfile" >>poescript_gefs
     else
       echo "echo "no file of" $file_temp "                     >>poescript_gefs
     fi
