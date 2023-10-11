@@ -1,4 +1,4 @@
-#PBS -N naefs_gefs_6hr_cqpf_%CYC%
+#PBS -N naefs_gefs_6hr_cqpf_%CYC%%VER:""%
 #PBS -j oe
 #PBS -S /bin/bash
 #PBS -q %QUEUE%

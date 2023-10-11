@@ -1,4 +1,4 @@
-#PBS -N naefs_gefs_dvrtma_prob_avgspr_ak_%CYC%
+#PBS -N naefs_gefs_dvrtma_prob_avgspr_ak_%CYC%%VER:""%
 #PBS -j oe                  
 #PBS -S /bin/bash
 #PBS -q %QUEUE%

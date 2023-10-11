@@ -1,0 +1,268 @@
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/rtma/v2.10/00z/30/2p5/jrtma_post
+extern /prod_clone/primary/06/rtma/v2.10/06z/30/2p5/jrtma_post
+extern /prod_clone/primary/12/rtma/v2.10/12z/30/2p5/jrtma_post
+extern /prod_clone/primary/18/rtma/v2.10/18z/30/2p5/jrtma_post
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/jgefs_prdgen_done
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/jgefs_pgrb2abp5_f192_done
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p01/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p02/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p03/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p04/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p05/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p06/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p07/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p08/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p09/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p10/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p11/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p12/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p13/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p14/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p15/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p16/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p17/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p18/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p19/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p20/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p21/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p22/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p23/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p24/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p25/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p26/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p27/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p28/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p29/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/members/d0_16/p30/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/00/gefs/v12.3/post_processing/d0_16/atmos/jgefs_atmos_prdgen_gfs
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/jgefs_prdgen_done
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/jgefs_pgrb2abp5_f192_done
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p01/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p02/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p03/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p04/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p05/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p06/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p07/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p08/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p09/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p10/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p11/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p12/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p13/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p14/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p15/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p16/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p17/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p18/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p19/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p20/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p21/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p22/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p23/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p24/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p25/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p26/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p27/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p28/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p29/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/members/d0_16/p30/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/06/gefs/v12.3/post_processing/d0_16/atmos/jgefs_atmos_prdgen_gfs
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/jgefs_prdgen_done
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/jgefs_pgrb2abp5_f192_done
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p01/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p02/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p03/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p04/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p05/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p06/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p07/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p08/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p09/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p10/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p11/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p12/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p13/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p14/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p15/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p16/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p17/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p18/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p19/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p20/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p21/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p22/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p23/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p24/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p25/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p26/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p27/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p28/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p29/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/members/d0_16/p30/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/12/gefs/v12.3/post_processing/d0_16/atmos/jgefs_atmos_prdgen_gfs
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_prdgen_done
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_pgrb2abp5_f192_done
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p01/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p02/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p03/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p04/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p05/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p06/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p07/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p08/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p09/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p10/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p11/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p12/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p13/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p14/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p15/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p16/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p17/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p18/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p19/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p20/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p12/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p13/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p14/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p15/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p16/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p17/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p18/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p19/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p20/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p21/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p22/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p23/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p24/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p25/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p26/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p27/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p28/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p29/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/members/d0_16/p30/atmos/jgefs_atmos_prdgen
+extern /prod_clone/primary/18/gefs/v12.3/post_processing/d0_16/atmos/jgefs_atmos_prdgen_gfs
+
+suite para
+  family primary
+  family 18
+  
+  family naefs
+    edit PACKAGEHOME '/lfs/h1/ops/%ENVIR%/packages/naefs.%naefs_ver%'
+    edit PROJ 'NAEFS'
+    family v7.0
+      family naefs
+        task jnaefs_dvrtma_bias_ak
+          trigger /prod_clone/primary/18/rtma/v2.10/18z/30/2p5/jrtma_post == complete and /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_prdgen_done == complete
+        task jnaefs_dvrtma_bias_conus
+          trigger /prod_clone/primary/18/rtma/v2.10/18z/30/2p5/jrtma_post == complete and /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_prdgen_done == complete
+        task jnaefs_prob_avgspr
+          trigger ../gefs/jnaefs_gefs_debias == complete
+        task jnaefs_dvrtma_prob_avgspr_ak
+          trigger jnaefs_dvrtma_bias_ak == complete and jnaefs_prob_avgspr == complete
+        task jnaefs_dvrtma_prob_avgspr_conus
+          trigger jnaefs_prob_avgspr == complete
+        family gempak
+          task jnaefs_dvrtma_bias_conus_gempak
+            trigger ../jnaefs_dvrtma_bias_conus == complete
+          task jnaefs_dvrtma_bias_ak_gempak
+            trigger ../jnaefs_dvrtma_bias_ak == complete
+          task jnaefs_prob_avgspr_gempak
+            trigger ../jnaefs_prob_avgspr == complete
+          task jnaefs_dvrtma_prob_avgspr_ak_gempak
+            trigger ../jnaefs_dvrtma_prob_avgspr_ak == complete
+          task jnaefs_dvrtma_prob_avgspr_conus_gempak
+            trigger ../jnaefs_dvrtma_prob_avgspr_conus == complete
+        endfamily
+      endfamily
+      family gefs
+        task jnaefs_gefs_bias
+          trigger /prod_clone/primary/12/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen == complete and :TIME >= 2000 or :TIME < 0200
+        task jnaefs_gefs_debias
+          trigger jnaefs_gefs_bias eq complete and ( /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_prdgen_done eq complete or ( /prod_clone/primary/18/gefs/v12.3/members/d0_16/c00/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p01/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p02/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p03/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p04/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p05/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p06/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p07/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p08/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p09/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p10/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p11/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p12/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p13/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p14/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p15/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p16/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p17/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p18/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p19/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p20/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p21/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p22/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p23/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p24/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p25/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p26/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p27/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p28/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p29/atmos/jgefs_atmos_prdgen == active or /prod_clone/primary/18/gefs/v12.3/members/d0_16/p30/atmos/jgefs_atmos_prdgen == active ))
+          event 1 pgrb2a.0p50_bcf240_gec00
+          event 2 pgrb2a.0p50_bcf240_gep01
+          event 3 pgrb2a.0p50_bcf240_gep02
+          event 4 pgrb2a.0p50_bcf240_gep03
+          event 5 pgrb2a.0p50_bcf240_gep04
+          event 6 pgrb2a.0p50_bcf240_gep05
+          event 7 pgrb2a.0p50_bcf240_gep06
+          event 8 pgrb2a.0p50_bcf240_gep07
+          event 9 pgrb2a.0p50_bcf240_gep08
+          event 10 pgrb2a.0p50_bcf240_gep09
+          event 11 pgrb2a.0p50_bcf240_gep10
+          event 12 pgrb2a.0p50_bcf240_gep11
+          event 13 pgrb2a.0p50_bcf240_gep12
+          event 14 pgrb2a.0p50_bcf240_gep13
+          event 15 pgrb2a.0p50_bcf240_gep14
+          event 16 pgrb2a.0p50_bcf240_gep15
+          event 17 pgrb2a.0p50_bcf240_gep16
+          event 18 pgrb2a.0p50_bcf240_gep17
+          event 19 pgrb2a.0p50_bcf240_gep18
+          event 20 pgrb2a.0p50_bcf240_gep19
+          event 21 pgrb2a.0p50_bcf240_gep20
+          event 22 pgrb2a.0p50_bcf240_gep21
+          event 23 pgrb2a.0p50_bcf240_gep22
+          event 24 pgrb2a.0p50_bcf240_gep23
+          event 25 pgrb2a.0p50_bcf240_gep24
+          event 26 pgrb2a.0p50_bcf240_gep25
+          event 27 pgrb2a.0p50_bcf240_gep26
+          event 28 pgrb2a.0p50_bcf240_gep27
+          event 29 pgrb2a.0p50_bcf240_gep28
+          event 30 pgrb2a.0p50_bcf240_gep29
+          event 31 pgrb2a.0p50_bcf240_gep30
+        task jnaefs_gefs_pgrb_enspqpf
+          trigger /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_pgrb2abp5_f192_done eq complete and /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_prdgen_done eq complete
+        task jnaefs_gefs_prob_avgspr
+          trigger jnaefs_gefs_debias eq complete
+        task jnaefs_gefs_dvrtma_prob_avgspr_ak
+          trigger ../naefs/jnaefs_dvrtma_bias_conus eq complete and ../naefs/jnaefs_dvrtma_bias_ak eq complete and jnaefs_gefs_prob_avgspr eq complete
+        task jnaefs_gefs_dvrtma_prob_avgspr_conus
+          trigger ../naefs/jnaefs_dvrtma_bias_conus eq complete and jnaefs_gefs_prob_avgspr eq complete
+        task jnaefs_gefs_6hr_cqpf
+          trigger /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_pgrb2abp5_f192_done eq complete and /prod_clone/primary/18/gefs/v12.3/members/d0_16/jgefs_prdgen_done eq complete and /prod_clone/primary/18/gefs/v12.3/post_processing/d0_16/atmos/jgefs_atmos_prdgen_gfs eq complete
+        task jnaefs_gefs_24hr_cqpf
+          trigger jnaefs_gefs_6hr_cqpf eq complete
+        task jnaefs_gefs_ndgd_cqpf
+          trigger jnaefs_gefs_6hr_cqpf eq complete and jnaefs_gefs_24hr_cqpf eq complete
+        task jnaefs_gefs_anfefi_acpr
+          trigger jnaefs_gefs_24hr_cqpf eq complete
+        family gempak
+          task jnaefs_gefs_bias_gempak
+            trigger ../jnaefs_gefs_bias eq complete
+            edit KEEPDATA 'YES'
+          task jnaefs_gefs_debias_gempak
+            trigger ../jnaefs_gefs_debias eq complete
+          task jnaefs_gefs_prob_avgspr_gempak
+            trigger ../jnaefs_gefs_prob_avgspr eq complete
+          task jnaefs_gefs_cqpf_gempak
+            trigger ../jnaefs_gefs_6hr_cqpf eq complete and ../jnaefs_gefs_24hr_cqpf eq complete and ../jnaefs_gefs_anfefi_acpr eq complete
+          task jnaefs_gefs_ndgd_cqpf_gempak
+            trigger ../jnaefs_gefs_ndgd_cqpf == complete
+        endfamily
+      endfamily
+      family fnmocens
+        task jnaefs_fnmoc_ens_bias
+          trigger :TIME >= 2200 or :TIME < 0400
+      endfamily
+      family cmcens
+        task jnaefs_cmc_ens_bias
+          trigger :TIME >= 2000 or :TIME < 0200
+        task jnaefs_cmc_ens_post
+          trigger :TIME >= 2000 or :TIME < 0200
+      endfamily
+    endfamily
+  endfamily
+
+  endfamily
+  endfamily
+endsuite

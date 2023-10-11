@@ -1,4 +1,4 @@
-#PBS -N naefs_gefs_debias_%CYC%
+#PBS -N naefs_gefs_debias_%CYC%%VER:""%
 #PBS -j oe                  
 #PBS -S /bin/bash
 #PBS -q %QUEUE%

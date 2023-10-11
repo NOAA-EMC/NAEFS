@@ -1,4 +1,4 @@
-#PBS -N naefs_cmc_ensbc_prep_%CYC%
+#PBS -N naefs_cmc_ensbc_prep_%CYC%%VER:""%
 #PBS -j oe                  
 #PBS -S /bin/bash
 #PBS -q %QUEUE%
