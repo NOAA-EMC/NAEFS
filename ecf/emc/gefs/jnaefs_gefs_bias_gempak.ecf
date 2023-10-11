@@ -4,7 +4,7 @@
 #PBS -q dev   
 #PBS -l walltime=01:00:00
 #PBS -A NAEFS-DEV                
-#PBS -l select=1:ncpus=4:mpiprocs=4:mem=2000MB
+#PBS -l select=1:ncpus=6:mpiprocs=6:mem=2000MB
 #PBS -l debug=true
 
 #%include <head.h>
@@ -45,7 +45,7 @@ export direxp=naefs.v7.0.0
 #export envir=prod
 export RUN_ENVIR=nco 
 
-export PDY=20210824
+export PDY=20231009
 export cyc=00               
 export job=naefs_gefs_bias_gempak_$PDY$cyc
 
@@ -53,20 +53,17 @@ export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
 export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
 export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
 
-#export COMROOT=/lfs/h1/ops/canned/com                    
-#export COMROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/com
-#export DCOMROOT=/lfs/h1/ops/canned/dcom                     
-
 export KEEPDATA=YES
 
 # EXPORT list here
 
-export APRUN="mpiexec -np 4 --cpu-bind core cfp "
+export APRUN="mpiexec -np 6 --cpu-bind core cfp "
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
 #export cyc=%CYC%
 
 #export COMPATH=/lfs/h1/ops/canned/com/naefs
+export COMPATH=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs
 export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
 
 # CALL executable job script here
