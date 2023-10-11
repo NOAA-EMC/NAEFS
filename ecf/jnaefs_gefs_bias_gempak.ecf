@@ -1,10 +1,10 @@
-#PBS -N naefs_gefs_bias_gempak_%CYC%
+#PBS -N naefs_gefs_bias_gempak_%CYC%%VER:""%
 #PBS -j oe                  
 #PBS -S /bin/bash
 #PBS -q %QUEUE%
 #PBS -A %PROJ%-%PROJENVIR%
 #PBS -l walltime=01:00:00
-#PBS -l select=1:ncpus=4:mpiprocs=4:mem=2000MB
+#PBS -l select=1:ncpus=6:mpiprocs=6:mem=2000MB
 #PBS -l debug=true
 
 model=naefs
@@ -26,7 +26,7 @@ module load iobuf/${iobuf_ver}
 module list
 
 # EXPORT list here
-export APRUN="mpiexec -np 4 --cpu-bind core cfp "
+export APRUN="mpiexec -np 6 --cpu-bind core cfp "
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 export cyc=%CYC%
 
