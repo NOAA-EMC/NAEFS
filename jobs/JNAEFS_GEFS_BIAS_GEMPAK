@@ -86,11 +86,14 @@ env
 ########################################################
 # Execute the script.
 mkdir -p $DATA/avg_me $DATA/gfs_me $DATA/gefs_anl
+mkdir -p $DATA/avg_me_01 $DATA/avg_mecom $DATA/avg_mecom_01
 
-echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_me 03 384 ${COMIN_ME} $COMOUT geavg me NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_me 03 180 ${COMIN_ME} $COMOUT geavg me NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_me_01 183 384 ${COMIN_ME} $COMOUT geavg me NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
 echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/gfs_me 03 180 ${COMIN_ME} $COMOUT gegfs me NAEFS_GEFS_GEMPAK &> $DATA/gfs_me/output" >> $DATA/poescript
 echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/gefs_anl 00 00 ${COMIN_ANL} $COMOUTm2 gefs glbanl NAEFS_GEFS_GEMPAK &> $DATA/gefs_anl/output" >> $DATA/poescript
-echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_mecom 03 384 ${COMIN_ME} $COMOUT geavg mecom NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_mecom 03 180 ${COMIN_ME} $COMOUT geavg mecom NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
+echo "${HOMEnaefs}/scripts/exnawips_naefs.sh $DATA/avg_mecom_01 183 384 ${COMIN_ME} $COMOUT geavg mecom NAEFS_GEFS_GEMPAK &> $DATA/avg_me/output" >> $DATA/poescript
 chmod 775 $DATA/poescript
 
 # Execute the script.

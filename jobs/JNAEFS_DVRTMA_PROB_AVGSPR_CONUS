@@ -115,12 +115,14 @@ $HOMErtma/scripts/exnaefs_dvrtma_prob_avgspr_conus.sh
 
 #############################################################
 
-cat $DATA/tmpdir_01/output_adjustcmc.360
+if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
+  cat $DATA/tmpdir_01/output_adjustcmc.360
+  cat $DATA/tmpdir_03/output_adjustcmc.360.p02
+fi
 cat $DATA/tmpdir_01/output_ds_tmaxmin.day1_tmax
 cat $DATA/tmpdir_01/output_ds_tmaxmin.day1_tmin
 cat $DATA/tmpdir_02/tmpdir_02_naefs_geavg/output_ds.003.naefs_geavg.part1
 cat $DATA/tmpdir_02/tmpdir_02_naefs_geavg/output_ds.360.naefs_geavg.part1
-cat $DATA/tmpdir_03/output_adjustcmc.360.p02
 cat $DATA/tmpdir_03/output_ds_wind10m.360
 
 msg="JOB COMPLETED NORMALLY"
