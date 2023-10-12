@@ -174,8 +174,9 @@ for nens in $outlist; do
     file_temp=${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_temp
     outfile=${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}_2p5
     if [ -s $file_temp ]; then
-      echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_copygb_$nens
-#     echo "$WGRIB2 $file_temp -new_grid_interpolation bilinear -new_grid $conus_grid $outfile" >>poescript_copygb_$nens
+#     echo "$COPYGB2 -g \"$grid\" -i1,1 -x $file_temp $outfile" >>poescript_copygb_$nens
+      echo "$WGRIB2 $file_temp -set_grib_type same -new_grid_winds earth \
+           -new_grid_interpolation bilinear -new_grid $conus_grid $outfile" >>poescript_copygb_$nens
     else
       echo "echo "no file of" $file_temp "                     >>poescript_copygb_$nens
     fi
@@ -228,8 +229,6 @@ mkdir -p $DATA/tmpdir_03
 cd $DATA/tmpdir_03           
 
 $USHrtma/dvrtma_debias_conus_wind10m.sh 
-
-wait
 
 cd $DATA
 
