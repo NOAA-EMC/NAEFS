@@ -23,33 +23,23 @@
 # directory are included, so if no exclude patterns match that file, it will be
 # transferred.
 
-_COMROOT_/naefs/_SHORTVER_/cmce._PDY_/
-B 54000
-
-_COMROOT_/naefs/_SHORTVER_/cmce._PDYm1_/
-B 54000
-
-_COMROOT_/naefs/_SHORTVER_/cmce._PDYm2_/
-+ /00/
-+ /00/pgrb2ap5/
-+ /00/pgrb2ap5/cmc_glbanl.t00z.pgrb2a.0p50_mdf000
-+ /00/pgrb2ap5/cmc_gec00.t00z.pgrb2a.0p50.anl
-+ /00/pgrb2ap5/cmc_gec00.t00z.pgrb2a.0p50.anl.idx
-+ /06/
-+ /06/pgrb2ap5/
-+ /06/pgrb2ap5/cmc_glbanl.t06z.pgrb2a.0p50_mdf000
-+ /06/pgrb2ap5/cmc_gec00.t06z.pgrb2a.0p50.anl
-+ /06/pgrb2ap5/cmc_gec00.t06z.pgrb2a.0p50.anl.idx
-+ /12/
-+ /12/pgrb2ap5/
-+ /12/pgrb2ap5/cmc_glbanl.t12z.pgrb2a.0p50_mdf000
-+ /12/pgrb2ap5/cmc_gec00.t12z.pgrb2a.0p50.anl
-+ /12/pgrb2ap5/cmc_gec00.t12z.pgrb2a.0p50.anl.idx
-+ /18/
-+ /18/pgrb2ap5/
-+ /18/pgrb2ap5/cmc_glbanl.t18z.pgrb2a.0p50_mdf000
-+ /18/pgrb2ap5/cmc_gec00.t18z.pgrb2a.0p50.anl
-+ /18/pgrb2ap5/cmc_gec00.t18z.pgrb2a.0p50.anl.idx
+_COMROOT_/naefs/_SHORTVER_/gefs._PDY_/gempak/
++ /bc/
++ /bc/***
+- /an/
+- /an/***
+- /prcp/
+- /prcp/***
 - *
-B 3
+B 386000
+
+_COMROOT_/naefs/_SHORTVER_/gefs._PDYm1_/gempak/
++ /bc/
++ /bc/***
+- /an/
+- /an/***
+- /prcp/
+- /prcp/***
+- *
+B 386000
 

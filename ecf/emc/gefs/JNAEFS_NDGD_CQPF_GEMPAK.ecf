@@ -1,10 +1,10 @@
-#!/bin/bash
-#PBS -N naefs_gefs_bias_gempak
-#PBS -j oe                  
-#PBS -q dev   
-#PBS -l walltime=01:00:00
-#PBS -A NAEFS-DEV                
-#PBS -l select=1:ncpus=4:mpiprocs=4:mem=2000MB
+#PBS -N naefs_gefs_ndgd_cqpf_gempak
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -q dev
+#PBS -A NAEFS-DEV
+#PBS -l walltime=01:30:00
+#PBS -l select=1:ncpus=4:mpiprocs=4:mem=4GB
 #PBS -l debug=true
 
 #%include <head.h>
@@ -20,8 +20,6 @@ export HOMEnaefs=${HOMEnaefs:-/lfs/h2/emc/vpppg/noscrub/$LOGNAME/naefs.v7.0.0}
 source ${HOMEnaefs}/versions/run.ver
 
 cd $PBS_O_WORKDIR
-
-set -x
 
 module purge
 module load envvar/${envvar_ver}
@@ -41,48 +39,50 @@ module load iobuf/${iobuf_ver}
 module list
 
 #
-export direxp=naefs.v7.0.0
-#export envir=prod
-export RUN_ENVIR=nco 
 
-export PDY=20210824
-export cyc=00               
-export job=naefs_gefs_bias_gempak_$PDY$cyc
+export direxp=naefs.v7.0.0
+export envir=prod
+export RUN_ENVIR=nco
+
+export PDY=20230424
+export cyc=00
+export job=naefs_gefs_ndgd_cqpf_gempak_$PDY$cyc
 
 export HOMEnaefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
 export HOMEgefs=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/$direxp
+#export NWROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
 export DATAROOT=/lfs/h2/emc/ptmp/$LOGNAME/tmpnwprd
 
-#export COMROOT=/lfs/h1/ops/canned/com                    
-#export COMROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME/com
-#export DCOMROOT=/lfs/h1/ops/canned/dcom                     
+export PACKAGEROOT=/lfs/h2/emc/vpppg/noscrub/$LOGNAME
+export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com                    
+export COMPATH=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs
 
 export KEEPDATA=YES
+export SENDDBN=NO
 
 # EXPORT list here
 
 export APRUN="mpiexec -np 4 --cpu-bind core cfp "
 export IOBUF_PARAMS='*:sync,%%stdout:sync'
 
-#export cyc=%CYC%
+#export NODES=1
+#export APRUN="aprun -n 4 -N 4 -cc depth cfp "
 
-#export COMPATH=/lfs/h1/ops/canned/com/naefs
-export COMROOT=/lfs/h2/emc/ptmp/$LOGNAME/com
+#export cyc=%CYC%
+#export cyc_fcst=%CYC%
+
+# versions file for naefs sets $naefs_ver and $code_ver
+model=naefs
+#%include <model_ver.h>
 
 # CALL executable job script here
-${HOMEnaefs}/jobs/JNAEFS_GEFS_BIAS_GEMPAK               
+${HOMEnaefs}/jobs/JNAEFS_GEFS_NDGD_CQPF_GEMPAK
 
 #%include <tail.h>
+
 #%manual
 ######################################################################
-# Purpose: Runs post-processing for the 00Z ensemble.
+# Purpose: NAEFS gempak product generation
 ######################################################################
-
-######################################################################
-# Job specific troubleshooting instructions:
-#  see generic troubleshoot manual page
-#
-######################################################################
-
-# include manual page below
 #%end
+

@@ -1,0 +1,6 @@
+for cyc in 00 06 12 18; do
+  COMIN=$COM_IN/gefs.$PDY/$cyc/pgrb2ap5
+  COMOUT=$COM_OUT/gefs.$PDY/$cyc/pgrb2ap5
+  mkdir -p $COMOUT
+  cp -p $COMIN/* $COMOUT
+done

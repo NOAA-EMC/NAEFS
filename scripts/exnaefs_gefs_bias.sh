@@ -15,7 +15,7 @@
 #                   - Add ush to calculate reforecast bias
 #
 #############################################################################################
-
+set -ax
 ### To submit this job for T00Z, T06Z T12Z and T18Z, four cycles per day
 
 ### need pass the values of PDY, CYC, DATA, COMIN, and COMOUT

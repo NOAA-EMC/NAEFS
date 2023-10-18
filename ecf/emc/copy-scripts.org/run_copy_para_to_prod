@@ -5,14 +5,11 @@
 # COM_OUT: naefs v7 path
 #####################################
 
-#export CDATE=2023082600
-export CDATE=2023091106
+export CDATE=2023082600
 
 export COM_IN=/lfs/h1/ops/prod/com/naefs/v6.1    
-#export COM_OUT=/lfs/h1/ops/prod/com/naefs/v7.0    
-export COM_OUT=/lfs/h1/ops/para/com/naefs/v7.0    
+export COM_OUT=/lfs/h1/ops/prod/com/naefs/v7.0    
 
-export NDATE=/apps/ops/prod/nco/core/prod_util.v2.0.12/exec/ndate
 #export COM_OUT=/lfs/h2/emc/ptmp/$LOGNAME/com/naefs/v7.0
 
 ##################################
@@ -29,7 +26,7 @@ while [ $iday -le $ndays ]; do
 
   echo " Copy CMC glbanl day " $PDY$cyc
   echo " "
-  ./job_copy_cmce 
+  job_copy_cmce 
 
 # echo " Copy FNMOC bias & glbanl day " $PDY$cyc
 # echo " "
@@ -37,13 +34,13 @@ while [ $iday -le $ndays ]; do
 
   echo " Copy GEFS bias & glbanl day " $PDY$cyc
   echo " "
-  ./job_copy_gefs
+  job_copy_gefs
 
   echo " Copy DV for AK 7 CONUS day " $PDY$cyc
   echo " "
-  ./job_copy_dvrtma 
+  job_copy_dvrtma 
   echo " "
-  ./job_copy_cqpf  
+  job_copy_cqpf  
 
   iday=`expr $iday + 1`
   CDATE=`$NDATE -24 $CDATE`

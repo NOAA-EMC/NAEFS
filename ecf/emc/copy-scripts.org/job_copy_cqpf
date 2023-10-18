@@ -1,0 +1,12 @@
+# copy 6 files from v6.1 to v7.0
+
+for cyc in 00 06 12 18; do
+  if [ -s $COM_IN/gefs.$PDY/$cyc/prcp_bc_gb2 ]; then
+    mkdir -p $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2
+    cp $COM_IN/gefs.$PDY/$cyc/prcp_bc_gb2/*dat $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2
+    cp $COM_IN/gefs.$PDY/$cyc/prcp_bc_gb2/*txt $COM_OUT/gefs.$PDY/$cyc/prcp_bc_gb2
+  fi
+done
+
+
+

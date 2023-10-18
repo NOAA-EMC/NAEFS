@@ -148,7 +148,7 @@ if [ -e ${DATA}/wallkill ]; then
   echo "There should be 1365 files per directory per cycle" 						>> ${DATA}/wallemail
   echo "If files arrive soon, feel free to rerun" 							>> ${DATA}/wallemail
   echo "................................................."                                              >> ${DATA}/wallemail
-  cat ${DATA}/wallemail | mail.py -s "naefs - fnmoc outage" "nco.spa@noaa.gov,ncep.sos@noaa.gov" -v
+  cat ${DATA}/wallemail | mail.py -s "naefs - fnmoc outage" "nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov" -v
   exit
 fi
 

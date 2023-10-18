@@ -139,7 +139,7 @@ suite para
         task jnaefs_fnmoc_ens_bias
           trigger :TIME >= 1525 and :TIME < 2125
         task jnaefs_fnmoc_ens_gempak
-          trigger :TIME >= 1915 or :TIME < 0115
+          trigger :TIME >= 1913 or :TIME < 0115
         task jnaefs_fnmoc_ens_debias
           trigger :TIME >= 2025 or :TIME < 0225
       endfamily
