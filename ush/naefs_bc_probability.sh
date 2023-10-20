@@ -323,7 +323,8 @@ for nfhrs in $hourlist; do
 #       fi
 
         rawfile=${PDY}${cyc}_CMC_naefs_hr_latlon0p5x0p5_P${nfhrs}_0${cmcmem}.grib2
-        ifile_cmcraw=$DCOM_CMC/$PDY/wgrbbul/cmcens_gb2/$rawfile
+#       ifile_cmcraw=$DCOM_CMC/$PDY/wgrbbul/cmcens_gb2/$rawfile
+        ifile_cmcraw=$DCOM/$PDY/wgrbbul/cmcens_gb2/$rawfile
         if [ -s $ifile_cmcraw ]; then
           $WGRIB2 -match ":RH:" -match "2 m" $ifile_cmcraw -append -grib $ifile_cmc
         fi
@@ -469,7 +470,8 @@ for nfhrs in $hourlist; do
           if [ $nfhrsm06 -eq 00 ]; then
             fensmem=`echo $mem | cut -c2-3`
             name_file=ENSEMBLE.MET.fcst_et0${fensmem}.000.${PDY}${cyc}
-            ifile_fnmocm06=$DCOM_CMC/$PDY/wgrbbul/fnmocens_gb2/$name_file
+#           ifile_fnmocm06=$DCOM_CMC/$PDY/wgrbbul/fnmocens_gb2/$name_file
+            ifile_fnmocm06=$DCOM/$PDY/wgrbbul/fnmocens_gb2/$name_file
             echo $ifile_fnmocm06
           fi   
         else

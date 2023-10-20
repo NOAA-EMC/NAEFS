@@ -23,23 +23,9 @@
 # directory are included, so if no exclude patterns match that file, it will be
 # transferred.
 
-_COMROOT_/naefs/_SHORTVER_/gefs._PDY_/gempak/
-+ ***
-- /an/
-- /an/***
-- /bc/
-- /bc/***
-- /prcp/
-- /prcp/***
+_COMROOT_/naefs/_SHORTVER_/gefs._PDYm1_/gempak/
 B 386000
 
-_COMROOT_/naefs/_SHORTVER_/gefs._PDYm1_/gempak/
-+ ***
-- /an/
-- /an/***
-- /bc/
-- /bc/***
-- /prcp/
-- /prcp/***
+_COMROOT_/naefs/_SHORTVER_/gefs._PDY_/gempak/
 B 386000
 
