@@ -311,7 +311,7 @@
           endif
          enddo
        endif
-         f(ii) = f(ii)*100.00/float(21)
+         f(ii) = f(ii)*100.00/float(31)
          if (f(ii).ge.99.0) then
           f(ii) = 100.0
          endif
@@ -570,7 +570,7 @@
           endif
          enddo
        endif
-         f(ii) = f(ii)*100.00/float(21)
+         f(ii) = f(ii)*100.00/float(31)
          if (f(ii).ge.99.0) then
           f(ii) = 100.0
          endif

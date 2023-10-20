@@ -19,7 +19,7 @@
 ! PROGRAM HISTORY LOG:
 ! 2017-02-18 YAN LUO IBM-Cray implementation              
 ! 2021-10-26 YAN LUO Modify for WCOSS2 transition
-! 2022-09-22 BO CUI  Change ensemble size from 22 to 32
+! 2022-09-22 BO CUI  Change ensemble size from 21 to 31
 !
 ! USAGE:
 !
@@ -356,7 +356,7 @@
            f(ii) = f(ii) + 1.0
           endif
          enddo
-         f(ii) = f(ii)*100.00/float(21)
+         f(ii) = f(ii)*100.00/float(iensem)
          if (f(ii).ge.99.0) then
           f(ii) = 100.0
          endif
