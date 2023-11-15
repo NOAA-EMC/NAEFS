@@ -82,7 +82,6 @@ chmod +x poescript_enspostc
 startmsg
 $APRUN_post poescript_enspostc    
 export err=$?;err_chk
-wait
 
 ################################
 # step 2: generate ensstat files
@@ -150,7 +149,6 @@ chmod +x poescript_ensstat
 startmsg
 $APRUN_stat poescript_ensstat    
 export err=$?;err_chk
-wait
 
 if [ $SENDCOM = "YES" ]; then
   for var in $varlpost; do

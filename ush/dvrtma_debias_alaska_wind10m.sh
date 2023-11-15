@@ -105,12 +105,9 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
     startmsg
     $APRUN poescript_cmce
     export err=$?; err_chk
-    wait
 
   fi
 fi
-
-wait
 
 ###################################################################################
 # input NCEP Ensemble forecast, all members are saved in one file for one lead time 
@@ -161,7 +158,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   startmsg
   $APRUN poescript_gefs_wgrib
   export err=$?; err_chk
-  wait
 
   if [ -s poescript_gefs ]; then
     rm poescript_gefs
@@ -180,11 +176,8 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   startmsg
   $APRUN poescript_gefs
   export err=$?; err_chk
-  wait
 
 fi
-
-wait
 
 #########################################
 # Combine GEFS and CMCE ensemble together
@@ -317,8 +310,6 @@ chmod +x poescript_wind10m
 startmsg
 $APRUN poescript_wind10m
 export err=$?; err_chk
-
-wait
 
 set +x
 echo " "

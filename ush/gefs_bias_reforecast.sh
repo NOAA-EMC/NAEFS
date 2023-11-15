@@ -83,7 +83,6 @@ chmod +x poescript_wgrib_rfbias
 startmsg
 $APRUN poescript_wgrib_rfbias
 export err=$?;err_chk
-wait
 
 #####################################################
 # Step 2: interpolate reforecast bias from 1d to 0.5d
@@ -113,7 +112,6 @@ chmod +x poescript_copygb_rfbias
 startmsg
 $APRUN poescript_copygb_rfbias
 export err=$?;err_chk
-wait
 
 ########################################################
 # Step 3 interpolate reforecast bias for 3hrly lead time
@@ -200,7 +198,6 @@ if [ -s poescript_avggen_rfbias ]; then
   startmsg
   $APRUN poescript_avggen_rfbias
   export err=$?; err_chk
-  wait
 fi
 
 set +x

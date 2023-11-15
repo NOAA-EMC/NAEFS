@@ -92,7 +92,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFCMCE" = "YES" ]; then
     startmsg
     $APRUN poescript_cmce
     export err=$?; err_chk
-    wait
 
   fi
 fi
@@ -129,7 +128,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   startmsg
   $APRUN poescript_gefs_wgrib
   export err=$?; err_chk
-  wait
 
   if [ -s poescript_gefs ]; then rm poescript_gefs; fi
 
@@ -147,7 +145,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   startmsg
   $APRUN poescript_gefs
   export err=$?; err_chk
-  wait
 
 fi
 
@@ -662,8 +659,6 @@ chmod +x poescript_tmax
 $APRUN poescript_tmax
 export err=$?; err_chk
 
-wait
-
 ################################################################
 # set three data files used for judge tmin for each day 
 # set forecast day number available for 4 cycles (15 or 16 days)
@@ -1125,8 +1120,6 @@ done
 chmod +x poescript_tmin
 $APRUN poescript_tmin
 export err=$?; err_chk
-
-wait
 
 set +x
 echo " "

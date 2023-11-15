@@ -145,7 +145,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
   startmsg
   $APRUN poescript_wgrib
   export err=$?;err_chk
-  #wait
 
 ##########################################################
 # Step 2: Generate Prcp & Flux Variables for every 6 hours
@@ -153,7 +152,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
  
   $ENSPOST_acct
 
-  #wait
 ########################################################
 # Step 3: Combine prcp/flux file with raw files together
 ########################################################
@@ -193,14 +191,12 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
   startmsg
   $APRUN poescript_cat
   export err=$?;err_chk
-  #wait
 
 ######################################
 # Step 4: generate ens mean and spread
 ######################################
 
   $ENSPOST_avgspr
-  #wait
 
 ####################################################################
 #  move event flag here, so gempak job will get cmc_geavg grib data
@@ -281,7 +277,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 # Step 5: Generate enspost and ensstat files
 ############################################
     $ENSPOST_stat   
-    #wait
 ###########################
 # Step 6: Generate CMC PQPF                       
 ###########################

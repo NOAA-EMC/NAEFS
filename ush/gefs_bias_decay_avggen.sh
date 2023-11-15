@@ -96,7 +96,6 @@ for nens in $memberlist; do
     $APRUN poescript_bias_${nens}
 #   $APRUN_32 poescript_bias_${nens}
     export err=$?; err_chk
-    wait
   fi
 done
 

@@ -178,8 +178,6 @@ startmsg
 $APRUN poescript_adjust
 export err=$?; err_chk
 
-wait
-
 set +x
 echo " "
 echo "Leaving sub script cmce_adjust_tmaxmin_alaska.sh"

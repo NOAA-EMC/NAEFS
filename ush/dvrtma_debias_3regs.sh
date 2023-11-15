@@ -31,8 +31,6 @@ cd $DATA/tmpdir_01
 
 $USHrtma/dvrtma_debias_tmaxmin.sh 
 
-wait
-
 ###
 # step 2: downscale ensemble forecast: T2m, 10m U & V, surface pressure
 #
@@ -169,7 +167,6 @@ for nens in $outlist; do
   startmsg
   mpirun.lsf cfp poescript_wgrib_$nens
   export err=$?;$DATA/err_chk
-  wait
 
 done
 
@@ -198,11 +195,8 @@ for nens in $outlist; do
   startmsg
   mpirun.lsf cfp poescript_copygb_$nens
   export err=$?;$DATA/err_chk
-  wait
 
 done
-
-wait
 
 for nens in $outlist; do
 
@@ -227,12 +221,9 @@ for nens in $outlist; do
     startmsg
     mpirun.lsf cfp poescript_${nens}
     export err=$?; err_chk
-    wait
   fi
 
 done 
-
-wait
 
 ###
 #  step 3: downscale ensemble forecast: wind speed and direction            
@@ -242,8 +233,6 @@ mkdir -p $DATA/tmpdir_03
 cd $DATA/tmpdir_03           
 
 $USHrtma/dvrtma_debias_wind10m.sh 
-
-wait
 
 cd $DATA
 

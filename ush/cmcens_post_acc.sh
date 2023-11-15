@@ -86,7 +86,6 @@ for nens in $memberlist; do
     startmsg
     $APRUN poescript_cmc_${nens}_acc
     export err=$?; err_chk
-    wait
   fi
 done
 

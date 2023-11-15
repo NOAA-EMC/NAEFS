@@ -69,8 +69,6 @@ startmsg
 $APRUN poescript_avgspr
 export err=$?; err_chk
 
-wait
-
 if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist
   do

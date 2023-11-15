@@ -104,10 +104,7 @@ for mem in $memberlist; do
   done
   chmod +x poescript_an.$mem
   $APRUN poescript_an.$mem
-  wait
 done
-
-wait
 
 if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist; do
@@ -146,7 +143,6 @@ for mem in $memberlist; do
   done
   chmod +x poescript_wt.${mem}
   $APRUN poescript_wt.${mem}
-  wait
 done
 
 if [ "$SENDCOM" = "YES" ]; then

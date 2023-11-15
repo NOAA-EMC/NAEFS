@@ -101,7 +101,6 @@ for nens in $memlist; do
     startmsg
     $APRUN poescript_coeff_${nens}
     export err=$?; err_chk
-    wait
   fi
 
 done

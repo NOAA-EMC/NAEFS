@@ -125,7 +125,6 @@ for mem in ${memberlist_cmc}; do
   startmsg
   $APRUN poescript_$mem
   export err=$?; err_chk
-  wait
 done
 
 set +x

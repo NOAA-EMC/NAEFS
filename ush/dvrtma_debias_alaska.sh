@@ -183,7 +183,6 @@ for nens in $outlist; do
   startmsg
   $APRUN poescript_copygb_$nens
   export err=$?;err_chk
-  wait
 
 done
 
@@ -227,8 +226,6 @@ mkdir -p $DATA/tmpdir_03
 cd $DATA/tmpdir_03           
 
 $USHrtma/dvrtma_debias_alaska_wind10m.sh 
-
-wait
 
 cd $DATA
 
