@@ -79,6 +79,12 @@ export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 
+
+####################################
+# Mail List                   
+####################################
+export MAILTO=${MAILTO:-'nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov'}
+
 ##############################
 # Run setpdy and initialize PDY variables
 ##############################
@@ -136,7 +142,6 @@ chmod +x $DATA/poescript
 startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
-wait
 
 if [ -e ${DATA}/wallkill ]; then
   echo "................................................."                                  		>> ${DATA}/wallemail
@@ -148,7 +153,8 @@ if [ -e ${DATA}/wallkill ]; then
   echo "There should be 1365 files per directory per cycle" 						>> ${DATA}/wallemail
   echo "If files arrive soon, feel free to rerun" 							>> ${DATA}/wallemail
   echo "................................................."                                              >> ${DATA}/wallemail
-  cat ${DATA}/wallemail | mail.py -s "naefs - fnmoc outage" "nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov" -v
+# cat ${DATA}/wallemail | mail.py -s "naefs - fnmoc outage" "nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov" -v
+  cat ${DATA}/wallemail | mail.py -s "naefs - fnmoc outage" ${MAILTO:?} -v
   exit
 fi
 

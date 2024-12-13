@@ -148,7 +148,6 @@ chmod +x $DATA/poescript_naefs
 startmsg
 $APRUN $DATA/poescript_naefs
 export err=$?; err_chk
-wait
 
 cat $DATA/group.024/$pgmout.024_prob
 cat $DATA/group.024/$pgmout.024.avg_an

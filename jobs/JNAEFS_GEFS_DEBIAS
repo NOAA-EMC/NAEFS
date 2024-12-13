@@ -152,7 +152,6 @@ chmod +x $DATA/poescript
 startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
-wait
 
 cat $DATA/group.c00/$pgmout.024.c00
 cat $DATA/group.p20/$pgmout.360.p20

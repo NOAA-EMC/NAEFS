@@ -151,7 +151,6 @@ chmod 775 $DATA/poescript
 startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
-wait
 
 ####################
 # Execute the script 
