@@ -18,7 +18,7 @@ set -xa
 export NET=${NET:-naefs}
 export RUN=${RUN:-cmce}
 
-export PS4='$SECONDS + '
+export PS4='+ $SECONDS + '
 date
 
 #########################################################

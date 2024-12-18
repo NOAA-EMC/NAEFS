@@ -4,7 +4,7 @@ set -xa
 # #### 08/25/1999 ###################
 # SET SHELL PROCESSING VARIABLES
 # ###################################
-export PS4='${PMI_FORK_RANK}: $SECONDS + ' 
+export PS4='+ $SECONDS + ' 
 date
 # 
 # obtain unique process id (pid) and make temp directories

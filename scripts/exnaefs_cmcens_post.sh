@@ -16,7 +16,7 @@
 #            Mar 2017 - updated for post-processing grib2 data directly 
 ############################################################################################
 
-export PS4='${PMI_FORK_RANK}: $SECONDS + '
+export PS4='+ $SECONDS + '
 set -x
 
 ##############################

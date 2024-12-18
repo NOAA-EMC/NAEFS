@@ -9,7 +9,7 @@ echo "         Aug. 2015 - Modified for 6km and 3.0km ALASKA"
 echo "------------------------------------------------------------------------------------"
 ###########################################################################################
 
-export PS4='${PMI_FORK_RANK}: $SECONDS + '
+export PS4='+ $SECONDS + '
 set -x
 
 ### To submit this job for T00Z, T06Z T12Z and T18Z, four cycles per day

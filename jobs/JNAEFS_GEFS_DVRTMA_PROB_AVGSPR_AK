@@ -27,7 +27,7 @@ export RUN=gefs
 # Run config file to get input parameters
 #########################################
 
-export PS4='$SECONDS + '
+export PS4='+ $SECONDS + '
 date
 
 ########################################################

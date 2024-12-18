@@ -22,7 +22,7 @@ export RUN=${RUN:-gefs}
 # Run config file to get input parameters
 ###########################################
 
-export PS4='${PMI_FORK_RANK}: $SECONDS + '
+export PS4='+ $SECONDS + '
 date
 
 #########################################################

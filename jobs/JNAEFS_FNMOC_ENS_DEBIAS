@@ -26,8 +26,8 @@ export RUN=${RUN:-fens}
 # COM_OUT: Directory for output file, default to ${COMROOT}/$NET/${envir}
 #####################################################################################
 
-export PS4='${PMI_FORK_RANK}: $SECONDS + '
-# JY export PS4='${PMI_FORK_RANK}: $SECONDS `basename $0` + '
+export PS4='+ $SECONDS + '
+# JY export PS4='+ $SECONDS `basename $0` + '
 date
 
 ####################################

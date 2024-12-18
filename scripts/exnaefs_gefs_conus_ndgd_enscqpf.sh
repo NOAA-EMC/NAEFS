@@ -12,7 +12,7 @@ echo "AUTHOR: Yan Luo (wx22lu)"
 
 ### need pass the values of PDY, CYC, DATA, COMIN, and COMOUT
 
-export PS4='${PMI_FORK_RANK}: $SECONDS + ' 
+export PS4='+ $SECONDS + ' 
 set -x
 
 ### 
