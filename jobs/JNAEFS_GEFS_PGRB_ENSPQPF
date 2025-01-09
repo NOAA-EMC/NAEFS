@@ -4,8 +4,6 @@
 # Generates the 24-hourly PQPF or 6-hourly, 12-hourly PQIF PQRF PQFF PQSF 
 # #######################################################################
 
-set -xa
-
 ####################################################
 # The following two variable could be defined in the
 # loadleveler submission script (the sms script), if

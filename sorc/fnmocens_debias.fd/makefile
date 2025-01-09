@@ -2,7 +2,7 @@ SHELL=	/bin/bash
 #INC= /nwprod/lib/incmod/g2_4
 #LIBS= -L/nwprod/lib -lg2_4 -lw3nco_4 -lbacio_4 \
 	#-ljasper -lpng -lz
-SRCS=	naefs_mod.f90 fnmocens_debias.f90 printinfr.f90 init_parm.f90 
+SRCS=	naefs_mod.f90 fnmocens_debias.f90 printinfr.f90 init_parm.f90  
 OBJS=   $(SRCS:.f90=.o)
 CMD=	fnmocens_debias
 #FC=	ifort
@@ -29,7 +29,7 @@ $(OBJS):        makefile
 allclean:       clean all
 
 clean:
-	-rm -f $(OBJS)
+	-rm -f $(OBJS) *.mod
 
 install:
 	mv $(CMD) ../../exec/$(CMD)

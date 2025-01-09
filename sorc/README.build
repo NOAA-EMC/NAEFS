@@ -1,6 +1,47 @@
-To build codes:
+# You can run the script with the following options:
 
-     1) ./build.sh >& naefs.compile.log
-     2) ./install.sh
+#     all               -  Build, install and clean all executables 
+#     build             -  Build all executables 
+#     install           -  Install all executables 
+#     clean             -  Clean all executables 
+#     debug             -  Build all executables in debug mode 
+#     exec_name build   -  Build executable exec_name
+#     exec_name install -  install executable exec_name
+#     exec_name clean   -  install executable exec_name
+#     exec_name debug   -  Build, install and clean executable exec_name in debug mode
 
+
+Build instructions:
+
+1. cd to the sorc directory
+
+2. To build, install, and clean all executables
+
+     ./build.sh all >& naefs.compile.log
+
+   To build, install, and clean a specific executable, provide the name name_exec.fd as parameter
+
+     ./build.sh name_exec all >& naefs.compile.log
+
+   To build, or install, or clean a specific executable, provide the name name_exec.fd as parameter
+
+     ./build.sh name_exec build
+     ./build.sh name_exec install
+     ./build.sh name_exec clean
+
+4. To build install, and clean all executables in debug mode
+
+     ./build.sh debug >& naefs.compile.log
+
+   To build, install, and clean a specific executable in debug mode (e.g., name_exec.fd)
+
+     ./build.sh name_exec debug all >& naefs.compile.log
+
+   To build, or install, or clean a specific executable in debug mode (e.g., name_exec.fd)          
+
+     ./build.sh name_exec debug build
+     ./build.sh name_exec debug install
+     ./build.sh name_exec debug clean
+
+5. check log file in sorc/logs/build_*.log
 

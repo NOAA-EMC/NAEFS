@@ -35,7 +35,7 @@ $(OBJS):        makefile
 allclean:       clean all
 
 clean:
-	-rm -f $(OBJS)
+	-rm -f $(OBJS) *.mod
 
 install:
 	mv $(CMD) ../../exec/$(CMD)
