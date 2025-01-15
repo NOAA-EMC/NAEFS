@@ -242,7 +242,7 @@ for nens in $memberlist; do
 
           outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}
           if [ -s $outfile ]; then
-            mv $outfile $COMOUTBC_p5/
+             cpfs $outfile $COMOUTBC_p5/
             $WGRIB2 -s $COMOUTBC_p5/$outfile > $COMOUTBC_p5/$outfile.idx
 
            if [ ${nfhrs} = 240 ]; then
@@ -270,7 +270,7 @@ for nens in $memberlist; do
 
           outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs
           if [ -s $outfile ]; then
-            mv $outfile $COMOUTAN_p5/
+             cpfs $outfile $COMOUTAN_p5/
             # $WGRIB2 -s $COMOUTAN_p5/$outfile > $COMOUTAN_p5/$outfile.idx
             if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
                MEMBER=`echo $nens | tr '[a-z]' '[A-Z]'`
@@ -281,7 +281,7 @@ for nens in $memberlist; do
 
           outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs
           if [ -s $outfile ]; then
-            mv $outfile $COMOUTWT_p5/
+             cpfs $outfile $COMOUTWT_p5/
           fi
 
           if [ "$IFENSBC1D" = "YES" ]; then
@@ -420,7 +420,7 @@ for nens in $memberlist; do
       if [ "$SENDCOM" = "YES" ]; then
         outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs
         if [ -s $outfile ]; then
-          mv $outfile $COMOUTAN_p5/
+           cpfs $outfile $COMOUTAN_p5/
           # $WGRIB2 -s $COMOUTAN_p5/$outfile > $COMOUTAN_p5/$outfile.idx
           if [ "$SENDDBN" = "YES" -a $nfhrs != 000 ]; then
              MEMBER=`echo $nens | tr '[a-z]' '[A-Z]'`
@@ -443,7 +443,7 @@ for nens in $memberlist; do
       if [ "$SENDCOM" = "YES" ]; then
         outfile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs
         if [ -s $outfile ]; then
-          mv $outfile $COMOUTWT_p5/
+           cpfs $outfile $COMOUTWT_p5/
 #         if [ "$IFENSBC1D" = "YES" ]; then
 #           infile=ge${nens}.t${cyc}z.pgrb2a.0p50_wtf${nfhrs}
 #           outfile=ge${nens}.t${cyc}z.pgrb2a_wtf${nfhrs}

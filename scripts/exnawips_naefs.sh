@@ -229,7 +229,7 @@ EOF
 
     if [ $SENDCOM = "YES" ] ; then
        cp $GEMGRD $COMOUT/.$GEMGRD
-       mv $COMOUT/.$GEMGRD $COMOUT/$GEMGRD
+        cpfs $COMOUT/.$GEMGRD $COMOUT/$GEMGRD
        # if [ $SENDDBN = "YES" ] ; then
        if [ $SENDDBN = "YES" -a $model != "geavgan" -a $model != "geefi" ] ; then
            $DBNROOT/bin/dbn_alert MODEL ${DBN_ALERT_TYPE} $job \

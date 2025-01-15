@@ -110,7 +110,7 @@ if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist; do
     for mem in $memberlist; do
       PGBO=cmc_ge${mem}.t${cyc}z.pgrb2a.0p50_anf${nfhrs} 
-      mv $DATA/group.$nfhrs/$PGBO $COMOUTAN_GB2/
+       cpfs $DATA/group.$nfhrs/$PGBO $COMOUTAN_GB2/
     done
   done
 fi
@@ -149,7 +149,7 @@ if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist; do
     for mem in $memberlist; do
       PGBO=cmc_ge${mem}.t${cyc}z.pgrb2a.0p50_wtf${nfhrs} 
-      mv $DATA/group.$nfhrs/$PGBO $COMOUTWT_GB2/
+       cpfs $DATA/group.$nfhrs/$PGBO $COMOUTWT_GB2/
     done
   done
 fi

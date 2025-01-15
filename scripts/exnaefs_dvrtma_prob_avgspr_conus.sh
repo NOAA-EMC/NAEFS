@@ -81,7 +81,7 @@ if [ "$SENDCOM" = "YES" ]; then
         if [ -s poe_move.${nfhrs}.${nens} ]; then rm poe_move.${nfhrs}.${nens}; fi
         file_in=naefs_${nens}.t${cyc}z.ndgd2p5_conusf${nfhrs}.grib2_ext
         file_out=naefs.t${cyc}z.${nens}.f${nfhrs}.conus_ext_2p5.grib2
-        echo "mv $file_in $COMOUT_GB2/$file_out" >>poe_move.${nfhrs}.${nens}
+        echo " cpfs $file_in $COMOUT_GB2/$file_out" >>poe_move.${nfhrs}.${nens}
       done 
     done
   fi
@@ -92,7 +92,7 @@ if [ "$SENDCOM" = "YES" ]; then
         if [ -s poe_move.${nfhrs}.${nens} ]; then rm poe_move.${nfhrs}.${nens}; fi
         file_in=${nens}.t${cyc}z.ndgd2p5_conusf${nfhrs}.grib2_ext
         file_out=gefs.t${cyc}z.${nens}.f${nfhrs}.conus_ext_2p5.grib2
-        echo "mv $file_in $COMOUT_GB2/$file_out" >>poe_move.${nfhrs}.${nens}
+        echo " cpfs $file_in $COMOUT_GB2/$file_out" >>poe_move.${nfhrs}.${nens}
       done 
     done
   fi

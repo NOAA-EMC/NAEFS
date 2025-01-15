@@ -83,23 +83,23 @@ if [ "$IFNAEFS" = "YES" ]; then
       for product in $prodlist; do
         oprod_gb2=${product}.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
         if [ -s $oprod_gb2 ]; then
-          mv $oprod_gb2 $COMOUTNAEFS_p5/naefs_$oprod_gb2
+           cpfs $oprod_gb2 $COMOUTNAEFS_p5/naefs_$oprod_gb2
         fi
       done 
 
       oprod_gb2=geavg.t${cyc}z.pgrb2a.0p50_anvf$nfhrs
       if [ -s $oprod_gb2 ]; then
-        mv $oprod_gb2 $COMOUTNAEFSAN_p5/naefs_$oprod_gb2
+         cpfs $oprod_gb2 $COMOUTNAEFSAN_p5/naefs_$oprod_gb2
       fi
 
       oprod_gb2=geavg.t${cyc}z.pgrb2a.0p50_anf$nfhrs
       if [ -s $oprod_gb2 ]; then
-        mv $oprod_gb2 $COMOUTNAEFSAN_p5/naefs_$oprod_gb2
+         cpfs $oprod_gb2 $COMOUTNAEFSAN_p5/naefs_$oprod_gb2
       fi
 
       oprod_gb2=geefi.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
       if [ -s $oprod_gb2 ]; then
-        mv $oprod_gb2 $COMOUTNAEFSAN_p5/naefs_$oprod_gb2
+         cpfs $oprod_gb2 $COMOUTNAEFSAN_p5/naefs_$oprod_gb2
       fi
 
       if [ "$IFENSBC1D" = "YES" ]; then
@@ -168,23 +168,23 @@ if [ "$IFGEFS" = "YES" ]; then
       for product in $prodlist; do
         oprod_gb2=${product}.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
         if [ -s $oprod_gb2 ]; then
-          mv $oprod_gb2  $COMOUTGEFS_p5/
+           cpfs $oprod_gb2  $COMOUTGEFS_p5/
           $WGRIB2 -s $COMOUTGEFS_p5/$oprod_gb2 > $COMOUTGEFS_p5/$oprod_gb2.idx
         fi
       done 
       oprod_gb2=geavg.t${cyc}z.pgrb2a.0p50_anvf$nfhrs
       if [ -s $oprod_gb2 ]; then
-        mv $oprod_gb2  $COMOUTGEFSAN_p5/
+         cpfs $oprod_gb2  $COMOUTGEFSAN_p5/
         # $WGRIB2 -s $COMOUTGEFS_p5/$oprod_gb2 > $COMOUTGEFSAN_p5/$oprod_gb2.idx
       fi
       oprod_gb2=geavg.t${cyc}z.pgrb2a.0p50_anf$nfhrs
       if [ -s $oprod_gb2 ]; then
-        mv $oprod_gb2  $COMOUTGEFSAN_p5/
+         cpfs $oprod_gb2  $COMOUTGEFSAN_p5/
         # $WGRIB2 -s $COMOUTGEFS_p5/$oprod_gb2 > $COMOUTGEFSAN_p5/$oprod_gb2.idx
       fi
       oprod_gb2=geefi.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
       if [ -s $oprod_gb2 ]; then
-        mv $oprod_gb2  $COMOUTGEFSAN_p5/
+         cpfs $oprod_gb2  $COMOUTGEFSAN_p5/
         # $WGRIB2 -s $COMOUTGEFS_p5/$oprod_gb2 > $COMOUTGEFSAN_p5/$oprod_gb2.idx
       fi
     fi

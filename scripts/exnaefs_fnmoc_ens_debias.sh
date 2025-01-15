@@ -93,11 +93,11 @@ do
         if [ "$SENDCOM" = "YES" ]; then
 
           if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs ]; then
-            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs $COMOUTAN/
+             cpfs fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_anf$nfhrs $COMOUTAN/
           fi
 
           if [ -s fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs ]; then
-            mv fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs $COMOUTWT/
+             cpfs fnmoc_ge${nens}.t${cyc}z.pgrb2a.0p50_wtf$nfhrs $COMOUTWT/
           fi
         fi
 

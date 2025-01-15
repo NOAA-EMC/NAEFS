@@ -96,8 +96,8 @@ modelEOF
  export err=$?;err_chk
 
  cat  stat.out 
- mv stat.out    $DATA/$cyc/rain_$RUNID.$OBSYMD
-# mv obs_box.dat $DATA/obs_box_$RUNID.$YMD
+ cpfs stat.out    $DATA/$cyc/rain_$RUNID.$OBSYMD
+# cpfs obs_box.dat $DATA/obs_box_$RUNID.$YMD
 
 done
 

@@ -114,12 +114,12 @@ if [ "$SENDCOM" = "YES" ]; then
 
     file=$DATA/dir_decay/glbanl.t${cyc}z.pgrb2a.0p50_mdf000
     if [ -s $file ]; then
-      mv $file $COMOUT_M1/
+       cpfs $file $COMOUT_M1/
     fi
 
     file=$DATA/dir_decay/ncepcmc_glbanl.t${cyc}z.pgrb2a.0p50_mdf000
     if [ -s $file ]; then
-      mv $file $COMOUT_M2/
+       cpfs $file $COMOUT_M2/
     fi
 
   fi
@@ -149,7 +149,7 @@ if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist; do
     file=$DATA/dir_combine/geavg.t${cyc}z.pgrb2a.0p50_mecomf${nfhrs}
     if [ -s $file ]; then
-      mv $file $COMOUT/
+       cpfs $file $COMOUT/
     fi
   done
 fi

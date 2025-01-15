@@ -55,12 +55,12 @@ grid="0 6 0 0 0 0 0 0 720 361 0 0 90000000 0 48 -90000000 359500000 500000 50000
     if [ "$SENDCOM" = "YES" ]; then
        outfile=geprcp.t${cyc}z.pgrb2a.0p50.anvf$nfhrs
        if [ -s $outfile ]; then
-          mv $outfile $COMOUTANFEFI_p5/
+           cpfs $outfile $COMOUTANFEFI_p5/
           $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PCP_BC_GB2 $job $COMOUTANFEFI_p5/${outfile}
        fi
        outfile=geprcp.t${cyc}z.pgrb2a.0p50.efif$nfhrs
        if [ -s $outfile ]; then
-          mv $outfile $COMOUTANFEFI_p5/
+           cpfs $outfile $COMOUTANFEFI_p5/
           $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_PCP_BC_GB2 $job $COMOUTANFEFI_p5/${outfile}
        fi
     fi

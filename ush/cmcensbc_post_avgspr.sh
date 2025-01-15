@@ -62,11 +62,11 @@ if [ "$SENDCOM" = "YES" ]; then
   for nfhrs in $hourlist; do
     file=cmc_geavg.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}
     if [ -s $file ]; then
-      mv $file $COMOUTBC_GB2/
+      cpfs $file $COMOUTBC_GB2/
     fi
     file=cmc_gespr.t${cyc}z.pgrb2a.0p50_bcf${nfhrs}
     if [ -s $file ]; then
-      mv $file $COMOUTBC_GB2/
+      cpfs $file $COMOUTBC_GB2/
     fi
   done
 fi

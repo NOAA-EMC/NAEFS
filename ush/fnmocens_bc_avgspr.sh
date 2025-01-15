@@ -74,13 +74,13 @@ if [ "$SENDCOM" = "YES" ]; then
   do
     file=fnmoc_geavg.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
     if [ -s $file ]; then
-      mv $file $COMOUTBC/
+      cpfs $file $COMOUTBC/
     else
       echo "Warning $file missing"
     fi
     file=fnmoc_gespr.t${cyc}z.pgrb2a.0p50_bcf$nfhrs
     if [ -s $file ]; then
-      mv $file $COMOUTBC/
+      cpfs $file $COMOUTBC/
     else
       echo "Warning $file missing"
     fi

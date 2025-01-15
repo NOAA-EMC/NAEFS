@@ -175,7 +175,7 @@ fi    # if fhr=00
  #####################################################
 
  if [ $SENDCOM = "YES" ] ; then
-   mv $GEMGRD $COMOUT/$GEMGRD
+    cpfs $GEMGRD $COMOUT/$GEMGRD
    if [ $SENDDBN = "YES" ] ; then
        $DBNROOT/bin/dbn_alert MODEL ${DBN_ALERT_TYPE} $job \
          $COMOUT/$GEMGRD
