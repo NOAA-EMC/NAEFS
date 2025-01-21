@@ -112,113 +112,115 @@ fi
 ############################################################################
 # Training data accumulated up to 50 day period for later decaying averaging
 ############################################################################
-if [ -s $COMOUT/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+if [ -s $COMIN/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
-elif [ -s $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
-  cp $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
+elif [ -s $COMIN/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat ]; then
+  cp $COMIN/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_gfs.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
 elif [ -s ${FIXgefs}/STAT_RM_BIAS_gfs_M${MM}_t${cyc}z.dat ]; then
   cp ${FIXgefs}/STAT_RM_BIAS_gfs_M${MM}_t${cyc}z.dat \
      $DATA/$cyc/STAT_RM_BIAS_gfs.dat
+  echo "Warning: Cold Start use fix bias STAT_RM_BIAS_gfs_M${MM}_t${cyc}z.dat"
 else
   echo "FATAL ERROR: Input gfs STAT bias file not available"
   export err=1; err_chk
 fi
 
-if [ -s $COMOUT/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+if [ -s $COMIN/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM1/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM2/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM3/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM4/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM5/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM6/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM7/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM8/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM9/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM10/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM11/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM12/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM13/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM14/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM15/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
-elif [ -s $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
-  cp $COMOUT/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
+elif [ -s $COMIN/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat ]; then
+  cp $COMIN/gefs.$YMDM16/$cyc/prcp_bc_gb2/STAT_RM_BIAS_ctl.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
 elif [ -s ${FIXgefs}/STAT_RM_BIAS_ctl_M${MM}_t${cyc}z.dat ]; then
   cp ${FIXgefs}/STAT_RM_BIAS_ctl_M${MM}_t${cyc}z.dat \
      $DATA/$cyc/STAT_RM_BIAS_ctl.dat
+  echo "Warning: Cold Start use fix bias STAT_RM_BIAS_ctl_M${MM}_t${cyc}z.dat"
 else
   echo "FATAL ERROR: Input ctl STAT bias file not available"
   export err=1; err_chk
