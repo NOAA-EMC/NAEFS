@@ -98,7 +98,6 @@ for nens in $memlist; do
 
   if [ -s poescript_coeff_${nens} ]; then
     chmod +x poescript_coeff_${nens}
-    startmsg
     $APRUN poescript_coeff_${nens}
     export err=$?; err_chk
   fi

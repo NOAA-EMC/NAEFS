@@ -49,7 +49,6 @@ cat input_cqpf_$fhrs
 
  . prep_step
 
-  startmsg
 
  $EXECgefs/gefs_enscqpf_6hr <input_cqpf_$fhrs   >> $pgmout 2>errfile
  export err=$?;err_chk

@@ -92,7 +92,6 @@ do
  echo "ibias=$ifbias," >>input_$ens
  echo "/" >>input_$ens
 
- startmsg
  $EXECfnmoc/$pgm  <input_$ens >$pgmout.$FHR.${ens}_an 2> errfile
  export err=$?
  if [ $err -eq 0 ]; then

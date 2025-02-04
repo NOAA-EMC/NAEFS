@@ -106,7 +106,6 @@ if [ "$SENDCOM" = "YES" ]; then
     done
   done
   chmod +x poescript_move
-  startmsg
   $APRUN_post poescript_move
 
 fi
@@ -137,7 +136,6 @@ if [ "$SENDDBN" = "YES" ]; then
           done
         done
         chmod +x poescript_alert
-        startmsg
         $APRUN_post poescript_alert
       fi
     fi
@@ -159,7 +157,6 @@ if [ "$SENDDBN" = "YES" ]; then
       done
     done
     chmod +x poescript_alert
-    startmsg
     $APRUN_post poescript_alert
   fi
 

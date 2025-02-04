@@ -61,7 +61,6 @@ cat inputqpf
 rm $CPGO
 
 . prep_step
-startmsg
 $EXECgefs/$pgm  <inputqpf  >$pgmout
 export err=$?;err_chk
 
@@ -115,7 +114,6 @@ cat inputpqpf
 rm $CPGO 
 
 . prep_step
-startmsg
 $EXECgefs/$pgm  <inputpqpf  >$pgmout
 export err=$?;err_chk
 

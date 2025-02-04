@@ -91,7 +91,6 @@ cat inputpqpf
 rm $CPGO $CRAINO $CFRZRO $CICEPO $CSNOWO
 
 . prep_step
-startmsg
 $EXECgefs/$pgm  <inputpqpf  >$pgmout
 export err=$?;err_chk
 

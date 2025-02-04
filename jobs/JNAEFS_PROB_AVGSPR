@@ -145,7 +145,6 @@ for nfhrs in $hourlist; do
 done
 
 chmod +x $DATA/poescript_naefs
-startmsg
 $APRUN $DATA/poescript_naefs
 export err=$?; err_chk
 

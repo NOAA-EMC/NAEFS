@@ -588,7 +588,6 @@ for nfhrs in $hourlist; do
     export err=1; err_chk
   fi
 
-  startmsg
   $EXECnaefs/naefs_bc_probability <namin.prob.$nfhrs > $pgmout.${nfhrs}_prob  2> errfile
   export err=$?;err_chk
 

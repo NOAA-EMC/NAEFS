@@ -83,7 +83,6 @@ for nens in $memberlist; do
 
   if [ -s poescript_cmc_${nens}_acc ]; then
     chmod +x poescript_cmc_${nens}_acc
-    startmsg
     $APRUN poescript_cmc_${nens}_acc
     export err=$?; err_chk
   fi

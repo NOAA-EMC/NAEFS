@@ -174,7 +174,6 @@ for nfhrs in $hourlist; do
 done
 
 chmod +x poescript_adjust 
-startmsg
 $APRUN poescript_adjust
 export err=$?; err_chk
 

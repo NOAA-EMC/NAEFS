@@ -92,7 +92,6 @@ for nens in $memberlist; do
 
   if [ -s poescript_bias_${nens} ]; then
     chmod +x poescript_bias_${nens}
-    startmsg
     $APRUN poescript_bias_${nens}
 #   $APRUN_32 poescript_bias_${nens}
     export err=$?; err_chk

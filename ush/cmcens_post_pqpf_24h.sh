@@ -19,7 +19,6 @@ fi
 export pgm=$EXECcmce/cmcens_post_pqpf_24h   
 . prep_step
 
-startmsg
 eval $pgm <<EOF >> $pgmout.cmc_pqpf 2>errfile
  &namin
  cpgb='$1',cpge='$2' /

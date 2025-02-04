@@ -81,7 +81,6 @@ export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
 export USHgefs=${USHgefs:-$HOMEgefs/ush}
 
 export ERRSCRIPT=err_chk
-export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 
@@ -149,7 +148,6 @@ export MP_LABELIO=${MP_LABELIO:-YES}
 export MP_STDOUTMODE=${MP_STDOUTMODE:-ordered}
 
 chmod +x $DATA/poescript
-startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
 

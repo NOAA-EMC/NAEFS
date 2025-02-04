@@ -102,7 +102,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
     done
 
     chmod +x poescript_cmce
-    startmsg
     $APRUN poescript_cmce
     export err=$?; err_chk
 
@@ -155,7 +154,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   done
 
   chmod +x poescript_gefs_wgrib
-  startmsg
   $APRUN poescript_gefs_wgrib
   export err=$?; err_chk
 
@@ -173,7 +171,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
     fi
   done
   chmod +x poescript_gefs
-  startmsg
   $APRUN poescript_gefs
   export err=$?; err_chk
 
@@ -307,7 +304,6 @@ for nfhrs in $hourlist; do
 done
 
 chmod +x poescript_wind10m
-startmsg
 $APRUN poescript_wind10m
 export err=$?; err_chk
 

@@ -285,7 +285,6 @@ for nens in $memlist; do
   ln -sf $osfabar     fort.44
   ln -sf $or2         fort.45
 
-  startmsg
   $EXECgefs/$pgm  <input.r2.$nfhrs.$nens > $pgmout.coeff.$nfhrs.${nens} 2> errfile
   export err=$?;err_chk
 

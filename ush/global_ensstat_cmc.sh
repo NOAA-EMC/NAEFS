@@ -71,7 +71,6 @@ do
 
     cat namin
 
-    startmsg
     $EXECcmce/$pgm <namin>$pgmout 2>errfile
     export err=$?; err_chk
     mv namin namin.$var.lr

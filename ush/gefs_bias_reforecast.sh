@@ -80,7 +80,6 @@ done
 
 chmod +x poescript_wgrib_rfbias
 
-startmsg
 $APRUN poescript_wgrib_rfbias
 export err=$?;err_chk
 
@@ -109,7 +108,6 @@ done
 
 chmod +x poescript_copygb_rfbias
 
-startmsg
 $APRUN poescript_copygb_rfbias
 export err=$?;err_chk
 
@@ -195,7 +193,6 @@ done
 
 if [ -s poescript_avggen_rfbias ]; then
   chmod +x poescript_avggen_rfbias
-  startmsg
   $APRUN poescript_avggen_rfbias
   export err=$?; err_chk
 fi

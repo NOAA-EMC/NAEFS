@@ -78,7 +78,6 @@ export FIXcmce=${FIXcmce:-$HOMEcmce/fix}
 export USHcmce=${USHcmce:-$HOMEcmce/ush}
 
 export ERRSCRIPT=err_chk
-export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 

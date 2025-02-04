@@ -196,7 +196,6 @@ while [ $fhcnt -le $fend ] ; do
   if [ $skip = 0 ]; then
     cp $GRIBIN grib$fhr
 
-    startmsg
 
     $GEMEXE/$NAGRIB << EOF
     GBFILE   = grib$fhr

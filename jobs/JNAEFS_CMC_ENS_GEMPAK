@@ -115,7 +115,6 @@ for nfhrs in $hourlist; do
 done
 
 chmod 775 $DATA/poescript_gempak
-startmsg
 $APRUN poescript_gempak
 export err=$?; err_chk
 

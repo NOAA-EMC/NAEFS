@@ -43,7 +43,6 @@ do
    echo "canom='anom.dat'," >>input
    echo "/" >>input
 
-   startmsg
    $EXECGEFS/$pgm <input > $pgmout.$FHR_an 2> errfile
    export err=$?;err_chk
 

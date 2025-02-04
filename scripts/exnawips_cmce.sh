@@ -85,7 +85,6 @@ while [ $fhcnt -le $fend ] ; do
   cp $GRIBIN grib$fhr
 
   export pgm="nagrib2 F$fhr"
-  startmsg
 
   $GEMEXE/$NAGRIB << EOF
    GBFILE   = grib$fhr

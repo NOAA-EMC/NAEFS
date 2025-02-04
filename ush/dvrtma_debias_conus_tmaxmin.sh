@@ -96,7 +96,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFCMCE" = "YES" ]; then
       fi
     done
 #   chmod +x poescript_cmce
-#   startmsg
 #   $APRUN poescript_cmce
 #   export err=$?; err_chk
 
@@ -132,7 +131,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   done
 
   chmod +x poescript_gefs_wgrib
-  startmsg
   $APRUN poescript_gefs_wgrib
   export err=$?; err_chk
 
@@ -159,7 +157,6 @@ if [ "$IFNAEFS" = "YES" -o  "$IFGEFS" = "YES" ]; then
   fi
 
   chmod +x poescript_gefs
-  startmsg
 # $APRUN poescript_gefs
   $APRUN_post poescript_gefs
   export err=$?; err_chk

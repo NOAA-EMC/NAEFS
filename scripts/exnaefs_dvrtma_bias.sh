@@ -168,7 +168,6 @@ ln -sf $afile fort.12
 ln -sf $cfile fort.13
 ln -sf $ofile fort.51
 
-startmsg
 $EXECrtma/$pgm  <input > $pgmout.$cyc
 export err=$?;err_chk
 
@@ -229,7 +228,6 @@ ofile=dvrtma.t${cycm03}z.${region}.grib2
 echo " cfopg1='${ofile}',"   >>namin_${cycm03}_dvgen
 echo " /" >>namin_${cycm03}_dvgen
 
-startmsg
 $EXECrtma/${pgm2} <namin_${cycm03}_dvgen > $pgmout.${cycm03}
 export err=$?; err_chk
 
