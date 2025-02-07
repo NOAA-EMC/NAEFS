@@ -132,7 +132,6 @@ if [ "$IF_REFCSTWITH" = "YES" ]; then
     ln -sf $ibias_rf  fort.13
     ln -sf $ofile     fort.51
 
-    startmsg
     $EXECgefs/$pgm   <input.avg.$nfhrs     > $pgmout.mecom.$nfhrs 2> errfile
     export err=$?;err_chk
 

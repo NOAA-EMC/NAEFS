@@ -71,7 +71,6 @@ export FIXrtma=${FIXrtma:-$HOMErtma/fix}
 export USHrtma=${USHrtma:-$HOMErtma/ush}
 
 export ERRSCRIPT=err_chk
-export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 

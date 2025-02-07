@@ -205,7 +205,6 @@ for nens in $memberlist; do
   fi
   ln -sf $ofile     fort.51
 
-  startmsg
   $EXECfnmoc/$pgm  <input.$nfhrs.$nens > $pgmout.$nfhrs.${nens} 2> errfile
   export err=$?;err_chk
 
@@ -315,7 +314,6 @@ for nfhrs in 000; do
   ln -sf $rfile_m06 fort.14
   ln -sf $ofile     fort.51
 
-  startmsg
   $EXECfnmoc/$pgm  <input.$nfhrs.$nens > $pgmout.$nfhrs.${nens} 2> errfile
   export err=$?;err_chk
 
@@ -411,7 +409,6 @@ for nfhrs in 000; do
   ln -sf $cfile     fort.13
   ln -sf $ofile     fort.51
 
-  startmsg
   $EXECfnmoc/$pgm  <input.$nfhrs.$nens > $pgmout.$nfhrs.${nens} 2> ercfile
   export err=$?;err_chk
 

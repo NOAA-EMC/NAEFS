@@ -79,7 +79,6 @@ for var in $varlpost; do
 done
 
 chmod +x poescript_enspostc    
-startmsg
 $APRUN_post poescript_enspostc    
 export err=$?;err_chk
 
@@ -146,7 +145,6 @@ for var in $varlstat; do
 done
 
 chmod +x poescript_ensstat    
-startmsg
 $APRUN_stat poescript_ensstat    
 export err=$?;err_chk
 

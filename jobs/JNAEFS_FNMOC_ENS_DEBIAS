@@ -75,7 +75,6 @@ export FIXfnmoc=${FIXfnmoc:-$HOMEfnmoc/fix}
 export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
 
 export ERRSCRIPT=err_chk
-export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 
@@ -139,7 +138,6 @@ for nhr in $hourlist; do
 done
 
 chmod +x $DATA/poescript
-startmsg
 $APRUN $DATA/poescript
 export err=$?; err_chk
 

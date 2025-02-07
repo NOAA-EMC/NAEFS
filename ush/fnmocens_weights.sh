@@ -43,7 +43,6 @@ do
  echo "members=$members," >>input_$ens
  echo "/" >>input_$ens
 
- startmsg
  $EXECfnmoc/$pgm         <input_$ens > $pgmout.$FHR.${ens}_wt 2> errfile
  export err=$?;err_chk
 

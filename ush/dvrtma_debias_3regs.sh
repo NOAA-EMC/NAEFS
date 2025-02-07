@@ -164,7 +164,6 @@ for nens in $outlist; do
     echo ". ./poe_${nens}.${nfhrs}" >>poescript_wgrib_$nens
   done
   chmod +x poescript_wgrib_$nens
-  startmsg
   mpirun.lsf cfp poescript_wgrib_$nens
   export err=$?;$DATA/err_chk
 
@@ -192,7 +191,6 @@ for nens in $outlist; do
   done
 
   chmod +x poescript_copygb_$nens
-  startmsg
   mpirun.lsf cfp poescript_copygb_$nens
   export err=$?;$DATA/err_chk
 
@@ -218,7 +216,6 @@ for nens in $outlist; do
     echo " copy enseble spread files "
   else
     chmod +x poescript_${nens}
-    startmsg
     mpirun.lsf cfp poescript_${nens}
     export err=$?; err_chk
   fi

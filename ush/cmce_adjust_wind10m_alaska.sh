@@ -122,7 +122,6 @@ for mem in ${memberlist_cmc}; do
     echo "$EXECrtma/$pgm <namin.adjustcmc.$nfhrs.$mem > $pgmout.${nfhrs}.$mem" >> poescript_$mem
   done
   chmod +x poescript_$mem 
-  startmsg
   $APRUN poescript_$mem
   export err=$?; err_chk
 done

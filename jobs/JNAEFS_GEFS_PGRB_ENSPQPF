@@ -76,7 +76,6 @@ export FIXgefs=${FIXgefs:-$HOMEgefs/fix}
 export USHgefs=${USHgefs:-$HOMEgefs/ush}
 
 export ERRSCRIPT=err_chk
-export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 

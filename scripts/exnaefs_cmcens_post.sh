@@ -142,7 +142,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
   done
 
   chmod +x poescript_wgrib
-  startmsg
   $APRUN poescript_wgrib
   export err=$?;err_chk
 
@@ -188,7 +187,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
   done
 
   chmod +x poescript_cat
-  startmsg
   $APRUN poescript_cat
   export err=$?;err_chk
 
@@ -228,7 +226,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
     done
 
     chmod +x poescript_idx
-    startmsg
     $APRUN poescript_idx
   fi
 
@@ -260,7 +257,6 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
   done
 
   chmod +x poescript_alert
-  startmsg
   $APRUN poescript_alert
 
   fi

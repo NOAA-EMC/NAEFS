@@ -154,7 +154,6 @@ for nens in $outlist; do
 done
 
 chmod +x poescript_wgrib
-startmsg
 $APRUN_post poescript_wgrib
 export err=$?;err_chk
 
@@ -180,7 +179,6 @@ for nens in $outlist; do
   done
 
   chmod +x poescript_copygb_$nens
-  startmsg
   $APRUN poescript_copygb_$nens
   export err=$?;err_chk
 
@@ -214,7 +212,6 @@ for nens in $outlist; do
 done
 
 chmod +x poescript_tmpdir_02
-startmsg
 $APRUN_post poescript_tmpdir_02
 export err=$?; err_chk
 
@@ -257,7 +254,6 @@ for nfhrs in $hourlist; do
 done
 
 chmod +x poescript_cat
-startmsg
 $APRUN_post poescript_cat
 
 set +x

@@ -41,7 +41,6 @@ do
  echo "members=$members," >>input.${FHR}.${ens}_wt
  echo "/" >>input.${FHR}.${ens}_wt
 
- startmsg
  $EXECgefs/gefs_weights <input.${FHR}.${ens}_wt >${pgmout}.$FHR.${ens}_wt     
  export err=$?;err_chk
 

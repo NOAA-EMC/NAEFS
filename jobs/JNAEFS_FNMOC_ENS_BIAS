@@ -93,7 +93,6 @@ export FIXfnmoc=${FIXfnmoc:-$HOMEfnmoc/fix}
 export USHfnmoc=${USHfnmoc:-$HOMEfnmoc/ush}
 
 export ERRSCRIPT=err_chk
-export LOGSCRIPT=startmsg
 export REDOUT='1>>'
 export REDERR='2>'
 

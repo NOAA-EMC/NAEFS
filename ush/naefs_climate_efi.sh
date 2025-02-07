@@ -85,7 +85,6 @@ do
 
 #  excute program
 
-    startmsg
     $EXECnaefs/$pgm  <input.${FHR}.${ens}_anfefi > $pgmout.$FHR.${ens}_anfefi 2> errfile
     export err=$?;err_chk
 

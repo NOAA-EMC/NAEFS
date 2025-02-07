@@ -65,7 +65,6 @@ if [ $inew -eq 1 ]; then
  export pgm=gefs_enssrbias
  . prep_step
 
-  startmsg
 
  $EXECgefs/gefs_enssrbias <input_stat >stat_output.$RID
  export err=$?; err_chk

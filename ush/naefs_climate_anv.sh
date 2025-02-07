@@ -84,7 +84,6 @@ do
  echo "ibias=$ifbias," >>input_$ens.$FHR
  echo "/" >>input_$ens.$FHR
 
- startmsg
  $EXECnaefs/$pgm <input_$ens.$FHR > $pgmout.$FHR.${ens}_an 2> errfile
  export err=$?;err_chk
 

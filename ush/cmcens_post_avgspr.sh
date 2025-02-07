@@ -53,7 +53,6 @@ for nfhrs in $hourlist; do
 done
 
 chmod +x poescript_avgspr
-startmsg
 $APRUN poescript_avgspr  
 export err=$?;err_chk
 

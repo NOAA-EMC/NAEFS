@@ -90,7 +90,6 @@ modelEOF
  export pgm=gefs_enspvrfy
  . prep_step
 
-  startmsg
 
  $EXECgefs/gefs_enspvrfy  <input_runv   >> $pgmout 2>errfile
  export err=$?;err_chk

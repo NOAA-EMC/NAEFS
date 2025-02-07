@@ -98,7 +98,6 @@ do
  echo "ibias=$ifbias," >>input.${FHR}.${ens}_an
  echo "/" >>input.${FHR}.${ens}_an
 
- startmsg
  $EXECcmce/$pgm  <input.${FHR}.${ens}_an > $pgmout.$FHR.${ens}_an 2> errfile
  export err=$?;err_chk
 
