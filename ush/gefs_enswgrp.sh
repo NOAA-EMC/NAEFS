@@ -46,6 +46,7 @@ fi
     echo "echo "no file of" $infile "          
     echo " ***** Missing today's precipitation forecast *****"
     echo " ***** Program must be stoped here !!!!!!!!!! *****"
+    echo "FATAL ERROR in gefs_enswgrp.sh !!!"
     export err=8; err_chk
     fi     
   done    # for nens in $memberlist
