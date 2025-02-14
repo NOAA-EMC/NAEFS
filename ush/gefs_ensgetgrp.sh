@@ -67,7 +67,7 @@ for nfhrs in $hourlist; do
   else
       echo " No either $infile" 
       echo " Missing precipitation forecast data detected, quit "
-#     echo "FATAL ERROR in gefs_ensgetgrp.sh !!!"
+      echo "FATAL ERROR in gefs_ensgetgrp.sh !!!"
 #      export err=8; err_chk
   fi     
   done
@@ -82,6 +82,6 @@ for nfhrs in $hourlist; do
   else
       echo " No either $infile"
       echo " Missing precipitation forecast data detected, quit "
-#     echo "FATAL ERROR in gefs_ensgetgrp.sh !!!"
+      echo "FATAL ERROR in gefs_ensgetgrp.sh !!!"
 #     export err=8; err_chk
   fi     
