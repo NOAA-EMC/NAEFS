@@ -29,5 +29,6 @@ outfile=$DATA/$cyc/${iacc}hr/geprcp.t${cyc}z.ndgd2p5.bc_${iacc}hf${nfhrs}.gb2
     echo "echo "no file of" $infile "          
     echo " ***** Missing today's precipitation forecast *****"
     echo " ***** Program must be stoped here !!!!!!!!!! *****"
+    echo "FATAL ERROR in conus_ndgd_enswgrp.sh !!!"
     export err=8; err_chk
   fi

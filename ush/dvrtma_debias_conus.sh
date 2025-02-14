@@ -117,7 +117,9 @@ for nens in $outlist; do
     fi
 
     if [[ ! -s $infile ]]; then
-      echo "Warning !!! Input pgrb2ap5_bc files not available"
+      ls $$infile
+      echo "FATAL ERROR in dvrtma_debias_conus.sh !!!"
+      echo "Input pgrb2ap5_bc files not available"
       export err=1; err_chk
     fi
 
