@@ -101,6 +101,10 @@ export COMOUT=$COM_OUT/${RUN}.${PDY}/${cyc}/pgrb2ap5
 export COMOUTm1=$COM_OUT/${RUN}.${PDYm1}/${cyc}/pgrb2ap5
 export COMOUTenst=$COM_OUT/${RUN}.${PDY}/${cyc}/ensstat
 
+# Create a restart directory in ptmp to hold temporary output
+export DATA_RESTART=${DATAROOT}/$NET/${naefs_ver}/${RUN}.${PDY}/${cyc}/restart
+if [[ ! -d ${DATA_RESTART} ]]; then mkdir -p "${DATA_RESTART}"; fi
+
 mkdir -m 775 -p $COMOUT
 mkdir -m 775 -p $COMOUTm1             
 mkdir -m 775 -p $COMOUTenst 
@@ -133,5 +137,8 @@ if [ $KEEPDATA != YES ]; then
   cd $DATAROOT
   rm -rf $DATA
 fi
+# rm -rf $DATA_RESTART
+
+
 
 date

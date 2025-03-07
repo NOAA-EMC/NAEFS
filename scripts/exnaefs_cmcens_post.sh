@@ -66,6 +66,12 @@ fi
 export memberlist="p01 p02 p03 p04 p05 p06 p07 p08 p09 p10 \
                    p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 c00"
 
+# Count the number of members
+count=$(echo $memberlist | wc -w)
+
+# Print the result
+echo "Number of members: $count"
+
 if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 
 ##########################################
@@ -202,6 +208,7 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
 
   ecflow_client --event release_debias
 
+  # generate idx files
 
   if [ $SENDDBN_GB2 = YES ]; then
     for nfhrs in $hourlist; do
@@ -229,37 +236,66 @@ if [ $cyc -eq 00 -o $cyc -eq 12 ]; then
     $APRUN poescript_idx
   fi
 
+  # send out alerts     
+
   if [ $SENDDBN_GB2 = YES ]; then
+
+    if [ -s poescript_alert ]; then
+      rm poescript_alert
+    fi
+
     for nfhrs in $hourlist; do
+
+    # if this is a rerun, a directory DATA_RESTART must exist with data in it
+    logfile=naefs_cmcens_post_${PDY}${cyc}.logf${nfhrs}
+   
+    if [ -s ${DATA_RESTART}/${logfile} ]; then
+      echo "Restarts found in ${DATA_RESTART} logfile=${logfile}"
+    else
+  
+    # start to sent alert
+
       ifile_avg=cmc_geavg.t${cyc}z.pgrb2a.0p50.f${nfhrs}
-
-      echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2      $job $COMOUT/${ifile_avg}"     >>poe_alert.${nfhrs} 
-      echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2_WIDX $job $COMOUT/${ifile_avg}.idx" >>poe_alert.${nfhrs} 
-
       ifile_spr=cmc_gespr.t${cyc}z.pgrb2a.0p50.f${nfhrs}
-      echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2      $job $COMOUT/${ifile_spr}"     >>poe_alert.${nfhrs} 
-      echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2_WIDX $job $COMOUT/${ifile_spr}.idx" >>poe_alert.${nfhrs} 
 
+      if [ -s $COMOUT/${ifile_avg} -a -s $COMOUT/${ifile_spr} ]; then
+
+        echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2      $job $COMOUT/${ifile_avg}"     >>poe_alert.${nfhrs} 
+        echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2_WIDX $job $COMOUT/${ifile_avg}.idx" >>poe_alert.${nfhrs} 
+        echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2      $job $COMOUT/${ifile_spr}"     >>poe_alert.${nfhrs} 
+        echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2_WIDX $job $COMOUT/${ifile_spr}.idx" >>poe_alert.${nfhrs} 
+
+      tfile=0
       for mem in $memberlist; do
         ifile_mem=cmc_ge${mem}.t${cyc}z.pgrb2a.0p50.f${nfhrs}
-        echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2    $job $COMOUT/${ifile_mem}"     >>poe_alert.${nfhrs}
-        echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2_WIDX    $job $COMOUT/${ifile_mem}.idx"     >>poe_alert.${nfhrs}
+        if [ -s $COMOUT/${ifile_mem} -a -s $COMOUT/${ifile_mem}.idx ]; then
+          echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2    $job $COMOUT/${ifile_mem}"       >>poe_alert.${nfhrs}
+          echo "$DBNROOT/bin/dbn_alert MODEL NAEFS_CMCENS_PGBA_GB2_WIDX $job $COMOUT/${ifile_mem}.idx" >>poe_alert.${nfhrs}
+          (( tfile = tfile + 1 ))
+        else
+          echo "There is no file $COMOUT/${ifile_mem}"       >>poe_alert.${nfhrs}
+          echo "There is no file $COMOUT/${ifile_spr}.idx"   >>poe_alert.${nfhrs}
+        fi
       done
-    done
 
-  if [ -s poescript_alert ]; then
-    rm poescript_alert
-  fi
+      # Log the job running status to the log file  
+      if [ $tfile -eq $count ]; then
+        printf "naefs_cmcens_post" >> $DATA_RESTART/${logfile}
+      fi
 
-  for nfhrs in $hourlist; do
-    chmod +x poe_alert.${nfhrs}
-    echo ". ./poe_alert.${nfhrs}" >>poescript_alert
-  done
+      fi    # avg and spr are available
 
-  chmod +x poescript_alert
-  $APRUN poescript_alert
+      chmod +x poe_alert.${nfhrs}
+      echo ". ./poe_alert.${nfhrs}" >>poescript_alert
+    fi    ## check restart
 
-  fi
+    done  ###  $hourlist
+
+    chmod +x poescript_alert
+    $APRUN poescript_alert
+
+  fi    ### SENDDBN_GB2
+
 ## move up earlier to release the gempak job sooner - 05/14/2018 - JY
 #####################################################################
 ##  move event flag here, so gempak job will get cmc_geavg grib data
