@@ -71,6 +71,9 @@ setpdy.sh
 export COMIN=${COMIN:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PDY}/${cyc}/pgrb2ap5}
 export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
+# Create a restart directory in ptmp to hold temporary output
+export DATA_RESTART=${DATAROOT}/$NET/${naefs_ver}/${RUN}.${PDY}/${cyc}/restart
+if [[ ! -d ${DATA_RESTART} ]]; then mkdir -p "${DATA_RESTART}"; fi
 
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
@@ -128,5 +131,6 @@ cat $DATA/dir_360/output_avg_360
 cd $DATAROOT
 
 if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+#rm -rf DATA_RESTART
 
 date
