@@ -5,6 +5,7 @@ echo "exnawips - convert FNMOC GRIB files into GEMPAK Grids"
 echo "----------------------------------------------------"
 echo "History: Jan 2011 - First implementation of this new script."
 echo "         Aug 2022 - Modified for 0.5d ensmeble forecast"
+echo "         Feb 2025 - Add restart capability"
 #####################################################################
 
 
@@ -56,6 +57,13 @@ while [ $fhcnt -le $fend ] ; do
 
   fhr3=$fhcnt
   typeset -Z3 fhr3
+
+  # if there was a run before, a directory DATA_RESTART must exist with data in it
+  logfile=nawips_fnmoc_${PDY}${cyc}.logf${fhr3}_0${member}
+ 
+  if [ -s ${DATA_RESTART}/${logfile} ]; then
+    echo "Restarts found in ${DATA_RESTART}, logfile=${logfile}"
+  else
 
   GRIB2IN=$COMIN/ENSEMBLE.halfDegree.MET.fcst_${model}0${member}.${fhr3}.${PDY}${cyc}
   GRIBIN=${SUBRUN}.${cycle}.0p50.pgrbaf${fhr}
@@ -179,18 +187,26 @@ fi    # if fhr=00
    if [ $SENDDBN = "YES" ] ; then
        $DBNROOT/bin/dbn_alert MODEL ${DBN_ALERT_TYPE} $job \
          $COMOUT/$GEMGRD
+       # Log the job running status to the log file  
+       printf "nawips_fnmoc" >> $DATA_RESTART/${logfile}
    fi
  fi
+
 
 elif [ ! -s $GRIB2IN ]; then
   echo "WARNING:$GRIB2IN is missing!!!"
 fi
+
+  # end of restart check
+  fi
+
   if [ $fhcnt -lt 192 ] ; then
     finc=03
   else
     finc=06
   fi
  let fhcnt=fhcnt+finc
+
 done
 
 #####################################################################
