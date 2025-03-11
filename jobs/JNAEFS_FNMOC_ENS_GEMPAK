@@ -95,6 +95,10 @@ export COMIN_bc=$COMIN/fnmoc_0p5_ens_bc_gb2
 
 export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 
+# Create a restart directory in ptmp to hold temporary output
+export DATA_RESTART=${DATAROOT}/$NET/${naefs_ver}/${RUN}.${PDY}/${cyc}/restart
+if [[ ! -d ${DATA_RESTART} ]]; then mkdir -p "${DATA_RESTART}"; fi
+
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
 fi
@@ -131,6 +135,9 @@ cat $DATA/11_et/output
 ##############################
 cd $DATAROOT
 
-if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+if [ $KEEPDATA = NO ]; then
+  rm -rf $DATA
+# rm -rf $DATA_RESTART
+fi
 
 date
