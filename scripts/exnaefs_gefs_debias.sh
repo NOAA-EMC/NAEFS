@@ -8,6 +8,7 @@
 #         Aug   2007 - Add hybrid method to combine bias-corrected GFS and bias-corrected GEFS
 #         June  2015 - Add new variable (TCDC) 
 #         June  2016 - Modified for half degree ensembl forecasts
+#         Feb   2025 - Add restart capability
 # AUTHOR: Bo Cui  (wx20cb)
 ###############################################################################################
 
@@ -86,6 +87,13 @@ for nens in $memberlist; do
 
   for nfhrs in $hourlist; do
 
+   # if there was a run before, a directory DATA_RESTART must exist with data in it
+   logfile=gefs_debias_${PDY}${cyc}.logf${nfhrs}_${nens}
+
+   if [ -s ${DATA_RESTART}/${logfile} ]; then
+      echo "Restarts found in ${DATA_RESTART} logfile=${logfile}"
+   else
+   
 ###
 #  set the index ( exist of bias estimation ) as default, 0
 ###
@@ -311,6 +319,10 @@ for nens in $memberlist; do
       fi
     done
 
+    # Log the job running status to the log file
+    printf "gefs_debias" >> $DATA_RESTART/$logfile                             
+              
+  fi
   done
 done
 
