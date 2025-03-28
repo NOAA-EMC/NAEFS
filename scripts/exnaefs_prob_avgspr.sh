@@ -5,6 +5,7 @@ echo "NAEFS products generation from combined NCEP/GEFS and CMC/EPS ensembles"
 echo "------------------------------------------------"
 echo "History: Oct 2013 - First implementation of this new script."
 echo "         Oct 2016 - Modified for half degree ensembles."
+echo "         Feb 2025 - Add restart capability"
 echo "AUTHOR: Bo Cui  (wx20cb)"
 
 ###############################################################################
@@ -58,6 +59,14 @@ grid2="0 6 0 0 0 0 0 0 360 181 0 0 90000000 0 48 -90000000 359000000 1000000 100
 if [ "$IFNAEFS" = "YES" ]; then
 
   for nfhrs in $hourlist; do
+
+    # if there was a run before, a directory DATA_RESTART must exist with data in it
+
+    logfile=naefs_prob_avgspr_${PDY}${cyc}.logf${nfhrs}
+
+    if [ -s ${DATA_RESTART}/${logfile} ]; then
+      echo "Restarts found in ${DATA_RESTART} logfile=${logfile}"
+    else
 
     export FHRLIST=$nfhrs
 
@@ -134,6 +143,10 @@ if [ "$IFNAEFS" = "YES" ]; then
 
     fi
 
+    # Log the job running status to the log file  
+    printf "naefs_prob_avgspr" >> $DATA_RESTART/${logfile}                                             
+
+    fi
   done
 fi
 
@@ -144,6 +157,11 @@ fi
 if [ "$IFGEFS" = "YES" ]; then
 
   for nfhrs in $hourlist; do
+
+    logfile=gefs_prob_avgspr_${PDY}${cyc}.logf${nfhrs}
+    if [ -s ${DATA_RESTART}/${logfile} ]; then
+      echo "Restarts found in ${DATA_RESTART} logfile=${logfile}"
+    else
 
     export FHRLIST=$nfhrs
 
@@ -224,6 +242,10 @@ if [ "$IFGEFS" = "YES" ]; then
               # $DBNROOT/bin/dbn_alert MODEL NAEFS_GEFS_AN_GB2_WIDX $job $COMOUTGEFSAN_p5/$oefi_gefs_gb2.idx
     fi
 
+    # Log the job running status to the log file  
+    printf "naefs_gefs_prob_avgspr" >> $DATA_RESTART/${logfile}
+
+    fi
   done
 fi
 

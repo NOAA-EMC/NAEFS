@@ -107,6 +107,10 @@ export COMOUTNAEFSAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 export COMOUTNAEFS=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_bc
 export COMOUTNAEFSAN=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_an
 
+# Create a restart directory in ptmp to hold temporary output
+export DATA_RESTART=${DATAROOT}/$NET/${naefs_ver}/${RUN}.${PDY}/${cyc}/restart
+if [[ ! -d ${DATA_RESTART} ]]; then mkdir -p "${DATA_RESTART}"; fi
+
 mkdir -m 775 -p ${COMOUTNAEFS_p5}
 mkdir -m 775 -p ${COMOUTNAEFSAN_p5}
 
@@ -167,6 +171,7 @@ postmsg "$jlogfile" "$msg"
 if [ $KEEPDATA != YES ]; then
   cd $DATAROOT
   rm -rf $DATA
+# rm -rf $DATA_RESTART
 fi
 
 date
