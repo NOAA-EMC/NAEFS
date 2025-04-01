@@ -73,6 +73,10 @@ export COMIN_ANL=${COMIN_ANL:-$(compath.py $envir/$NET/${naefs_ver})/${RUN}.${PD
 export COMOUT=${COMOUT:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDY}/gempak}
 export COMOUTm2=${COMOUTm2:-$(compath.py -o $NET/${naefs_ver})/${RUN}.${PDYm2}/gempak}
 
+# Create a restart directory in ptmp to hold temporary output
+export DATA_RESTART=${DATAROOT}/$NET/${naefs_ver}/${RUN}.${PDY}/${cyc}/restart
+if [[ ! -d ${DATA_RESTART} ]]; then mkdir -p "${DATA_RESTART}"; fi
+
 if [ ! -f $COMOUT ] ; then
   mkdir -p -m 775 $COMOUT
 fi
@@ -101,9 +105,14 @@ $APRUN $DATA/poescript
 export err=$?; err_chk
 
 ########################################################
+cd $DATA
+cat avg_mecom/output
+cat gfs_me/output
+cat gefs_anl/output
 
 cd $DATAROOT
 
 if [ $KEEPDATA = NO ]; then rm -rf $DATA; fi
+#rm -rf $DATA_RESTART
 
 date

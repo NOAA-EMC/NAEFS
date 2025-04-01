@@ -74,6 +74,13 @@ while [ $fhcnt -le $fend ] ; do
   fhr3=$fhcnt
   typeset -Z3 fhr3
 
+# if there was a run before, a directory DATA_RESTART must exist with data in it
+  logfile=nawips_cmce_${PDY}${cyc}.logf${fhr3}_${member}
+  
+  if [ -s ${DATA_RESTART}/${logfile} ]; then
+    echo "Restarts found in ${DATA_RESTART} logfile=${logfile}"
+  else
+
   GRIBIN=$COMIN/cmc_ge${member}.${cycle}.pgrb2a.0p50.f${fhr3}
   if [ -s $GRIBIN ]
   then
@@ -111,10 +118,12 @@ EOF
 
   if [ $SENDCOM = "YES" ] ; then
      cp $GEMGRD $COMOUT/.$GEMGRD
-      cpfs $COMOUT/.$GEMGRD $COMOUT/$GEMGRD
+     cpfs $COMOUT/.$GEMGRD $COMOUT/$GEMGRD
      if [ $SENDDBN = "YES" ] ; then
          $DBNROOT/bin/dbn_alert MODEL ${DBN_ALERT_TYPE} $job \
            $COMOUT/$GEMGRD
+         # Log the job running status to the log file
+         printf "nawips_cmce" >> $DATA_RESTART/${logfile}
      else
        echo "##### DBN_ALERT_TYPE is: ${DBN_ALERT_TYPE} #####"
      fi
@@ -124,6 +133,8 @@ else
   echo "WARNING:$GRIB2IN is missing!!!"
 fi
 
+  fi   ## check restart
+  
   if [ $fhcnt -lt 192 ] ; then
     finc=03
   else

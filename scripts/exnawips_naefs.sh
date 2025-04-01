@@ -173,7 +173,18 @@ while [ $fhcnt -le $fend ] ; do
                  GEMGRD=${model}${member}_${PDY}${cyc}f${fhr3}
                fi ;;
   esac
-  
+
+  # if there was a run before, a directory DATA_RESTART must exist with data in it
+  logfile=nawips_${SUBRUN}_${model}_${PDY}${cyc}.logf${fhr3}
+  if [ $# = 9 ]; then
+    logfile=nawips_${SUBRUN}_${model}_${PDY}${cyc}.logf${fhr3}_$9
+  fi
+ 
+  if [ -s ${DATA_RESTART}/${logfile} ]; then
+    echo "Restarts found in ${DATA_RESTART} logfile=${logfile}"
+  else
+
+  # start to generate product if there is no rerun
   icnt=1
   skip=0
   while [ $icnt -lt 1000 ]
@@ -228,11 +239,13 @@ EOF
 
     if [ $SENDCOM = "YES" ] ; then
        cp $GEMGRD $COMOUT/.$GEMGRD
-        cpfs $COMOUT/.$GEMGRD $COMOUT/$GEMGRD
+       cpfs $COMOUT/.$GEMGRD $COMOUT/$GEMGRD
        # if [ $SENDDBN = "YES" ] ; then
        if [ $SENDDBN = "YES" -a $model != "geavgan" -a $model != "geefi" ] ; then
            $DBNROOT/bin/dbn_alert MODEL ${DBN_ALERT_TYPE} $job \
            $COMOUT/$GEMGRD
+           # Log the job running status to the log file  
+           printf "nawips_naefs" >> $DATA_RESTART/${logfile}
        else
          echo "##### DBN_ALERT_TYPE is: ${DBN_ALERT_TYPE} #####"
          echo "Data NOT alert: SENDDBN=$SENDDBN, model=$model"
@@ -241,13 +254,15 @@ EOF
 
   fi      # skip
 
+  fi      # check restart
+
   if [ $fhcnt -lt 192 ] ; then
     finc=03
   else
     finc=06
   fi
-  let fhcnt=fhcnt+finc
 
+  let fhcnt=fhcnt+finc
 done
 
 #####################################################################
