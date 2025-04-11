@@ -56,6 +56,7 @@ cat input_cqpf_$fhrs
 else
  echo " ***** Missing today's precipitation forecast *****"
  echo " ***** Program must be stoped here !!!!!!!!!! *****"
+ echo "FATAL ERROR in gefs_enscqpf.sh !!!"
  export err=8;err_chk
 fi
 

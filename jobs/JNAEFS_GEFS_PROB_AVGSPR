@@ -107,6 +107,10 @@ export COMOUTGEFSAN_p5=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2ap5_an
 export COMOUTGEFS=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_bc
 export COMOUTGEFSAN=${COM_OUT}/${RUN}.${PDY}/${cyc}/pgrb2a_an
 
+# Create a restart directory in ptmp to hold temporary output
+export DATA_RESTART=${DATAROOT}/$NET/${naefs_ver}/${RUN}.${PDY}/${cyc}/restart
+if [[ ! -d ${DATA_RESTART} ]]; then mkdir -p "${DATA_RESTART}"; fi
+
 mkdir -m 775 -p ${COMOUTGEFS_p5}
 mkdir -m 775 -p ${COMOUTGEFSAN_p5}
 
@@ -179,5 +183,6 @@ if [ $KEEPDATA != YES ]; then
   cd $DATAROOT
   rm -rf $DATA
 fi
+#rm -rf $DATA_RESTART
 
 date

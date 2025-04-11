@@ -125,6 +125,8 @@ for nens in $outlist; do
     fi
 
     if [[ ! -s $infile ]]; then
+      ls $infile
+      echo "FATAL ERROR in dvrtma_debias_3regs.sh !!!"
       echo "Input pgrb2a_bc files not available"
       export err=1; err_chk
     fi
