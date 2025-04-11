@@ -22,6 +22,7 @@
 !                      (1, 2, 4 and 6 inches).
 !   15-07-06   BO Cui: Modify for grib2 encode/decode.
 !   23-01-18   BO Cui: Change ensmeble size from 21 to 31
+!   25-04-11   BO Cui: Improve code stability
 !
 ! USAGE:
 !
@@ -187,6 +188,10 @@ call gf_free(gfldo)
 allocate(ff(ijd,mem),pp(ijd,mem),ss(ijd,mem),aa(ijd))
 allocate(pp1(ijd,mem),pp2(ijd,mem),pp3(ijd,mem))
 
+pp1=0.
+pp2=0.
+pp3=0.
+
 ncnt=0
 
 if(hrinter.gt.6) ivar=1
@@ -350,6 +355,8 @@ do n = 1, len         !### 16 (days) * 4 = 64 (6-hr)
               bb=ff(ii,mm)+pp1(ii,mm)
             elseif(hrinter.eq.6) then
               bb=ff(ii,mm)
+            else
+              bb=0.
             endif
             if(k.eq.2.and.ii.eq.1250.and.mm.eq.1) then
               print *, 'ff,pp1,pp2,pp3,bb',hrinter,ff(ii,mm),pp1(ii,mm),pp2(ii,mm),pp3(ii,mm),bb
