@@ -265,11 +265,9 @@ for nfhrs in 00; do
                                                            
   afile=$COM_CMC/cmce.${aymd}/${acyc}/pgrb2ap5/cmc_gec00.t${acyc}z.pgrb2a.0p50.anl
 
-  if [ -s $afile.idx ]; then
-    echo " "
-  else
-    echo " There is no Analysis data, Stop! for " $acyc
-#   exit
+  if [ ! -s $afile.idx ]; then
+    echo "FATAL ERROR: There is no CMC Analysis data, Stop! " $afile
+    export err=1; err_chk
   fi
 
 ###
@@ -282,6 +280,16 @@ for nfhrs in 00; do
   rfile=cdas1.t${acyc}z.pgrbf00.0p50.grib2
   rfile_m06=cdas1.t${acyc_m06}z.pgrbf06.0p50.grib2
   grid2="0 6 0 0 0 0 0 0 720 361 0 0 90000000 0 48 -90000000 359500000 500000 500000 0"
+
+  if [ ! -s $rfile_in ]; then
+    echo "FATAL ERROR: There is no CDAS data, Stop! " $rfile_in
+    export err=1; err_chk
+  fi
+
+  if [ ! -s $rfile_m06in ]; then
+    echo "FATAL ERROR: There is no CDAS data, Stop! " $rfile_in
+    export err=1; err_chk
+  fi
 
   $COPYGB2 -g "$grid2" -x $rfile_in    $rfile
   $COPYGB2 -g "$grid2" -x $rfile_m06in $rfile_m06
