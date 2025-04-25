@@ -83,8 +83,10 @@ do
         ln -sf $ifile_in $ofile
         export MEMLIST=$nens
         $ENSANOMALY $PDY$cyc $nfhrs
+        export err=1; err_chk
 
         $ENSWEIGHTS $PDY$cyc $nfhrs
+        export err=1; err_chk
 
         icnt=31
 

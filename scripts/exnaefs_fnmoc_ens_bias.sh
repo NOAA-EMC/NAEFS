@@ -244,8 +244,10 @@ for nfhrs in 000; do
   afile=$COMINnavgem/US058GMET-OPSbd2.NAVGEM000-${aymd}${acyc}-NOAA-halfdeg.gr2
 
   if [ ! -s $afile ]; then
-    echo " FATAL ERROR: There is no FNMOC Analysis data, Stop! for " ${aymd}${acyc}
-    export err=1; err_chk
+    echo "$afile" >> ${DATA}/missing_fens.txt
+    cat $DATA/missing_fens.txt | mail.py -s "Missing FNMOC data in $job" ${MAILTO:?} -v
+    echo " FATAL ERROR: There is no FNMOC Analysis data, Stop!" $afile            
+    exit                     
   fi
 
 ###
@@ -260,15 +262,18 @@ for nfhrs in 000; do
   grid2="0 6 0 0 0 0 0 0 720 361 0 0 90000000 0 48 -90000000 359500000 500000 500000 0"
 
   if [ ! -s $rfile_in ]; then
-    echo "FATAL ERROR: There is no CFS Reanalysis data, Stop! for " ${aymd}${acyc}
-    export err=1; err_chk
+    echo "FATAL ERROR: There is no CFS Reanalysis data, Stop!" $rfile_in      
+    export err=$?;err_chk
   fi
   if [ ! -s $rfile_m06in ]; then
-    echo " There is no CFS Reanalysis data, Stop! for " ${aymd_m06}${acyc_m06}
+    echo "FATAL ERROR: There is no CFS Reanalysis data, Stop! " $rfile_m06in             
+    export err=$?;err_chk
   fi
 
-  $COPYGB2 -g "$grid2" -x $rfile_in    $rfile
-  $COPYGB2 -g "$grid2" -x $rfile_m06in $rfile_m06
+  if [ -s $rfile_in -a -s $rfile_m06in ]; then
+    $COPYGB2 -g "$grid2" -x $rfile_in    $rfile
+    $COPYGB2 -g "$grid2" -x $rfile_m06in $rfile_m06
+  fi
 
 ###
 #  get initialized bias between analyais and reanalysis entry
@@ -352,7 +357,7 @@ for nfhrs in 000; do
   nfile=$COMINgefs/gefs.${aymd}/${acyc}/atmos/pgrb2ap5/gec00.t${acyc}z.pgrb2a.0p50.f000
 
   if [ ! -s $nfile ]; then
-    echo " FATAL ERROR:There is no GEFS Analysis data, Stop! for " ${aymd}${acyc}
+    echo " FATAL ERROR:There is no GEFS Analysis data, Stop! " ${nfile}       
     export err=1; err_chk
   fi
 
@@ -363,10 +368,11 @@ for nfhrs in 000; do
   cfile=$COMINnavgem/US058GMET-OPSbd2.NAVGEM000-${aymd}${acyc}-NOAA-halfdeg.gr2
 
   if [ ! -s $cfile ]; then
-    echo "FATAL ERROR: There is no FNMOC Analysis data, Stop! for " ${aymd}${acyc}
-    export err=1; err_chk
+    echo "$cfile" >> ${DATA}/missing_fens.txt
+    cat $DATA/missing_fens.txt | mail.py -s "Missing FNMOC data in $job" ${MAILTO:?} -v
+    echo " FATAL ERROR: There is no FNMOC Analysis data, Stop!" $cfile            
+    exit                    
   fi
-
 ###
 #  get initialized bias between NCEP and FNMOC analysis 
 ###
