@@ -93,7 +93,8 @@ do
  echo "/" >>input_$ens
 
  $EXECfnmoc/$pgm  <input_$ens >$pgmout.$FHR.${ens}_an 2> errfile
- export err=$?
+ export err=$?;err_chk
+
  if [ $err -eq 0 ]; then
    mv anom_$ens.dat fnmoc_ge${ens}.t${cyc}z.pgrb2a.0p50_anf${FHR}
  else

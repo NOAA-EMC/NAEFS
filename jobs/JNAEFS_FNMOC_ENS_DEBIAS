@@ -166,11 +166,13 @@ export DATA=$DATAHOLD/dir_avgspr_bc
 mkdir -p $DATA
 cd $DATA
 $USHfnmoc/fnmocens_bc_avgspr.sh
+export err=$?; err_chk
 
 export DATA=$DATAHOLD/dir_avgspr
 mkdir -p $DATA
 cd $DATA
 $USHfnmoc/fnmocens_avgspr.sh                  
+export err=$?; err_chk
 
 cat $DATAHOLD/group.006/$pgmout.006.p02_an
 cat $DATAHOLD/group.006/$pgmout.006.p02_wt 

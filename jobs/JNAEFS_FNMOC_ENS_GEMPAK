@@ -85,7 +85,14 @@ export EXECnaefs=${EXECnaefs:-$HOMEnaefs/exec}
 export FIXnaefs=${FIXnaefs:-$HOMEnaefs/fix}
 export USHnaefs=${USHnaefs:-$HOMEnaefs/ush}
 
+####################################
+# Mail List
+####################################
+export MAILTO=${MAILTO:-'nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov'}
+
+#########################################
 # Run setpdy and initialize PDY variables
+#########################################
 setpdy.sh
 . ./PDY
 
@@ -126,6 +133,22 @@ chmod 775 $DATA/poescript
 # Execute the script.
 $APRUN $DATA/poescript
 export err=$?; err_chk
+
+cd $DATA
+for ftype in et; do
+  for member in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20; do 
+    if [ -s "$DATA/${member}_$ftype/missing_fens.txt" ]; then
+      sort -u $DATA/${member}_$ftype/missing_fens.txt    >> $DATA/missing_files
+    fi
+  done
+done
+if [ -s "$DATA/missing_files" ]; then
+  echo "One or more FNMOC files are missing, including:"  > $DATA/mail_message
+  cat $DATA/missing_files                                >> $DATA/mail_message
+  echo ""                                                >> $DATA/mail_message 
+  echo "$0 could not process all expected data."         >> $DATA/mail_message 
+  cat $DATA/mail_message | mail.py -s "Missing FNMOC data in $job" ${MAILTO:?} -v
+fi
 
 cat $DATA/01_et/output
 cat $DATA/11_et/output

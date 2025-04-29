@@ -195,6 +195,7 @@ fi    # if fhr=00
 
 elif [ ! -s $GRIB2IN ]; then
   echo "WARNING:$GRIB2IN is missing!!!"
+  echo "$GRIB2IN" >> ${DATA}/missing_fens.txt
 fi
 
   # end of restart check

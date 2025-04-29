@@ -96,6 +96,11 @@ export ERRSCRIPT=err_chk
 export REDOUT='1>>'
 export REDERR='2>'
 
+####################################
+# Mail List
+####################################
+export MAILTO=${MAILTO:-'nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov'}
+
 #########################################
 # Run setpdy and initialize PDY variables
 #########################################
@@ -132,6 +137,7 @@ env
 ####################
 
 $HOMEfnmoc/scripts/exnaefs_fnmoc_ens_bias.sh
+export err=$?; err_chk
 
 cat $pgmout.000.anl
 cat $pgmout.000.mdf
