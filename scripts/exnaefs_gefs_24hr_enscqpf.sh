@@ -48,7 +48,7 @@ pgmout=output
 export CPGB=enspost.t${cyc}z.prcp
 export CPGO=qpf
 
-rm inputqpf
+if [ -s inputqpf ]; then rm inputqpf; fi
 
 echo "&namin"                           >inputqpf
 echo "icyc=$cyc"                       >>inputqpf
@@ -58,7 +58,7 @@ echo "/"                                >>inputqpf
 
 cat inputqpf
 
-rm $CPGO
+if [ -s $CPGO ]; then rm $CPGO; fi    
 
 . prep_step
 $EXECgefs/$pgm  <inputqpf  >$pgmout
@@ -101,7 +101,7 @@ pgmout=output
 export CPGB=enspost.t${cyc}z.prcp
 export CPGO=pqpf   
 
-rm inputpqpf
+if [ -s inputpqpf ]; then rm inputpqpf; fi
 
 echo "&namin"                           >inputpqpf
 echo "icyc=$cyc"                       >>inputpqpf
@@ -111,7 +111,7 @@ echo "/"                                >>inputpqpf
 
 cat inputpqpf
 
-rm $CPGO 
+if [ -s $CPGO  ]; then rm $CPGO; fi
 
 . prep_step
 $EXECgefs/$pgm  <inputpqpf  >$pgmout
