@@ -16,6 +16,7 @@
 !   17-05-06   Yan Luo: Create for 24hr bias corrected QPF.
 !   21-11-05   Yan Luo: Modify for WCOSS2 transition 
 !   23-01-19   Bo Cui:  Change ensemble size from 21 to 31
+!   25-05-06   Bo Cui:  Improve code stability
 !
 ! USAGE:
 !
@@ -140,6 +141,10 @@ allocate(ff(ijd,mem),ss(ijd,mem),aa(ijd))
 allocate(pp1(ijd,mem),pp2(ijd,mem),pp3(ijd,mem))
 allocate(avg(ijd),spr(ijd))
 
+pp1=0.
+pp2=0.
+pp3=0.
+
 ncnt=0
 
 print *, 'hrinter,len',hrinter,len
@@ -253,8 +258,10 @@ do n = 1, len         !### 16 (days) * 4 = 64 (6-hr)
               bb=ff(ii,mm)+pp1(ii,mm)
             elseif(hrinter.eq.6) then
               bb=ff(ii,mm)
+            else
+              bb=0.
             endif
-            if(k.eq.2.and.ii.eq.1250.and.mm.eq.1) then
+            if(ii.eq.1250.and.mm.eq.1) then
               print *, 'ff,pp1,pp2,pp3,bb',hrinter,ff(ii,mm),pp1(ii,mm),pp2(ii,mm),pp3(ii,mm),bb
             endif
               ss(ii,mm)=bb
