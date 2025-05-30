@@ -43,7 +43,7 @@ do
    echo "canom='anom.dat'," >>input
    echo "/" >>input
 
-   $EXECGEFS/$pgm <input > $pgmout.$FHR_an 2> errfile
+   $EXECGEFS/$pgm <input > $pgmout.${FHR}_an 2> errfile
    export err=$?;err_chk
 
    mv efi.dat  geprcp.${cycle}.pgrb2a.0p50.efif${FHR}
