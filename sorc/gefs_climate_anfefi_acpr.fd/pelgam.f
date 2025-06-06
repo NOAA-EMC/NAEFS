@@ -39,6 +39,7 @@ C
       DATA PI/3.1415927D0/
 C
       IF(XMOM(1).LE.XMOM(2).OR.XMOM(2).LE.ZERO)GOTO 1000
+      IF(XMOM(1).EQ.ZERO)GOTO 1000
       CV=XMOM(2)/XMOM(1)
       IF(CV.GE.HALF)GOTO 10
       T=PI*CV*CV
@@ -48,6 +49,14 @@ C
       T=ONE-CV
       ALPHA=T*(B1+T*B2)/(ONE+T*(B3+T*B4))
    20 CONTINUE
+
+C FINAL CHECK TO AVOID DIVISION BY ZERO
+      IF (ALPHA .EQ. ZERO) THEN
+          PARA(1) = ZERO
+          PARA(2) = ZERO
+          RETURN
+      END IF
+
       PARA(1)=ALPHA
       PARA(2)=XMOM(1)/ALPHA
       RETURN
