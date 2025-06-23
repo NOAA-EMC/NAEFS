@@ -209,6 +209,7 @@ if(iret.ne.0) then; print*,' getgbeh, cannot get maxgrd ';endif
 if(iret.ne.0) goto 1020
 
 maxgrd=gfld%ngrdpts
+ifallcmc=0
 if(gfld%ipdtmpl(17).ge.21) ifallcmc=1
 
 call gf_free(gfld)
