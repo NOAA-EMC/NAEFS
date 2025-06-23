@@ -56,7 +56,7 @@ use params
 !implicit none
 
 integer     nmemd,nvar,ivar,i,k,im,imem,n,inum,ignum,nunit,jjm1
-parameter   (nmemd=42,nvar=4,nunit=6)
+parameter   (nmemd=52,nvar=4,nunit=6)
 
 type(gribfield) :: gfld,gfldo
 integer :: currlen=0
@@ -81,7 +81,7 @@ real        xmin,xmax,avg,spr,weight(nmemd)
 integer     maxgrd,ndata
 integer     index,j,iret,jret             
 
-integer     ifweightwdir,ipdtnum_out
+integer     ifweightwdir,ipdtnum_out,ifallcmc
 
 double precision,allocatable :: fstd(:)
 double precision prob10,prob90,prob50,mode
@@ -209,6 +209,7 @@ if(iret.ne.0) then; print*,' getgbeh, cannot get maxgrd ';endif
 if(iret.ne.0) goto 1020
 
 maxgrd=gfld%ngrdpts
+ifallcmc=0
 if(gfld%ipdtmpl(17).ge.21) ifallcmc=1
 
 call gf_free(gfld)
