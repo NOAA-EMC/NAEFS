@@ -47,6 +47,7 @@ fi
 for nfhrs in $hourlist; do
   for nens in $memberlist; do
     infile=$COMINgefs/ge${nens}.t${cyc}z.pgrb2a.0p50.f${nfhrs}                  
+    if [ -s $infile ]; then
     $WGRIB2 -match ":APCP:" $infile  -append -grib  $outfile_prcp
     if [ "$HRINTER" = "6" ]; then
       $WGRIB2 -match ":CRAIN:" $infile  -append -grib  $outfile_rain
@@ -54,8 +55,16 @@ for nfhrs in $hourlist; do
       $WGRIB2 -match ":CICEP:" $infile  -append -grib  $outfile_icep
       $WGRIB2 -match ":CSNOW:" $infile  -append -grib  $outfile_snow
     fi
+    else
+      echo "Warning: missing input file $infile"
+    fi
   done
 done
+
+if [ ! -s $outfile_prcp ]; then
+  echo "FATAL ERROR: missing all input files in " $COMINgefs
+  export err=1; err_chk
+fi
 
 # Specify the input/output file names:
 
