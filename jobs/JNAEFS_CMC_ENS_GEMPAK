@@ -33,8 +33,11 @@ export cycle=t${cyc}z
 
 export jlogfile=${jlogfile:-${DATA}/jlogfile.${job}.${pid}}
 
-####################################
-#
+###########
+# Mail List
+###########
+export MAILTO=${MAILTO:-'nco.spa@noaa.gov,ncep.sos@noaa.gov,nco.sos@noaa.gov'}
+
 ####################################
 export SENDCOM=${SENDCOM:-YES}
 export SENDECF=${SENDECF:-YES}
@@ -121,11 +124,34 @@ chmod 775 $DATA/poescript_gempak
 $APRUN poescript_gempak
 export err=$?; err_chk
 
+# nfile: number of available input files
+
+nfile=0
+for nfhrs in $hourlist; do
+  if [ -s ${DATA}/dir_${nfhrs}/missing_cmce.txt ]; then
+    cat ${DATA}/dir_${nfhrs}/missing_cmce.txt   >> ${DATA}/total_missing_cmce.txt
+  else
+    (( nfile = nfile + 1 ))
+  fi
+done 
+
+if [ -s "$DATA/total_missing_cmce.txt" ]; then
+  echo ""                                               >> $DATA/mail_message
+  echo "One or more CMC files are missing,including:"   >> $DATA/mail_message
+  cat $DATA/total_missing_cmce.txt                      >> $DATA/mail_message
+  if [ $nfile -eq 0 ]; then
+    echo ""                                               >> $DATA/mail_message
+    echo "FATAL ERROR: missing all input files in $COMIN" >> ${DATA}/mail_message     
+    cat $DATA/mail_message | mail.py -s "Missing CMC data in $job" ${MAILTO:?} -v
+    echo "FATAL ERROR: missing all input files in " $COMIN
+    export err=1; err_chk
+  fi
+fi
+
 cat $DATA/dir_024/output_p01_024
 cat $DATA/dir_360/output_p01_360
 cat $DATA/dir_024/output_avg_024
 cat $DATA/dir_360/output_avg_360
-
 ########################################################
 
 cd $DATAROOT

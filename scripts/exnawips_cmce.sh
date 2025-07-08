@@ -130,7 +130,8 @@ EOF
   fi
 
 else 
-  echo "WARNING:$GRIB2IN is missing!!!"
+  echo "WARNING:$GRIBIN is missing!!!"
+  echo "WARNING:$GRIBIN is missing!!!" >> ${DATA}/missing_cmce.txt
 fi
 
   fi   ## check restart
