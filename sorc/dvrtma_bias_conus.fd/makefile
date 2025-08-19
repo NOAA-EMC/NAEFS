@@ -35,7 +35,6 @@ clean:
 install:
 	mv $(CMD) ../../exec/$(CMD)
 
-
 debug:
 	FFLAGS += $(DEBUG)                         
 
