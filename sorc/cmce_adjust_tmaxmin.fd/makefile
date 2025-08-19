@@ -34,3 +34,9 @@ clean:
 install:
 	mv $(CMD) ../../exec/$(CMD)
 
+debug:
+	FFLAGS += $(DEBUG)                         
+
+test: 
+	$(CMD) < input.txt > output.txt     
+	diff output.txt valid_output.txt    
